@@ -77,3 +77,4 @@ plugins:
 deploy:
   type: git
   repo: git@github.com:sunhengzhe/sunhengzhe.github.io.git
+  branch: master
