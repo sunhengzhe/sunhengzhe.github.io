@@ -3,12 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Sunhengzhe
+title: 杂七杂八
 subtitle:
-description:
-author: Sunhengzhe
+description: 都知欢聚最难得 难奈别离多
+author: 一只奥利奥
 language: zh-Hans
+avatar: /images/aoliao.png
 timezone:
+
+# other
+duoshuo_shortname: sunhengzhe
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
