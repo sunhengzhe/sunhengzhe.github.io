@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 杂七杂八
+title: 一间大房子
 subtitle:
-description: 都知欢聚最难得 难奈别离多
+description: 今天过的开心吗
 author: 一只奥利奥
 language: zh-Hans
 avatar: /images/aoliao.png
@@ -68,6 +68,9 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
+
+plugins:
+- hexo-generator-cname
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
