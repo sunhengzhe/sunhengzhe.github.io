@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 一间大房子
+title: 奥利奥的大房子
 subtitle:
-description: 今天过的开心吗
+description: 很高兴遇见你
 author: 一只奥利奥
 language: zh-Hans
 avatar: /images/aoliao.png
@@ -68,9 +68,6 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
-
-plugins:
-- hexo-generator-cname
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
