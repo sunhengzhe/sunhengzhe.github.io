@@ -73,7 +73,7 @@ else
 要理解为什么通过递归就能求出左子数组和右子数组的最大值，关键在于想明白**递归之后子数组问题会合并**。
 
 ### Javascript 实现
-```
+```javascript
 function findMaxCrossingSubarray(arr, low, mid, high) {
   var leftIndex = 0, rightIndex = 0;
   // left
