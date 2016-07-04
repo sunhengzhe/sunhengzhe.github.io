@@ -122,7 +122,7 @@ function sum() {
 }
 ```
 
-`sum` 可以接收任意个参数并返回它们的和，我们通过调整 `curring` 的判断条件来覆盖这种情况。
+`sum` 可以接收任意个参数并返回它们的和，我们通过调整 `currying` 的判断条件来覆盖这种情况。
 
 ```javascript
 function currying(func) {

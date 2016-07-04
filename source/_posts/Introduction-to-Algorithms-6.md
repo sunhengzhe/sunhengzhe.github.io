@@ -151,3 +151,86 @@ var arr = [16, 4, 10, 14, 7, 9, 3, 2, 8, 1];
 heap_sort(arr);
 console.log(arr); [1, 2, 3, 4, 7, 8, 9, 10, 14, 16]
 ```
+
+堆排序的时间复杂度是 `θ(nlgn)`。
+
+## 优先队列
+
+上面讲了使用堆实现堆排序算法，除此之外，堆还有一个常见的应用：作为高效的优先队列。
+
+和堆一样，优先队列也有两种形式：**最大优先队列**和**最小优先队列**。
+
+优先队列是一种用来维护由一组元素构成的集合 S 的数据结构，其中的每一个元素都有一个相关的值，称为**关键字**。
+
+一个最大优先队列支持以下操作：
+
+- INSERT(S, x): 把元素 x 插入集合 S 中。
+- MAXIMUM(S): 返回 S 中具有最大键字的元素。
+- EXTRACT-MAX(S): 去掉并返回 S 中的具有最大键字的元素。
+- INCREASE-KEY(S, x, k): 将元素 x 的关键字值增加到 k，这里假设 k 的值不小于 x 的原关键字值。
+
+最大优先队列的应用有很多，其中一个就是在共享计算机系统的作业调度。最大优先队列记录将要执行的各个作业以及它们之间的相对优先级。当一个作业完成或者被中断后，调度器调用 EXTRACT-MAX 从所有的等待作业中选出具有最高优先级的作业来执行。在任何时候，调度器可以调用 INSERT 把一个新作业加入到队列中来。
+
+相应地，**最小优先队列**支持的操作包括 `INSERT`、`MINIMUM`、`EXTRACT-MIN` 和 `DECREASE-KEY`。
+
+最小优先队列可以被用于基于事件驱动的模拟器。队列中保存要模拟的事件，每个事件都有一个发生时间作为其关键字。事件必须按照发生的时间顺序进行模拟，因为某一事件的模拟结果可能会触发对其他事件的模拟。在每一步，模拟程序调用 EXTRACT-MIN 来选择下一个要模拟的事件。当一个新事件产生时，模拟器通过调用 INSERT 将其插入最小优先级队列中。
+
+### MAXIMUM
+
+我们先讨论如何实现最大优先队列。首先，HEAP-MAXIMUM 可以实现 MAXIMUM 的操作。
+
+*HEAP-MAXIMUM(A)*
+```
+// 最大堆的根结点即最大优先队列中最大的关键字
+return A[1]
+```
+
+### EXTRACT-MAX
+
+过程 HEAP-EXTRACT-MAX 实现 EXTRACT-MAX 操作，它与 HEAPSORT 过程中的 `for` 循环体部分相似。
+
+*HEAP-EXTRACT-MAX(A)*
+```
+if A.heap-size < 1
+  error "heap underflow"
+// 堆的根结点即是最大值
+max = A[1]
+// 将最后一个结点放到根结点
+A[1] = A[A.heap-size]
+A.heap-size = A.heap-size - 1
+// 维持最大堆性质
+MAX-HEAPIFY(A, 1)
+```
+
+### INCREASE-KEY
+
+过程 HEAP-INCREASE-KEY 实现 INCREASE-KEY 操作。当将元素 A[i] 的关键字更新为新值后，因为增大 A[i]坑内会让新的堆违反最大堆性质，所以在从当前结点到根结点的路径上，为新增的关键字寻找恰当的插入位置。当前元素会不断地与其父结点进行比较，如果当前元素的关键字较大，则当前元素与父结点进行交换。这一过程一直重复到当前元素的关键字小于其父结点为止。
+
+在优先队列中，我们更希望增加关键字的优先队列元素由对应的数组下标 i 来标识：
+
+*HEAP-INCREASE-KEY(A, i, key)*
+```
+if key < A[i]
+  error "new key is smaller than current key"
+// 替换对应的关键字
+A[i] = key
+// 为新增关键字寻找正确的位置
+while i > 1 and A[PARENT(i)] < A[i]
+  // 若新增关键字大于父结点值，交换它们
+  exchange A[i] and A[PARENT(i)]
+  i = PARENT(i)
+```
+
+### INSERT
+
+过程 MAX-HEAP-INSERT 实现 INSERT 操作。它的输入是要被插入到最大堆 A 中的新元素的关键字。MAX-HEAP-INSERT 首先通过增加一个关键字为 `-∞` 的叶结点来扩展最大堆，然后调用 HEAP-INCREASE-KEY 来将新结点设置为对应的关键字，同时保持最大堆的性质。
+
+*MAX-HEAP-INSERT(A, key)*
+```
+// 扩展最大堆
+A.heap-size = A.heap-size + 1
+// 给新结点赋值
+A[heap-size] = -∞
+// 将新结点的值替换成对应关键字
+HEAP-INCREASE-KEY(A, A.heap-size, key)
+```
