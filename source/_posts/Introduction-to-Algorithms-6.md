@@ -149,7 +149,7 @@ function heap_sort(arr) {
 
 var arr = [16, 4, 10, 14, 7, 9, 3, 2, 8, 1];
 heap_sort(arr);
-console.log(arr); [1, 2, 3, 4, 7, 8, 9, 10, 14, 16]
+console.log(arr); // [1, 2, 3, 4, 7, 8, 9, 10, 14, 16]
 ```
 
 堆排序的时间复杂度是 `θ(nlgn)`。
