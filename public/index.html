@@ -248,6 +248,142 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/10/natural-language-processing-1/" itemprop="url">
+                  自然语言处理（一）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-10T23:28:24+08:00" content="2016-07-10">
+              2016-07-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/10/natural-language-processing-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/natural-language-processing-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果想实现聊天机器人，必然要让程序能够正确响应用户的信息，而用户对机器输入的往往是我们平时使用的语言，也就是自然语言，想让机器能“理解”用户的信息，并能够返回用户需要的信息，这就涉及到了<strong>自然语言处理</strong>。从上个世纪50年代起，科学家们就已经开始着手研究这个问题，到现在为止，已经取得了非常大的突破。</p>
+<h2 id="自然语言处理的两个阶段"><a href="#自然语言处理的两个阶段" class="headerlink" title="自然语言处理的两个阶段"></a>自然语言处理的两个阶段</h2><p>在自然语言处理 60 多年的发展过程中，基本上可以分成两个阶段。早期的 20 多年，即从上个世纪 60 年代到70年代，是科学家们走弯路的阶段。当时，学术界对人工智能和自然语言理解的普遍认为：要让机器完成翻译或者语音识别等只有人类才能做到的事，就必须先让计算机理解自然语言，而做到这一点就必须让计算机拥有类似我们人类这样的智能。</p>
+<blockquote>
+<p>而事实上当然不是这样。对人类来讲，一个要把英文翻译成中文的人，必然要能很好地理解这两种语言，这就是直觉的作用。在人工智能领域，包括自然语言处理领域，这种方法论被称作“鸟飞派”，也就是看看鸟是怎么飞的就能模仿鸟造出的飞机，而不需要了解空气动力学。事实上，怀特兄弟发明飞机靠的是空气动力学而不是仿生学。</p>
+</blockquote>
+<h3 id="基于规则的自然语言处理"><a href="#基于规则的自然语言处理" class="headerlink" title="基于规则的自然语言处理"></a>基于规则的自然语言处理</h3><p>在 20 世纪 60 年代，当时普遍认识是首先做好两件事，即<strong>分析语句</strong>和<strong>获取语义</strong>。这是因为当时的语言学家们已经对各种自然语言进行了非常形式化的总结，形成了十分完备的体系。就好像学习西方语言，都要学习<em>语法规则</em>、<em>词性</em>和<em>构词法</em>等。而恰恰这些语法规则又很容易用计算机的算法描述，这就让大家对<strong>基于规则的自然语言处理</strong>充满了信心。</p>
+<p>当时对自然语言处理从研究到应用的依赖关系如下：</p>
+<ul>
+<li><strong>应用层</strong>：<code>语言识别</code>、<code>机器翻译</code>、<code>自动问答</code>、<code>自动摘要</code>等</li>
+<li><strong>认知层</strong>：<code>自然语言理解</code></li>
+<li><strong>基础层</strong>：<code>句法分析</code>、<code>语义分析</code></li>
+</ul>
+<p>首先我们关注句法分析。</p>
+<p>句法分析首先对一个句子进行拆分，得到一颗<strong>文法分析树</strong>，以<code>“徐志摩喜欢林徽因。”</code> 这句话来说，这句话分为主语、动词短语（即谓语）和句号三部分，得到的文法分析树如下：</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/natural-language-processing-1/01.png" alt=""></p>
+<p>接下来分析出句子采用的文法规则，这个过程成为重写规则。具体到这个例子，重写规则包括：</p>
+<ul>
+<li>句子     –&gt; 主语谓语句号</li>
+<li>主语     –&gt; 名词</li>
+<li>谓语     –&gt; 动词 名词短语</li>
+<li>名词短语 –&gt; 名词</li>
+<li>名词     –&gt; 徐志摩</li>
+<li>动词     –&gt; 喜欢</li>
+<li>名词     –&gt; 林徽因</li>
+<li>句号     –&gt; 。</li>
+</ul>
+<p>从上面可以看出，短短几个字的句子，就需要一颗这么复杂的二维树结构和八条文法规则，而随着句子的复杂化，要处理起来就变得相当困难了，一个句子的文法分析树将变得非常巨大，也非常复杂。</p>
+<p>这里面至少有两个越不过去的坎。首先，想通过文法规则覆盖哪怕 20% 的真实语句，文法规则的数量也是几万条。随着覆盖语句的增加，文法规则的数量还会越来越多。</p>
+<p>其次，自然语言在演变的过程中，产生了词义和上下文相关的特性，因此，它的文法是<strong>上下文有关文法</strong>，而程序语言是人为设定的，是便于计算机解码的<strong>上下文无关文法</strong>，相比自然语言简单的多。两者计算量不可同日而语。</p>
+<blockquote>
+<p>在计算机科学中，图灵奖最高得主高德纳提出用计算复杂度来衡量算法的耗时。对于上下文无关语法，算法的复杂度基本上是语句长度的二次方，而对于上下文有关语法，计算复杂度基本上是语句长度的<strong>六次方</strong>。也就是说，长度同为 10 的程序语言语句和自然语言语句，计算机对它们进行文法分析的计算量，后者是前者的 10000 倍。而随着长度增加，这个差异会以非常快的速度扩大。所以在那个年代，即使是 IBM 公司，也几乎是不可能采用规则的方法来分析一些真实语句。</p>
+</blockquote>
+<p>在上个世纪 70 年代，基于规则的句法分析很快就走到了尽头，而对于语义处理则遇到了更大的麻烦，自然语言中的词的多义性很难用规则来描述，而是严重依赖于上下文，甚至是常识。</p>
+<p>举例来说，<code>the box is in the pen</code> 这句话，意思是 <code>盒子在围栏里</code>，但是 <code>pen</code> 到底翻译成钢笔还是围栏是取决于什么？是取决于常识：因为盒子不可能装在钢笔里，这个例子非常清晰地说明了自然语言处理研究方法上存在的问题。</p>
+<p>这时候，<strong>基于统计的自然语言处理</strong>重获了新生，并取得了今天的非凡成就。</p>
+<h3 id="基于统计的自然语言处理"><a href="#基于统计的自然语言处理" class="headerlink" title="基于统计的自然语言处理"></a>基于统计的自然语言处理</h3><p>(待续)</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/09/Introduction-to-Algorithms-8/" itemprop="url">
                   《算法导论》第八章：线性时间排序
                 </a>
@@ -1173,7 +1309,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1183,7 +1319,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
