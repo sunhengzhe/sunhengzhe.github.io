@@ -85,27 +85,18 @@
 
 
 <meta name="description" content="快速排序和归并排序一样，使用了分治思想。回顾一下归并排序，归并排序是将数组递归拆分，然后两两合并成已排序的数组，一直到合并成为新数组。
-快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。
-对于数组 A[p .. r] 快速排序的三步分治过程如下：
-
-分解：数组 A[p .. r] 被划分为两个（可能为空）子数组 A[p .. q - 1] 和 A[q + 1 .. r]">
+快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《算法导论》第七章：快速排序">
 <meta property="og:url" content="http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
 <meta property="og:description" content="快速排序和归并排序一样，使用了分治思想。回顾一下归并排序，归并排序是将数组递归拆分，然后两两合并成已排序的数组，一直到合并成为新数组。
-快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。
-对于数组 A[p .. r] 快速排序的三步分治过程如下：
-
-分解：数组 A[p .. r] 被划分为两个（可能为空）子数组 A[p .. q - 1] 和 A[q + 1 .. r]">
-<meta property="og:updated_time" content="2016-07-19T10:33:52.252Z">
+快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。">
+<meta property="og:updated_time" content="2016-07-19T10:44:58.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《算法导论》第七章：快速排序">
 <meta name="twitter:description" content="快速排序和归并排序一样，使用了分治思想。回顾一下归并排序，归并排序是将数组递归拆分，然后两两合并成已排序的数组，一直到合并成为新数组。
-快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。
-对于数组 A[p .. r] 快速排序的三步分治过程如下：
-
-分解：数组 A[p .. r] 被划分为两个（可能为空）子数组 A[p .. q - 1] 和 A[q + 1 .. r]">
+快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。">
 
 
 
@@ -307,6 +298,7 @@
       
         <p>快速排序和归并排序一样，使用了分治思想。回顾一下归并排序，归并排序是将数组递归拆分，然后两两合并成已排序的数组，一直到合并成为新数组。</p>
 <p>快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。</p>
+<a id="more"></a>
 <p>对于数组 <code>A[p .. r]</code> 快速排序的三步分治过程如下：</p>
 <ul>
 <li>分解：数组 <code>A[p .. r]</code> 被划分为两个（可能为空）子数组 <code>A[p .. q - 1]</code> 和 <code>A[q + 1 .. r]</code>，使得 <code>A[p .. q - 1]</code> 中的每一个元素都小于等于 <code>A[q]</code>，而 <code>A[q]</code> 也小于等于 <code>A[q + 1 .. r]</code> 中的每个元素。其中，计算下标 q 也是划分过程的一部分。</li>

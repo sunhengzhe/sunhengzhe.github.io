@@ -102,7 +102,7 @@
 合并步骤将子问题的解组合成原问题的解。
 
 当问题足够大，需要递归求解时，我们称之为递归情况。当子问题变得足够小，不需要递归时，我们说递归已">
-<meta property="og:updated_time" content="2016-07-04T03:59:49.187Z">
+<meta property="og:updated_time" content="2016-07-19T10:44:48.087Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《算法导论》第四章：分治策略">
 <meta name="twitter:description" content="在第二章的归并排序中已经使用了分治策略。在分治策略中，我们递归地求解一个问题，在每层递归中应用如下三个步骤：
@@ -318,6 +318,7 @@
 <li><strong>合并</strong>步骤将子问题的解组合成原问题的解。</li>
 </ul>
 <p>当问题足够大，需要递归求解时，我们称之为<strong>递归情况</strong>。当子问题变得足够小，不需要递归时，我们说递归已经“触底”，进入了<strong>基本情况</strong>。</p>
+<a id="more"></a>
 <h2 id="最大子数组问题"><a href="#最大子数组问题" class="headerlink" title="最大子数组问题"></a>最大子数组问题</h2><p>假设有以下数组：<code>[13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7]</code>，我们的目的是从中寻找一个连续子数组，使得数组元素之和是所有子数组中最大的。我们称这样的连续子数组为<strong>最大子数组</strong>。</p>
 <h3 id="暴力求解方法"><a href="#暴力求解方法" class="headerlink" title="暴力求解方法"></a>暴力求解方法</h3><p>我们当然可以通过暴力方法来求解：简单尝试所有可能的子数组，从中找出最大子数组。<code>n</code> 个元素一共有 <code>1 + 2 + 3 + ... + n</code> 个子数组，也就是这种方法的运行时间为 <code>Ω(n²)</code>。</p>
 <h3 id="分治策略的求解方法"><a href="#分治策略的求解方法" class="headerlink" title="分治策略的求解方法"></a>分治策略的求解方法</h3><p>假定我们要寻求子数组 A[low .. high] 的最大子数组，如果使用分治策略，这意味着我们需要把数组拆分成两个规模尽量相等的子数组，找到子数组的中点位置，假设为 <code>mid</code>，然后考虑求解两个子数组 A[low .. mid] 和 B[mid + 1 .. high。</p>

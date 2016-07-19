@@ -86,27 +86,24 @@
 
 <meta name="description" content="百度echarts3官网 上有一个非常好看的绘制 logo 的效果，通过 svg 就能实现：
 与此类似的还有绘制签名的过程：
-其实原理很简单，只要充分发挥想象力，加上好看的设计，就能完成很多意想不到的效果了。
-准备 svg首先要准备绘制的路径，SVG里用 path 来定义路径123&amp;lt;svg width=&quot;580&quot; height=&quot;400&quot; xmlns=&quot;http://www.w3.org/2">
+其实原理很简单，只要充分发挥想象力，加上好看的设计，就能完成很多意想不到的效果了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 svg 让线条动起来">
 <meta property="og:url" content="http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
 <meta property="og:description" content="百度echarts3官网 上有一个非常好看的绘制 logo 的效果，通过 svg 就能实现：
 与此类似的还有绘制签名的过程：
-其实原理很简单，只要充分发挥想象力，加上好看的设计，就能完成很多意想不到的效果了。
-准备 svg首先要准备绘制的路径，SVG里用 path 来定义路径123&amp;lt;svg width=&quot;580&quot; height=&quot;400&quot; xmlns=&quot;http://www.w3.org/2">
+其实原理很简单，只要充分发挥想象力，加上好看的设计，就能完成很多意想不到的效果了。">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog%2Fuse-svg-draw-line/02.gif">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/use-svg-draw-line/01.gif">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/use-svg-draw-line/03.png">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/use-svg-draw-line/04.png">
-<meta property="og:updated_time" content="2016-06-29T06:39:43.768Z">
+<meta property="og:updated_time" content="2016-07-19T10:45:22.170Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 svg 让线条动起来">
 <meta name="twitter:description" content="百度echarts3官网 上有一个非常好看的绘制 logo 的效果，通过 svg 就能实现：
 与此类似的还有绘制签名的过程：
-其实原理很简单，只要充分发挥想象力，加上好看的设计，就能完成很多意想不到的效果了。
-准备 svg首先要准备绘制的路径，SVG里用 path 来定义路径123&amp;lt;svg width=&quot;580&quot; height=&quot;400&quot; xmlns=&quot;http://www.w3.org/2">
+其实原理很简单，只要充分发挥想象力，加上好看的设计，就能完成很多意想不到的效果了。">
 <meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog%2Fuse-svg-draw-line/02.gif">
 
 
@@ -310,6 +307,7 @@
         <p><a href="http://echarts.baidu.com/index.html" target="_blank" rel="external">百度echarts3官网</a> 上有一个非常好看的绘制 logo 的效果，通过 svg 就能实现：<br><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog%2Fuse-svg-draw-line/02.gif" alt="绘制logo"></p>
 <p>与此类似的还有绘制签名的过程：<br><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/use-svg-draw-line/01.gif" alt="绘制签名"></p>
 <p>其实原理很简单，只要充分发挥想象力，加上好看的设计，就能完成很多意想不到的效果了。</p>
+<a id="more"></a>
 <h2 id="准备-svg"><a href="#准备-svg" class="headerlink" title="准备 svg"></a>准备 svg</h2><p>首先要准备绘制的路径，SVG里用 path 来定义路径<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"580"</span> <span class="attr">height</span>=<span class="string">"400"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"m149,123c0,1 -1.496231,3.907784 -2,8c-0.122177,0.992508 -2.206802,4.812653 -4,7c-2.285873,2.78833 -3.49295,5.234009 -6,10"</span> <span class="attr">id</span>=<span class="string">"svg_27"</span> <span class="attr">fill-opacity</span>=<span class="string">"null"</span> <span class="attr">stroke-opacity</span>=<span class="string">"null"</span> <span class="attr">stroke-width</span>=<span class="string">"1.5"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p>网上可以找到很多在线的或客户端可以用来生成 svg，比如写这个 demo 用到的是 <a href="http://www.yyyweb.com/ctools/demo.php" target="_blank" rel="external">这个在线编辑svg的网站</a>。</p>
 <h2 id="主要属性"><a href="#主要属性" class="headerlink" title="主要属性"></a>主要属性</h2><p>有了一段 path 之后，我们就可以开始让它动起来了，这里涉及到两个属性：</p>

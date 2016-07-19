@@ -5,6 +5,8 @@ tags: [读书笔记, 算法]
 ---
 这一章考察求解了排序问题中的**插入排序**算法，并引用算法设计中的**分治法**来开发**归并排序**的算法。
 
+<!-- more -->
+
 ## 插入排序
 
 插入排序的工作方式就像许多人排序一手扑克牌。开始时手中一张牌都没有，然后我们每起一次牌，都会将它与手中的牌作比较，从左到右（或者从右到左）来找到这张牌的正确位置，一直到起到最后一张。这个算法的关键之处就在于**你拿在手上的牌始终都是已经排好序的**。
@@ -31,7 +33,7 @@ function insertion_sort(arr) {
   for(var i = 1; i < arr.length; i++) {
     var key = arr[i];
     var j = i - 1;
-    
+
     while(j >= 0 && arr[j] > key) {
       arr[j + 1] = arr[j];
       j--;
@@ -139,9 +141,9 @@ function merge_sort(arr, p, r) {
     var q = Math.floor((p + r) / 2);
     merge_sort(arr, p, q);
     merge_sort(arr, q + 1, r);  
-    merge(arr, p, q, r); 
+    merge(arr, p, q, r);
   }
-  
+
 }
 
 var arr = [3, 2, 6, 3, 11, 10, 17, 0, 1, 9];
