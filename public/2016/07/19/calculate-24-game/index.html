@@ -1,0 +1,785 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="每周总结," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="从北戴河回来的时候，和水哥在火车上玩 24 点，玩着玩着就聊到了求 24 点的实现（可怕的程序猿
+先考虑简单实现，即只有加减乘除四则运算。很直接的思路就是列出所有可能的表达式，依次求和，最后找出结果等于 24 的情况。
+这里涉及到两个关键点，一个是通过数字求出所有表达式，另一个是根据式子计算结果。
+求所有表达式可以理解为求四个数字的排列，然后插入运算符即可；根据式子计算结果我们可以利用前缀表达式做">
+<meta property="og:type" content="article">
+<meta property="og:title" content="24点">
+<meta property="og:url" content="http://sunhengzhe.com/2016/07/19/calculate-24-game/index.html">
+<meta property="og:site_name" content="奥利奥的大房子">
+<meta property="og:description" content="从北戴河回来的时候，和水哥在火车上玩 24 点，玩着玩着就聊到了求 24 点的实现（可怕的程序猿
+先考虑简单实现，即只有加减乘除四则运算。很直接的思路就是列出所有可能的表达式，依次求和，最后找出结果等于 24 的情况。
+这里涉及到两个关键点，一个是通过数字求出所有表达式，另一个是根据式子计算结果。
+求所有表达式可以理解为求四个数字的排列，然后插入运算符即可；根据式子计算结果我们可以利用前缀表达式做">
+<meta property="og:updated_time" content="2016-07-19T10:31:45.737Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="24点">
+<meta name="twitter:description" content="从北戴河回来的时候，和水哥在火车上玩 24 点，玩着玩着就聊到了求 24 点的实现（可怕的程序猿
+先考虑简单实现，即只有加减乘除四则运算。很直接的思路就是列出所有可能的表达式，依次求和，最后找出结果等于 24 的情况。
+这里涉及到两个关键点，一个是通过数字求出所有表达式，另一个是根据式子计算结果。
+求所有表达式可以理解为求四个数字的排列，然后插入运算符即可；根据式子计算结果我们可以利用前缀表达式做">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sunhengzhe.com/2016/07/19/calculate-24-game/"/>
+
+  <title> 24点 | 奥利奥的大房子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">奥利奥的大房子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                24点
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-19T17:15:34+08:00" content="2016-07-19">
+              2016-07-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/19/calculate-24-game/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/19/calculate-24-game/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>从北戴河回来的时候，和水哥在火车上玩 24 点，玩着玩着就聊到了求 24 点的实现（可怕的程序猿</p>
+<p>先考虑简单实现，即只有加减乘除四则运算。很直接的思路就是列出所有可能的表达式，依次求和，最后找出结果等于 24 的情况。</p>
+<p>这里涉及到两个关键点，一个是通过数字求出所有表达式，另一个是根据式子计算结果。</p>
+<p>求所有表达式可以理解为求四个数字的排列，然后插入运算符即可；根据式子计算结果我们可以利用前缀表达式做到。</p>
+<h2 id="前缀表达式"><a href="#前缀表达式" class="headerlink" title="前缀表达式"></a>前缀表达式</h2><p>我们平常使用的式子比如 <code>3*(5+9)-4</code>，称为中缀表达式，运算符夹在数字的中间，是人类易于理解的表达式。而计算机很难识别这种表达式，一是括号改变了式子的运行顺序，另外各种运算符之间存在优先级大小关系。</p>
+<p>相比而言，前缀表达式是计算机容易计算的，像上面这个例子，如果用前缀表达式来描述则是 <code>-*3+594</code>。可以看到前缀表达式中去掉了括号，运算符跑到了计算数字的左边。</p>
+<h3 id="中缀表达式转换为前缀表达式"><a href="#中缀表达式转换为前缀表达式" class="headerlink" title="中缀表达式转换为前缀表达式"></a>中缀表达式转换为前缀表达式</h3><p>中缀表达式转换为前缀表达式需要经过以下步骤：</p>
+<ol>
+<li>从右至左扫描中缀表达式，从右边第一个字符开始判断<ul>
+<li>如果当前字符是数字，则将数字直接输出。</li>
+<li>如果是运算符，栈顶也是运算符，则比较优先级：如果当前运算符的优先级大于等于栈顶运算符的优先级，运算符入栈，如果当前运算符的优先级小于栈顶运算符的优先级，将栈顶运算符弹出并输出，直到当前运算符的优先级大于等于栈顶运算符的优先级。</li>
+<li>如果是运算符，栈顶为括号或栈为空，入栈。</li>
+<li>如果是右括号，则入栈。</li>
+<li>如果是左括号，将所有的运算符全部出栈并输出，直到栈顶为右括号，最后将左右的两括号一起删除。</li>
+</ul>
+</li>
+<li>重复上述操作直至扫描结束，将栈内剩余运算符全部出栈并输出，最后逆序输出字符串。</li>
+</ol>
+<p>以 <code>3*(5+9)-4</code> 为例，过程如下：</p>
+<ol>
+<li><p>字符为 4</p>
+<blockquote>
+<p>如果当前字符是数字，则将数字直接输出。</p>
+</blockquote>
+<ul>
+<li>输出序列：4</li>
+<li>栈：[]</li>
+</ul>
+</li>
+<li><p>字符为 -</p>
+<blockquote>
+<p>如果是运算符，栈顶为括号或栈为空，入栈。</p>
+</blockquote>
+<ul>
+<li>输出序列：4</li>
+<li>栈：[-]</li>
+</ul>
+</li>
+<li><p>字符为 )</p>
+<blockquote>
+<p>如果是右括号，则入栈。</p>
+</blockquote>
+<ul>
+<li>输出序列：4</li>
+<li>栈：[-, )]</li>
+</ul>
+</li>
+<li><p>字符为 9</p>
+<ul>
+<li>输出序列：49</li>
+<li>栈：[-, )]</li>
+</ul>
+</li>
+<li><p>字符为 +</p>
+<blockquote>
+<p>如果是运算符，栈顶为括号或栈为空，入栈。</p>
+</blockquote>
+<ul>
+<li>输出序列：49</li>
+<li>栈：[-, ), +]</li>
+</ul>
+</li>
+<li><p>字符为 5</p>
+<ul>
+<li>输出序列：495</li>
+<li>栈：[-, ), +]</li>
+</ul>
+</li>
+<li><p>字符为 (</p>
+<blockquote>
+<p>如果是左括号，将所有的运算符全部出栈并输出，直到栈顶为右括号，最后将左右的两括号一起删除。</p>
+</blockquote>
+<p>输出序列：495+<br>栈：[-]</p>
+</li>
+<li><p>字符为 *</p>
+<blockquote>
+<p>如果当前运算符的优先级大于等于栈顶运算符的优先级，运算符入栈</p>
+</blockquote>
+<ul>
+<li>输出序列：495+</li>
+<li>栈：[-, *]</li>
+</ul>
+</li>
+<li><p>字符为 3</p>
+<ul>
+<li>输出序列：495+3</li>
+<li>栈：[-, *]</li>
+</ul>
+</li>
+<li><p>结束</p>
+<blockquote>
+<p>将栈内剩余运算符全部出栈并输出，最后逆序输出字符串。</p>
+</blockquote>
+<ul>
+<li>输出序列：<code>495+3*-</code></li>
+<li>逆序：<code>-*3+594</code></li>
+</ul>
+</li>
+</ol>
+<p>所以最后结果为 <code>-*3+594</code>。</p>
+<p>javascript实现如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 中缀表达式转前缀表达式</div><div class="line"> * @param  &#123;string&#125; inExpress 中缀表达式</div><div class="line"> * @return &#123;string&#125;           前缀表达式</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">translate</span>(<span class="params">inExpress</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(inExpress == <span class="string">''</span>) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'表达式为空'</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 输出前缀表达式</span></div><div class="line">  <span class="keyword">let</span> output = [];</div><div class="line">  <span class="comment">// 反转</span></div><div class="line">  <span class="keyword">let</span> chars = inExpress.match(<span class="regexp">/(\d+)|[^\d]/g</span>).reverse();</div><div class="line">  <span class="comment">// 存放运算符的栈</span></div><div class="line">  <span class="keyword">let</span> stack = [];</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> ele <span class="keyword">of</span> chars) &#123;</div><div class="line">    <span class="keyword">if</span>(<span class="regexp">/\d+/</span>.test(ele)) &#123;</div><div class="line">      <span class="comment">// 如果是数字，直接输出</span></div><div class="line">      output.push(ele);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="regexp">/[\+\-]/</span>.test(ele)) &#123;</div><div class="line">      <span class="comment">// 栈顶元素</span></div><div class="line">      <span class="keyword">let</span> topEle = stack[stack.length - <span class="number">1</span>];</div><div class="line">      <span class="keyword">if</span>(<span class="regexp">/[\*\/]/</span>.test(topEle)) &#123;</div><div class="line">        <span class="comment">// 如果栈顶元素优先级比加减高，依次将优先级高的运算符弹出</span></div><div class="line">        <span class="keyword">while</span>(stack.length &gt; <span class="number">0</span> &amp;&amp; <span class="regexp">/[\*\/]/</span>.test(topEle)) &#123;</div><div class="line">          output.push(stack.pop());</div><div class="line">          topEle = stack[stack.length - <span class="number">1</span>];</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      stack.push(ele);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="regexp">/[\*\/\)]/</span>.test(ele)) &#123;</div><div class="line">      <span class="comment">// 如果是乘除或右括号，入栈</span></div><div class="line">      stack.push(ele);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">      <span class="comment">// 如果是左括号，依次弹出至右括号</span></div><div class="line">      <span class="keyword">let</span> topEle = stack.pop();</div><div class="line">      <span class="keyword">while</span>(topEle !== <span class="string">')'</span>) &#123;</div><div class="line">        output.push(topEle);</div><div class="line">        topEle = stack.pop();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 将栈剩余的元素依次弹出</span></div><div class="line">  <span class="keyword">while</span>(stack.length &gt; <span class="number">0</span>) &#123;</div><div class="line">    output.push(stack.pop());</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> output.reverse().join(<span class="string">','</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="计算前缀表达式"><a href="#计算前缀表达式" class="headerlink" title="计算前缀表达式"></a>计算前缀表达式</h3><p>前缀表达式的计算也使用到了栈，规则如下：</p>
+<ol>
+<li>从右至左扫描表达式<ul>
+<li>如果当前字符是数字，入栈</li>
+<li>如果当前字符是运算符，栈弹出两个元素，进行运算，并将结果入栈</li>
+</ul>
+</li>
+<li>重复上述过程，直到扫描结束</li>
+</ol>
+<p>继续以 <code>-*3+594</code> 为例，计算如下：</p>
+<ol>
+<li>栈:[4]</li>
+<li>栈:[4, 9]</li>
+<li>栈:[4, 9, 5]</li>
+<li>计算 <code>5 + 9</code>，得到结果 14 压入栈中。栈:[4, 14]</li>
+<li>栈:[4, 14, 3]</li>
+<li>计算 <code>3 * 14</code>，得到结果 42 压入栈中。栈:[4, 42]</li>
+<li>计算 <code>42 - 4</code>，得到结果 38 压入栈中。栈:[38]</li>
+</ol>
+<p>最后结果即为 48。</p>
+<p>javascript 实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 计算前缀表达式</div><div class="line"> * @param  &#123;string&#125; preExpress 前缀表达式</div><div class="line"> * @return &#123;number&#125;            结果</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">calculate</span>(<span class="params">preExpress</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> chars = preExpress.split(<span class="string">','</span>);</div><div class="line">  <span class="keyword">let</span> nums = [];</div><div class="line">  <span class="keyword">while</span>(chars.length &gt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">let</span> ele = chars.pop();</div><div class="line">    <span class="keyword">if</span>(<span class="regexp">/\d+/</span>.test(ele)) &#123;</div><div class="line">      nums.push(ele);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">let</span> left = +nums.pop();</div><div class="line">      <span class="keyword">let</span> right = +nums.pop();</div><div class="line">      <span class="keyword">switch</span> (ele) &#123;</div><div class="line">        <span class="keyword">case</span> <span class="string">'+'</span>:</div><div class="line">          nums.push(left + right);</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="string">'-'</span>:</div><div class="line">          nums.push(left - right);</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="string">'*'</span>:</div><div class="line">          nums.push(left * right);</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="string">'/'</span>:</div><div class="line">          nums.push(left / right);</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> nums[<span class="number">0</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="排列"><a href="#排列" class="headerlink" title="排列"></a>排列</h2><p>对于 <code>1, 2, 3, 4</code>，四个数字，我们知道一共有 <code>4! = 24</code> 种排列。</p>
+<p>而事实上，这二十四种排列是从第一个数字开始，依次与后面的数字交换而来的。</p>
+<ul>
+<li>1, 2 交换: <code>2, 1, 3, 4</code></li>
+<li>1, 3 交换：<code>2, 3, 1, 4</code></li>
+<li>1, 4 交换：<code>2, 3, 4, 1</code></li>
+<li>1, 2 交换：<code>1, 3, 4, 2</code></li>
+<li>1, 3 交换：<code>3, 1, 4, 2</code></li>
+<li>…依次类推</li>
+</ul>
+<p>所以只要在 <code>n!</code> 时间内，就能得出所有可能情况</p>
+<p>javascript 实现<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createExpress</span>(<span class="params">nums</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> noBraket = [], oneBraket = [], twoBraket = [];</div><div class="line"></div><div class="line">  <span class="keyword">let</span> swapIndex = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">24</span>; i++) &#123;</div><div class="line">    swap(swapIndex);</div><div class="line">    swapIndex == nums.length - <span class="number">1</span> ? swapIndex = <span class="number">0</span> : swapIndex++;</div><div class="line">    <span class="comment">// nums 即为一个排列</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">i</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(i &lt; nums.length - <span class="number">1</span>) &#123;</div><div class="line">      [nums[i], nums[i + <span class="number">1</span>]] = [nums[i + <span class="number">1</span>], nums[i]];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      [nums[i], nums[<span class="number">0</span>]] = [nums[<span class="number">0</span>], nums[i]];</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="添加括号"><a href="#添加括号" class="headerlink" title="添加括号"></a>添加括号</h2><p>式子列出之后，需要给表达式添加括号，实际上有括号的可能情况只有两种: 只有一个括号和有两个括号。而每种情况都只有 5 种情况。</p>
+<ol>
+<li>一个括号<ul>
+<li>(1 2) 3 4</li>
+<li>(1 2 3) 4</li>
+<li>1 (2 3) 4</li>
+<li>1 (2 3 4)</li>
+<li>1 (2 3 4)</li>
+</ul>
+</li>
+<li>两个括号<ul>
+<li>(1 2) (3 4)</li>
+<li>((1 2) 3) 4</li>
+<li>1 (2 (3 4))</li>
+<li>1 ((2 3) 4)</li>
+<li>(1 (2 3)) 4</li>
+</ul>
+</li>
+</ol>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><p>解决了以上问题之后，基本能算出所有的可能情况了，剩下的问题在于如何去除重复，和判断重复情况。</p>
+<p>比如 <code>(1 + 2 + 3) * 5</code> 和 <code>5 * (1 + 2 + 3)</code> 应该判断为同一种情况。</p>
+<h2 id="所有代码"><a href="#所有代码" class="headerlink" title="所有代码"></a>所有代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> nums = process.argv.slice(<span class="number">2</span>, <span class="number">6</span>);</div><div class="line"></div><div class="line">createExpress(nums);</div><div class="line"><span class="comment">// translate('(3+(3+4)*5');</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createExpress</span>(<span class="params">nums</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> noBraket = [], oneBraket = [], twoBraket = [];</div><div class="line"></div><div class="line">  <span class="keyword">let</span> swapIndex = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">24</span>; i++) &#123;</div><div class="line">    swap(swapIndex);</div><div class="line">    swapIndex == nums.length - <span class="number">1</span> ? swapIndex = <span class="number">0</span> : swapIndex++;</div><div class="line"></div><div class="line">    <span class="comment">// 表达式</span></div><div class="line">    <span class="keyword">let</span> operTypes = [<span class="string">'+'</span>, <span class="string">'-'</span>, <span class="string">'*'</span>, <span class="string">'/'</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; operTypes.length; j++) &#123;</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> k = <span class="number">0</span>; k &lt; operTypes.length; k++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> l = <span class="number">0</span>; l &lt; operTypes.length; l++) &#123;</div><div class="line">          <span class="keyword">let</span> express = <span class="string">`<span class="subst">$&#123;nums[0]&#125;</span><span class="subst">$&#123;operTypes[j]&#125;</span><span class="subst">$&#123;nums[1]&#125;</span><span class="subst">$&#123;operTypes[k]&#125;</span><span class="subst">$&#123;nums[2]&#125;</span><span class="subst">$&#123;operTypes[l]&#125;</span><span class="subst">$&#123;nums[3]&#125;</span>`</span>;</div><div class="line">          <span class="comment">// console.log(express)</span></div><div class="line">          noBraket.push(express);</div><div class="line"></div><div class="line">          <span class="comment">// 当不是全部都是同样优先级时才加括号</span></div><div class="line">          <span class="keyword">if</span>(!isSamePriority(operTypes[j], operTypes[k], operTypes[l])) &#123;</div><div class="line">            <span class="comment">// 加一个括号</span></div><div class="line">            oneBraket.push(addBraket(express, &#123;</div><div class="line">              <span class="number">0</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">4</span>: <span class="string">')'</span></div><div class="line">            &#125;));</div><div class="line">            oneBraket.push(addBraket(express, &#123;</div><div class="line">              <span class="number">2</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">6</span>: <span class="string">')'</span></div><div class="line">            &#125;));</div><div class="line">            oneBraket.push(addBraket(express, &#123;</div><div class="line">              <span class="number">4</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">8</span>: <span class="string">')'</span></div><div class="line">            &#125;));</div><div class="line">            oneBraket.push(addBraket(express, &#123;</div><div class="line">              <span class="number">0</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">6</span>: <span class="string">')'</span></div><div class="line">            &#125;));</div><div class="line">            oneBraket.push(addBraket(express, &#123;</div><div class="line">              <span class="number">2</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">8</span>: <span class="string">')'</span></div><div class="line">            &#125;));</div><div class="line"></div><div class="line">            <span class="comment">// 加两个括号</span></div><div class="line">            twoBraket.push(addBraket(express, &#123;</div><div class="line">              <span class="number">0</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">4</span>: <span class="string">')'</span>,</div><div class="line">              <span class="number">6</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">10</span>: <span class="string">')'</span></div><div class="line">            &#125;));</div><div class="line">            twoBraket.push(addBraket(express, &#123;</div><div class="line">              <span class="number">0</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">1</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">5</span>: <span class="string">')'</span>,</div><div class="line">              <span class="number">8</span>: <span class="string">')'</span></div><div class="line">            &#125;));</div><div class="line">            twoBraket.push(addBraket(express, &#123;</div><div class="line">              <span class="number">2</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">3</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">7</span>: <span class="string">')'</span>,</div><div class="line">              <span class="number">10</span>: <span class="string">')'</span></div><div class="line">            &#125;));</div><div class="line">            twoBraket.push(addBraket(express, &#123;</div><div class="line">              <span class="number">0</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">3</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">7</span>: <span class="string">')'</span>,</div><div class="line">              <span class="number">8</span>: <span class="string">')'</span></div><div class="line">            &#125;));</div><div class="line">            twoBraket.push(addBraket(express, &#123;</div><div class="line">              <span class="number">2</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">5</span>: <span class="string">'('</span>,</div><div class="line">              <span class="number">9</span>: <span class="string">')'</span>,</div><div class="line">              <span class="number">10</span>: <span class="string">')'</span></div><div class="line">            &#125;));</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> expresses = noBraket.concat(oneBraket).concat(twoBraket);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; expresses.length; i++) &#123;</div><div class="line">      <span class="comment">// if(expresses[i] == '')</span></div><div class="line">      <span class="comment">// console.log(expresses[i], calculate(translate(expresses[i])))</span></div><div class="line">      <span class="keyword">if</span>(calculate(translate(expresses[i])) == <span class="number">24</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(expresses[i]);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">isSamePriority</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> opers = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>).join(<span class="string">''</span>);</div><div class="line">    <span class="keyword">if</span>((opers.match(<span class="regexp">/[\+\-]/g</span>) &amp;&amp; opers.match(<span class="regexp">/[\+\-]/g</span>).length == opers.length)</div><div class="line">      || (opers.match(<span class="regexp">/[\*\/]/g</span>) &amp;&amp; opers.match(<span class="regexp">/[\*\/]/g</span>).length == opers.length)) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">addBraket</span>(<span class="params">express, param</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> chars = express.match(<span class="regexp">/(\d+)|[^\d]/g</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> pos <span class="keyword">in</span> param) &#123;</div><div class="line">      chars.splice(+pos, <span class="number">0</span>, param[pos]);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> chars.join(<span class="string">''</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">i</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(i &lt; nums.length - <span class="number">1</span>) &#123;</div><div class="line">      [nums[i], nums[i + <span class="number">1</span>]] = [nums[i + <span class="number">1</span>], nums[i]];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      [nums[i], nums[<span class="number">0</span>]] = [nums[<span class="number">0</span>], nums[i]];</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 中缀表达式转前缀表达式</div><div class="line"> * @param  &#123;string&#125; inExpress 中缀表达式</div><div class="line"> * @return &#123;string&#125;           前缀表达式</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">translate</span>(<span class="params">inExpress</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(inExpress == <span class="string">''</span>) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'表达式为空'</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 输出前缀表达式</span></div><div class="line">  <span class="keyword">let</span> output = [];</div><div class="line">  <span class="comment">// 反转</span></div><div class="line">  <span class="keyword">let</span> chars = inExpress.match(<span class="regexp">/(\d+)|[^\d]/g</span>).reverse();</div><div class="line">  <span class="comment">// 存放运算符的栈</span></div><div class="line">  <span class="keyword">let</span> stack = [];</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> ele <span class="keyword">of</span> chars) &#123;</div><div class="line">    <span class="keyword">if</span>(<span class="regexp">/\d+/</span>.test(ele)) &#123;</div><div class="line">      <span class="comment">// 如果是数字，直接输出</span></div><div class="line">      output.push(ele);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="regexp">/[\+\-]/</span>.test(ele)) &#123;</div><div class="line">      <span class="comment">// 栈顶元素</span></div><div class="line">      <span class="keyword">let</span> topEle = stack[stack.length - <span class="number">1</span>];</div><div class="line">      <span class="keyword">if</span>(<span class="regexp">/[\*\/]/</span>.test(topEle)) &#123;</div><div class="line">        <span class="comment">// 如果栈顶元素优先级比加减高，依次将优先级高的运算符弹出</span></div><div class="line">        <span class="keyword">while</span>(stack.length &gt; <span class="number">0</span> &amp;&amp; <span class="regexp">/[\*\/]/</span>.test(topEle)) &#123;</div><div class="line">          output.push(stack.pop());</div><div class="line">          topEle = stack[stack.length - <span class="number">1</span>];</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      stack.push(ele);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="regexp">/[\*\/\)]/</span>.test(ele)) &#123;</div><div class="line">      <span class="comment">// 如果是乘除或右括号，入栈</span></div><div class="line">      stack.push(ele);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">      <span class="comment">// 如果是左括号，依次弹出至右括号</span></div><div class="line">      <span class="keyword">let</span> topEle = stack.pop();</div><div class="line">      <span class="keyword">while</span>(topEle !== <span class="string">')'</span>) &#123;</div><div class="line">        output.push(topEle);</div><div class="line">        topEle = stack.pop();</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// 将栈剩余的元素依次弹出</span></div><div class="line">  <span class="keyword">while</span>(stack.length &gt; <span class="number">0</span>) &#123;</div><div class="line">    output.push(stack.pop());</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> output.reverse().join(<span class="string">','</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 计算前缀表达式</div><div class="line"> * @param  &#123;string&#125; preExpress 前缀表达式</div><div class="line"> * @return &#123;number&#125;            结果</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">calculate</span>(<span class="params">preExpress</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> chars = preExpress.split(<span class="string">','</span>);</div><div class="line">  <span class="keyword">let</span> nums = [];</div><div class="line">  <span class="keyword">while</span>(chars.length &gt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">let</span> ele = chars.pop();</div><div class="line">    <span class="keyword">if</span>(<span class="regexp">/\d+/</span>.test(ele)) &#123;</div><div class="line">      nums.push(ele);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">let</span> left = +nums.pop();</div><div class="line">      <span class="keyword">let</span> right = +nums.pop();</div><div class="line">      <span class="keyword">switch</span> (ele) &#123;</div><div class="line">        <span class="keyword">case</span> <span class="string">'+'</span>:</div><div class="line">          nums.push(left + right);</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="string">'-'</span>:</div><div class="line">          nums.push(left - right);</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="string">'*'</span>:</div><div class="line">          nums.push(left * right);</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="string">'/'</span>:</div><div class="line">          nums.push(left / right);</div><div class="line">          <span class="keyword">break</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> nums[<span class="number">0</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/每周总结/" rel="tag">#每周总结</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/04/currying/" rel="next" title="函数柯里化">
+                <i class="fa fa-chevron-left"></i> 函数柯里化
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/19/calculate-24-game/"
+           data-title="24点" data-url="http://sunhengzhe.com/2016/07/19/calculate-24-game/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/aoliao.png"
+               alt="一只奥利奥" />
+          <p class="site-author-name" itemprop="name">一只奥利奥</p>
+          <p class="site-description motion-element" itemprop="description">很高兴遇见你</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunhengzhe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3025220401" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前缀表达式"><span class="nav-number">1.</span> <span class="nav-text">前缀表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#中缀表达式转换为前缀表达式"><span class="nav-number">1.1.</span> <span class="nav-text">中缀表达式转换为前缀表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算前缀表达式"><span class="nav-number">1.2.</span> <span class="nav-text">计算前缀表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排列"><span class="nav-number">2.</span> <span class="nav-text">排列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加括号"><span class="nav-number">3.</span> <span class="nav-text">添加括号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">4.</span> <span class="nav-text">TODO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有代码"><span class="nav-number">5.</span> <span class="nav-text">所有代码</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只奥利奥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunhengzhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
