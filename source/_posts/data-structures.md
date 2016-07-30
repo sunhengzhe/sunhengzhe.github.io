@@ -1,5 +1,5 @@
 ---
-title: 基本数据结构
+title: 基本数据结构（一）
 date: 2016-07-24 13:39:57
 tags: [每周总结, 数据结构]
 ---
@@ -408,10 +408,6 @@ class LinkedList {
       current = current.next;
     }
     return result;
-  }
-
-  print() {
-
   }
 }
 ```

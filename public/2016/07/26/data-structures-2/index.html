@@ -1,0 +1,708 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="每周总结,数据结构," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="通过 Javascript 实现各种基本数据结构。包括字典、散列表、图等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基本数据结构（二）">
+<meta property="og:url" content="http://sunhengzhe.com/2016/07/26/data-structures-2/index.html">
+<meta property="og:site_name" content="奥利奥的大房子">
+<meta property="og:description" content="通过 Javascript 实现各种基本数据结构。包括字典、散列表、图等。">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/01.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/02.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/03.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/04.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/05.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/06.png">
+<meta property="og:updated_time" content="2016-07-30T06:22:52.938Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基本数据结构（二）">
+<meta name="twitter:description" content="通过 Javascript 实现各种基本数据结构。包括字典、散列表、图等。">
+<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sunhengzhe.com/2016/07/26/data-structures-2/"/>
+
+  <title> 基本数据结构（二） | 奥利奥的大房子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">奥利奥的大房子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                基本数据结构（二）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-26T23:39:57+08:00" content="2016-07-26">
+              2016-07-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/26/data-structures-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/26/data-structures-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>通过 Javascript 实现各种基本数据结构。包括字典、散列表、图等。</p>
+<a id="more"></a>
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><p>字典存储一个键值对，相当于封装了对对象的操作，比较简单，不展开说明。</p>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><ul>
+<li>keys() 以数组形式返回字典包含的所有键名</li>
+<li>has(key) 返回字典是否包含键值</li>
+<li>set(key, value) 存储一个键值对</li>
+<li>remove(key) 根据键值删除对应的键值对</li>
+<li>get(key) 返回指定键名对应的值</li>
+<li>values() 以数组形式返回字典内所有值</li>
+<li>size() 返回字典内键值对的数量</li>
+</ul>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dictionary</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.items = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  keys() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.keys(<span class="keyword">this</span>.items);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  has(key) &#123;</span><br><span class="line">    <span class="keyword">return</span> key <span class="keyword">in</span> <span class="keyword">this</span>.items;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  set(key, value) &#123;</span><br><span class="line">    <span class="keyword">this</span>.items[key] = value;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  remove(key) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.has(key)) &#123;</span><br><span class="line">      <span class="keyword">delete</span> <span class="keyword">this</span>.items[key];</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get(key) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.has(key) ? <span class="keyword">this</span>.items[key] : <span class="literal">undefined</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  values() &#123;</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> <span class="keyword">this</span>.items) &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.has(key)) &#123;</span><br><span class="line">        result.push(<span class="keyword">this</span>.items[key]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  size() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.keys().length;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h2><p>散列表是普通数组的推广，它是实现字典操作的一种有效数据结构。</p>
+<h3 id="API-1"><a href="#API-1" class="headerlink" title="API"></a>API</h3><ul>
+<li>put(key, value) 向散列表添加一个项</li>
+<li>remove(key) 根据键值从散列表中移除值</li>
+<li>get(key) 返回根据键值检索到的特定的值</li>
+</ul>
+<h3 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h3><p>将数据插入到散列表的时候，需要通过散列函数来计算出这个数据存放的位置，这样每次取数据的时候，只需要再次通过散列函数计算便能知道数据的位置了。</p>
+<p>一个表现良好的散列函数是由几个方面构成的：插入和检索元素的时间（即性能），还包括较低的冲突可能性。比如如下散列函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">djb2HashCode</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> hash = <span class="number">5381</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; key.length; i++) &#123;</span><br><span class="line">    hash = hash * <span class="number">33</span> + key.charCodeAt(i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> hash % <span class="number">1013</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当 key 为 <code>Gandalf</code> 时，该函数返回 <code>798</code>，代表该数据将存在数组下标为 798 的位置。</p>
+<p>显然，<code>put</code>、<code>remove</code> 和 <code>get</code> 方法都是围绕这个值来工作的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HashTable</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.arr = [];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  put(key, value) &#123;</span><br><span class="line">    <span class="keyword">const</span> position = djb2HashCode(key);</span><br><span class="line">    <span class="keyword">this</span>.arr[position] = value;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  remove(key) &#123;</span><br><span class="line">    <span class="keyword">const</span> position = djb2HashCode(key);</span><br><span class="line">    <span class="keyword">this</span>.arr[position] = <span class="literal">undefined</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get(key) &#123;</span><br><span class="line">    <span class="keyword">const</span> position = djb2HashCode(key);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.arr[position];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><p>显然，这种方式存在一个致命的弱点：当两个 <code>key</code> 值计算出来的哈希值是相同的时候，两个元素将被插入同一个地方，后插入的元素将覆盖掉先插入的元素，这称为发生了冲突。</p>
+<p>处理冲突有几种方法：分离链接、线性探查和双散列法。</p>
+<h4 id="1-分离链接"><a href="#1-分离链接" class="headerlink" title="1. 分离链接"></a>1. 分离链接</h4><p>分离链接在散列表的每个位置创建一个链表，存在相同位置的元素时，元素将被添加到链表的末尾。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ValuePair</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(key, value) &#123;</span><br><span class="line">    <span class="keyword">this</span>.key = key;</span><br><span class="line">    <span class="keyword">this</span>.value = value;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.key + <span class="string">','</span> + <span class="keyword">this</span>.value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HashTable</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.arr = [];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  put(key, value) &#123;</span><br><span class="line">    <span class="keyword">const</span> position = djb2HashCode(key);</span><br><span class="line">    <span class="keyword">let</span> list = <span class="keyword">this</span>.arr[position];</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.arr[position] == <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.arr[position] = <span class="keyword">new</span> LinkedList();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.arr[position].append(<span class="keyword">new</span> ValuePair(key, value));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  remove(key) &#123;</span><br><span class="line">    <span class="keyword">const</span> position = djb2HashCode(key);</span><br><span class="line">    <span class="keyword">const</span> list = <span class="keyword">this</span>.arr[position];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(list != <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> current = list.getHead();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">while</span>(current.next) &#123;</span><br><span class="line">        <span class="keyword">if</span>(current.element.key == key) &#123;</span><br><span class="line">          list.remove(current.element);</span><br><span class="line">          <span class="keyword">if</span>(list.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">this</span>.arr[position] = <span class="literal">undefined</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        current = current.next;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(current.element.key == key) &#123;</span><br><span class="line">        list.remove(current.element);</span><br><span class="line">        <span class="keyword">if</span>(list.isEmpty()) &#123;</span><br><span class="line">          <span class="keyword">this</span>.arr[position] = <span class="literal">undefined</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get(key) &#123;</span><br><span class="line">    <span class="keyword">const</span> position = djb2HashCode(key);</span><br><span class="line">    <span class="keyword">const</span> list = <span class="keyword">this</span>.arr[position];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(list != <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> current = list.getHead();</span><br><span class="line">      <span class="keyword">while</span>(current.next) &#123;</span><br><span class="line">        <span class="keyword">if</span>(current.element.key == key) &#123;</span><br><span class="line">          <span class="keyword">return</span> current.element.value;</span><br><span class="line">        &#125;</span><br><span class="line">        current = current.next;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(current.element.key == key) &#123;</span><br><span class="line">        <span class="keyword">return</span> current.element.value;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-线性探查"><a href="#2-线性探查" class="headerlink" title="2. 线性探查"></a>2. 线性探查</h4><p>线性探查指当插入新元素时，如果索引为 <code>index</code> 的位置已经被占据了，就尝试 <code>index + 1</code> 的位置，如果 <code>index + 1</code> 的位置也被占据了，就尝试 <code>index + 2</code> 的位置，以此类推。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HashTable</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.arr = [];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  put(key, value) &#123;</span><br><span class="line">    <span class="keyword">const</span> position = djb2HashCode(key);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.arr[position] == <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.arr[position] = <span class="keyword">new</span> ValuePair(key, value);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> index = position + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">while</span>(<span class="keyword">this</span>.arr[index] != <span class="literal">undefined</span>) &#123;</span><br><span class="line">        index++;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">this</span>.arr[index] = <span class="keyword">new</span> ValuePair(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get(key) &#123;</span><br><span class="line">    <span class="keyword">const</span> position = djb2HashCode(key);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.arr[position] != <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> index = position;</span><br><span class="line">      <span class="keyword">while</span>(<span class="keyword">this</span>.arr[index] != <span class="literal">undefined</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.arr[index].key == key) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">this</span>.arr[index].value;</span><br><span class="line">        &#125;</span><br><span class="line">        index++;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  remove(key) &#123;</span><br><span class="line">    <span class="keyword">const</span> position = djb2HashCode(key);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.arr[position] != <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> index = position;</span><br><span class="line">      <span class="keyword">while</span>(<span class="keyword">this</span>.arr[index] != <span class="literal">undefined</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.arr[index].key == key) &#123;</span><br><span class="line">          <span class="keyword">this</span>.arr[index] = <span class="literal">undefined</span>;</span><br><span class="line">          <span class="comment">// 重新调整散列表</span></span><br><span class="line">          <span class="keyword">for</span>(<span class="keyword">let</span> i = index; i &lt; <span class="keyword">this</span>.arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">this</span>.arr[i] = <span class="keyword">this</span>.arr[i + <span class="number">1</span>];</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">this</span>.arr.length--;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        index++;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用线性探查需要注意的是：</p>
+<ul>
+<li>在一些语言中，需要定义数组的大小，当为占据的数据寻找下一个可用位置的时候，数组的可用位置可能会被用完，这就需要根据一些策略改变散列表的大小。但是 Javascript 里面不用担心这个问题，因为数组长度会根据需要自动改变大小。</li>
+<li>删除一个<br>数据的时候，需要重新调整这个位置以及之后的数据，因为删除会使这个位置为空，造成之后查询这个位置时被认为没有这个数据。</li>
+</ul>
+<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li>相邻顶点：由一条边连接在一起的顶点</li>
+<li>度：一个顶点的度是其相邻顶点的数量</li>
+<li>路径：路径是顶点 v1, v2, …, vk 的一个连续序列，其中 vi 和 v(i+1) 是相邻的</li>
+<li>简单路径：简单路径是不包含重复顶点的路径</li>
+</ul>
+<h3 id="图的表示"><a href="#图的表示" class="headerlink" title="图的表示"></a>图的表示</h3><p>一个图 G=(V, E) 由以下元素组成：</p>
+<ul>
+<li>V: 一组顶点</li>
+<li>E: 一组边，连接 V 中的顶点</li>
+</ul>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/01.png" alt="图"></p>
+<h4 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h4><p>在矩阵中，索引为 i 的节点和索引为 j 的节点相邻，则 <code>arr[i][j] === 1</code>，否则 <code>arr[i][j] !== 1</code>。</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/02.png" alt="邻接矩阵"></p>
+<p>在无向图中，矩阵是一个对称矩阵。</p>
+<h4 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h4><p>邻接表由图中每个顶点和每个顶点的相邻顶点列表组成。</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/03.png" alt="邻接表"></p>
+<h4 id="关联矩阵"><a href="#关联矩阵" class="headerlink" title="关联矩阵"></a>关联矩阵</h4><p>关联矩阵中，矩阵的行表示顶点，列表示边。</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/04.png" alt="关联矩阵"></p>
+<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><p>以邻接表描述图实现如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="comment">// 顶点集合</span></span><br><span class="line">    <span class="keyword">this</span>.vertics = [];</span><br><span class="line">    <span class="comment">// 邻接表</span></span><br><span class="line">    <span class="keyword">this</span>.adjList = <span class="keyword">new</span> Dictionary();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  addVertex(v) &#123;</span><br><span class="line">    <span class="keyword">this</span>.vertics.push(v);</span><br><span class="line">    <span class="keyword">this</span>.adjList.set(v, []);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  addEdge(v, w) &#123;</span><br><span class="line">    <span class="keyword">this</span>.adjList.get(v).push(w);</span><br><span class="line">    <span class="keyword">this</span>.adjList.get(w).push(v);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> vertex <span class="keyword">of</span> <span class="keyword">this</span>.vertics) &#123;</span><br><span class="line">      result += vertex + <span class="string">' =&gt;'</span>;</span><br><span class="line">      <span class="keyword">let</span> neighbors = <span class="keyword">this</span>.adjList.get(vertex);</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> neighbor <span class="keyword">of</span> neighbors) &#123;</span><br><span class="line">        result += <span class="string">' '</span> + neighbor;</span><br><span class="line">      &#125;</span><br><span class="line">      result += <span class="string">'\n'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h3><p>图的遍历算法的思想是必须追踪每一个第一次访问的节点，并且追踪有哪些节点还没有被完全探索。对于图的两种遍历算法，都需要明确指定第一个被访问的节点。</p>
+<p>我们用三种颜色来标注顶点，用来表示它们的状态：</p>
+<ul>
+<li>白色：表示该顶点还没有被访问过</li>
+<li>灰色：表示该顶点被访问过，但没有被探索过</li>
+<li>黑色：表示该顶点被访问且已经被探索</li>
+</ul>
+<h4 id="广度优先搜索-Breadth-First-Search-BFS"><a href="#广度优先搜索-Breadth-First-Search-BFS" class="headerlink" title="广度优先搜索(Breadth-First Search, BFS)"></a>广度优先搜索(Breadth-First Search, BFS)</h4><p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/05.png" alt="广度优先搜索"></p>
+<p>广度优先搜素先宽后深访问顶点，从顶点 v 开始的 BFS 算法步骤如下：</p>
+<ol>
+<li>创建一个队列 Q</li>
+<li>将 v 标注为灰色，并将 v 入队列</li>
+<li>如果 Q 非空，则运行以下步骤：<br>a) 队首 u 出队列<br>b) 将 u 标记为灰色<br>c) 将 u 所有白色相邻顶点入队列<br>d) 将 u 标注为黑色</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">  initColor() &#123;</span><br><span class="line">    <span class="keyword">const</span> colors = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> vertex <span class="keyword">of</span> <span class="keyword">this</span>.vertics) &#123;</span><br><span class="line">      colors[vertex] = <span class="string">'white'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> colors;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  bfs(v, callback) &#123;</span><br><span class="line">    <span class="keyword">const</span> colors = <span class="keyword">this</span>.initColor();</span><br><span class="line">    <span class="keyword">const</span> queue = <span class="keyword">new</span> Queue();</span><br><span class="line"></span><br><span class="line">    queue.enqueue(v);</span><br><span class="line">    colors[v] = <span class="string">'gray'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!queue.isEmpty()) &#123;</span><br><span class="line">      <span class="keyword">let</span> curVertex = queue.dequeue();</span><br><span class="line">      <span class="keyword">let</span> neighbors = <span class="keyword">this</span>.adjList.get(curVertex);</span><br><span class="line">      <span class="comment">// 遍历当前节点的相邻节点</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> neighbor <span class="keyword">of</span> neighbors) &#123;</span><br><span class="line">        <span class="comment">// 将未访问的节点插入队列并标记为未探索</span></span><br><span class="line">        <span class="keyword">if</span>(colors[neighbor] == <span class="string">'white'</span>) &#123;</span><br><span class="line">          queue.enqueue(neighbor);</span><br><span class="line">          colors[neighbor] = <span class="string">'gray'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 当前节点已经探索完</span></span><br><span class="line">      colors[curVertex] = <span class="string">'black'</span>;</span><br><span class="line">      callback &amp;&amp; callback(curVertex);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="深度优先搜索-Depth-First-Search-DFS"><a href="#深度优先搜索-Depth-First-Search-DFS" class="headerlink" title="深度优先搜索(Depth-First Search, DFS)"></a>深度优先搜索(Depth-First Search, DFS)</h4><p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/06.png" alt="深度优先搜索"></p>
+<p>广度优先搜素先深后宽访问顶点，从顶点 v 开始的 DFS 算法步骤如下：</p>
+<ol>
+<li>将 v 标注为灰色</li>
+<li>对 v 的所有白色相邻顶点 w ：<br>a) 访问 w</li>
+<li>将 v 标记为黑色</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">  initColor() &#123;</span><br><span class="line">    <span class="keyword">const</span> colors = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> vertex <span class="keyword">of</span> <span class="keyword">this</span>.vertics) &#123;</span><br><span class="line">      colors[vertex] = <span class="string">'white'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> colors;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  dfs(v, callback) &#123;</span><br><span class="line">    <span class="keyword">const</span> colors = <span class="keyword">this</span>.initColor();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> dfsVisit = (v) =&gt; &#123;</span><br><span class="line">      <span class="comment">// 访问当前节点</span></span><br><span class="line">      colors[v] = <span class="string">'gray'</span>;</span><br><span class="line"></span><br><span class="line">      callback &amp;&amp; callback(v);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">let</span> neighbors = <span class="keyword">this</span>.adjList.get(v);</span><br><span class="line">      <span class="comment">// 探索当前节点</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> neighbor <span class="keyword">of</span> neighbors) &#123;</span><br><span class="line">        <span class="keyword">if</span>(colors[neighbor] == <span class="string">'white'</span>) &#123;</span><br><span class="line">          dfsVisit(neighbor);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      colors[v] = <span class="string">'black'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dfsVisit(v);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> graph = <span class="keyword">new</span> Graph();</span><br><span class="line"><span class="keyword">var</span> vertics = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>, <span class="string">'G'</span>, <span class="string">'H'</span>, <span class="string">'I'</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> vertex <span class="keyword">of</span> vertics) &#123;</span><br><span class="line">  graph.addVertex(vertex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">graph.addEdge(<span class="string">'A'</span>, <span class="string">'B'</span>);</span><br><span class="line">graph.addEdge(<span class="string">'A'</span>, <span class="string">'C'</span>);</span><br><span class="line">graph.addEdge(<span class="string">'A'</span>, <span class="string">'D'</span>);</span><br><span class="line">graph.addEdge(<span class="string">'C'</span>, <span class="string">'D'</span>);</span><br><span class="line">graph.addEdge(<span class="string">'C'</span>, <span class="string">'G'</span>);</span><br><span class="line">graph.addEdge(<span class="string">'D'</span>, <span class="string">'G'</span>);</span><br><span class="line">graph.addEdge(<span class="string">'D'</span>, <span class="string">'H'</span>);</span><br><span class="line">graph.addEdge(<span class="string">'B'</span>, <span class="string">'E'</span>);</span><br><span class="line">graph.addEdge(<span class="string">'B'</span>, <span class="string">'F'</span>);</span><br><span class="line">graph.addEdge(<span class="string">'E'</span>, <span class="string">'I'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 广度优先</span><br><span class="line"> * A</span><br><span class="line"> * B</span><br><span class="line"> * C</span><br><span class="line"> * D</span><br><span class="line"> * E</span><br><span class="line"> * F</span><br><span class="line"> * G</span><br><span class="line"> * H</span><br><span class="line"> * I</span><br><span class="line"> */</span></span><br><span class="line">graph.bfs(<span class="string">'A'</span>, v =&gt; <span class="built_in">console</span>.log(v))</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 深度优先</span><br><span class="line"> * A</span><br><span class="line"> * B</span><br><span class="line"> * E</span><br><span class="line"> * I</span><br><span class="line"> * F</span><br><span class="line"> * C</span><br><span class="line"> * D</span><br><span class="line"> * H</span><br><span class="line"> * G</span><br><span class="line"> */</span></span><br><span class="line">graph.dfs(<span class="string">'A'</span>, v =&gt; <span class="built_in">console</span>.log(v))</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/每周总结/" rel="tag">#每周总结</a>
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/24/data-structures/" rel="next" title="基本数据结构（一）">
+                <i class="fa fa-chevron-left"></i> 基本数据结构（一）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/26/data-structures-2/"
+           data-title="基本数据结构（二）" data-url="http://sunhengzhe.com/2016/07/26/data-structures-2/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/aoliao.png"
+               alt="一只奥利奥" />
+          <p class="site-author-name" itemprop="name">一只奥利奥</p>
+          <p class="site-description motion-element" itemprop="description">很高兴遇见你</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunhengzhe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3025220401" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字典"><span class="nav-number">1.</span> <span class="nav-text">字典</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API"><span class="nav-number">1.1.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">1.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#散列表"><span class="nav-number">2.</span> <span class="nav-text">散列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API-1"><span class="nav-number">2.1.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散列函数"><span class="nav-number">2.2.</span> <span class="nav-text">散列函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决冲突"><span class="nav-number">2.3.</span> <span class="nav-text">解决冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-分离链接"><span class="nav-number">2.3.1.</span> <span class="nav-text">1. 分离链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-线性探查"><span class="nav-number">2.3.2.</span> <span class="nav-text">2. 线性探查</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图"><span class="nav-number">3.</span> <span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">3.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图的表示"><span class="nav-number">3.2.</span> <span class="nav-text">图的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#邻接矩阵"><span class="nav-number">3.2.1.</span> <span class="nav-text">邻接矩阵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#邻接表"><span class="nav-number">3.2.2.</span> <span class="nav-text">邻接表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关联矩阵"><span class="nav-number">3.2.3.</span> <span class="nav-text">关联矩阵</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-1"><span class="nav-number">3.3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图的遍历"><span class="nav-number">3.4.</span> <span class="nav-text">图的遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#广度优先搜索-Breadth-First-Search-BFS"><span class="nav-number">3.4.1.</span> <span class="nav-text">广度优先搜索(Breadth-First Search, BFS)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深度优先搜索-Depth-First-Search-DFS"><span class="nav-number">3.4.2.</span> <span class="nav-text">深度优先搜索(Depth-First Search, DFS)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">3.4.3.</span> <span class="nav-text">结果</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只奥利奥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunhengzhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
