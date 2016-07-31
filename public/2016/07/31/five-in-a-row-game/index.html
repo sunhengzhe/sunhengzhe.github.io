@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/five-in-a-row/04.png">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/five-in-a-row/02.png">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/five-in-a-row/03.png">
-<meta property="og:updated_time" content="2016-07-31T15:56:52.580Z">
+<meta property="og:updated_time" content="2016-07-31T16:08:37.393Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何实现五子棋 AI">
 <meta name="twitter:description" content="和水哥在北戴河回来的车上除了讨论 24 点的实现方式之外，还讨论了一下五子棋的算法。昨天趁着周末凭着自己的想法试着写了一下，很不幸的是五子棋没写出来，倒是写了个三子棋（orz），网上查了一些资料，其实这里面涉及两个主要的算法，一个是极大极小搜索，另一个是alpha-beta剪枝。">
@@ -316,7 +316,7 @@
 <h2 id="极大极小搜索"><a href="#极大极小搜索" class="headerlink" title="极大极小搜索"></a>极大极小搜索</h2><p>上面提到了，计算出叶子节点之后，我们需要倒推出父节点的得分，倒推的原则其实就是上面说的：MAX<br>层中的节点会从子节点中挑选最大得分的节点作为它的得分，MIN 层的节点会从子节点中挑选最小得分的节点作为它的得分。</p>
 <p>以下图举例：</p>
 <p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/five-in-a-row/02.png" alt=""></p>
-<p>因为我们是根据子节点的得分来倒推父节点的得分的，所以我们是用深度优先算法来遍历博弈树的，在上面这棵树中，遍历顺序是 <code>ABCDEFGHIJ</code>，赋值过程如下：</p>
+<p>因为我们是根据子节点的得分来倒推父节点的得分的，所以我们是用深度优先来遍历博弈树的，在上面这棵树中，遍历顺序是 <code>ABCDEFGHIJ</code>，赋值过程如下：</p>
 <ol>
 <li>遍历完 A B，因为 C 是 MIN 层，所以选取 AB 中最小的，即 8 作为 C 的得分</li>
 <li>遍历完 D E，F 的得分为 6</li>
