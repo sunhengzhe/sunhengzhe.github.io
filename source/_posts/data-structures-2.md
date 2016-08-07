@@ -296,7 +296,7 @@ class HashTable {
 
 #### 邻接矩阵
 
-在矩阵中，索引为 i 的节点和索引为 j 的节点相邻，则 `arr[i][j] === 1`，否则 `arr[i][j] !== 1`。
+在矩阵中，索引为 i 的结点和索引为 j 的结点相邻，则 `arr[i][j] === 1`，否则 `arr[i][j] !== 1`。
 
 ![邻接矩阵](http://7xo08n.com1.z0.glb.clouddn.com/blog/data-structor-2/02.png)
 
@@ -354,7 +354,7 @@ class Graph {
 
 ### 图的遍历
 
-图的遍历算法的思想是必须追踪每一个第一次访问的节点，并且追踪有哪些节点还没有被完全探索。对于图的两种遍历算法，都需要明确指定第一个被访问的节点。
+图的遍历算法的思想是必须追踪每一个第一次访问的结点，并且追踪有哪些结点还没有被完全探索。对于图的两种遍历算法，都需要明确指定第一个被访问的结点。
 
 我们用三种颜色来标注顶点，用来表示它们的状态：
 
@@ -398,15 +398,15 @@ class Graph {
     while(!queue.isEmpty()) {
       let curVertex = queue.dequeue();
       let neighbors = this.adjList.get(curVertex);
-      // 遍历当前节点的相邻节点
+      // 遍历当前结点的相邻结点
       for(let neighbor of neighbors) {
-        // 将未访问的节点插入队列并标记为未探索
+        // 将未访问的结点插入队列并标记为未探索
         if(colors[neighbor] == 'white') {
           queue.enqueue(neighbor);
           colors[neighbor] = 'gray';
         }
       }
-      // 当前节点已经探索完
+      // 当前结点已经探索完
       colors[curVertex] = 'black';
       callback && callback(curVertex);
     }
@@ -442,13 +442,13 @@ class Graph {
     const colors = this.initColor();
 
     var dfsVisit = (v) => {
-      // 访问当前节点
+      // 访问当前结点
       colors[v] = 'gray';
 
       callback && callback(v);
 
       let neighbors = this.adjList.get(v);
-      // 探索当前节点
+      // 探索当前结点
       for(let neighbor of neighbors) {
         if(colors[neighbor] == 'white') {
           dfsVisit(neighbor);
