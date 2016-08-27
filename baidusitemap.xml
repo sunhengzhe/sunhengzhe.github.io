@@ -60,12 +60,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
+    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第八章：线性时间排序</title>
-        <pubTime>2016-07-09T13:59:26.000Z</pubTime>
+        <title>《算法导论》第七章：快速排序</title>
+        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
         
         <tag>读书笔记</tag>
          
@@ -79,16 +79,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
+    <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>函数柯里化</title>
-        <pubTime>2016-07-04T04:00:28.000Z</pubTime>
+        <title>二叉搜索树</title>
+        <pubTime>2016-08-07T03:36:57.000Z</pubTime>
         
         <tag>每周总结</tag>
          
-        <tag>javascript</tag>
+        <tag>数据结构</tag>
          
          
            
@@ -115,16 +115,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
+    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>二叉搜索树</title>
-        <pubTime>2016-08-07T03:36:57.000Z</pubTime>
+        <title>《算法导论》第八章：线性时间排序</title>
+        <pubTime>2016-07-09T13:59:26.000Z</pubTime>
         
-        <tag>每周总结</tag>
+        <tag>读书笔记</tag>
          
-        <tag>数据结构</tag>
+        <tag>算法</tag>
          
          
            
@@ -170,12 +170,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
+    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第二章：算法基础</title>
-        <pubTime>2016-06-26T18:47:19.000Z</pubTime>
+        <title>《算法导论》第四章：分治策略</title>
+        <pubTime>2016-06-29T14:59:14.000Z</pubTime>
         
         <tag>读书笔记</tag>
          
@@ -206,12 +206,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
+    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第四章：分治策略</title>
-        <pubTime>2016-06-29T14:59:14.000Z</pubTime>
+        <title>《算法导论》第二章：算法基础</title>
+        <pubTime>2016-06-26T18:47:19.000Z</pubTime>
         
         <tag>读书笔记</tag>
          
@@ -261,12 +261,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
+    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第七章：快速排序</title>
-        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
+        <title>《算法导论》第六章：堆排序</title>
+        <pubTime>2016-07-03T15:54:10.000Z</pubTime>
         
         <tag>读书笔记</tag>
          
@@ -299,16 +299,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
+    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第六章：堆排序</title>
-        <pubTime>2016-07-03T15:54:10.000Z</pubTime>
+        <title>函数柯里化</title>
+        <pubTime>2016-07-04T04:00:28.000Z</pubTime>
         
-        <tag>读书笔记</tag>
+        <tag>每周总结</tag>
          
-        <tag>算法</tag>
+        <tag>javascript</tag>
          
          
            
