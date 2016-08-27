@@ -1,0 +1,651 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="每周总结,javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="写 javascript 写久了，就会对 javascript 的异步写法习以为常，反而不会好奇为什么在 javascript 里可以异步执行一个任务，是因为 javascript 是多线程吗？
+实际上，javascript 从来都是单线程的。目前 javascript 有两个主要的运行环境，一个是浏览器，一个是 nodejs，下面分别从这两个方面对这个问题进行解释。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript 中的线程与进程">
+<meta property="og:url" content="http://sunhengzhe.com/2016/08/27/thread-in-javascript/index.html">
+<meta property="og:site_name" content="奥利奥的大房子">
+<meta property="og:description" content="写 javascript 写久了，就会对 javascript 的异步写法习以为常，反而不会好奇为什么在 javascript 里可以异步执行一个任务，是因为 javascript 是多线程吗？
+实际上，javascript 从来都是单线程的。目前 javascript 有两个主要的运行环境，一个是浏览器，一个是 nodejs，下面分别从这两个方面对这个问题进行解释。">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/thread-in-javascript/01.png">
+<meta property="og:updated_time" content="2016-08-27T00:16:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript 中的线程与进程">
+<meta name="twitter:description" content="写 javascript 写久了，就会对 javascript 的异步写法习以为常，反而不会好奇为什么在 javascript 里可以异步执行一个任务，是因为 javascript 是多线程吗？
+实际上，javascript 从来都是单线程的。目前 javascript 有两个主要的运行环境，一个是浏览器，一个是 nodejs，下面分别从这两个方面对这个问题进行解释。">
+<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/thread-in-javascript/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sunhengzhe.com/2016/08/27/thread-in-javascript/"/>
+
+  <title> Javascript 中的线程与进程 | 奥利奥的大房子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">奥利奥的大房子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Javascript 中的线程与进程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-27T07:43:34+08:00" content="2016-08-27">
+              2016-08-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/27/thread-in-javascript/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/27/thread-in-javascript/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>写 javascript 写久了，就会对 javascript 的异步写法习以为常，反而不会好奇为什么在 javascript 里可以异步执行一个任务，是因为 javascript 是多线程吗？</p>
+<p>实际上，javascript 从来都是单线程的。目前 javascript 有两个主要的运行环境，一个是浏览器，一个是 nodejs，下面分别从这两个方面对这个问题进行解释。</p>
+<a id="more"></a>
+<h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><p>javascript 的设计初衷，是为了解决一些简单的网页互动，也就是操作 DOM 元素。而如果采用多线程，那么大家都知道，多线程是可能会造成竞争资源的，很可能多个线程同时操作一个 DOM 元素，造成不必要的麻烦，所以 javascript 从诞生开始就选择了单线程执行。</p>
+<p>然而在前端开发中，会经常用到 <code>setTimeout</code> 这个函数，我们可以规定让一段逻辑在指定时间后执行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'timeout done'</span>);</div><div class="line">&#125;, <span class="number">3000</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'main task'</span>)</div></pre></td></tr></table></figure>
+<p>上面这段代码会先输出 <code>main task</code>，然后在 3 秒之后输出 <code>timeout done</code>。就好像 setTimeout 开启了一个新线程一样，实际上并不是这样。</p>
+<h3 id="Event-loop"><a href="#Event-loop" class="headerlink" title="Event loop"></a>Event loop</h3><p>实际上， JavaScript 运行时包含了一个待处理的消息队列，每一个消息都与一个函数相关联。同时有一个事件循环不停地在轮询这个队列，当队列不为空时，就从队列中取出一个消息进行处理。它的实现大概如此：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(queue.waitForMessage())&#123;</div><div class="line">  queue.processNextMessage();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所以，上面的例子调用 <a href="https://developer.mozilla.org/en-US/docs/window.setTimeout" target="_blank" rel="external">setTimeout</a> 函数会在一个时间段过去后在队列中添加一个消息，实际上没有创建一个新的线程，当时间到达时，如果在队列中它的前面还有其他消息没有处理，那么它也要先等前面的执行完才执行。所谓的异步执行，实际上是在主线程空闲的时候执行，可以看如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> startTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line"><span class="comment">// 第一个异步任务</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'task 1 start.'</span>);</div><div class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">var</span> curTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">        <span class="keyword">if</span>(curTime - startTime &gt; <span class="number">5000</span>) &#123;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'task 1 done.'</span>)</div><div class="line">&#125;, <span class="number">100</span>);</div><div class="line"></div><div class="line"><span class="comment">// 第二个异步任务</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'task 2 start.'</span>);</div><div class="line">&#125;, <span class="number">500</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'main'</span>);</div></pre></td></tr></table></figure>
+<p>程序第一个输出 <code>main</code>，这个毋庸置疑，但是第一个异步任务会执行 5 秒，而我们设置了第二个异步任务在 500 毫秒后执行，如果是多线程，<code>task 2 start</code> 会在 <code>task 1 done</code> 之前输出，然而结果是等 <code>task 1 done</code> 输出后才会输出 <code>task 2 done</code>。因为到 500 ms 时，task 2 被插入到消息队列中，然而此时task 1 还没有执行完，所以 task 2 紧接着 task 1 执行。示意图如下：</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/thread-in-javascript/01.png" alt=""></p>
+<h3 id="webworker"><a href="#webworker" class="headerlink" title="webworker"></a>webworker</h3><p>但是 javascript 能不能支持多线程呢，答案是可以的，在 HTML 5 规范中，新增了webworker 用来进行计算量大的操作，避免阻塞主线程，不过在webworker 创建的线程中，是不能操作 DOM 元素的，当 webworker 中的计算完成时可以通过事件与主线程进行通信。</p>
+<h2 id="Nodejs"><a href="#Nodejs" class="headerlink" title="Nodejs"></a>Nodejs</h2><p>说完了浏览器端，现在说回 nodejs，nodejs 只是 javascript 的一个运行环境，实际上并不改变 javascript 是单线程执行的本质，但是 nodejs 可以提供一些方式来进行多线程和多进程开发。</p>
+<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><h4 id="tagg"><a href="#tagg" class="headerlink" title="tagg"></a><a href="https://github.com/xk/node-threads-a-gogo" target="_blank" rel="external">tagg</a></h4><p>Jorge Chamorro Bieling是 <code>tagg(Threads a gogo for Node.js)</code> 包的作者，他硬是利用 <code>phread</code> 库和C语言让Node.js支持了多线程的开发</p>
+<h3 id="libuvd"><a href="#libuvd" class="headerlink" title="libuvd"></a>libuvd</h3><p><code>libuv</code> 是一个跨平台的异步I/O库，它主要用于Node.js的开发，同时他也被 <code>Mozilla&#39;s Rust language</code>,  <code>Luvit</code>, <code>Julia</code>,  <code>pyuv</code>等使用。它主要包括了 <code>Event loops</code> 事件循环， <code>Filesystem</code> 文件系统， <code>Networking</code> 网络支持，<code>Threads</code> 线程，<code>Processes</code> 进程，<code>Utilities</code> 其他工具。</p>
+<h3 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h3><h4 id="child-process"><a href="#child-process" class="headerlink" title="child_process"></a>child_process</h4><p>可以启动一个 nodejs 文件，将它作为 worker 进程，实现多进程解决主进程阻塞的问题。</p>
+<h4 id="cluster"><a href="#cluster" class="headerlink" title="cluster"></a>cluster</h4><p><code>cluster</code>可以用来让Node.js充分利用多核cpu的性能，同时也可以让Node.js程序更加健壮，官网上的<code>cluster</code>示例已经告诉我们如何重新启动一个因为异常而奔溃的子进程。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="https://github.com/DoubleSpout/threadAndPackage/blob/master/chapter.7.thread_and_process.md" target="_blank" rel="external">Node.js的线程和进程</a></li>
+<li><a href="http://taobaofed.org/blog/2015/10/29/deep-into-node-1/" target="_blank" rel="external">Node.js 探秘：初识单线程的 Node.js</a></li>
+<li><a href="https://segmentfault.com/a/1190000004276027" target="_blank" rel="external">细说JavaScript单线程的一些事</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoo" target="_blank" rel="external">并发模型与Event Loop</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/每周总结/" rel="tag">#每周总结</a>
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/15/git/" rel="next" title="git 使用">
+                <i class="fa fa-chevron-left"></i> git 使用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/27/thread-in-javascript/"
+           data-title="Javascript 中的线程与进程" data-url="http://sunhengzhe.com/2016/08/27/thread-in-javascript/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/aoliao.png"
+               alt="一只奥利奥" />
+          <p class="site-author-name" itemprop="name">一只奥利奥</p>
+          <p class="site-description motion-element" itemprop="description">很高兴遇见你</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunhengzhe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3025220401" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器"><span class="nav-number">1.</span> <span class="nav-text">浏览器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-loop"><span class="nav-number">1.1.</span> <span class="nav-text">Event loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webworker"><span class="nav-number">1.2.</span> <span class="nav-text">webworker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nodejs"><span class="nav-number">2.</span> <span class="nav-text">Nodejs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">2.1.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tagg"><span class="nav-number">2.1.1.</span> <span class="nav-text">tagg</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#libuvd"><span class="nav-number">2.2.</span> <span class="nav-text">libuvd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多进程"><span class="nav-number">2.3.</span> <span class="nav-text">多进程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#child-process"><span class="nav-number">2.3.1.</span> <span class="nav-text">child_process</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cluster"><span class="nav-number">2.3.2.</span> <span class="nav-text">cluster</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只奥利奥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunhengzhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

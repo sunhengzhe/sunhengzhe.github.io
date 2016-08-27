@@ -1,0 +1,661 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="每周总结," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="和水哥在北戴河回来的车上除了讨论 24 点的实现方式之外，还讨论了一下五子棋的算法。昨天趁着周末凭着自己的想法试着写了一下，很不幸的是五子棋没写出来，倒是写了个三子棋（orz），网上查了一些资料，其实这里面涉及两个主要的算法，一个是极大极小搜索，另一个是alpha-beta剪枝。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何实现五子棋 AI">
+<meta property="og:url" content="http://sunhengzhe.com/2016/07/31/five-in-a-row-game/index.html">
+<meta property="og:site_name" content="奥利奥的大房子">
+<meta property="og:description" content="和水哥在北戴河回来的车上除了讨论 24 点的实现方式之外，还讨论了一下五子棋的算法。昨天趁着周末凭着自己的想法试着写了一下，很不幸的是五子棋没写出来，倒是写了个三子棋（orz），网上查了一些资料，其实这里面涉及两个主要的算法，一个是极大极小搜索，另一个是alpha-beta剪枝。">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/five-in-a-row/01.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/five-in-a-row/04.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/five-in-a-row/02.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/five-in-a-row/03.png">
+<meta property="og:updated_time" content="2016-08-27T00:03:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何实现五子棋 AI">
+<meta name="twitter:description" content="和水哥在北戴河回来的车上除了讨论 24 点的实现方式之外，还讨论了一下五子棋的算法。昨天趁着周末凭着自己的想法试着写了一下，很不幸的是五子棋没写出来，倒是写了个三子棋（orz），网上查了一些资料，其实这里面涉及两个主要的算法，一个是极大极小搜索，另一个是alpha-beta剪枝。">
+<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/five-in-a-row/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sunhengzhe.com/2016/07/31/five-in-a-row-game/"/>
+
+  <title> 如何实现五子棋 AI | 奥利奥的大房子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">奥利奥的大房子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何实现五子棋 AI
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-31T20:57:34+08:00" content="2016-07-31">
+              2016-07-31
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/31/five-in-a-row-game/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/31/five-in-a-row-game/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>和水哥在北戴河回来的车上除了讨论 24 点的实现方式之外，还讨论了一下五子棋的算法。昨天趁着周末凭着自己的想法试着写了一下，很不幸的是五子棋没写出来，倒是写了个三子棋（orz），网上查了一些资料，其实这里面涉及两个主要的算法，一个是<strong>极大极小搜索</strong>，另一个是<strong>alpha-beta剪枝</strong>。</p>
+<a id="more"></a>
+<h2 id="博弈树"><a href="#博弈树" class="headerlink" title="博弈树"></a>博弈树</h2><p>下过五子棋的人都应该知道，越厉害的人，对棋面的预测程度越深。换句话讲，就是当你下完一步棋，我就能在我的脑海里假设把我所有可能下的地方都下一遍，然后考虑我下完之后你又会下在哪里，最后我根据每次预测的局势好坏来判断我的下一步棋放哪最合适。当然这只是想了一层，一个专业的棋手思考的层数会多得多。</p>
+<p>作为一个难度较大的 AI，势必也需要能够对棋局进行深入分析，然而五子棋的棋盘大小一般是 15 * 15，可以落子的地方太多，在这种情况下，电脑的性能有限，我们需要满足 AI “思考”的层数不能太低，同时算法的效率要高。</p>
+<p>以三子棋为例，AI 思考的过程就如同下面这课树一样，我们用圆圈代表玩家，叉号代表 AI，根节点是用户的落子。</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/five-in-a-row/01.png" alt=""></p>
+<p>如果继续画下一层，那么下一层就是玩家下一步的落子，这也就是 AI 思考的层数又多了一层。</p>
+<p>有了这棵树，我们就需要得出每个节点的得分是多少，以判断哪一步是最优的。</p>
+<h3 id="得分"><a href="#得分" class="headerlink" title="得分"></a>得分</h3><p>要考虑这一步棋是不是最优的，我们需要给每一步棋都设定一个得分，然后找出最忧的。当前棋面的得分多少，需要同时考虑玩家和 AI 分别的得分。</p>
+<p>以三子棋为例，当玩家下在左上角的时候，我们考虑 AI 下在正中间时的得分。得分的计算方法是将棋面的空白地方用棋子填满，然后得出连成三个的个数有多少。（如果是五子棋，应该只需找出当前棋面上所有连子，然后根据每种连子的权重来计算得分）</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/five-in-a-row/04.png" alt=""></p>
+<p>如图，玩家一共有 4 个成三，而 AI 一共有 5 个，所以总得分是 <code>5 - 4 = 1</code>。</p>
+<p>这里需要指出的是，在博弈树中，一个节点的得分是取决于他的子节点的，也就是说，当 AI 只思考一层，也就是上图这样，这棵树的末尾就是只有两个棋子，那么这个节点的得分就是这样计算，而如果这个节点下还有子节点，那么我们只会计算叶子节点的得分，然后从叶子节点开始，一步步倒推出父节点的得分。下面来进行解释倒推的过程。</p>
+<h3 id="博弈"><a href="#博弈" class="headerlink" title="博弈"></a>博弈</h3><p>当 AI 下棋时，我们必定要让 AI 下在得分最高的位置，这毋庸置疑。但是以 AI 的角度来考虑玩家的落子，我们需要假设玩家是“聪明的”，他会下在对自己最有利的地方，也就是得分最低的地方（因为得分 = AI 分数 - 玩家分数）。</p>
+<p>这就造成每一层的性质是不同的，在玩家落子的层里，我们要选取得分最低的；在 AI 落子的层里，我们要选取得分最高的。所以我们称玩家层为 MIN 层，AI 层为 MAX 层。</p>
+<h2 id="极大极小搜索"><a href="#极大极小搜索" class="headerlink" title="极大极小搜索"></a>极大极小搜索</h2><p>上面提到了，计算出叶子节点之后，我们需要倒推出父节点的得分，倒推的原则其实就是上面说的：MAX<br>层中的节点会从子节点中挑选最大得分的节点作为它的得分，MIN 层的节点会从子节点中挑选最小得分的节点作为它的得分。</p>
+<p>以下图举例：</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/five-in-a-row/02.png" alt=""></p>
+<p>因为我们是根据子节点的得分来倒推父节点的得分的，所以我们是用深度优先来遍历博弈树的，在上面这棵树中，遍历顺序是 <code>ABCDEFGHIJ</code>，赋值过程如下：</p>
+<ol>
+<li>遍历完 A B，因为 C 是 MIN 层，所以选取 AB 中最小的，即 8 作为 C 的得分</li>
+<li>遍历完 D E，F 的得分为 6</li>
+<li>遍历完 G H，I 的得分为 5</li>
+<li>因为 J 在 MAX 层，所以选取 C F I 中得分最大的，即 8 作为 I 的得分</li>
+</ol>
+<h2 id="alpha-beta-剪枝"><a href="#alpha-beta-剪枝" class="headerlink" title="alpha-beta 剪枝"></a>alpha-beta 剪枝</h2><p>从上面可以想到，像五子棋这种可能性很多的情况，这棵树会变得非常大，当层数增加的时候，计算量也会越来越大，如果不采取一些方法，我们只能靠牺牲层数来换取运行时间。</p>
+<p>那么 alpha-beta 剪枝就是一种行之有效的方法，顾名思义，采用这种方法，我们会剪去一些不必要的树枝，也就减少了运行的时间。</p>
+<p>alpha-beta 剪枝的定义很绕口，但是原理很简单，还是以上面那课树为例：</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/five-in-a-row/03.png" alt=""></p>
+<p>当遍历到 C 的时候，计算出 C 的得分是 <code>8</code>，因为 J 的得分是 C、F、I 之中最大的，所以此时可以得出 <code>J &gt;= 8</code>。</p>
+<p>接下来遍历到 D，D 的值为 <code>6</code>，因为 F 的值是 D 和 E 之中最小的，所以即使现在还没有遍历完 F 的子节点也可以得出 <code>F &lt;= 6</code>，那么既然 J 已经大于等于 <code>8</code> 了，所以继续遍历 F 已经没有意义了，那么我们就将 F 这条枝剪掉。</p>
+<p>同理，当 G 为 <code>5</code> 时，遍历 I 已经没有意义了，因为 I 不可能再大于 <code>5</code>，所以直接得出 J 为 <code>8</code>；</p>
+<p>可以看出，当节点很多的情况下，使用 alpha-beta 剪枝是能在一定程度上提高运行效率的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/每周总结/" rel="tag">#每周总结</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/26/data-structures-2/" rel="next" title="基本数据结构（二）">
+                <i class="fa fa-chevron-left"></i> 基本数据结构（二）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/07/binary-search-tree/" rel="prev" title="二叉搜索树">
+                二叉搜索树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/31/five-in-a-row-game/"
+           data-title="如何实现五子棋 AI" data-url="http://sunhengzhe.com/2016/07/31/five-in-a-row-game/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/aoliao.png"
+               alt="一只奥利奥" />
+          <p class="site-author-name" itemprop="name">一只奥利奥</p>
+          <p class="site-description motion-element" itemprop="description">很高兴遇见你</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunhengzhe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3025220401" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#博弈树"><span class="nav-number">1.</span> <span class="nav-text">博弈树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#得分"><span class="nav-number">1.1.</span> <span class="nav-text">得分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#博弈"><span class="nav-number">1.2.</span> <span class="nav-text">博弈</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#极大极小搜索"><span class="nav-number">2.</span> <span class="nav-text">极大极小搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#alpha-beta-剪枝"><span class="nav-number">3.</span> <span class="nav-text">alpha-beta 剪枝</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只奥利奥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunhengzhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="自然语言处理 读书笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="如果想实现聊天机器人，必然要让程序能够正确响应用户的信息，而用户对机器输入的往往是我们平时使用的语言，也就是自然语言，想让机器能“理解”用户的信息，并能够返回用户需要的信息，这就涉及到了自然语言处理。从上个世纪50年代起，科学家们就已经开始着手研究这个问题，到现在为止，已经取得了非常大的突破。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自然语言处理（一）">
+<meta property="og:url" content="http://sunhengzhe.com/2016/07/10/natural-language-processing-1/index.html">
+<meta property="og:site_name" content="奥利奥的大房子">
+<meta property="og:description" content="如果想实现聊天机器人，必然要让程序能够正确响应用户的信息，而用户对机器输入的往往是我们平时使用的语言，也就是自然语言，想让机器能“理解”用户的信息，并能够返回用户需要的信息，这就涉及到了自然语言处理。从上个世纪50年代起，科学家们就已经开始着手研究这个问题，到现在为止，已经取得了非常大的突破。">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/natural-language-processing-1/01.png">
+<meta property="og:updated_time" content="2016-08-27T00:03:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自然语言处理（一）">
+<meta name="twitter:description" content="如果想实现聊天机器人，必然要让程序能够正确响应用户的信息，而用户对机器输入的往往是我们平时使用的语言，也就是自然语言，想让机器能“理解”用户的信息，并能够返回用户需要的信息，这就涉及到了自然语言处理。从上个世纪50年代起，科学家们就已经开始着手研究这个问题，到现在为止，已经取得了非常大的突破。">
+<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/natural-language-processing-1/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sunhengzhe.com/2016/07/10/natural-language-processing-1/"/>
+
+  <title> 自然语言处理（一） | 奥利奥的大房子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">奥利奥的大房子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                自然语言处理（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-10T23:28:24+08:00" content="2016-07-10">
+              2016-07-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/10/natural-language-processing-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/10/natural-language-processing-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如果想实现聊天机器人，必然要让程序能够正确响应用户的信息，而用户对机器输入的往往是我们平时使用的语言，也就是自然语言，想让机器能“理解”用户的信息，并能够返回用户需要的信息，这就涉及到了<strong>自然语言处理</strong>。从上个世纪50年代起，科学家们就已经开始着手研究这个问题，到现在为止，已经取得了非常大的突破。</p>
+<a id="more"></a>
+<h2 id="自然语言处理的两个阶段"><a href="#自然语言处理的两个阶段" class="headerlink" title="自然语言处理的两个阶段"></a>自然语言处理的两个阶段</h2><p>在自然语言处理 60 多年的发展过程中，基本上可以分成两个阶段。早期的 20 多年，即从上个世纪 60 年代到70年代，是科学家们走弯路的阶段。当时，学术界对人工智能和自然语言理解的普遍认为：要让机器完成翻译或者语音识别等只有人类才能做到的事，就必须先让计算机理解自然语言，而做到这一点就必须让计算机拥有类似我们人类这样的智能。</p>
+<blockquote>
+<p>而事实上当然不是这样。对人类来讲，一个要把英文翻译成中文的人，必然要能很好地理解这两种语言，这就是直觉的作用。在人工智能领域，包括自然语言处理领域，这种方法论被称作“鸟飞派”，也就是看看鸟是怎么飞的就能模仿鸟造出的飞机，而不需要了解空气动力学。事实上，怀特兄弟发明飞机靠的是空气动力学而不是仿生学。</p>
+</blockquote>
+<h3 id="基于规则的自然语言处理"><a href="#基于规则的自然语言处理" class="headerlink" title="基于规则的自然语言处理"></a>基于规则的自然语言处理</h3><p>在 20 世纪 60 年代，当时普遍认识是首先做好两件事，即<strong>分析语句</strong>和<strong>获取语义</strong>。这是因为当时的语言学家们已经对各种自然语言进行了非常形式化的总结，形成了十分完备的体系。就好像学习西方语言，都要学习<em>语法规则</em>、<em>词性</em>和<em>构词法</em>等。而恰恰这些语法规则又很容易用计算机的算法描述，这就让大家对<strong>基于规则的自然语言处理</strong>充满了信心。</p>
+<p>当时对自然语言处理从研究到应用的依赖关系如下：</p>
+<ul>
+<li><strong>应用层</strong>：<code>语言识别</code>、<code>机器翻译</code>、<code>自动问答</code>、<code>自动摘要</code>等</li>
+<li><strong>认知层</strong>：<code>自然语言理解</code></li>
+<li><strong>基础层</strong>：<code>句法分析</code>、<code>语义分析</code></li>
+</ul>
+<p>首先我们关注句法分析。</p>
+<p>句法分析首先对一个句子进行拆分，得到一颗<strong>文法分析树</strong>，以<code>“徐志摩喜欢林徽因。”</code> 这句话来说，这句话分为主语、动词短语（即谓语）和句号三部分，得到的文法分析树如下：</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/natural-language-processing-1/01.png" alt=""></p>
+<p>接下来分析出句子采用的文法规则，这个过程成为重写规则。具体到这个例子，重写规则包括：</p>
+<ul>
+<li>句子     –&gt; 主语谓语句号</li>
+<li>主语     –&gt; 名词</li>
+<li>谓语     –&gt; 动词 名词短语</li>
+<li>名词短语 –&gt; 名词</li>
+<li>名词     –&gt; 徐志摩</li>
+<li>动词     –&gt; 喜欢</li>
+<li>名词     –&gt; 林徽因</li>
+<li>句号     –&gt; 。</li>
+</ul>
+<p>从上面可以看出，短短几个字的句子，就需要一颗这么复杂的二维树结构和八条文法规则，而随着句子的复杂化，要处理起来就变得相当困难了，一个句子的文法分析树将变得非常巨大，也非常复杂。</p>
+<p>这里面至少有两个越不过去的坎。首先，想通过文法规则覆盖哪怕 20% 的真实语句，文法规则的数量也是几万条。随着覆盖语句的增加，文法规则的数量还会越来越多。</p>
+<p>其次，自然语言在演变的过程中，产生了词义和上下文相关的特性，因此，它的文法是<strong>上下文有关文法</strong>，而程序语言是人为设定的，是便于计算机解码的<strong>上下文无关文法</strong>，相比自然语言简单的多。两者计算量不可同日而语。</p>
+<blockquote>
+<p>在计算机科学中，图灵奖最高得主高德纳提出用计算复杂度来衡量算法的耗时。对于上下文无关语法，算法的复杂度基本上是语句长度的二次方，而对于上下文有关语法，计算复杂度基本上是语句长度的<strong>六次方</strong>。也就是说，长度同为 10 的程序语言语句和自然语言语句，计算机对它们进行文法分析的计算量，后者是前者的 10000 倍。而随着长度增加，这个差异会以非常快的速度扩大。所以在那个年代，即使是 IBM 公司，也几乎是不可能采用规则的方法来分析一些真实语句。</p>
+</blockquote>
+<p>在上个世纪 70 年代，基于规则的句法分析很快就走到了尽头，而对于语义处理则遇到了更大的麻烦，自然语言中的词的多义性很难用规则来描述，而是严重依赖于上下文，甚至是常识。</p>
+<p>举例来说，<code>the box is in the pen</code> 这句话，意思是 <code>盒子在围栏里</code>，但是 <code>pen</code> 到底翻译成钢笔还是围栏是取决于什么？是取决于常识：因为盒子不可能装在钢笔里，这个例子非常清晰地说明了自然语言处理研究方法上存在的问题。</p>
+<p>这时候，<strong>基于统计的自然语言处理</strong>重获了新生，并取得了今天的非凡成就。</p>
+<h3 id="基于统计的自然语言处理"><a href="#基于统计的自然语言处理" class="headerlink" title="基于统计的自然语言处理"></a>基于统计的自然语言处理</h3><p>(待续)</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自然语言处理-读书笔记/" rel="tag">#自然语言处理 读书笔记</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/09/Introduction-to-Algorithms-8/" rel="next" title="《算法导论》第八章：线性时间排序">
+                <i class="fa fa-chevron-left"></i> 《算法导论》第八章：线性时间排序
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/19/calculate-24-game/" rel="prev" title="24点">
+                24点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/10/natural-language-processing-1/"
+           data-title="自然语言处理（一）" data-url="http://sunhengzhe.com/2016/07/10/natural-language-processing-1/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/aoliao.png"
+               alt="一只奥利奥" />
+          <p class="site-author-name" itemprop="name">一只奥利奥</p>
+          <p class="site-description motion-element" itemprop="description">很高兴遇见你</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunhengzhe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3025220401" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#自然语言处理的两个阶段"><span class="nav-number">1.</span> <span class="nav-text">自然语言处理的两个阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于规则的自然语言处理"><span class="nav-number">1.1.</span> <span class="nav-text">基于规则的自然语言处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于统计的自然语言处理"><span class="nav-number">1.2.</span> <span class="nav-text">基于统计的自然语言处理</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只奥利奥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunhengzhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

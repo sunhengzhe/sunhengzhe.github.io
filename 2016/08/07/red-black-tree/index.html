@@ -1,0 +1,680 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="每周总结,数据结构," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="红黑树是二叉搜索树的一种，同时也是一种平衡搜索树，在红黑树中，没有一条路径会比其他路径长出 2 倍，因此它是近似平衡的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="红黑树">
+<meta property="og:url" content="http://sunhengzhe.com/2016/08/07/red-black-tree/index.html">
+<meta property="og:site_name" content="奥利奥的大房子">
+<meta property="og:description" content="红黑树是二叉搜索树的一种，同时也是一种平衡搜索树，在红黑树中，没有一条路径会比其他路径长出 2 倍，因此它是近似平衡的。">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/red-black-tree/red-black-tree.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/red-black-tree/rotate.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/red-black-tree/01.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/red-black-tree/02.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/red-black-tree/03.png">
+<meta property="og:updated_time" content="2016-08-27T00:03:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="红黑树">
+<meta name="twitter:description" content="红黑树是二叉搜索树的一种，同时也是一种平衡搜索树，在红黑树中，没有一条路径会比其他路径长出 2 倍，因此它是近似平衡的。">
+<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/red-black-tree/red-black-tree.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sunhengzhe.com/2016/08/07/red-black-tree/"/>
+
+  <title> 红黑树 | 奥利奥的大房子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">奥利奥的大房子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                红黑树
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-07T23:10:57+08:00" content="2016-08-07">
+              2016-08-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/07/red-black-tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/07/red-black-tree/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>红黑树是二叉搜索树的一种，同时也是一种平衡搜索树，在红黑树中，没有一条路径会比其他路径长出 2 倍，因此它是近似平衡的。</p>
+<a id="more"></a>
+<p>红黑树中的每个结点都有一个颜色，颜色可以是黑色或者红色，红黑树根据结点的颜色对树进行约束，从而保持树的平衡。</p>
+<p>一颗红黑树是满足下面红黑性质的二叉搜索树：</p>
+<ol>
+<li>每个结点要么是红色，要么是黑色</li>
+<li>根结点是黑色的</li>
+<li>每个叶结点是黑色的</li>
+<li>如果一个结点是红色，则它的两个子结点都是黑色的</li>
+<li>对每个结点，从该结点到其所有后代叶结点的简单路径上，均包含相同数目的黑色结点</li>
+</ol>
+<p>由性质 2 和 4 可知，红黑树中最短的路径是结点全部为黑色的路径，最长的路径是红黑相间的路径，所以在红黑树中，不会出现一条路径比其他路径长 2 倍。</p>
+<p>相比于以前使用 null 来表示边界，在红黑树中，我们引入哨兵 <code>nil</code> 来处理边界条件。哨兵和普通结点拥有相同属性，但作为叶子结点的哨兵根据性质 3，它的颜色应该是黑色的。</p>
+<p>如下就是一颗红黑树：</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/red-black-tree/red-black-tree.png" alt=""></p>
+<h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>红黑树和二叉搜索树很类似，但因为引入了红黑性质，所以在对红黑树进行插入和删除等操作的时候，很可能破坏红黑性质，这时候需要对树进行调整，改变一些结点的位置。</p>
+<p>旋转是调整树结构的一种操作，分为左旋和右旋。如下</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/red-black-tree/rotate.png" alt=""></p>
+<p>在旋转中，只有指针会改变，其他属性都保持不变。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">leftRotate(node) &#123;</div><div class="line">  <span class="keyword">let</span> rNode = node.right;</div><div class="line">  node.right = rNode.left;</div><div class="line">  <span class="keyword">if</span>(rNode.left != <span class="keyword">this</span>.nil) &#123;</div><div class="line">    rNode.left.parent = node;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  rNode.parent = node.parent;</div><div class="line">  rNode.left = node;</div><div class="line">  node.parent = rNode;</div><div class="line"></div><div class="line">  <span class="keyword">if</span>(rNode.parent == <span class="keyword">this</span>.nil) &#123;</div><div class="line">    <span class="keyword">this</span>.root = rNode;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">if</span>(rNode.key &lt; rNode.parent.key) &#123;</div><div class="line">      rNode.parent.left = rNode;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      rNode.parent.right = rNode;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">rightRotate(node) &#123;</div><div class="line">  <span class="keyword">let</span> lNode = node.left;</div><div class="line">  node.left = lNode.right;</div><div class="line">  <span class="keyword">if</span>(lNode.right != <span class="keyword">this</span>.nil) &#123;</div><div class="line">    lNode.right.parent = node;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  lNode.parent = node.parent;</div><div class="line">  lNode.right = node;</div><div class="line">  node.parent = lNode;</div><div class="line"></div><div class="line">  <span class="keyword">if</span>(lNode.parent == <span class="keyword">this</span>.nil) &#123;</div><div class="line">    <span class="keyword">this</span>.root = lNode;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">if</span>(lNode.key &lt; lNode.parent.key) &#123;</div><div class="line">      lNode.parent.left = lNode;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      lNode.parent.right = lNode;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>将新结点插入到红黑树中时，如果新结点是黑色，则势必会破坏性质 5，而红色可能一条性质也不会破坏，所以我们选择红色为新结点的默认颜色。</p>
+<p>插入之前我们需要先找到要插入的位置，这里和二叉搜索树是一样的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>() &#123;</div><div class="line">    <span class="keyword">this</span>.parent = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">this</span>.left = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">this</span>.right = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">this</span>.key = <span class="string">'nil'</span>;</div><div class="line">    <span class="keyword">this</span>.color = <span class="string">'black'</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  toString() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.key + <span class="string">','</span> + <span class="keyword">this</span>.color;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedBlackTree</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">constructor</span>() &#123;</div><div class="line">    <span class="keyword">this</span>.nil = <span class="keyword">new</span> TreeNode();</div><div class="line">    <span class="keyword">this</span>.root = <span class="keyword">this</span>.nil;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  insert(key) &#123;</div><div class="line">    <span class="keyword">let</span> curNode = <span class="keyword">this</span>.root;</div><div class="line">    <span class="keyword">let</span> parent = <span class="keyword">this</span>.nil;</div><div class="line">    <span class="comment">// 找到要插入的位置</span></div><div class="line">    <span class="keyword">while</span>(curNode != <span class="keyword">this</span>.nil) &#123;</div><div class="line">      parent = curNode;</div><div class="line">      <span class="keyword">if</span>(key &lt; curNode.key) &#123;</div><div class="line">        curNode = curNode.left;</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        curNode = curNode.right;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> node = <span class="keyword">new</span> TreeNode();</div><div class="line">    node.key = key;</div><div class="line">    node.parent = parent;</div><div class="line">    node.left = <span class="keyword">this</span>.nil;</div><div class="line">    node.right = <span class="keyword">this</span>.nil;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(parent == <span class="keyword">this</span>.nil) &#123;</div><div class="line">      <span class="comment">// 如果树中没有结点，插入结点为根结点</span></div><div class="line">      node.color = <span class="string">'black'</span>;</div><div class="line">      <span class="keyword">this</span>.root = node;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="comment">// 插入到正确的地方</span></div><div class="line">      node.color = <span class="string">'red'</span>;</div><div class="line">      <span class="keyword">if</span>(node.key &lt; parent.key) &#123;</div><div class="line">        parent.left = node;</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        parent.right = node;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// 调整树的结构</span></div><div class="line">      <span class="keyword">this</span>.insertFix(node);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>insertFix</code> 方法的作用是在插入结点后调整树的结构，在有新的红色结点插入到树中后，有哪些性质可能被破坏呢？</p>
+<ul>
+<li><p>性质 1 显然不会被破坏。</p>
+</li>
+<li><p>如果插入元素是根结点时，会破坏性质 2。</p>
+</li>
+<li><p>性质 3 不会被破坏，因为叶子结点始终是哨兵。</p>
+</li>
+<li><p>如果插入元素的父结点是红色，那么性质 4 会被破坏。</p>
+</li>
+<li><p>性质 5 不会被破坏，因为插入的结点是红色，不会影响路径中黑色结点的个数。</p>
+</li>
+</ul>
+<p>所以在调整树的结构时，我们只需关注性质 2 和 4。</p>
+<h3 id="情况一"><a href="#情况一" class="headerlink" title="情况一"></a>情况一</h3><p>如果插入结点的父结点是黑色结点，那么性质 12345 全部继续成立，不需要调整树的结构。</p>
+<h3 id="情况二"><a href="#情况二" class="headerlink" title="情况二"></a>情况二</h3><p>如果插入结点的父结点是红色结点。</p>
+<p>因为插入之前这课树是一颗红黑树，那么插入结点的父结点的父结点（图中的 B 结点）必定是黑色（否则违反性质 4）。如下图，R 表示红色，B 表示黑色：</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/red-black-tree/01.png" alt=""></p>
+<p>但不确定 C 是什么颜色。</p>
+<h4 id="a-C-是红色"><a href="#a-C-是红色" class="headerlink" title="a) C 是红色"></a>a) C 是红色</h4><p>因为 D 和 B 的颜色起了冲突，必定需要改变其中一个结点的颜色，如果改变 D 的颜色，会破坏性质 5，而如果改变 B 的颜色，为了维持性质 5，我们可以选择将 A 和 C 的颜色也改变，即：</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/red-black-tree/02.png" alt=""></p>
+<p>这个时候性质 5 不会被破坏，但因为 A 的颜色变了，可能会与 A 的父结点颜色冲突，所以我们需要把 A 看作新插入结点，重新进行判断。</p>
+<h4 id="b-C-是黑色或者-C-是-nil"><a href="#b-C-是黑色或者-C-是-nil" class="headerlink" title="b) C 是黑色或者 C 是 nil"></a>b) C 是黑色或者 C 是 nil</h4><p>如果 C 是黑色，我们仍然改变 A 和 B 的颜色，但是为了保证性质 5 成立，所以可以对 A 和 B 进行右旋：</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/red-black-tree/03.png" alt=""></p>
+<p>当 D 是 B 的右子树时，先将 B 和 D 左旋，然后变成上面这种情况，再对 A、B 进行右旋。</p>
+<p>以上情况二是假设 D 和 B 是 A 的左子树，当 D 和 B 是 A 的右子树时，需要把方向换一下，原理是相同的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedBlackTree</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">constructor</span>() &#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  insert(key) &#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  insertFix(node) &#123;</div><div class="line">    <span class="keyword">while</span>(node.parent.color == <span class="string">'red'</span>) &#123;</div><div class="line">      <span class="keyword">if</span>(node.parent == node.parent.parent.left) &#123;</div><div class="line">        <span class="keyword">let</span> uncle = node.parent.parent.right;</div><div class="line">        <span class="keyword">if</span>(uncle.color == <span class="string">'red'</span>) &#123;</div><div class="line">          <span class="comment">// 叔结点是红色</span></div><div class="line">          node.parent.color = <span class="string">'black'</span>;</div><div class="line">          uncle.color = <span class="string">'black'</span>;</div><div class="line">          node.parent.parent.color = <span class="string">'red'</span>;</div><div class="line">          node = node.parent.parent;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">          <span class="comment">// 旋转</span></div><div class="line">          <span class="keyword">if</span>(node == node.parent.right) &#123;</div><div class="line">            node = node.parent;</div><div class="line">            <span class="keyword">this</span>.leftRotate(node);</div><div class="line">          &#125;</div><div class="line">          node.parent.color = <span class="string">'black'</span>;</div><div class="line">          node.parent.parent.color = <span class="string">'red'</span>;</div><div class="line">          <span class="keyword">this</span>.rightRotate(node.parent.parent); </div><div class="line">        &#125;</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">let</span> uncle = node.parent.parent.left;</div><div class="line">        <span class="keyword">if</span>(uncle.color == <span class="string">'red'</span>) &#123;</div><div class="line">          <span class="comment">// 叔结点是红色</span></div><div class="line">          node.parent.color = <span class="string">'black'</span>;</div><div class="line">          uncle.color = <span class="string">'black'</span>;</div><div class="line">          node.parent.parent.color = <span class="string">'red'</span>;</div><div class="line">          node = node.parent.parent;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">          <span class="keyword">if</span>(node == node.parent.left) &#123;</div><div class="line">            node = node.parent;</div><div class="line">            <span class="keyword">this</span>.rightRotate(node);</div><div class="line">          &#125;</div><div class="line">          node.parent.color = <span class="string">'black'</span>;</div><div class="line">          node.parent.parent.color = <span class="string">'red'</span>;</div><div class="line">          <span class="keyword">this</span>.leftRotate(node.parent.parent);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.root.color = <span class="string">'black'</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  leftRotate(node) &#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  rightRotate(node) &#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/每周总结/" rel="tag">#每周总结</a>
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/07/binary-search-tree/" rel="next" title="二叉搜索树">
+                <i class="fa fa-chevron-left"></i> 二叉搜索树
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/12/data-capture/" rel="prev" title="数据抓取の经验">
+                数据抓取の经验 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/07/red-black-tree/"
+           data-title="红黑树" data-url="http://sunhengzhe.com/2016/08/07/red-black-tree/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/aoliao.png"
+               alt="一只奥利奥" />
+          <p class="site-author-name" itemprop="name">一只奥利奥</p>
+          <p class="site-description motion-element" itemprop="description">很高兴遇见你</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunhengzhe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3025220401" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#旋转"><span class="nav-number">1.</span> <span class="nav-text">旋转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入"><span class="nav-number">2.</span> <span class="nav-text">插入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#情况一"><span class="nav-number">2.1.</span> <span class="nav-text">情况一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情况二"><span class="nav-number">2.2.</span> <span class="nav-text">情况二</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-C-是红色"><span class="nav-number">2.2.1.</span> <span class="nav-text">a) C 是红色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-C-是黑色或者-C-是-nil"><span class="nav-number">2.2.2.</span> <span class="nav-text">b) C 是黑色或者 C 是 nil</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只奥利奥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunhengzhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
