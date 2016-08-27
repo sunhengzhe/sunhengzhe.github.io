@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="每周总结,git," />
+  <meta name="keywords" content="每周总结," />
 
 
 
@@ -84,31 +84,16 @@
 
 
 
-<meta name="description" content="git 实际上有两个区，一个是工作区，另一个是版本库。在版本库里，又分为暂存区和当前分支。
-git add 将工作区的文件提交到暂存区，此时添加到暂存区的文件都是被 track 的。
-git commit 将暂存区的文件提交到本地当前分支，此时暂存区会被清空。
-?? 未跟踪A  新添加到暂存区_M 被修改但未放入暂存区
-git init初始化 git 目录
-创建一个文件将文件添加到工作区，文件状态">
+<meta name="description" content="怎么用 hexo 搭博客骑士官网已经写的很清楚了，这里只纪录一些问题和心得。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git 使用">
-<meta property="og:url" content="http://sunhengzhe.com/2016/08/15/git/index.html">
+<meta property="og:title" content="HEXO 搭博客中的坑">
+<meta property="og:url" content="http://sunhengzhe.com/2016/08/27/keng-in-hexo/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="git 实际上有两个区，一个是工作区，另一个是版本库。在版本库里，又分为暂存区和当前分支。
-git add 将工作区的文件提交到暂存区，此时添加到暂存区的文件都是被 track 的。
-git commit 将暂存区的文件提交到本地当前分支，此时暂存区会被清空。
-?? 未跟踪A  新添加到暂存区_M 被修改但未放入暂存区
-git init初始化 git 目录
-创建一个文件将文件添加到工作区，文件状态">
-<meta property="og:updated_time" content="2016-08-27T00:16:57.000Z">
+<meta property="og:description" content="怎么用 hexo 搭博客骑士官网已经写的很清楚了，这里只纪录一些问题和心得。">
+<meta property="og:updated_time" content="2016-08-27T01:20:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git 使用">
-<meta name="twitter:description" content="git 实际上有两个区，一个是工作区，另一个是版本库。在版本库里，又分为暂存区和当前分支。
-git add 将工作区的文件提交到暂存区，此时添加到暂存区的文件都是被 track 的。
-git commit 将暂存区的文件提交到本地当前分支，此时暂存区会被清空。
-?? 未跟踪A  新添加到暂存区_M 被修改但未放入暂存区
-git init初始化 git 目录
-创建一个文件将文件添加到工作区，文件状态">
+<meta name="twitter:title" content="HEXO 搭博客中的坑">
+<meta name="twitter:description" content="怎么用 hexo 搭博客骑士官网已经写的很清楚了，这里只纪录一些问题和心得。">
 
 
 
@@ -129,9 +114,9 @@ git init初始化 git 目录
 
 
 
-  <link rel="canonical" href="http://sunhengzhe.com/2016/08/15/git/"/>
+  <link rel="canonical" href="http://sunhengzhe.com/2016/08/27/keng-in-hexo/"/>
 
-  <title> git 使用 | 奥利奥的大房子 </title>
+  <title> HEXO 搭博客中的坑 | 奥利奥的大房子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -261,7 +246,7 @@ git init初始化 git 目录
             
             
               
-                git 使用
+                HEXO 搭博客中的坑
               
             
           </h1>
@@ -273,8 +258,8 @@ git init初始化 git 目录
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-15T21:54:34+08:00" content="2016-08-15">
-              2016-08-15
+            <time itemprop="dateCreated" datetime="2016-08-27T09:10:57+08:00" content="2016-08-27">
+              2016-08-27
             </time>
           </span>
 
@@ -284,8 +269,8 @@ git init初始化 git 目录
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/15/git/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/15/git/" itemprop="commentsCount"></span>
+                <a href="/2016/08/27/keng-in-hexo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/27/keng-in-hexo/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -308,15 +293,25 @@ git init初始化 git 目录
       
 
       
-        <p>git 实际上有两个区，一个是工作区，另一个是版本库。在版本库里，又分为暂存区和当前分支。</p>
-<p>git add 将工作区的文件提交到暂存区，此时添加到暂存区的文件都是被 track 的。</p>
-<p>git commit 将暂存区的文件提交到本地当前分支，此时暂存区会被清空。</p>
-<p>?? 未跟踪<br>A  新添加到暂存区<br>_M 被修改但未放入暂存区</p>
-<p>git init<br>初始化 git 目录</p>
-<p>创建一个文件<br>将文件添加到工作区，文件状态为 Untracked，此时使用 git status -s 显示为 ??。</p>
-<p>git add<br>将文件添加到暂存区，文件状态为 Staged，此时使用 git status -s 显示为 A</p>
-<p>git commit<br>将文件提交到当前分支，文件状态为 Unmodified，此时使用 git status -s 显示为 _M</p>
-<p>修改文件<br>文件已经被跟踪，但是有修改，此时使用 git status -s 显示为 M_</p>
+        <p>怎么用 hexo 搭博客骑士官网已经写的很清楚了，这里只纪录一些问题和心得。</p>
+<a id="more"></a>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>写博客的时候，我们并不是在主分支，而是比如在 codes 分支，主分支上存放的是静态文件，也就是供用户访问的 html、css 等，这些都是 hexo 生成的。</p>
+<p>当博客写完以后，过程如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g</div></pre></td></tr></table></figure>
+<p>生成静态文件，此时所有静态文件存放在 <code>public</code> 目录下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure>
+<p>搭建本地静态服务器，默认监听 4000 端口，此时可以通过 <code>localhost:4000</code> 访问你的网站，可以预览，看下有没有问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d</div></pre></td></tr></table></figure>
+<p>部署博客，根据 <code>_config.yml</code> 部署到远程服务器上，如果使用的是 git，那么你应该部署到 master 分支上。</p>
+<p>这样别人就能通过你的 <code>[username].github.io</code> 访问你的网站了，如果要关联你自己的域名，需要在 <code>source</code> 里添加 CNAME 文件，并使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Plugins:</div><div class="line">  - hexo-generator-cname</div></pre></td></tr></table></figure>
+<p>插件，注意大小写敏感。否则会报 <code>ERROR Deployer not found: git</code> 错误。</p>
+<p>总结来看就是：</p>
+<p>你在 codes 分支上写博客 -&gt; <code>hexo g</code> -&gt; <code>hexo d</code> -&gt; hexo 将静态文件部署到远程 master 分支</p>
+<h2 id="404"><a href="#404" class="headerlink" title="404"></a>404</h2><p>如果你一不小心把 codes 分支覆盖到 master 上了，网站就报 404 了，根据上面的过程，很明显我们只需要让 hexo 重新部署一遍就可以了。</p>
+<p>但是运行这两个命令之后并没有什么卵用，在执行这两个命令之前，你需要清空部署目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rm -rf .deploy_git/</div></pre></td></tr></table></figure>
+<p>然后继续 <code>hexo g</code>、<code>hexo d</code> 即可。</p>
 
       
     </div>
@@ -340,8 +335,6 @@ git init初始化 git 目录
           
             <a href="/tags/每周总结/" rel="tag">#每周总结</a>
           
-            <a href="/tags/git/" rel="tag">#git</a>
-          
         </div>
       
 
@@ -349,17 +342,13 @@ git init初始化 git 目录
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/12/data-capture/" rel="next" title="数据抓取の经验">
-                <i class="fa fa-chevron-left"></i> 数据抓取の经验
+              <a href="/2016/08/27/thread-in-javascript/" rel="next" title="Javascript 中的线程与进程">
+                <i class="fa fa-chevron-left"></i> Javascript 中的线程与进程
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/27/thread-in-javascript/" rel="prev" title="Javascript 中的线程与进程">
-                Javascript 中的线程与进程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -385,8 +374,8 @@ git init初始化 git 目录
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/15/git/"
-           data-title="git 使用" data-url="http://sunhengzhe.com/2016/08/15/git/">
+      <div class="ds-thread" data-thread-key="2016/08/27/keng-in-hexo/"
+           data-title="HEXO 搭博客中的坑" data-url="http://sunhengzhe.com/2016/08/27/keng-in-hexo/">
       </div>
     
   </div>
@@ -431,7 +420,7 @@ git init初始化 git 目录
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -441,7 +430,7 @@ git init初始化 git 目录
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -490,7 +479,7 @@ git init初始化 git 目录
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">1.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#404"><span class="nav-number">2.</span> <span class="nav-text">404</span></a></li></ol></div>
             
           </div>
         </section>
