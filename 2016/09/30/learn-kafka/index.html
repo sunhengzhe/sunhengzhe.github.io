@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-03.jpeg">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-05.jpeg">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-04.png">
-<meta property="og:updated_time" content="2016-09-30T07:18:17.000Z">
+<meta property="og:updated_time" content="2016-09-30T07:19:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kafka 基础">
 <meta name="twitter:description" content="Kafka 基础概念Kafka是由LinkedIn开发的一个分布式的，基于发布/订阅的消息系统。">
@@ -320,18 +320,12 @@
       
         <h2 id="Kafka-基础概念"><a href="#Kafka-基础概念" class="headerlink" title="Kafka 基础概念"></a>Kafka 基础概念</h2><p>Kafka是由LinkedIn开发的一个分布式的，基于发布/订阅的消息系统。</p>
 <a id="more"></a>
-<h3 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h3><p><strong>Broker</strong></p>
-<p>Kafka 集群包含一个或多个服务器，这种服务器被称为broker</p>
-<p><strong>Topic</strong></p>
-<p>每条发布到 Kafka 集群的消息都有一个类别，这个类别被称为 Topic。（物理上不同 Topic 的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个 broker 上但用户只需指定消息的 Topic 即可生产或消费数据而不必关心数据存于何处）</p>
-<p><strong>Partition</strong></p>
-<p>Parition 是物理上的概念，每个 Topic 包含一个或多个 Partition</p>
-<p><strong>Producer</strong></p>
-<p>负责发布消息到 Kafka broker</p>
-<p><strong>Consumer</strong></p>
-<p>消息消费者，向 Kafka broker 读取消息的客户端。</p>
-<p><strong>Consumer Group</strong></p>
-<p>每个Consumer 属于一个特定的 Consumer Group（可为每个 Consumer 指定 group name，若不指定 group name 则属于默认的 group）。</p>
+<h3 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h3><p><strong>Broker</strong><br>Kafka 集群包含一个或多个服务器，这种服务器被称为broker</p>
+<p><strong>Topic</strong><br>每条发布到 Kafka 集群的消息都有一个类别，这个类别被称为 Topic。（物理上不同 Topic 的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个 broker 上但用户只需指定消息的 Topic 即可生产或消费数据而不必关心数据存于何处）</p>
+<p><strong>Partition</strong><br>Parition 是物理上的概念，每个 Topic 包含一个或多个 Partition</p>
+<p><strong>Producer</strong><br>负责发布消息到 Kafka broker</p>
+<p><strong>Consumer</strong><br>消息消费者，向 Kafka broker 读取消息的客户端。</p>
+<p><strong>Consumer Group</strong><br>每个Consumer 属于一个特定的 Consumer Group（可为每个 Consumer 指定 group name，若不指定 group name 则属于默认的 group）。</p>
 <h3 id="拓扑结构"><a href="#拓扑结构" class="headerlink" title="拓扑结构"></a>拓扑结构</h3><p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-01.jpeg" alt=""></p>
 <p>Kafka 通过 Zookeeper 管理集群配置，选举 leader，以及在 Consumer Group 发生变化时进行 rebalance。Producer 使用 push 模式将消息发布到 broker，Consumer 使用 pull 模式从 broker 订阅并消费消息。</p>
 <h3 id="概念说明"><a href="#概念说明" class="headerlink" title="概念说明"></a>概念说明</h3><h4 id="Topic-amp-Partition"><a href="#Topic-amp-Partition" class="headerlink" title="Topic &amp; Partition"></a>Topic &amp; Partition</h4><p>Topic 在 <strong>逻辑上</strong> 可以认为是一个 queue，每条消息必须指定一个 topic，也就是将这条消息放进某一个 queue。</p>
