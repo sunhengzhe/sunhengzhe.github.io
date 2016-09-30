@@ -156,7 +156,7 @@ const consumer = new HighLevelConsumer(
 	client,
 	[
 		// 订阅话题，如果需要从指定 offset 读起，填 offset 参数
-		{ topic: 'busi_ut', offset: 0}
+		{ topic: TOPIC_NAME, offset: 0}
 	],
 	{
 		// 指定 groupId
