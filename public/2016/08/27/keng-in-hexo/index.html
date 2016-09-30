@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="怎么用 hexo 搭博客骑士官网已经写的很清楚了，这里只纪录一些问题和心得。">
+<meta name="description" content="怎么用 hexo 搭博客其实官网已经写的很清楚了，这里只纪录一些问题和心得。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HEXO 搭博客中的坑">
 <meta property="og:url" content="http://sunhengzhe.com/2016/08/27/keng-in-hexo/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="怎么用 hexo 搭博客骑士官网已经写的很清楚了，这里只纪录一些问题和心得。">
-<meta property="og:updated_time" content="2016-08-27T01:20:15.000Z">
+<meta property="og:description" content="怎么用 hexo 搭博客其实官网已经写的很清楚了，这里只纪录一些问题和心得。">
+<meta property="og:updated_time" content="2016-08-27T02:26:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HEXO 搭博客中的坑">
-<meta name="twitter:description" content="怎么用 hexo 搭博客骑士官网已经写的很清楚了，这里只纪录一些问题和心得。">
+<meta name="twitter:description" content="怎么用 hexo 搭博客其实官网已经写的很清楚了，这里只纪录一些问题和心得。">
 
 
 
@@ -124,6 +124,16 @@
   
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a7768ce6e11e71e36e002cbbf272480b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -280,6 +290,15 @@
 
           
           
+             <span id="/2016/08/27/keng-in-hexo/" class="leancloud_visitors" data-flag-title="HEXO 搭博客中的坑">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
 
           
         </div>
@@ -293,7 +312,7 @@
       
 
       
-        <p>怎么用 hexo 搭博客骑士官网已经写的很清楚了，这里只纪录一些问题和心得。</p>
+        <p>怎么用 hexo 搭博客其实官网已经写的很清楚了，这里只纪录一些问题和心得。</p>
 <a id="more"></a>
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>写博客的时候，我们并不是在主分支，而是比如在 codes 分支，主分支上存放的是静态文件，也就是供用户访问的 html、css 等，这些都是 hexo 生成的。</p>
 <p>当博客写完以后，过程如下：</p>
@@ -312,7 +331,8 @@
 <p>但是运行这两个命令之后并没有什么卵用，在执行这两个命令之前，你需要清空部署目录：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rm -rf .deploy_git/</div></pre></td></tr></table></figure>
 <p>然后继续 <code>hexo g</code>、<code>hexo d</code> 即可。</p>
-
+<h2 id="不处理-html"><a href="#不处理-html" class="headerlink" title="不处理 html"></a>不处理 html</h2><p>如果在 source 里面想放置自己的 html，默认情况下是会被 hexo 渲染的，如果不想，在该 html 顶部添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">layout: false</div><div class="line">---</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -349,6 +369,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/30/learn-kafka/" rel="prev" title="Kafka 基础">
+                Kafka 基础 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -420,7 +444,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -430,7 +454,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -479,7 +503,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">1.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#404"><span class="nav-number">2.</span> <span class="nav-text">404</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">1.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#404"><span class="nav-number">2.</span> <span class="nav-text">404</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不处理-html"><span class="nav-number">3.</span> <span class="nav-text">不处理 html</span></a></li></ol></div>
             
           </div>
         </section>
@@ -631,6 +655,113 @@
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("1LyGDYVjwRXPreaCWYEHmSBH-gzGzoHsz", "25EgCU8EbGo0vh3FigVCMpnh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

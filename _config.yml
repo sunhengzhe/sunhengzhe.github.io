@@ -79,3 +79,6 @@ deploy:
   type: git
   repo: git@github.com:sunhengzhe/sunhengzhe.github.io.git
   branch: master
+
+# baidu analytics
+baidu_analytics: a7768ce6e11e71e36e002cbbf272480b
