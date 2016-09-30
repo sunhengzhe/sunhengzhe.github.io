@@ -4,9 +4,11 @@ date: 2016-09-30 14:33:57
 tags: [每周总结, kafka]
 ---
 
+## Kafka 基础概念
+
 Kafka是由LinkedIn开发的一个分布式的，基于发布/订阅的消息系统。
 
- ### 关键词
+### 关键词
 
 - **Broker**
 
@@ -137,8 +139,6 @@ cd YOUR_KAFKA_HOME
 ./bin/kafka-topics.sh --list --zookeeper YOUR_ZOOKEEPR_IPS
 ```
 
-YOUR_ZOOKEEPR_IPS: 参考 [业务数据部-外部Kafka消费指南](http://wiki.shanyishanmei.com/pages/viewpage.action?pageId=5443081) 中的 Zookeeper.quorum
-
 ## 业务背景
 
 需要订阅业务平台的 Kafka 中的 c1 和 c2 的通话记录。
@@ -150,7 +150,7 @@ YOUR_ZOOKEEPR_IPS: 参考 [业务数据部-外部Kafka消费指南](http://wiki
 ```javascript
 const kafka = require('kafka-node');
 // 创建连接
-const client = new kafka.Client('10.44.17.132:2181');      
+const client = new kafka.Client(KAFKA_SERVER_IP);      
 // 创建 HLC
 const consumer = new HighLevelConsumer(
 	client,
