@@ -92,7 +92,7 @@
 <meta property="og:description" content="React Router 是一个非常出色的路由解决方案，同时也非常容易上手。但是当网站规模越来越大的时候，首先出现的问题是 Javascript 文件变得巨大，这导致首页渲染的时间让人难以忍受。实际上程序应当只加载当前渲染页所需的 JavaScript，也就是大家说的“代码分拆” — 将所有的代码分拆成多个小包，在用户浏览过程中按需加载。">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/react-router-dynamic/01.png">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/react-router-dynamic/02.png">
-<meta property="og:updated_time" content="2016-10-12T03:17:09.000Z">
+<meta property="og:updated_time" content="2016-10-12T03:21:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React-router 按需加载">
 <meta name="twitter:description" content="React Router 是一个非常出色的路由解决方案，同时也非常容易上手。但是当网站规模越来越大的时候，首先出现的问题是 Javascript 文件变得巨大，这导致首页渲染的时间让人难以忍受。实际上程序应当只加载当前渲染页所需的 JavaScript，也就是大家说的“代码分拆” — 将所有的代码分拆成多个小包，在用户浏览过程中按需加载。">
@@ -358,7 +358,7 @@
 <h2 id="The-root-route-must-render-a-single-element"><a href="#The-root-route-must-render-a-single-element" class="headerlink" title="The root route must render a single element"></a>The root route must render a single element</h2><p>跟着官方示例和上面码出来之后，可能页面并没有渲染出来，而是报 <strong>The root route must render a single element</strong> 这个异常，这是因为 <code>module.exports</code> 和 ES6 里的 <code>export default</code> 有区别。</p>
 <p>如果你是使用 es6 的写法，也就是你的组件都是通过 <code>export default</code> 导出的，那么在 <code>getComponent</code> 方法里面需要加入 <code>.default</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">getComponent(nextState, cb) &#123;</div><div class="line">    <span class="built_in">require</span>.ensure([], (<span class="built_in">require</span>) =&gt; &#123;</div><div class="line">      <span class="comment">// 在后面加 .default</span></div><div class="line">      cb(<span class="literal">null</span>, <span class="built_in">require</span>(<span class="string">'components/layer/ReportPage'</span>)).default</div><div class="line">    &#125;, <span class="string">'ReportPage'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如果你是使用 CMD 的写法，也就是通过 <code>module.exports</code> 导出的，那就无须加 <code>.default</code> 了。</p>
+<p>如果你是使用 CommonJS 的写法，也就是通过 <code>module.exports</code> 导出的，那就无须加 <code>.default</code> 了。</p>
 
       
     </div>
