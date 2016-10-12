@@ -263,4 +263,4 @@ getComponent(nextState, cb) {
 }
 ```
 
-如果你是使用 CMD 的写法，也就是通过 `module.exports` 导出的，那就无须加 `.default` 了。
+如果你是使用 CommonJS 的写法，也就是通过 `module.exports` 导出的，那就无须加 `.default` 了。
