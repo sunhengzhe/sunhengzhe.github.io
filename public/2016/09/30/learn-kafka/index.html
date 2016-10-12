@@ -84,39 +84,22 @@
 
 
 
-<meta name="description" content="Kafka 基础概念Kafka是由LinkedIn开发的一个分布式的，基于发布/订阅的消息系统。
-关键词
-Broker
-Kafka 集群包含一个或多个服务器，这种服务器被称为broker
-
-Topic
-每条发布到 Kafka 集群的消息都有一个类别，这个类别被称为 Topic。（物理上不同 Topic 的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个 broker 上但用户只需指定消">
+<meta name="description" content="Kafka 基础概念Kafka是由LinkedIn开发的一个分布式的，基于发布/订阅的消息系统。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kafka 基础">
 <meta property="og:url" content="http://sunhengzhe.com/2016/09/30/learn-kafka/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="Kafka 基础概念Kafka是由LinkedIn开发的一个分布式的，基于发布/订阅的消息系统。
-关键词
-Broker
-Kafka 集群包含一个或多个服务器，这种服务器被称为broker
-
-Topic
-每条发布到 Kafka 集群的消息都有一个类别，这个类别被称为 Topic。（物理上不同 Topic 的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个 broker 上但用户只需指定消">
+<meta property="og:description" content="Kafka 基础概念Kafka是由LinkedIn开发的一个分布式的，基于发布/订阅的消息系统。">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-01.jpeg">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-02.jpeg">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-03.jpeg">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-05.jpeg">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-04.png">
-<meta property="og:updated_time" content="2016-09-30T07:03:26.000Z">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-05.png">
+<meta property="og:updated_time" content="2016-09-30T07:51:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kafka 基础">
-<meta name="twitter:description" content="Kafka 基础概念Kafka是由LinkedIn开发的一个分布式的，基于发布/订阅的消息系统。
-关键词
-Broker
-Kafka 集群包含一个或多个服务器，这种服务器被称为broker
-
-Topic
-每条发布到 Kafka 集群的消息都有一个类别，这个类别被称为 Topic。（物理上不同 Topic 的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个 broker 上但用户只需指定消">
+<meta name="twitter:description" content="Kafka 基础概念Kafka是由LinkedIn开发的一个分布式的，基于发布/订阅的消息系统。">
 <meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-01.jpeg">
 
 
@@ -337,26 +320,13 @@ Topic
 
       
         <h2 id="Kafka-基础概念"><a href="#Kafka-基础概念" class="headerlink" title="Kafka 基础概念"></a>Kafka 基础概念</h2><p>Kafka是由LinkedIn开发的一个分布式的，基于发布/订阅的消息系统。</p>
-<h3 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h3><ul>
-<li><p><strong>Broker</strong></p>
-<p>Kafka 集群包含一个或多个服务器，这种服务器被称为broker</p>
-</li>
-<li><p><strong>Topic</strong></p>
-<p>每条发布到 Kafka 集群的消息都有一个类别，这个类别被称为 Topic。（物理上不同 Topic 的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个 broker 上但用户只需指定消息的 Topic 即可生产或消费数据而不必关心数据存于何处）</p>
-</li>
-<li><p><strong>Partition</strong></p>
-<p>Parition 是物理上的概念，每个 Topic 包含一个或多个 Partition</p>
-</li>
-<li><p><strong>Producer</strong></p>
-<p>负责发布消息到 Kafka broker</p>
-</li>
-<li><p><strong>Consumer</strong></p>
-<p>消息消费者，向 Kafka broker 读取消息的客户端。</p>
-</li>
-<li><p><strong>Consumer Group</strong></p>
-<p>每个Consumer 属于一个特定的 Consumer Group（可为每个 Consumer 指定 group name，若不指定 group name 则属于默认的 group）。</p>
-</li>
-</ul>
+<a id="more"></a>
+<h3 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h3><h4 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h4><p>Kafka 集群包含一个或多个服务器，这种服务器被称为broker</p>
+<h4 id="Topic"><a href="#Topic" class="headerlink" title="Topic"></a>Topic</h4><p>每条发布到 Kafka 集群的消息都有一个类别，这个类别被称为 Topic。（物理上不同 Topic 的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个 broker 上但用户只需指定消息的 Topic 即可生产或消费数据而不必关心数据存于何处）</p>
+<h4 id="Partition"><a href="#Partition" class="headerlink" title="Partition"></a>Partition</h4><p>Parition 是物理上的概念，每个 Topic 包含一个或多个 Partition</p>
+<h4 id="Producer"><a href="#Producer" class="headerlink" title="Producer"></a>Producer</h4><p>负责发布消息到 Kafka broker</p>
+<h4 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h4><p>消息消费者，向 Kafka broker 读取消息的客户端。</p>
+<h4 id="Consumer-Group"><a href="#Consumer-Group" class="headerlink" title="Consumer Group"></a>Consumer Group</h4><p>每个Consumer 属于一个特定的 Consumer Group（可为每个 Consumer 指定 group name，若不指定 group name 则属于默认的 group）。</p>
 <h3 id="拓扑结构"><a href="#拓扑结构" class="headerlink" title="拓扑结构"></a>拓扑结构</h3><p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-01.jpeg" alt=""></p>
 <p>Kafka 通过 Zookeeper 管理集群配置，选举 leader，以及在 Consumer Group 发生变化时进行 rebalance。Producer 使用 push 模式将消息发布到 broker，Consumer 使用 pull 模式从 broker 订阅并消费消息。</p>
 <h3 id="概念说明"><a href="#概念说明" class="headerlink" title="概念说明"></a>概念说明</h3><h4 id="Topic-amp-Partition"><a href="#Topic-amp-Partition" class="headerlink" title="Topic &amp; Partition"></a>Topic &amp; Partition</h4><p>Topic 在 <strong>逻辑上</strong> 可以认为是一个 queue，每条消息必须指定一个 topic，也就是将这条消息放进某一个 queue。</p>
@@ -376,7 +346,7 @@ Topic
 <h4 id="信息消费"><a href="#信息消费" class="headerlink" title="信息消费"></a>信息消费</h4><p>对于传统的 message queue 而言，一般会删除已经被消费的消息，而 Kafka 集群会保留所有的消息，无论其被消费与否。当然，因为磁盘限制，不可能永久保留所有数据（实际上也没必要），因此 Kafka 提供两种策略删除旧数据。一是基于时间，二是基于 Partition 文件大小。例如可以通过配置 $KAFKA_HOME/config/server.properties，让 Kafka 删除一周前的数据，也可在 Partition 文件超过1GB时删除旧数据，配置信息如下：</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># The minimum age of a log file to be eligible for deletion</span></div><div class="line">log.retention.hours=168</div><div class="line"></div><div class="line"><span class="comment"># A size-based retention policy for logs. Segments are pruned from the log as long as the remaining</span></div><div class="line"><span class="comment"># segments don't drop below log.retention.bytes.</span></div><div class="line"><span class="comment">#log.retention.bytes=1073741824</span></div><div class="line"></div><div class="line"><span class="comment"># The maximum size of a log segment file. When this size is reached a new log segment will be created.</span></div><div class="line">log.segment.bytes=1073741824</div><div class="line"></div><div class="line"><span class="comment"># The interval at which log segments are checked to see if they can be deleted according</span></div><div class="line"><span class="comment"># to the retention policies</span></div><div class="line">log.retention.check.interval.ms=300000</div></pre></td></tr></table></figure>
 <p>这里要注意，因为 Kafka 读取特定消息的时间复杂度为 O(1)，即与文件大小无关，所以这里删除过期文件与提高 Kafka 性能无关。选择怎样的删除策略只与磁盘以及具体的需求有关。</p>
-<h4 id="Consumer-Group"><a href="#Consumer-Group" class="headerlink" title="Consumer Group"></a>Consumer Group</h4><p>通常来讲，消息模型可以分为两种， 队列和发布-订阅式。 队列的处理方式是 一组消费者从服务器读取消息，一条消息只有其中的一个消费者来处理。在发布-订阅模型中，消息被广播给所有的消费者，接收到消息的消费者都可以处理此消息。Kafka为这两种模型提供了单一的消费者抽象模型： 消费者组 （consumer group）。</p>
+<h4 id="Consumer-Group-1"><a href="#Consumer-Group-1" class="headerlink" title="Consumer Group"></a>Consumer Group</h4><p>通常来讲，消息模型可以分为两种， 队列和发布-订阅式。 队列的处理方式是 一组消费者从服务器读取消息，一条消息只有其中的一个消费者来处理。在发布-订阅模型中，消息被广播给所有的消费者，接收到消息的消费者都可以处理此消息。Kafka为这两种模型提供了单一的消费者抽象模型： 消费者组 （consumer group）。</p>
 <p>消费者用一个消费者组名标记自己。 一个发布在 Topic 上消息被分发给此消费者组中的一个消费者。那么显而易见地：</p>
 <ul>
 <li>假如所有的消费者都在一个组中，那么这就变成了queue模型。</li>
@@ -384,7 +354,7 @@ Topic
 </ul>
 <p>更通用的， 我们可以创建一些消费者组作为逻辑上的订阅者。每个组包含数目不等的消费者， 一个组内多个消费者可以用来扩展性能和容错。</p>
 <p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-03.jpeg" alt=""></p>
-<h4 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h4><p>Consumer 是消息的消费者，Consumer 在从 broker 读取消息后，可以选择 commit，该操作会在 Zookeeper 中保存该 Consumer在该 Partition 中读取的消息的 offset。该 Consumer 下一次再读该 Partition 时会从下一条开始读取。如未 commit，下一次读取的开始位置会跟上一次 commit 之后的开始位置相同。当然可以将 Consumer 设置为 autocommit，即 Consumer 一旦读到数据立即自动 commit。</p>
+<h4 id="Consumer-1"><a href="#Consumer-1" class="headerlink" title="Consumer"></a>Consumer</h4><p>Consumer 是消息的消费者，Consumer 在从 broker 读取消息后，可以选择 commit，该操作会在 Zookeeper 中保存该 Consumer在该 Partition 中读取的消息的 offset。该 Consumer 下一次再读该 Partition 时会从下一条开始读取。如未 commit，下一次读取的开始位置会跟上一次 commit 之后的开始位置相同。当然可以将 Consumer 设置为 autocommit，即 Consumer 一旦读到数据立即自动 commit。</p>
 <p>Kafka 会为每一个 Consumer Group 保留一些 metadata 信息包括 offset。这个 offset 由Consumer控制。正常情况下 Consumer 会在消费完一条消息后递增该 offset。当然，Consumer 也可将 offset 设成一个较小的值，重新消费一些消息。因为 offet 由 Consumer 控制，所以 Kafka broker 是无状态的，它不需要标记哪些消息被哪些消费过，也不需要通过 broker 去保证同一个 Consumer Group 只有一个 Consumer 能消费某一条消息，因此也就不需要锁机制，这也为 Kafka 的高吞吐率提供了有力保障。</p>
 <p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-05.jpeg" alt=""></p>
 <h4 id="High-Level-Consumer"><a href="#High-Level-Consumer" class="headerlink" title="High Level Consumer"></a>High Level Consumer</h4><p>High Level 的意思实际上是更高 Level 的 API，而不是说这种 Consumer 更高级。很多时候，客户程序只是希望从 Kafka 读取数据，不太关心消息 offset 的处理。同时也希望提供一些语义，例如同一条消息只被某一个 Consumer 消费（单播）或被所有 Consumer 消费（广播）。因此，High Level Consumer 提供了一个从 Kafka 消费数据的高层抽象，从而屏蔽掉其中的细节并提供丰富的语义。它提供了一个从 Kafka 消费数据的高层抽象，从而屏蔽掉其中的细节并提供丰富的语义。</p>
@@ -392,19 +362,24 @@ Topic
 <p>假设有一个 Topic (名为 topic1，包含3个 Partition)，有两个 Consumer Group：group1 包含 consumer 1，group 2 包含 consumer2, consumer3, consumer 4)。现通过 Producer 向 topic1 发送key分别为1，2，3的消息。那么将发现属于 group1 的 Consumer 收到了所有的这三条消息，同时 group2 中的 3 个 Consumer 分别收到了 key 为 1，2，3 的消息。如下图所示。</p>
 <p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-04.png" alt=""></p>
 <h3 id="安装kafka"><a href="#安装kafka" class="headerlink" title="安装kafka"></a>安装kafka</h3><p>google，安装 kafka 之前需安装 jdk</p>
-<h3 id="查看所有topic"><a href="#查看所有topic" class="headerlink" title="查看所有topic"></a>查看所有topic</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 打开 kafka 所在目录</span></div><div class="line"><span class="built_in">cd</span> YOUR_KAFKA_HOME</div><div class="line"><span class="comment"># 列出所有 topic</span></div><div class="line">./bin/kafka-topics.sh --list --zookeeper YOUR_ZOOKEEPR_IPS</div></pre></td></tr></table></figure>
+<h3 id="查看所有topic"><a href="#查看所有topic" class="headerlink" title="查看所有topic"></a>查看所有topic</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 打开 kafka 所在目录</span></div><div class="line"><span class="built_in">cd</span> YOUR_KAFKA_HOME</div><div class="line"><span class="comment"># 列出所有 topic</span></div><div class="line">./bin/kafka-topics.sh --list --zookeeper YOUR_ZOOKEEPR_IPS</div><div class="line"><span class="comment"># 查看 topic 明细</span></div><div class="line">./bin/kafka-topics.sh --topic <span class="built_in">test</span> --describe --zookeeper YOUR_ZOOKEEPR_IPS</div></pre></td></tr></table></figure>
 <h2 id="业务背景"><a href="#业务背景" class="headerlink" title="业务背景"></a>业务背景</h2><p>需要订阅业务平台的 Kafka 中的 c1 和 c2 的通话记录。</p>
 <h2 id="技术方案"><a href="#技术方案" class="headerlink" title="技术方案"></a>技术方案</h2><p>使用 node 包：<a href="https://github.com/SOHU-Co/kafka-node" target="_blank" rel="external">kafka-node</a>﻿</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> kafka = <span class="built_in">require</span>(<span class="string">'kafka-node'</span>);</div><div class="line"><span class="comment">// 创建连接</span></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> kafka.Client(KAFKA_SERVER_IP);      </div><div class="line"><span class="comment">// 创建 HLC</span></div><div class="line"><span class="keyword">const</span> consumer = <span class="keyword">new</span> HighLevelConsumer(</div><div class="line">	client,</div><div class="line">	[</div><div class="line">		<span class="comment">// 订阅话题，如果需要从指定 offset 读起，填 offset 参数</span></div><div class="line">		&#123; topic: TOPIC_NAME, offset: <span class="number">0</span>&#125;</div><div class="line">	],</div><div class="line">	&#123;</div><div class="line">		<span class="comment">// 指定 groupId</span></div><div class="line">        groupId: <span class="string">'eagle_eye'</span>,</div><div class="line">        autoCommit: <span class="literal">true</span>,</div><div class="line">        autoCommitIntervalMs: <span class="number">5000</span>,</div><div class="line">        fetchMaxWaitMs: <span class="number">100</span>,</div><div class="line">        fetchMinBytes: <span class="number">1</span>,</div><div class="line">        fetchMaxBytes: <span class="number">1024</span> * <span class="number">1024</span>,</div><div class="line">        <span class="comment">// 需要从指定 offset 读起</span></div><div class="line">        fromOffset: <span class="literal">true</span>,</div><div class="line">        encoding: <span class="string">'utf8'</span></div><div class="line">	&#125;</div><div class="line">);</div><div class="line"></div><div class="line">consumer.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</div><div class="line">  <span class="comment">// 订阅消息</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="关于-offsetOutOfRange"><a href="#关于-offsetOutOfRange" class="headerlink" title="关于 offsetOutOfRange"></a>关于 offsetOutOfRange</h3><p>如果想消费一个不存在的 offset(该 offset 可能确实不存在，也可能被 Kafka auto-delete 了)，这时候 consumer 会抛出 offsetOutOfRange 错误，在 HighLevelConsumer 中，监听到这个错误时会从当前 partition 的最小的一个 offset 开始重新消费。对于通用的 Consumer，客户端需要监听 offsetOutOfRange 事件自己来处理。</p>
 <h2 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h2><h3 id="安装-Zookeeper"><a href="#安装-Zookeeper" class="headerlink" title="安装 Zookeeper"></a>安装 Zookeeper</h3><p>mac 下可以直接使用 brew 安装 zookeeper，安装前需要先安装 jdk</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install zookeeper</div></pre></td></tr></table></figure>
 <h3 id="连接到-Zookeeper-服务"><a href="#连接到-Zookeeper-服务" class="headerlink" title="连接到 Zookeeper 服务"></a>连接到 Zookeeper 服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">zkCli -server YOUR_ZOOKEEPR_IPS</div></pre></td></tr></table></figure>
 <h3 id="Zookeeper-命令"><a href="#Zookeeper-命令" class="headerlink" title="Zookeeper 命令"></a>Zookeeper 命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 使用ls命令查看当前Zookeeper中所包含的内容</div><div class="line">ls /	# 输出 [brokers, consumers, config 等]</div><div class="line">ls /consumers	# [consumer-group-1, test-group 等]</div><div class="line">ls /consumers/test-group</div><div class="line"># 依次类推</div><div class="line"></div><div class="line"># 删除某个节点</div><div class="line">delete /you-want-to-delete</div></pre></td></tr></table></figure>
+<h2 id="Kafka-在-Zookeeper-中的存储结构"><a href="#Kafka-在-Zookeeper-中的存储结构" class="headerlink" title="Kafka 在 Zookeeper 中的存储结构"></a>Kafka 在 Zookeeper 中的存储结构</h2><p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-05.png" alt=""></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
 <li><a href="http://wenku.baidu.com/link?url=67RIEmD9ZesDewsvFuuALe1AF4yNdXN7e4eeca0FxpjA9voYrV1NkKOTdtmKIH9xAp0wzbO0nBCUsYK7HinB68Lmk2_zxQP0W_OGTTihEB3" target="_blank" rel="external">Kafka架构原理</a></li>
 <li><a href="http://www.infoq.com/cn/articles/kafka-analysis-part-1" target="_blank" rel="external">Kafka剖析系列文章</a></li>
 <li><a href="http://lxw1234.com/archives/2015/10/538.htm" target="_blank" rel="external"><a href="http://lxw1234.com/archives/2015/10/538.htm" target="_blank" rel="external">Kafka分区机制介绍与示例</a></a></li>
 <li><a href="http://colobu.com/2014/08/06/kafka-quickstart/" target="_blank" rel="external">Kafka快速入门</a></li>
+<li><a href="https://my.oschina.net/u/218540/blog/223501" target="_blank" rel="external">Kafka常用操作</a></li>
+<li><a href="http://blog.csdn.net/lizhitao/article/details/23744675" target="_blank" rel="external">apache kafka系列之在zookeeper中存储结构</a></li>
+<li><a href="http://blog.csdn.net/ouyang111222/article/details/51094912" target="_blank" rel="external">kafka在zookeeper中一些存储结构</a></li>
 </ol>
 
       
@@ -445,6 +420,10 @@ Topic
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/12/react-router-dynamic/" rel="prev" title="React-router 按需加载">
+                React-router 按需加载 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -516,7 +495,7 @@ Topic
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -526,7 +505,7 @@ Topic
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -575,7 +554,7 @@ Topic
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka-基础概念"><span class="nav-number">1.</span> <span class="nav-text">Kafka 基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关键词"><span class="nav-number">1.1.</span> <span class="nav-text">关键词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑结构"><span class="nav-number">1.2.</span> <span class="nav-text">拓扑结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概念说明"><span class="nav-number">1.3.</span> <span class="nav-text">概念说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Topic-amp-Partition"><span class="nav-number">1.3.1.</span> <span class="nav-text">Topic & Partition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Product"><span class="nav-number">1.3.2.</span> <span class="nav-text">Product</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信息消费"><span class="nav-number">1.3.3.</span> <span class="nav-text">信息消费</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Consumer-Group"><span class="nav-number">1.3.4.</span> <span class="nav-text">Consumer Group</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Consumer"><span class="nav-number">1.3.5.</span> <span class="nav-text">Consumer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#High-Level-Consumer"><span class="nav-number">1.3.6.</span> <span class="nav-text">High Level Consumer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装kafka"><span class="nav-number">1.4.</span> <span class="nav-text">安装kafka</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看所有topic"><span class="nav-number">1.5.</span> <span class="nav-text">查看所有topic</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务背景"><span class="nav-number">2.</span> <span class="nav-text">业务背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术方案"><span class="nav-number">3.</span> <span class="nav-text">技术方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper"><span class="nav-number">4.</span> <span class="nav-text">Zookeeper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Zookeeper"><span class="nav-number">4.1.</span> <span class="nav-text">安装 Zookeeper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接到-Zookeeper-服务"><span class="nav-number">4.2.</span> <span class="nav-text">连接到 Zookeeper 服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zookeeper-命令"><span class="nav-number">4.3.</span> <span class="nav-text">Zookeeper 命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka-基础概念"><span class="nav-number">1.</span> <span class="nav-text">Kafka 基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关键词"><span class="nav-number">1.1.</span> <span class="nav-text">关键词</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Broker"><span class="nav-number">1.1.1.</span> <span class="nav-text">Broker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Topic"><span class="nav-number">1.1.2.</span> <span class="nav-text">Topic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Partition"><span class="nav-number">1.1.3.</span> <span class="nav-text">Partition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Producer"><span class="nav-number">1.1.4.</span> <span class="nav-text">Producer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Consumer"><span class="nav-number">1.1.5.</span> <span class="nav-text">Consumer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Consumer-Group"><span class="nav-number">1.1.6.</span> <span class="nav-text">Consumer Group</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑结构"><span class="nav-number">1.2.</span> <span class="nav-text">拓扑结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概念说明"><span class="nav-number">1.3.</span> <span class="nav-text">概念说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Topic-amp-Partition"><span class="nav-number">1.3.1.</span> <span class="nav-text">Topic & Partition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Product"><span class="nav-number">1.3.2.</span> <span class="nav-text">Product</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信息消费"><span class="nav-number">1.3.3.</span> <span class="nav-text">信息消费</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Consumer-Group-1"><span class="nav-number">1.3.4.</span> <span class="nav-text">Consumer Group</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Consumer-1"><span class="nav-number">1.3.5.</span> <span class="nav-text">Consumer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#High-Level-Consumer"><span class="nav-number">1.3.6.</span> <span class="nav-text">High Level Consumer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装kafka"><span class="nav-number">1.4.</span> <span class="nav-text">安装kafka</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看所有topic"><span class="nav-number">1.5.</span> <span class="nav-text">查看所有topic</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#业务背景"><span class="nav-number">2.</span> <span class="nav-text">业务背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术方案"><span class="nav-number">3.</span> <span class="nav-text">技术方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-offsetOutOfRange"><span class="nav-number">3.1.</span> <span class="nav-text">关于 offsetOutOfRange</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper"><span class="nav-number">4.</span> <span class="nav-text">Zookeeper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Zookeeper"><span class="nav-number">4.1.</span> <span class="nav-text">安装 Zookeeper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接到-Zookeeper-服务"><span class="nav-number">4.2.</span> <span class="nav-text">连接到 Zookeeper 服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zookeeper-命令"><span class="nav-number">4.3.</span> <span class="nav-text">Zookeeper 命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka-在-Zookeeper-中的存储结构"><span class="nav-number">5.</span> <span class="nav-text">Kafka 在 Zookeeper 中的存储结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
         </section>

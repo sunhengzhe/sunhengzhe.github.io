@@ -8,31 +8,27 @@ tags: [每周总结, kafka]
 
 Kafka是由LinkedIn开发的一个分布式的，基于发布/订阅的消息系统。
 
+<!-- more -->
+
 ### 关键词
 
-- **Broker**
+#### Broker
+Kafka 集群包含一个或多个服务器，这种服务器被称为broker
 
-  Kafka 集群包含一个或多个服务器，这种服务器被称为broker
+#### Topic
+每条发布到 Kafka 集群的消息都有一个类别，这个类别被称为 Topic。（物理上不同 Topic 的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个 broker 上但用户只需指定消息的 Topic 即可生产或消费数据而不必关心数据存于何处）
 
-- **Topic**
+#### Partition
+Parition 是物理上的概念，每个 Topic 包含一个或多个 Partition
 
-  每条发布到 Kafka 集群的消息都有一个类别，这个类别被称为 Topic。（物理上不同 Topic 的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个 broker 上但用户只需指定消息的 Topic 即可生产或消费数据而不必关心数据存于何处）
+#### Producer
+负责发布消息到 Kafka broker
 
-- **Partition**
+#### Consumer
+消息消费者，向 Kafka broker 读取消息的客户端。
 
-  Parition 是物理上的概念，每个 Topic 包含一个或多个 Partition
-
-- **Producer**
-
-  负责发布消息到 Kafka broker
-
-- **Consumer**
-
-  消息消费者，向 Kafka broker 读取消息的客户端。
-
-- **Consumer Group**
-
-  每个Consumer 属于一个特定的 Consumer Group（可为每个 Consumer 指定 group name，若不指定 group name 则属于默认的 group）。
+#### Consumer Group
+每个Consumer 属于一个特定的 Consumer Group（可为每个 Consumer 指定 group name，若不指定 group name 则属于默认的 group）。
 
 ### 拓扑结构
 
@@ -137,6 +133,8 @@ google，安装 kafka 之前需安装 jdk
 cd YOUR_KAFKA_HOME
 # 列出所有 topic
 ./bin/kafka-topics.sh --list --zookeeper YOUR_ZOOKEEPR_IPS
+# 查看 topic 明细
+./bin/kafka-topics.sh --topic test --describe --zookeeper YOUR_ZOOKEEPR_IPS
 ```
 
 ## 业务背景
@@ -177,6 +175,8 @@ consumer.on('message', function (message) {
 })
 ```
 
+### 关于 offsetOutOfRange
+如果想消费一个不存在的 offset(该 offset 可能确实不存在，也可能被 Kafka auto-delete 了)，这时候 consumer 会抛出 offsetOutOfRange 错误，在 HighLevelConsumer 中，监听到这个错误时会从当前 partition 的最小的一个 offset 开始重新消费。对于通用的 Consumer，客户端需要监听 offsetOutOfRange 事件自己来处理。
 
 
 ## Zookeeper
@@ -194,7 +194,7 @@ brew install zookeeper
 ```shell
 zkCli -server YOUR_ZOOKEEPR_IPS
 ```
-###  Zookeeper 命令
+### Zookeeper 命令
 
 ```shell
 # 使用ls命令查看当前Zookeeper中所包含的内容
@@ -207,8 +207,14 @@ ls /consumers/test-group
 delete /you-want-to-delete
 ```
 
+## Kafka 在 Zookeeper 中的存储结构
+![](http://7xo08n.com1.z0.glb.clouddn.com/blog/learn-kafka/kafka-05.png)
+
 ## 参考
 1. [Kafka架构原理](http://wenku.baidu.com/link?url=67RIEmD9ZesDewsvFuuALe1AF4yNdXN7e4eeca0FxpjA9voYrV1NkKOTdtmKIH9xAp0wzbO0nBCUsYK7HinB68Lmk2_zxQP0W_OGTTihEB3)
 2. [Kafka剖析系列文章](http://www.infoq.com/cn/articles/kafka-analysis-part-1)
 3. [[Kafka分区机制介绍与示例](http://lxw1234.com/archives/2015/10/538.htm)](http://lxw1234.com/archives/2015/10/538.htm)
 4. [Kafka快速入门](http://colobu.com/2014/08/06/kafka-quickstart/)
+5. [Kafka常用操作](https://my.oschina.net/u/218540/blog/223501)
+6. [apache kafka系列之在zookeeper中存储结构](http://blog.csdn.net/lizhitao/article/details/23744675)
+7. [kafka在zookeeper中一些存储结构](http://blog.csdn.net/ouyang111222/article/details/51094912)
