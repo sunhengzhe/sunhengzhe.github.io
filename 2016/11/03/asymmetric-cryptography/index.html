@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="孙恒哲,奥利奥的大房子" />
+  <meta name="keywords" content="密码技术," />
 
 
 
@@ -84,15 +84,30 @@
 
 
 
-<meta name="description" content="很高兴遇见你">
-<meta property="og:type" content="website">
-<meta property="og:title" content="奥利奥的大房子">
-<meta property="og:url" content="http://sunhengzhe.com/archives/2016/10/index.html">
+<meta name="description" content="使用 git 的时候，每次换机器，都需要向 git 服务器提供 ssh 公钥，当有些机器上并没有的时候，可以使用命令生成一份，命令执行完后，会多两个文件，一个叫 id_rsa.pub，一个叫 id_rsa，前者称为 ssh 公钥，是需要提供给 git 服务器的，后者是私钥，一般我们就不会管了，但这个文件其实是不能泄露给他人的。
+所以一直都有这些疑惑：
+
+什么是公钥，什么是私钥？
+为什么公钥能够公开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="公钥密码">
+<meta property="og:url" content="http://sunhengzhe.com/2016/11/03/asymmetric-cryptography/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="很高兴遇见你">
+<meta property="og:description" content="使用 git 的时候，每次换机器，都需要向 git 服务器提供 ssh 公钥，当有些机器上并没有的时候，可以使用命令生成一份，命令执行完后，会多两个文件，一个叫 id_rsa.pub，一个叫 id_rsa，前者称为 ssh 公钥，是需要提供给 git 服务器的，后者是私钥，一般我们就不会管了，但这个文件其实是不能泄露给他人的。
+所以一直都有这些疑惑：
+
+什么是公钥，什么是私钥？
+为什么公钥能够公开">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/asymmetric-cryptography/01.png">
+<meta property="og:updated_time" content="2016-11-02T17:02:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="奥利奥的大房子">
-<meta name="twitter:description" content="很高兴遇见你">
+<meta name="twitter:title" content="公钥密码">
+<meta name="twitter:description" content="使用 git 的时候，每次换机器，都需要向 git 服务器提供 ssh 公钥，当有些机器上并没有的时候，可以使用命令生成一份，命令执行完后，会多两个文件，一个叫 id_rsa.pub，一个叫 id_rsa，前者称为 ssh 公钥，是需要提供给 git 服务器的，后者是私钥，一般我们就不会管了，但这个文件其实是不能泄露给他人的。
+所以一直都有这些疑惑：
+
+什么是公钥，什么是私钥？
+为什么公钥能够公开">
+<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/asymmetric-cryptography/01.png">
 
 
 
@@ -113,9 +128,9 @@
 
 
 
-  <link rel="canonical" href="http://sunhengzhe.com/archives/2016/10/"/>
+  <link rel="canonical" href="http://sunhengzhe.com/2016/11/03/asymmetric-cryptography/"/>
 
-  <title> 归档 | 奥利奥的大房子 </title>
+  <title> 公钥密码 | 奥利奥的大房子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,7 +161,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,140 +249,171 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 22 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/26/update-gcc/" itemprop="url">
-              
-                <span itemprop="name">Run "sh -c node-gyp rebuild" error</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-26T11:43:34+08:00"
-              content="2016-10-26" >
-          10-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/25/express-permission/" itemprop="url">
-              
-                <span itemprop="name">Express 权限控制</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-25T10:28:57+08:00"
-              content="2016-10-25" >
-          10-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/12/react-router-dynamic/" itemprop="url">
-              
-                <span itemprop="name">React-router 按需加载</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-12T11:33:57+08:00"
-              content="2016-10-12" >
-          10-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                公钥密码
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-03T01:00:00+08:00" content="2016-11-03">
+              2016-11-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/03/asymmetric-cryptography/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/03/asymmetric-cryptography/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/03/asymmetric-cryptography/" class="leancloud_visitors" data-flag-title="公钥密码">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>使用 git 的时候，每次换机器，都需要向 git 服务器提供 ssh 公钥，当有些机器上并没有的时候，可以使用命令生成一份，命令执行完后，会多两个文件，一个叫 <code>id_rsa.pub</code>，一个叫 <code>id_rsa</code>，前者称为 ssh 公钥，是需要提供给 git 服务器的，后者是私钥，一般我们就不会管了，但这个文件其实是不能泄露给他人的。</p>
+<p>所以一直都有这些疑惑：</p>
+<ul>
+<li>什么是公钥，什么是私钥？</li>
+<li>为什么公钥能够公开，私钥必须保存？</li>
+<li>公钥和私钥在通信过程中发挥了怎样的作用？</li>
+</ul>
+<a id="more"></a>
+<p>公钥又称为加密密钥，私钥又称为解密密钥，他们都是 <strong>公钥密码</strong> 中的密钥。在通信中，发送者通过公钥对消息进行加密，接受者通过私钥对消息进行解密，从而保证消息的 <strong>机密性</strong>。</p>
+<p>说到公钥密码，就不能不先提一下 <strong>对称密码</strong>。</p>
+<h2 id="对称密码"><a href="#对称密码" class="headerlink" title="对称密码"></a>对称密码</h2><p>当我们说要给一段消息加密的时候，最简单的想法可能就是发送者通过一个密钥给消息加密，接受者拿到消息后再根据这个密钥给消息解密。</p>
+<p>举个栗子，好比发送者有一段为 <code>midnight</code> 的消息要发送给接受者，首先，我们对消息进行编码，取出消息中每个字母的 ASCII：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">m -&gt; 01101101</div><div class="line">i -&gt; 01101001</div><div class="line">d -&gt; 01100100</div><div class="line">n -&gt; 01101110</div><div class="line">i -&gt; 01101001</div><div class="line">g -&gt; 01100111</div><div class="line">h -&gt; 01101000</div><div class="line">t -&gt; 01110100</div></pre></td></tr></table></figure>
+<p>编码完之后，这段消息也就是：<code>0110110101101001011001000110111001101001011001110110100001110100</code>，然后发送者随机生成一个与消息等长的密钥，假设是 <code>01010101010101010101010101010101010101010101010101010101010101</code>，然后将消息和密钥进行 XOR 运算，生成的结果也就是密文。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">明文 0110110101101001011001000110111001101001011001110110100001110100</div><div class="line">密钥 0101010101010101010101010101010101010101010101010101010101010101</div><div class="line">密文 0011100000111100001100010011101100111100001100100011110100100001</div></pre></td></tr></table></figure>
+<p>当接收者得到密文后，也与密钥进行 XOR 运算，即能得到明文。</p>
+<p>在这个过程中，发送者加密时使用的密钥，和接收者解密时使用的密钥是一样的，这种密码算法就称为 <strong>对称密码</strong>。</p>
+<p>与之不同的是，<strong>公钥密码</strong> 在加密和解密中使用了不同的密钥，也就是我们开头提到的公钥和私钥，因此，公钥密码又称为 <strong>非对称密码</strong>。</p>
+<p><em>另外，对称密码又称为私钥密码。</em></p>
+<h2 id="公钥密码"><a href="#公钥密码" class="headerlink" title="公钥密码"></a>公钥密码</h2><p>了解了对称密码之后，你一定也有一个巨大的疑惑，就是接收者收到密文之后，是需要发送方的密钥来解密的，但是密钥怎么配送呢？</p>
+<p>这也就是 <strong>密钥配送问题</strong>：<strong>假如发送者能安全地把密钥发送给接收者，那为什么不通过这种方式把明文发送给接收者呢？</strong></p>
+<p>好在，通过公钥密码可以解决这个问题。</p>
+<p>公钥密码将密钥分为了 <strong>加密密钥</strong> 和 <strong>解密密钥</strong>，发送者通过加密密钥对消息进行加密，接收者通过解密密钥对消息进行解密，也就是说，解密密钥是一开始就由接收者自己保管的，因此只需要接收者将加密密钥发送给发送者就可以解决密钥配送问题了：因为根本不需要配送解密密钥！</p>
+<p>画个流程图如下： </p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/asymmetric-cryptography/01.png" alt=""></p>
+<p>从图中我们可以得到以下信息：</p>
+<ul>
+<li>发送者只需要公钥</li>
+<li>接收者只需要私钥</li>
+<li>私钥不能被窃听者获取</li>
+<li>公钥被窃听者获取也没问题</li>
+<li>通过公钥加密的消息，能够被私钥解密，但公钥无法解密密文</li>
+</ul>
+<p>公钥和私钥是一一对应的，一对公钥和私钥统称为 <strong>密钥对</strong>。由公钥加密的密文必须使用与该公钥配对的私钥才能够解密。密钥对中的两个密钥之间具有非常密切的关系——数学上的关系——因此公钥和私钥是不能分别单独生成的。</p>
+<p>那么，我们现在最好奇的应该就是要达到上面的要求是如何实现的呢。下一篇讨论使用最广泛的公钥密码算法——RSA。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/密码技术/" rel="tag">#密码技术</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/26/update-gcc/" rel="next" title="Run "sh -c node-gyp rebuild" error">
+                <i class="fa fa-chevron-left"></i> Run "sh -c node-gyp rebuild" error
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -375,6 +421,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/03/asymmetric-cryptography/"
+           data-title="公钥密码" data-url="http://sunhengzhe.com/2016/11/03/asymmetric-cryptography/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -394,8 +448,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/aoliao.png"
@@ -458,6 +521,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对称密码"><span class="nav-number">1.</span> <span class="nav-text">对称密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公钥密码"><span class="nav-number">2.</span> <span class="nav-text">公钥密码</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -561,11 +635,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   

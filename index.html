@@ -258,6 +258,124 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/03/asymmetric-cryptography/" itemprop="url">
+                  公钥密码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-03T01:00:00+08:00" content="2016-11-03">
+              2016-11-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/03/asymmetric-cryptography/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/03/asymmetric-cryptography/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/03/asymmetric-cryptography/" class="leancloud_visitors" data-flag-title="公钥密码">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>使用 git 的时候，每次换机器，都需要向 git 服务器提供 ssh 公钥，当有些机器上并没有的时候，可以使用命令生成一份，命令执行完后，会多两个文件，一个叫 <code>id_rsa.pub</code>，一个叫 <code>id_rsa</code>，前者称为 ssh 公钥，是需要提供给 git 服务器的，后者是私钥，一般我们就不会管了，但这个文件其实是不能泄露给他人的。</p>
+<p>所以一直都有这些疑惑：</p>
+<ul>
+<li>什么是公钥，什么是私钥？</li>
+<li>为什么公钥能够公开，私钥必须保存？</li>
+<li>公钥和私钥在通信过程中发挥了怎样的作用？</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/03/asymmetric-cryptography/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/26/update-gcc/" itemprop="url">
                   Run "sh -c node-gyp rebuild" error
                 </a>
@@ -1248,118 +1366,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/31/five-in-a-row-game/" itemprop="url">
-                  如何实现五子棋 AI
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-31T20:57:34+08:00" content="2016-07-31">
-              2016-07-31
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/31/five-in-a-row-game/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/31/five-in-a-row-game/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/07/31/five-in-a-row-game/" class="leancloud_visitors" data-flag-title="如何实现五子棋 AI">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>和水哥在北戴河回来的车上除了讨论 24 点的实现方式之外，还讨论了一下五子棋的算法。昨天趁着周末凭着自己的想法试着写了一下，很不幸的是五子棋没写出来，倒是写了个三子棋（orz），网上查了一些资料，其实这里面涉及两个主要的算法，一个是<strong>极大极小搜索</strong>，另一个是<strong>alpha-beta剪枝</strong>。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/31/five-in-a-row-game/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1405,7 +1411,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1415,7 +1421,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
