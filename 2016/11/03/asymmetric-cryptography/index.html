@@ -99,7 +99,7 @@
 什么是公钥，什么是私钥？
 为什么公钥能够公开">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/asymmetric-cryptography/01.png">
-<meta property="og:updated_time" content="2016-11-02T17:02:39.000Z">
+<meta property="og:updated_time" content="2016-11-12T13:23:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="公钥密码">
 <meta name="twitter:description" content="使用 git 的时候，每次换机器，都需要向 git 服务器提供 ssh 公钥，当有些机器上并没有的时候，可以使用命令生成一份，命令执行完后，会多两个文件，一个叫 id_rsa.pub，一个叫 id_rsa，前者称为 ssh 公钥，是需要提供给 git 服务器的，后者是私钥，一般我们就不会管了，但这个文件其实是不能泄露给他人的。
@@ -349,7 +349,7 @@
 <p>这也就是 <strong>密钥配送问题</strong>：<strong>假如发送者能安全地把密钥发送给接收者，那为什么不通过这种方式把明文发送给接收者呢？</strong></p>
 <p>好在，通过公钥密码可以解决这个问题。</p>
 <p>公钥密码将密钥分为了 <strong>加密密钥</strong> 和 <strong>解密密钥</strong>，发送者通过加密密钥对消息进行加密，接收者通过解密密钥对消息进行解密，也就是说，解密密钥是一开始就由接收者自己保管的，因此只需要接收者将加密密钥发送给发送者就可以解决密钥配送问题了：因为根本不需要配送解密密钥！</p>
-<p>画个流程图如下： </p>
+<p>流程图如下： </p>
 <p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/asymmetric-cryptography/01.png" alt=""></p>
 <p>从图中我们可以得到以下信息：</p>
 <ul>
@@ -360,7 +360,7 @@
 <li>通过公钥加密的消息，能够被私钥解密，但公钥无法解密密文</li>
 </ul>
 <p>公钥和私钥是一一对应的，一对公钥和私钥统称为 <strong>密钥对</strong>。由公钥加密的密文必须使用与该公钥配对的私钥才能够解密。密钥对中的两个密钥之间具有非常密切的关系——数学上的关系——因此公钥和私钥是不能分别单独生成的。</p>
-<p>那么，我们现在最好奇的应该就是要达到上面的要求是如何实现的呢。下一篇讨论使用最广泛的公钥密码算法——RSA。</p>
+<p>在公钥密码中，使用最广泛的公钥密码算法是 RSA 加密算法。（TODO）</p>
 
       
     </div>
@@ -398,6 +398,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/10/diffie-hellman-key-exchange/" rel="prev" title="Diffie-Hellman 密钥交换">
+                Diffie-Hellman 密钥交换 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -469,7 +473,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
