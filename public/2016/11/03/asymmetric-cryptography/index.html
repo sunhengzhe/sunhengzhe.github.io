@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="每周总结,svg," />
+  <meta name="keywords" content="密码技术," />
 
 
 
@@ -84,27 +84,30 @@
 
 
 
-<meta name="description" content="百度echarts3官网 上有一个非常好看的绘制 logo 的效果，通过 svg 就能实现：
-与此类似的还有绘制签名的过程：
-其实原理很简单，只要充分发挥想象力，加上好看的设计，就能完成很多意想不到的效果了。">
+<meta name="description" content="使用 git 的时候，每次换机器，都需要向 git 服务器提供 ssh 公钥，当有些机器上并没有的时候，可以使用命令生成一份，命令执行完后，会多两个文件，一个叫 id_rsa.pub，一个叫 id_rsa，前者称为 ssh 公钥，是需要提供给 git 服务器的，后者是私钥，一般我们就不会管了，但这个文件其实是不能泄露给他人的。
+所以一直都有这些疑惑：
+
+什么是公钥，什么是私钥？
+为什么公钥能够公开">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用 svg 让线条动起来">
-<meta property="og:url" content="http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/index.html">
+<meta property="og:title" content="公钥密码">
+<meta property="og:url" content="http://sunhengzhe.com/2016/11/03/asymmetric-cryptography/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="百度echarts3官网 上有一个非常好看的绘制 logo 的效果，通过 svg 就能实现：
-与此类似的还有绘制签名的过程：
-其实原理很简单，只要充分发挥想象力，加上好看的设计，就能完成很多意想不到的效果了。">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog%2Fuse-svg-draw-line/02.gif">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/use-svg-draw-line/01.gif">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/use-svg-draw-line/03.png">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/use-svg-draw-line/04.png">
-<meta property="og:updated_time" content="2016-08-27T00:03:16.000Z">
+<meta property="og:description" content="使用 git 的时候，每次换机器，都需要向 git 服务器提供 ssh 公钥，当有些机器上并没有的时候，可以使用命令生成一份，命令执行完后，会多两个文件，一个叫 id_rsa.pub，一个叫 id_rsa，前者称为 ssh 公钥，是需要提供给 git 服务器的，后者是私钥，一般我们就不会管了，但这个文件其实是不能泄露给他人的。
+所以一直都有这些疑惑：
+
+什么是公钥，什么是私钥？
+为什么公钥能够公开">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/asymmetric-cryptography/01.png">
+<meta property="og:updated_time" content="2016-11-12T13:23:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用 svg 让线条动起来">
-<meta name="twitter:description" content="百度echarts3官网 上有一个非常好看的绘制 logo 的效果，通过 svg 就能实现：
-与此类似的还有绘制签名的过程：
-其实原理很简单，只要充分发挥想象力，加上好看的设计，就能完成很多意想不到的效果了。">
-<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog%2Fuse-svg-draw-line/02.gif">
+<meta name="twitter:title" content="公钥密码">
+<meta name="twitter:description" content="使用 git 的时候，每次换机器，都需要向 git 服务器提供 ssh 公钥，当有些机器上并没有的时候，可以使用命令生成一份，命令执行完后，会多两个文件，一个叫 id_rsa.pub，一个叫 id_rsa，前者称为 ssh 公钥，是需要提供给 git 服务器的，后者是私钥，一般我们就不会管了，但这个文件其实是不能泄露给他人的。
+所以一直都有这些疑惑：
+
+什么是公钥，什么是私钥？
+为什么公钥能够公开">
+<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/asymmetric-cryptography/01.png">
 
 
 
@@ -125,9 +128,9 @@
 
 
 
-  <link rel="canonical" href="http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/"/>
+  <link rel="canonical" href="http://sunhengzhe.com/2016/11/03/asymmetric-cryptography/"/>
 
-  <title> 使用 svg 让线条动起来 | 奥利奥的大房子 </title>
+  <title> 公钥密码 | 奥利奥的大房子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +270,7 @@
             
             
               
-                使用 svg 让线条动起来
+                公钥密码
               
             
           </h1>
@@ -279,8 +282,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-28T20:43:19+08:00" content="2016-06-28">
-              2016-06-28
+            <time itemprop="dateCreated" datetime="2016-11-03T01:00:00+08:00" content="2016-11-03">
+              2016-11-03
             </time>
           </span>
 
@@ -290,8 +293,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/28/use-svg-to-draw-line/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/28/use-svg-to-draw-line/" itemprop="commentsCount"></span>
+                <a href="/2016/11/03/asymmetric-cryptography/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/03/asymmetric-cryptography/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -301,7 +304,7 @@
 
           
           
-             <span id="/2016/06/28/use-svg-to-draw-line/" class="leancloud_visitors" data-flag-title="使用 svg 让线条动起来">
+             <span id="/2016/11/03/asymmetric-cryptography/" class="leancloud_visitors" data-flag-title="公钥密码">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -323,27 +326,41 @@
       
 
       
-        <p><a href="http://echarts.baidu.com/index.html" target="_blank" rel="external">百度echarts3官网</a> 上有一个非常好看的绘制 logo 的效果，通过 svg 就能实现：<br><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog%2Fuse-svg-draw-line/02.gif" alt="绘制logo"></p>
-<p>与此类似的还有绘制签名的过程：<br><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/use-svg-draw-line/01.gif" alt="绘制签名"></p>
-<p>其实原理很简单，只要充分发挥想象力，加上好看的设计，就能完成很多意想不到的效果了。</p>
-<a id="more"></a>
-<h2 id="准备-svg"><a href="#准备-svg" class="headerlink" title="准备 svg"></a>准备 svg</h2><p>首先要准备绘制的路径，SVG里用 path 来定义路径<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">"580"</span> <span class="attr">height</span>=<span class="string">"400"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">"m149,123c0,1 -1.496231,3.907784 -2,8c-0.122177,0.992508 -2.206802,4.812653 -4,7c-2.285873,2.78833 -3.49295,5.234009 -6,10"</span> <span class="attr">id</span>=<span class="string">"svg_27"</span> <span class="attr">fill-opacity</span>=<span class="string">"null"</span> <span class="attr">stroke-opacity</span>=<span class="string">"null"</span> <span class="attr">stroke-width</span>=<span class="string">"1.5"</span> <span class="attr">stroke</span>=<span class="string">"#000"</span> <span class="attr">fill</span>=<span class="string">"none"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>网上可以找到很多在线的或客户端可以用来生成 svg，比如写这个 demo 用到的是 <a href="http://www.yyyweb.com/ctools/demo.php" target="_blank" rel="external">这个在线编辑svg的网站</a>。</p>
-<h2 id="主要属性"><a href="#主要属性" class="headerlink" title="主要属性"></a>主要属性</h2><p>有了一段 path 之后，我们就可以开始让它动起来了，这里涉及到两个属性：</p>
+        <p>使用 git 的时候，每次换机器，都需要向 git 服务器提供 ssh 公钥，当有些机器上并没有的时候，可以使用命令生成一份，命令执行完后，会多两个文件，一个叫 <code>id_rsa.pub</code>，一个叫 <code>id_rsa</code>，前者称为 ssh 公钥，是需要提供给 git 服务器的，后者是私钥，一般我们就不会管了，但这个文件其实是不能泄露给他人的。</p>
+<p>所以一直都有这些疑惑：</p>
 <ul>
-<li>stroke-dasharray</li>
-<li>stroke-dashoffset</li>
+<li>什么是公钥，什么是私钥？</li>
+<li>为什么公钥能够公开，私钥必须保存？</li>
+<li>公钥和私钥在通信过程中发挥了怎样的作用？</li>
 </ul>
-<p><code>stroke-dasharray</code> 可以让线条变成虚线，第一个值设置每段虚线的长度，第二个值设置虚线之间的间隔，如：</p>
-<p>原线条：<br><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/use-svg-draw-line/03.png" alt=""></p>
-<p>设置 <code>stroke-dasharray: 20 5</code> 之后：<br><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/use-svg-draw-line/04.png" alt=""></p>
-<p><code>stroke-dashoffset</code> 用来设置虚线的偏移量</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>可以想到，如果我们设置每段虚线的长度和虚线之间的间隔都大于整条路径的长度，那么虽然看起来没有变化，但实际上整个路径显示出来的只是一小段虚线。</p>
-<p>接着我们设置 <code>stroke-dashoffset</code> 让这条虚线偏移一个路径的长度，此时路径就不可见了，因为已经虚线已经偏移出路径了，而虚线间的空隙是大于一个路径长的。</p>
-<p>最后我们通过动画让 <code>stroke-dashoffset</code> 缓慢变为 0，这时就有绘制的效果了。</p>
-<p>代码示例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">document</span>.querySelector(<span class="string">'path'</span>);</div><div class="line"><span class="comment">// 获取路径的长度</span></div><div class="line"><span class="keyword">var</span> length = path.getTotalLength();</div><div class="line"><span class="comment">// 设置起始点</span></div><div class="line">path.style.strokeDasharray = <span class="string">`<span class="subst">$&#123;length&#125;</span> <span class="subst">$&#123;length&#125;</span>`</span>;</div><div class="line">path.style.strokeDashoffset = length;</div><div class="line"><span class="comment">// 获取一个区域，获取相关的样式，让浏览器寻找一个起始点。</span></div><div class="line">path.getBoundingClientRect();</div><div class="line"><span class="comment">// 定义动作</span></div><div class="line">path.style.transition = <span class="string">'stroke-dashoffset 2s ease-in-out'</span>;</div><div class="line"><span class="comment">// 开始绘制</span></div><div class="line">path.style.strokeDashoffset = <span class="string">'0'</span>;</div></pre></td></tr></table></figure></p>
-<p>当要绘制签名这种有很多线条的图形时，只需要给每一段都设置好时间，通过 <code>transition</code> 的 <code>delay</code> 来控制开始时间即可。</p>
-<p>当要绘制本文一开始出现的闭合图形时，可以通过改变 <code>stroke-dasharray</code> 中的长度和间隔来控制。</p>
+<a id="more"></a>
+<p>公钥又称为加密密钥，私钥又称为解密密钥，他们都是 <strong>公钥密码</strong> 中的密钥。在通信中，发送者通过公钥对消息进行加密，接受者通过私钥对消息进行解密，从而保证消息的 <strong>机密性</strong>。</p>
+<p>说到公钥密码，就不能不先提一下 <strong>对称密码</strong>。</p>
+<h2 id="对称密码"><a href="#对称密码" class="headerlink" title="对称密码"></a>对称密码</h2><p>当我们说要给一段消息加密的时候，最简单的想法可能就是发送者通过一个密钥给消息加密，接受者拿到消息后再根据这个密钥给消息解密。</p>
+<p>举个栗子，好比发送者有一段为 <code>midnight</code> 的消息要发送给接受者，首先，我们对消息进行编码，取出消息中每个字母的 ASCII：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">m -&gt; 01101101</div><div class="line">i -&gt; 01101001</div><div class="line">d -&gt; 01100100</div><div class="line">n -&gt; 01101110</div><div class="line">i -&gt; 01101001</div><div class="line">g -&gt; 01100111</div><div class="line">h -&gt; 01101000</div><div class="line">t -&gt; 01110100</div></pre></td></tr></table></figure>
+<p>编码完之后，这段消息也就是：<code>0110110101101001011001000110111001101001011001110110100001110100</code>，然后发送者随机生成一个与消息等长的密钥，假设是 <code>01010101010101010101010101010101010101010101010101010101010101</code>，然后将消息和密钥进行 XOR 运算，生成的结果也就是密文。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">明文 0110110101101001011001000110111001101001011001110110100001110100</div><div class="line">密钥 0101010101010101010101010101010101010101010101010101010101010101</div><div class="line">密文 0011100000111100001100010011101100111100001100100011110100100001</div></pre></td></tr></table></figure>
+<p>当接收者得到密文后，也与密钥进行 XOR 运算，即能得到明文。</p>
+<p>在这个过程中，发送者加密时使用的密钥，和接收者解密时使用的密钥是一样的，这种密码算法就称为 <strong>对称密码</strong>。</p>
+<p>与之不同的是，<strong>公钥密码</strong> 在加密和解密中使用了不同的密钥，也就是我们开头提到的公钥和私钥，因此，公钥密码又称为 <strong>非对称密码</strong>。</p>
+<p><em>另外，对称密码又称为私钥密码。</em></p>
+<h2 id="公钥密码"><a href="#公钥密码" class="headerlink" title="公钥密码"></a>公钥密码</h2><p>了解了对称密码之后，你一定也有一个巨大的疑惑，就是接收者收到密文之后，是需要发送方的密钥来解密的，但是密钥怎么配送呢？</p>
+<p>这也就是 <strong>密钥配送问题</strong>：<strong>假如发送者能安全地把密钥发送给接收者，那为什么不通过这种方式把明文发送给接收者呢？</strong></p>
+<p>好在，通过公钥密码可以解决这个问题。</p>
+<p>公钥密码将密钥分为了 <strong>加密密钥</strong> 和 <strong>解密密钥</strong>，发送者通过加密密钥对消息进行加密，接收者通过解密密钥对消息进行解密，也就是说，解密密钥是一开始就由接收者自己保管的，因此只需要接收者将加密密钥发送给发送者就可以解决密钥配送问题了：因为根本不需要配送解密密钥！</p>
+<p>流程图如下： </p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/asymmetric-cryptography/01.png" alt=""></p>
+<p>从图中我们可以得到以下信息：</p>
+<ul>
+<li>发送者只需要公钥</li>
+<li>接收者只需要私钥</li>
+<li>私钥不能被窃听者获取</li>
+<li>公钥被窃听者获取也没问题</li>
+<li>通过公钥加密的消息，能够被私钥解密，但公钥无法解密密文</li>
+</ul>
+<p>公钥和私钥是一一对应的，一对公钥和私钥统称为 <strong>密钥对</strong>。由公钥加密的密文必须使用与该公钥配对的私钥才能够解密。密钥对中的两个密钥之间具有非常密切的关系——数学上的关系——因此公钥和私钥是不能分别单独生成的。</p>
+<p>在公钥密码中，使用最广泛的公钥密码算法是 RSA 加密算法。（TODO）</p>
 
       
     </div>
@@ -365,9 +382,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/每周总结/" rel="tag">#每周总结</a>
-          
-            <a href="/tags/svg/" rel="tag">#svg</a>
+            <a href="/tags/密码技术/" rel="tag">#密码技术</a>
           
         </div>
       
@@ -376,16 +391,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/27/Introduction-to-Algorithms-2/" rel="next" title="《算法导论》第二章：算法基础">
-                <i class="fa fa-chevron-left"></i> 《算法导论》第二章：算法基础
+              <a href="/2016/10/26/update-gcc/" rel="next" title="Run "sh -c node-gyp rebuild" error">
+                <i class="fa fa-chevron-left"></i> Run "sh -c node-gyp rebuild" error
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/06/29/Introduction-to-Algorithms-4/" rel="prev" title="《算法导论》第四章：分治策略">
-                《算法导论》第四章：分治策略 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/10/diffie-hellman-key-exchange/" rel="prev" title="Diffie-Hellman 密钥交换">
+                Diffie-Hellman 密钥交换 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -412,8 +427,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/28/use-svg-to-draw-line/"
-           data-title="使用 svg 让线条动起来" data-url="http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/">
+      <div class="ds-thread" data-thread-key="2016/11/03/asymmetric-cryptography/"
+           data-title="公钥密码" data-url="http://sunhengzhe.com/2016/11/03/asymmetric-cryptography/">
       </div>
     
   </div>
@@ -517,7 +532,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备-svg"><span class="nav-number">1.</span> <span class="nav-text">准备 svg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要属性"><span class="nav-number">2.</span> <span class="nav-text">主要属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对称密码"><span class="nav-number">1.</span> <span class="nav-text">对称密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公钥密码"><span class="nav-number">2.</span> <span class="nav-text">公钥密码</span></a></li></ol></div>
             
           </div>
         </section>
