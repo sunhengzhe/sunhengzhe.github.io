@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="孙恒哲,奥利奥的大房子" />
+  <meta name="keywords" content="密码技术," />
 
 
 
@@ -84,15 +84,16 @@
 
 
 
-<meta name="description" content="很高兴遇见你">
-<meta property="og:type" content="website">
-<meta property="og:title" content="奥利奥的大房子">
-<meta property="og:url" content="http://sunhengzhe.com/archives/2016/09/index.html">
+<meta name="description" content="时钟运算是密码技术里面很常见的运算，在了解 Diffie-Hellman 密钥交换、RSA 之前，最好对时钟运算有一定的了解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="时钟运算">
+<meta property="og:url" content="http://sunhengzhe.com/2016/11/13/clock-operation/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="很高兴遇见你">
+<meta property="og:description" content="时钟运算是密码技术里面很常见的运算，在了解 Diffie-Hellman 密钥交换、RSA 之前，最好对时钟运算有一定的了解。">
+<meta property="og:updated_time" content="2016-11-13T11:17:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="奥利奥的大房子">
-<meta name="twitter:description" content="很高兴遇见你">
+<meta name="twitter:title" content="时钟运算">
+<meta name="twitter:description" content="时钟运算是密码技术里面很常见的运算，在了解 Diffie-Hellman 密钥交换、RSA 之前，最好对时钟运算有一定的了解。">
 
 
 
@@ -113,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://sunhengzhe.com/archives/2016/09/"/>
+  <link rel="canonical" href="http://sunhengzhe.com/2016/11/13/clock-operation/"/>
 
-  <title> 归档 | 奥利奥的大房子 </title>
+  <title> 时钟运算 | 奥利奥的大房子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,7 +147,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,66 +235,171 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 24 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                时钟运算
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-13T19:00:00+08:00" content="2016-11-13">
+              2016-11-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/13/clock-operation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/13/clock-operation/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/13/clock-operation/" class="leancloud_visitors" data-flag-title="时钟运算">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <p>时钟运算是密码技术里面很常见的运算，在了解 Diffie-Hellman 密钥交换、RSA 之前，最好对时钟运算有一定的了解。</p>
+<a id="more"></a>
+<p>所谓时钟运算，实际上就是 <strong>除法求余数的运算</strong>。当时针指向 11 的时候，再过两小时，时针不会指向 13，而是回到了 1，因为钟面上最多只到 12。在这里，我们记为：</p>
+<p>$$13mod\,12=1$$</p>
+<p>在数论中，当整数 a，b 除以 m 所得余数相等的时候，则称 a，b 对于模 m 同余，记作：</p>
+<p>$$a≡b(mod\,m)$$</p>
+<p>读作 <strong>a 同余于 b 模 m</strong>，或 <strong>a 与 b 对模 m 同余</strong>。</p>
+<p>也就是在上面的例子中，我们也可以写作：$13≡1(mod\,12)$，因为 1 模 12 的结果也是 1。</p>
+<p>以上就是时钟运算，其实可能我们小学的时候就已经学过了，不过在这里我们将讨论一下几个基本运算中的变换。</p>
+<h2 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h2><p>$$(a * b)\,mod\,n = ((a\,mod\,n) * (b\,mod\,n))\,mod\,n$$</p>
+<h2 id="乘方"><a href="#乘方" class="headerlink" title="乘方"></a>乘方</h2><p>乘方其实就是特殊的乘法</p>
+<p>$$a^bmod\,n = (a\,mod\,n)^b mod\,n$$</p>
+<p>提到这两个运算的原因是我们可以通过上面这个等式快速计算诸如 $7^4 mod\,12 = ?$</p>
+<p>显然，$7^4\,mod\,12 = 49^2\,mod\,12 = (49\,mod\,12)^2\,mod\,12 = 1\,mod\,12 = 1$，我们不必去计算 $7^4$ 是多少。</p>
+<h2 id="对数"><a href="#对数" class="headerlink" title="对数"></a>对数</h2><p>乘方的逆运算称为对数，如果有一个式子 $7^? = 49$，求 ？并不能一眼就能看出 ？等于 2，但如果让你求 $7^?\,mod\,13 = 11$ 里的 ? 等于多少，我们得从 2 开始一个一个去算。</p>
+<p>在时钟运算里面，这称为 <strong>离散对数</strong>。当数字很大的时候，求离散对数非常困难，也非常耗时。能快速求出离散对数的算法到现在为止还没有被发现。Diffie-Hellman 密钥交换协议和 ElGamal 公钥算法中就运用到了离散对数。</p>
+<h2 id="数论倒数"><a href="#数论倒数" class="headerlink" title="数论倒数"></a>数论倒数</h2><p>考虑存在两个数 a，b，有 $a * b mod\,m = 1$，如果没有 mod 符号，当 $a * b = 1$ 的时候，我们说 a 和 b 是互为倒数的关系，而在时钟运算里面，则称 a 和 b 互为关于模 m 的数论倒数。即</p>
+<p>$$a * b ≡ 1 (mod\,m)$$</p>
+<p>我们知道，除 0 以外的数都有倒数，那么在时钟运算里面是否也是如此呢？</p>
+<p>首先，0 乘任何数再模任何数都是 0，所以 0 是没有关于模 12 的数论倒数的。</p>
+<ul>
+<li>$1 * 1 mod 12 = 1$，1 存在</li>
+<li>2 不存在</li>
+<li>3 不存在</li>
+<li>4 不存在</li>
+<li>$5 * 5 mod 12 = 1$，5 存在</li>
+<li>6 不存在</li>
+<li>$7 * 7 mod 12 = 1$，7 存在</li>
+<li>8 不存在</li>
+<li>9 不存在</li>
+<li>10 不存在</li>
+<li>$11 * 1 mod 12 = 1$，11 存在</li>
+</ul>
+<p>看来，并不是所有数字都有关于模 12 的数论倒数的，那么有什么规律？我们可能注意到，好像他们都是质数？其实并不是（1 就不是质数），而是当 a 和 12 <strong>最大公约数为 1</strong> 的时候，a 才存在关于模 12 的数论倒数。也就是 <strong>a 和 12 互质</strong>。</p>
+<p>根据 欧拉定理（TODO）可以证明，如果两个正整数 a 和 n 互质，那么一定可以找到整数 b，使得 $a * b ≡ 1 (mod\,n)$。</p>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/密码技术/" rel="tag">#密码技术</a>
+          
         </div>
       
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/10/diffie-hellman-key-exchange/" rel="next" title="Diffie-Hellman 密钥交换">
+                <i class="fa fa-chevron-left"></i> Diffie-Hellman 密钥交换
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/09/30/learn-kafka/" itemprop="url">
-              
-                <span itemprop="name">Kafka 基础</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-30T14:33:57+08:00"
-              content="2016-09-30" >
-          09-30
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -301,6 +407,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/13/clock-operation/"
+           data-title="时钟运算" data-url="http://sunhengzhe.com/2016/11/13/clock-operation/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -320,8 +434,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/aoliao.png"
@@ -384,6 +507,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#乘法"><span class="nav-number">1.</span> <span class="nav-text">乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乘方"><span class="nav-number">2.</span> <span class="nav-text">乘方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对数"><span class="nav-number">3.</span> <span class="nav-text">对数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数论倒数"><span class="nav-number">4.</span> <span class="nav-text">数论倒数</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -487,11 +621,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
