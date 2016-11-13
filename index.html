@@ -317,13 +317,287 @@
 
       
         
-          <p>在对称密码中我们提到了，<strong>密钥配送问题</strong> 是对称密码中存在的一个问题。</p>
-<p>在上一篇里面我们已经介绍了可以解决这个问题的一个方式——使用公钥密码，这一篇我们讨论解决密钥配送问题的另一种方式：<strong>Diffie-Hellman 密钥交换</strong></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/10/diffie-hellman-key-exchange/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <p>在对称密码中我们提到了，<strong>密钥配送问题</strong> 是对称密码中存在的一个问题。</p>
+<p>在上一篇里面我们已经介绍了可以解决这个问题的一个方式——使用公钥密码，这一篇我们讨论解决密钥配送问题的另一种方式：Diffie-Hellman 密钥交换</p>
+<p>考虑这样一种情景，Alice 和 Bob 需要进行通信，为了保证消息的机密性，在通信之前，Alice 和 Bob 必须就某个密钥达成一致，但此时 Alice 和 Bob 之间的通信已经被 Eve 窃听了，任何在 Alice 和 Bob 之间的信息都会被 Eve 知道。那么 Alice 和 Bob 如何生成共享密钥呢？</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/diffie-hellman/01.png" alt=""></p>
+<h2 id="单向函数"><a href="#单向函数" class="headerlink" title="单向函数"></a>单向函数</h2><p>为了解决这个问题，Diffie-Hellman 密钥交换使用了一种特殊的函数：单向函数，这种函数计算起来很简单，但是逆向计算非常困难。好比颜色的混合：将两种颜色混合得到混合颜色很容易，但通过混合颜色得到原先的两种颜色就非常困难了。</p>
+<h2 id="例子：颜色混合"><a href="#例子：颜色混合" class="headerlink" title="例子：颜色混合"></a>例子：颜色混合</h2><p>不妨就把 Diffie-Hellman 密钥交换的思想用颜色混合来描述：</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/diffie-hellman/02.png" alt=""></p>
+<p>Alice 和 Bob 的通信过程如下：</p>
+<ol>
+<li>Alice 和 Bob 首先就某一颜色达成一致（这里假设是黄色）</li>
+<li>Alice 和 Bob 各自生成一个私有颜色（不告诉对方）</li>
+<li>Alice 将自己的私有颜色与公开颜色混合，并将混合颜色发送给 Bob</li>
+<li>Bob 将自己的私有颜色与公开颜色混合，并将混合颜色发送给 Alice</li>
+<li>Alice 和 Bob 各自将自己的私有颜色与对方的混合颜色进行混合，得到的就是共享密钥</li>
+</ol>
+<p>所以实际上，共享密钥的颜色就是 Alice 的私有颜色 + Bob 的私有颜色 + 公开颜色，所以他们最终得到的结果是相同的。而 Eve 虽然全程窃听了 Alice 和 Bob 的通信，但她只能得到双方的混合颜色和公开颜色，而 <strong>通过混合颜色得到原先的两种颜色非常困难</strong>，所以 Eve 想得到共享密钥，只有拿到 Alice 或 Bob 任一的私有颜色才行。</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/diffie-hellman/03.png" alt=""></p>
+<p>以上就是 Diffie-Hellman 密钥交换的思想，我们也能看到双方实际上并没有真正交换密钥，所以这种方法也称为 <strong>Diffie-Hellman 密钥协商</strong>。</p>
+<h2 id="时钟运算"><a href="#时钟运算" class="headerlink" title="时钟运算"></a>时钟运算</h2><p>上面是通过颜色举的例子，使用到了 <strong>混合颜色容易，拆解颜色困难</strong> 这个单向函数。而在数学上，这里用到的是 <strong>时钟运算</strong>。（参考 时钟运算 一章 TODO）</p>
+<p>重新描述以上过程为：</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/diffie-hellman/04.png" alt=""></p>
+<p>Alice 和 Bob 的通信过程如下：</p>
+<ol>
+<li>Alice 和 Bob 就两个数字 G 和 P 达成一致</li>
+<li>Alice 和 Bob 各自生成一个私有数字 A 和 B（不告诉对方）</li>
+<li>Alice 计算 $G^A\,mod\,P$ 的值，并将结果 Y 传给 Bob</li>
+<li>Bob 计算 $G^B\,mod\,P$ 的值，并将结果 X 传给 Alice</li>
+<li>Alice 计算 $X^A\,mod\,P$ 的值，此值即为共享密钥</li>
+<li>Bob 计算 $Y^B\,mod\,P$ 的值，此值即为共享密钥</li>
+</ol>
+<p>所以在上面得到共享密钥的过程中</p>
+<ul>
+<li>Alice 实际上计算了 $(G^B\,mod\,P)^A\,mod\,P$</li>
+<li>Bob 实际上计算了 $(G^A\,mod\,P)^B\,mod\,P$</li>
+</ul>
+<p>根据时钟运算，二者都等于 $G^{AB}\,mod\,P$，同样的，Eve 得到了 G，P，X 和 Y，但是没有 A 或 B，是很难求出共享密钥的，Alice 和 Bob 由此完成了共享密钥的协商。</p>
+<h2 id="被困住的-Eve"><a href="#被困住的-Eve" class="headerlink" title="被困住的 Eve"></a>被困住的 Eve</h2><p>解释一下很难求出共享密钥中的很难的含义。</p>
+<p>也就是说，我们能够根据 $G^A\,mod\,P$ 计算出 A 吗？如果仅仅是根据 $G^A$ 的话，要计算出 A 并不难，然而 <strong>根据 $G^A\,mod\,P$ 计算出 A 的有效算法到现在还没有出现</strong>，当 P 特别大的时候（比如 150 位长度），使用最快的计算机计算也要数以年计的时间。这个问题称为有限域的 <strong>离散对数问题</strong>。</p>
+<p>而有限域的离散对数问题的复杂度正是支撑 Diffie-Hellman 密钥交换算法的基础。</p>
+<h2 id="G-和-P-的选取"><a href="#G-和-P-的选取" class="headerlink" title="G 和 P 的选取"></a>G 和 P 的选取</h2><p>在上面的过程中，Alice 和 Bob 首先就数字 G 和 P 达成了一致，但 G 和 P 并不是随便选取的。好比如果 G 是 2，P 是 2，那无论 A 和 B 取多少，X 和 Y 都是 0，导致共享密钥也是 0，那当然是不行的。</p>
+<p>这里 P 取一个很大的质数，而 G 是 P 的一个 <strong>生成元</strong>。</p>
+<h2 id="生成元"><a href="#生成元" class="headerlink" title="生成元"></a>生成元</h2><p>假设 P 取 13。对于不同 G 的不同次方，可以得到下面这张表</p>
+<table>
+<thead>
+<tr>
+<th>G/A</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th style="text-align:left">12</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td style="text-align:left">0</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td style="text-align:left">1</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>8</td>
+<td>3</td>
+<td>6</td>
+<td>12</td>
+<td>11</td>
+<td>9</td>
+<td>5</td>
+<td>10</td>
+<td>7</td>
+<td style="text-align:left">1</td>
+<td>生成元</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>9</td>
+<td>1</td>
+<td>3</td>
+<td>9</td>
+<td>1</td>
+<td>3</td>
+<td>9</td>
+<td>1</td>
+<td>3</td>
+<td>9</td>
+<td style="text-align:left">1</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>12</td>
+<td>9</td>
+<td>10</td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+<td>12</td>
+<td>9</td>
+<td>10</td>
+<td style="text-align:left">1</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>12</td>
+<td>8</td>
+<td>1</td>
+<td>5</td>
+<td>12</td>
+<td>8</td>
+<td>1</td>
+<td>5</td>
+<td>12</td>
+<td>8</td>
+<td style="text-align:left">1</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>6</td>
+<td>10</td>
+<td>8</td>
+<td>9</td>
+<td>2</td>
+<td>12</td>
+<td>7</td>
+<td>3</td>
+<td>5</td>
+<td>4</td>
+<td>11</td>
+<td style="text-align:left">1</td>
+<td>生成元</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7</td>
+<td>10</td>
+<td>5</td>
+<td>9</td>
+<td>11</td>
+<td>12</td>
+<td>6</td>
+<td>3</td>
+<td>8</td>
+<td>4</td>
+<td>2</td>
+<td style="text-align:left">1</td>
+<td>生成元</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8</td>
+<td>12</td>
+<td>5</td>
+<td>1</td>
+<td>8</td>
+<td>12</td>
+<td>5</td>
+<td>1</td>
+<td>8</td>
+<td>12</td>
+<td>5</td>
+<td style="text-align:left">1</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>9</td>
+<td>3</td>
+<td>1</td>
+<td>9</td>
+<td>3</td>
+<td>1</td>
+<td>9</td>
+<td>3</td>
+<td>1</td>
+<td>9</td>
+<td>3</td>
+<td style="text-align:left">1</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>10</td>
+<td>9</td>
+<td>12</td>
+<td>3</td>
+<td>4</td>
+<td>1</td>
+<td>10</td>
+<td>9</td>
+<td>12</td>
+<td>3</td>
+<td>4</td>
+<td style="text-align:left">1</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>11</td>
+<td>4</td>
+<td>5</td>
+<td>3</td>
+<td>7</td>
+<td>12</td>
+<td>2</td>
+<td>9</td>
+<td>8</td>
+<td>10</td>
+<td>6</td>
+<td style="text-align:left">1</td>
+<td>生成元</td>
+</tr>
+<tr>
+<td>12</td>
+<td>12</td>
+<td>1</td>
+<td>12</td>
+<td>1</td>
+<td>12</td>
+<td>1</td>
+<td>12</td>
+<td>1</td>
+<td>12</td>
+<td>1</td>
+<td>12</td>
+<td style="text-align:left">1</td>
+</tr>
+</tbody>
+</table>
+<p>从上表中可以看出，当 G 等于 2 时，G 的 1 到 12 次方模 13 得到的结果全都不一样，也就是出现了 1 到 12 的全部整数，因此 2 称为 13 的生成元。同样的，6、7、11 也是 13 的生成元。</p>
+<p><em>在数论中，又称为 2 为 模 13 的原根。</em></p>
+<p>上表中还出现了一个有趣的现象，除了 G 等于 0，其他数字的 G 的 12 次方都等于 1。这正好是 <strong>欧拉定理</strong> 的一个体现。（参考 欧拉定理 一章 TODO）</p>
+<blockquote>
+<p>当 P 和 A 互质时，$A^{P - 1} ≡ 1 (mod\,P)$</p>
+</blockquote>
+<p>于是当 G 为 P 的生成元时，Alice 就能够从 1 到 P - 2 中随机选取一个数字作为秘密数字。</p>
+
+          
         
       
     </div>
