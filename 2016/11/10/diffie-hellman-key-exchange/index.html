@@ -85,25 +85,22 @@
 
 
 <meta name="description" content="在对称密码中我们提到了，密钥配送问题 是对称密码中存在的一个问题。
-在上一篇里面我们已经介绍了可以解决这个问题的一个方式——使用公钥密码，这一篇我们讨论解决密钥配送问题的另一种方式：Diffie-Hellman 密钥交换
-考虑这样一种情景，Alice 和 Bob 需要进行通信，为了保证消息的机密性，在通信之前，Alice 和 Bob 必须就某个密钥达成一致，但此时 Alice 和 Bob 之间的通">
+在上一篇里面我们已经介绍了可以解决这个问题的一个方式——使用公钥密码，这一篇我们讨论解决密钥配送问题的另一种方式：Diffie-Hellman 密钥交换">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Diffie-Hellman 密钥交换">
 <meta property="og:url" content="http://sunhengzhe.com/2016/11/10/diffie-hellman-key-exchange/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
 <meta property="og:description" content="在对称密码中我们提到了，密钥配送问题 是对称密码中存在的一个问题。
-在上一篇里面我们已经介绍了可以解决这个问题的一个方式——使用公钥密码，这一篇我们讨论解决密钥配送问题的另一种方式：Diffie-Hellman 密钥交换
-考虑这样一种情景，Alice 和 Bob 需要进行通信，为了保证消息的机密性，在通信之前，Alice 和 Bob 必须就某个密钥达成一致，但此时 Alice 和 Bob 之间的通">
+在上一篇里面我们已经介绍了可以解决这个问题的一个方式——使用公钥密码，这一篇我们讨论解决密钥配送问题的另一种方式：Diffie-Hellman 密钥交换">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/diffie-hellman/01.png">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/diffie-hellman/02.png">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/diffie-hellman/03.png">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/diffie-hellman/04.png">
-<meta property="og:updated_time" content="2016-11-13T03:26:15.000Z">
+<meta property="og:updated_time" content="2016-11-13T03:28:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Diffie-Hellman 密钥交换">
 <meta name="twitter:description" content="在对称密码中我们提到了，密钥配送问题 是对称密码中存在的一个问题。
-在上一篇里面我们已经介绍了可以解决这个问题的一个方式——使用公钥密码，这一篇我们讨论解决密钥配送问题的另一种方式：Diffie-Hellman 密钥交换
-考虑这样一种情景，Alice 和 Bob 需要进行通信，为了保证消息的机密性，在通信之前，Alice 和 Bob 必须就某个密钥达成一致，但此时 Alice 和 Bob 之间的通">
+在上一篇里面我们已经介绍了可以解决这个问题的一个方式——使用公钥密码，这一篇我们讨论解决密钥配送问题的另一种方式：Diffie-Hellman 密钥交换">
 <meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/diffie-hellman/01.png">
 
 
@@ -325,6 +322,7 @@
       
         <p>在对称密码中我们提到了，<strong>密钥配送问题</strong> 是对称密码中存在的一个问题。</p>
 <p>在上一篇里面我们已经介绍了可以解决这个问题的一个方式——使用公钥密码，这一篇我们讨论解决密钥配送问题的另一种方式：Diffie-Hellman 密钥交换</p>
+<a id="more"></a>
 <p>考虑这样一种情景，Alice 和 Bob 需要进行通信，为了保证消息的机密性，在通信之前，Alice 和 Bob 必须就某个密钥达成一致，但此时 Alice 和 Bob 之间的通信已经被 Eve 窃听了，任何在 Alice 和 Bob 之间的信息都会被 Eve 知道。那么 Alice 和 Bob 如何生成共享密钥呢？</p>
 <p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/diffie-hellman/01.png" alt=""></p>
 <h2 id="单向函数"><a href="#单向函数" class="headerlink" title="单向函数"></a>单向函数</h2><p>为了解决这个问题，Diffie-Hellman 密钥交换使用了一种特殊的函数：单向函数，这种函数计算起来很简单，但是逆向计算非常困难。好比颜色的混合：将两种颜色混合得到混合颜色很容易，但通过混合颜色得到原先的两种颜色就非常困难了。</p>
