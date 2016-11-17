@@ -6,7 +6,7 @@ tags: [node]
 
 ![](http://7xo08n.com1.z0.glb.clouddn.com/blog/captcha-by-node-canvas/01.png)
 
-最近要给 node 项目加上验证码，找到了 node-canvas 这个库，简单了用了一下，发现还是蛮好用的。
+最近要给 node 项目加上验证码，找到了 node-canvas 这个库，简单地用了一下，发现还是蛮好用的。
 
 git 地址：[node-canvas](https://github.com/Automattic/node-canvas)
 

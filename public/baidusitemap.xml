@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://sunhengzhe.com/2016/11/17/captcha-by-node-canvas/</loc>
-    <lastmod>2016-11-17T14:01:02.000Z</lastmod>
+    <lastmod>2016-11-17T14:03:03.000Z</lastmod>
     <data>
         <display>
         <title>使用 node-canvas 绘制验证码</title>
@@ -238,6 +238,25 @@
 
     
   <url>
+    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第四章：分治策略</title>
+        <pubTime>2016-06-29T14:59:14.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
@@ -265,42 +284,6 @@
         <pubTime>2016-07-31T12:57:34.000Z</pubTime>
         
         <tag>每周总结</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>自然语言处理（一）</title>
-        <pubTime>2016-07-10T15:28:24.000Z</pubTime>
-        
-        <tag>自然语言处理 读书笔记</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>《算法导论》第四章：分治策略</title>
-        <pubTime>2016-06-29T14:59:14.000Z</pubTime>
-        
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
          
          
            
@@ -348,6 +331,23 @@
 
     
   <url>
+    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>自然语言处理（一）</title>
+        <pubTime>2016-07-10T15:28:24.000Z</pubTime>
+        
+        <tag>自然语言处理 读书笔记</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
@@ -367,16 +367,14 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
+    <loc>http://sunhengzhe.com/2016/07/19/calculate-24-game/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第七章：快速排序</title>
-        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
+        <title>24点</title>
+        <pubTime>2016-07-19T09:15:34.000Z</pubTime>
         
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
+        <tag>每周总结</tag>
          
          
            
@@ -405,16 +403,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
+    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>函数柯里化</title>
-        <pubTime>2016-07-04T04:00:28.000Z</pubTime>
+        <title>《算法导论》第七章：快速排序</title>
+        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
         
-        <tag>每周总结</tag>
+        <tag>读书笔记</tag>
          
-        <tag>javascript</tag>
+        <tag>算法</tag>
          
          
            
@@ -443,14 +441,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/19/calculate-24-game/</loc>
+    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>24点</title>
-        <pubTime>2016-07-19T09:15:34.000Z</pubTime>
+        <title>函数柯里化</title>
+        <pubTime>2016-07-04T04:00:28.000Z</pubTime>
         
         <tag>每周总结</tag>
+         
+        <tag>javascript</tag>
          
          
            
