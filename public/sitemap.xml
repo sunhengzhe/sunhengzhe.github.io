@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://sunhengzhe.com/2016/11/18/node-canvas-chinese/</loc>
+    
+    <lastmod>2016-11-18T11:19:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://sunhengzhe.com/2016/11/17/captcha-by-node-canvas/</loc>
     
     <lastmod>2016-11-17T14:03:03.000Z</lastmod>
@@ -79,13 +86,6 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://sunhengzhe.com/2016/07/26/data-structures-2/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
@@ -107,7 +107,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
+    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -121,21 +121,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/08/07/red-black-tree/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
+    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -143,6 +129,13 @@
   
   <url>
     <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -163,7 +156,21 @@
   </url>
   
   <url>
+    <loc>http://sunhengzhe.com/2016/08/07/red-black-tree/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -177,7 +184,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
+    <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
