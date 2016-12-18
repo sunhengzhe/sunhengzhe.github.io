@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="每周总结,javascript," />
+  <meta name="keywords" content="算法," />
 
 
 
@@ -84,21 +84,25 @@
 
 
 
-<meta name="description" content="写 javascript 写久了，就会对 javascript 的异步写法习以为常，反而不会好奇为什么在 javascript 里可以异步执行一个任务，是因为 javascript 是多线程吗？
-实际上，javascript 从来都是单线程的。目前 javascript 有两个主要的运行环境，一个是浏览器，一个是 nodejs，下面分别从这两个方面对这个问题进行解释。">
+<meta name="description" content="遗传算法是一个很有意思的算法。
+我们都知道达尔文提出了伟大的“生物进化论”，他证明了所有的生物都不是上帝创造的，而是在遗传、变异、生存斗争和自然选择中，由简单到复杂，由低等到高等，不断发展变化的。也就是：物竞天择、适者生存、优胜劣汰。
+达尔文的进化论给美国的科学家霍兰德留下了深刻的印象，但他从计算机科学的角度思考了这个问题，他想到，是否可以像繁育良种马和良种玉米一样繁育程序。这也就是遗传算法的由来">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Javascript 中的线程与进程">
-<meta property="og:url" content="http://sunhengzhe.com/2016/08/27/thread-in-javascript/index.html">
+<meta property="og:title" content="遗传算法">
+<meta property="og:url" content="http://sunhengzhe.com/2016/12/08/genetic-algorithm/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="写 javascript 写久了，就会对 javascript 的异步写法习以为常，反而不会好奇为什么在 javascript 里可以异步执行一个任务，是因为 javascript 是多线程吗？
-实际上，javascript 从来都是单线程的。目前 javascript 有两个主要的运行环境，一个是浏览器，一个是 nodejs，下面分别从这两个方面对这个问题进行解释。">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/thread-in-javascript/01.png">
-<meta property="og:updated_time" content="2016-08-27T00:16:57.000Z">
+<meta property="og:description" content="遗传算法是一个很有意思的算法。
+我们都知道达尔文提出了伟大的“生物进化论”，他证明了所有的生物都不是上帝创造的，而是在遗传、变异、生存斗争和自然选择中，由简单到复杂，由低等到高等，不断发展变化的。也就是：物竞天择、适者生存、优胜劣汰。
+达尔文的进化论给美国的科学家霍兰德留下了深刻的印象，但他从计算机科学的角度思考了这个问题，他想到，是否可以像繁育良种马和良种玉米一样繁育程序。这也就是遗传算法的由来">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/01.PNG">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/02.PNG">
+<meta property="og:updated_time" content="2016-12-18T15:21:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Javascript 中的线程与进程">
-<meta name="twitter:description" content="写 javascript 写久了，就会对 javascript 的异步写法习以为常，反而不会好奇为什么在 javascript 里可以异步执行一个任务，是因为 javascript 是多线程吗？
-实际上，javascript 从来都是单线程的。目前 javascript 有两个主要的运行环境，一个是浏览器，一个是 nodejs，下面分别从这两个方面对这个问题进行解释。">
-<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/thread-in-javascript/01.png">
+<meta name="twitter:title" content="遗传算法">
+<meta name="twitter:description" content="遗传算法是一个很有意思的算法。
+我们都知道达尔文提出了伟大的“生物进化论”，他证明了所有的生物都不是上帝创造的，而是在遗传、变异、生存斗争和自然选择中，由简单到复杂，由低等到高等，不断发展变化的。也就是：物竞天择、适者生存、优胜劣汰。
+达尔文的进化论给美国的科学家霍兰德留下了深刻的印象，但他从计算机科学的角度思考了这个问题，他想到，是否可以像繁育良种马和良种玉米一样繁育程序。这也就是遗传算法的由来">
+<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/01.PNG">
 
 
 
@@ -119,9 +123,9 @@
 
 
 
-  <link rel="canonical" href="http://sunhengzhe.com/2016/08/27/thread-in-javascript/"/>
+  <link rel="canonical" href="http://sunhengzhe.com/2016/12/08/genetic-algorithm/"/>
 
-  <title> Javascript 中的线程与进程 | 奥利奥的大房子 </title>
+  <title> 遗传算法 | 奥利奥的大房子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -261,7 +265,7 @@
             
             
               
-                Javascript 中的线程与进程
+                遗传算法
               
             
           </h1>
@@ -273,8 +277,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-27T07:43:34+08:00" content="2016-08-27">
-              2016-08-27
+            <time itemprop="dateCreated" datetime="2016-12-08T23:00:00+08:00" content="2016-12-08">
+              2016-12-08
             </time>
           </span>
 
@@ -284,8 +288,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/27/thread-in-javascript/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/27/thread-in-javascript/" itemprop="commentsCount"></span>
+                <a href="/2016/12/08/genetic-algorithm/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/08/genetic-algorithm/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -295,7 +299,7 @@
 
           
           
-             <span id="/2016/08/27/thread-in-javascript/" class="leancloud_visitors" data-flag-title="Javascript 中的线程与进程">
+             <span id="/2016/12/08/genetic-algorithm/" class="leancloud_visitors" data-flag-title="遗传算法">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -317,31 +321,38 @@
       
 
       
-        <p>写 javascript 写久了，就会对 javascript 的异步写法习以为常，反而不会好奇为什么在 javascript 里可以异步执行一个任务，是因为 javascript 是多线程吗？</p>
-<p>实际上，javascript 从来都是单线程的。目前 javascript 有两个主要的运行环境，一个是浏览器，一个是 nodejs，下面分别从这两个方面对这个问题进行解释。</p>
-<a id="more"></a>
-<h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><p>javascript 的设计初衷，是为了解决一些简单的网页互动，也就是操作 DOM 元素。而如果采用多线程，那么大家都知道，多线程是可能会造成竞争资源的，很可能多个线程同时操作一个 DOM 元素，造成不必要的麻烦，所以 javascript 从诞生开始就选择了单线程执行。</p>
-<p>然而在前端开发中，会经常用到 <code>setTimeout</code> 这个函数，我们可以规定让一段逻辑在指定时间后执行：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'timeout done'</span>);</div><div class="line">&#125;, <span class="number">3000</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'main task'</span>)</div></pre></td></tr></table></figure>
-<p>上面这段代码会先输出 <code>main task</code>，然后在 3 秒之后输出 <code>timeout done</code>。就好像 setTimeout 开启了一个新线程一样，实际上并不是这样。</p>
-<h3 id="Event-loop"><a href="#Event-loop" class="headerlink" title="Event loop"></a>Event loop</h3><p>实际上， JavaScript 运行时包含了一个待处理的消息队列，每一个消息都与一个函数相关联。同时有一个事件循环不停地在轮询这个队列，当队列不为空时，就从队列中取出一个消息进行处理。它的实现大概如此：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(queue.waitForMessage())&#123;</div><div class="line">  queue.processNextMessage();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>所以，上面的例子调用 <a href="https://developer.mozilla.org/en-US/docs/window.setTimeout" target="_blank" rel="external">setTimeout</a> 函数会在一个时间段过去后在队列中添加一个消息，实际上没有创建一个新的线程，当时间到达时，如果在队列中它的前面还有其他消息没有处理，那么它也要先等前面的执行完才执行。所谓的异步执行，实际上是在主线程空闲的时候执行，可以看如下代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> startTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"></div><div class="line"><span class="comment">// 第一个异步任务</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'task 1 start.'</span>);</div><div class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">var</span> curTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">        <span class="keyword">if</span>(curTime - startTime &gt; <span class="number">5000</span>) &#123;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'task 1 done.'</span>)</div><div class="line">&#125;, <span class="number">100</span>);</div><div class="line"></div><div class="line"><span class="comment">// 第二个异步任务</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'task 2 start.'</span>);</div><div class="line">&#125;, <span class="number">500</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'main'</span>);</div></pre></td></tr></table></figure>
-<p>程序第一个输出 <code>main</code>，这个毋庸置疑，但是第一个异步任务会执行 5 秒，而我们设置了第二个异步任务在 500 毫秒后执行，如果是多线程，<code>task 2 start</code> 会在 <code>task 1 done</code> 之前输出，然而结果是等 <code>task 1 done</code> 输出后才会输出 <code>task 2 done</code>。因为到 500 ms 时，task 2 被插入到消息队列中，然而此时task 1 还没有执行完，所以 task 2 紧接着 task 1 执行。示意图如下：</p>
-<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/thread-in-javascript/01.png" alt=""></p>
-<h3 id="webworker"><a href="#webworker" class="headerlink" title="webworker"></a>webworker</h3><p>但是 javascript 能不能支持多线程呢，答案是可以的，在 HTML 5 规范中，新增了webworker 用来进行计算量大的操作，避免阻塞主线程，不过在webworker 创建的线程中，是不能操作 DOM 元素的，当 webworker 中的计算完成时可以通过事件与主线程进行通信。</p>
-<h2 id="Nodejs"><a href="#Nodejs" class="headerlink" title="Nodejs"></a>Nodejs</h2><p>说完了浏览器端，现在说回 nodejs，nodejs 只是 javascript 的一个运行环境，实际上并不改变 javascript 是单线程执行的本质，但是 nodejs 可以提供一些方式来进行多线程和多进程开发。</p>
-<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><h4 id="tagg"><a href="#tagg" class="headerlink" title="tagg"></a><a href="https://github.com/xk/node-threads-a-gogo" target="_blank" rel="external">tagg</a></h4><p>Jorge Chamorro Bieling是 <code>tagg(Threads a gogo for Node.js)</code> 包的作者，他硬是利用 <code>phread</code> 库和C语言让Node.js支持了多线程的开发</p>
-<h3 id="libuvd"><a href="#libuvd" class="headerlink" title="libuvd"></a>libuvd</h3><p><code>libuv</code> 是一个跨平台的异步I/O库，它主要用于Node.js的开发，同时他也被 <code>Mozilla&#39;s Rust language</code>,  <code>Luvit</code>, <code>Julia</code>,  <code>pyuv</code>等使用。它主要包括了 <code>Event loops</code> 事件循环， <code>Filesystem</code> 文件系统， <code>Networking</code> 网络支持，<code>Threads</code> 线程，<code>Processes</code> 进程，<code>Utilities</code> 其他工具。</p>
-<h3 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h3><h4 id="child-process"><a href="#child-process" class="headerlink" title="child_process"></a>child_process</h4><p>可以启动一个 nodejs 文件，将它作为 worker 进程，实现多进程解决主进程阻塞的问题。</p>
-<h4 id="cluster"><a href="#cluster" class="headerlink" title="cluster"></a>cluster</h4><p><code>cluster</code>可以用来让Node.js充分利用多核cpu的性能，同时也可以让Node.js程序更加健壮，官网上的<code>cluster</code>示例已经告诉我们如何重新启动一个因为异常而奔溃的子进程。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
-<li><a href="https://github.com/DoubleSpout/threadAndPackage/blob/master/chapter.7.thread_and_process.md" target="_blank" rel="external">Node.js的线程和进程</a></li>
-<li><a href="http://taobaofed.org/blog/2015/10/29/deep-into-node-1/" target="_blank" rel="external">Node.js 探秘：初识单线程的 Node.js</a></li>
-<li><a href="https://segmentfault.com/a/1190000004276027" target="_blank" rel="external">细说JavaScript单线程的一些事</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoo" target="_blank" rel="external">并发模型与Event Loop</a></li>
+        <p>遗传算法是一个很有意思的算法。</p>
+<p>我们都知道达尔文提出了伟大的“生物进化论”，他证明了所有的生物都不是上帝创造的，而是在遗传、变异、生存斗争和自然选择中，由简单到复杂，由低等到高等，不断发展变化的。也就是：物竞天择、适者生存、优胜劣汰。</p>
+<p>达尔文的进化论给美国的科学家霍兰德留下了深刻的印象，但他从计算机科学的角度思考了这个问题，他想到，是否可以像繁育良种马和良种玉米一样繁育程序。这也就是遗传算法的由来。遗传算法借鉴了进化生物学中的一些现象，包括遗传、突变、自然选择以及杂交等。</p>
+<h2 id="扫地机器人罗比"><a href="#扫地机器人罗比" class="headerlink" title="扫地机器人罗比"></a>扫地机器人罗比</h2><p>在《复杂》这本书中有个例子，罗比是一个扫地机器人，他生活在一个 10 * 10 格子的世界里，这个世界随机散落着易拉罐，且每个格子最多只有一个易拉罐。罗比的任务是清理这些易拉罐。世界的周围都是墙壁。</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/01.PNG" alt="罗比的世界"></p>
+<p>罗比的视野是有限的，他只能看到四周格子已经自己所在位置的情况，也就是上下左右和当前位置五个格子的情况。</p>
+<p>每次清理工作罗比可以执行 200 个动作，动作可以是：向上走，向下走，向左走，向右走，随机一个方向走、捡罐头、不动。每一个动作执行完以后都会有一个评分：如果捡罐头时格子中有罐头，那么罐头被捡起，加 10 分。如果捡罐头的时候格子中没有罐头，扣 1 分。如果罗比撞到了墙，扣 5 分。</p>
+<p>显然，罗比尽可能多捡到罐头、别在没罐头的时候去捡、别撞墙，分数就越高。那么，我们需要设计一套策略，让罗比根据当前所在位置的状态去执行相应的动作，能够拿到最高的分。</p>
+<p>那么，总共有多少种状态？</p>
+<p>每次罗比看到的格子为：上下左右中，一共 5 个格子，而每个格子有三种可能性：没罐头、有罐头、墙壁。我们把没罐头记为 0，有罐头记为 1，是墙壁记为 2。那么状态可以列为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">上下左右中</div><div class="line">0 0 0 0 0</div><div class="line">0 0 0 0 1</div><div class="line">0 0 0 0 2</div><div class="line">0 0 0 1 0</div><div class="line">0 0 0 1 1</div><div class="line">...</div><div class="line">2 2 2 2 2</div></pre></td></tr></table></figure>
+<p>显然，一共有 <code>3 * 3 * 3 * 3 * 3 = 243</code> 种状态。</p>
+<p>而对于每一种状态，罗比有 7 种动作可以执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">0: 向上走</div><div class="line">1: 向下走</div><div class="line">2: 向左走</div><div class="line">3: 向右走</div><div class="line">4: 随机选取方向走</div><div class="line">5: 捡罐头</div><div class="line">6: 什么都不干</div></pre></td></tr></table></figure>
+<p>所以，243 个状态，每个状态 7 种动作，那么策略的总数是 <code>$7^243$</code> 个。要想遍历所有的策略去求最优解显然是不现实的，在这里可以使用遗传算法，来 <strong>“进化”</strong> 出一个近似最优解。</p>
+<h2 id="遗传算法设计"><a href="#遗传算法设计" class="headerlink" title="遗传算法设计"></a>遗传算法设计</h2><p>之前已经提到过了，遗传算法借鉴了自然选择中的思想，在遗传算法中，也有“种群”、“染色体”、“基因”、“杂交”、“变异”等概念。</p>
+<p>试想我们需要得到的策略是什么样子的。罗比需要根据每一种格子的状态去寻求一种动作，在上面已经提到过，格子的状态分别是 <code>00000</code>、<code>00001</code>、<code>00002</code> 以此类推。我们可以发现，这实际上就是所有的 5 位 3 进制数。</p>
+<p>那么，罗比的策略就可以用一个字符串表示，字符串的长度是格子情况的总数，每一位代表对应格子情况所需要作出的策略，比如 <code>152455021256444063355141362453351200451455123151604162324266004040256060052004316401456203443334225141156451050235106256354245063143011340422626044356444400300555631325215155436144345164455440161256251412661563442063025020602255536510141514365</code>。这个策略的第一位是 1，这代表着罗比所处的情况是 <code>00000</code> 时，应该作出动作 1，也就是向下走。类似的，第二位是 5，代表罗比在 <code>00001</code> 时应该捡罐头。</p>
+<p>我们需要通过遗传算法找到最优的策略，这每一个策略实际上就代表着个体，我们通过一个字符串来代表它，这个字符串可以称为染色体（基因组），染色体是基因的集合，种群是染色体的集合。</p>
+<p>遗传算法首先需要随机生成一个种群，然后通过“自然选择”来筛选他们，越优秀的个体越容易留下来，并不断繁衍出优秀的子代，这样经过一代又一代的选择，最后留下的个体就是近似最优的。</p>
+<p>对应到罗比问题中来，遗传算法过程如下：</p>
+<ol>
+<li>初始化种群：随机生成 200 个个体</li>
+<li>计算适应度：对 200 个个体进行评分，评分的规则是让罗比打扫 1000 次世界，每次打扫世界都是随机生成的，且每次打扫罗比移动 200 步，最后算出这 1000 次打扫的平均分。</li>
+<li>杂交：根据所有个体的得分，随机选取两个个体进行杂交，得分越高的个体越容易被选中。杂交会生成两个子代，将子代放入新种群。重复这个过程，直到新种群的个数达到 200 个。</li>
+<li>突变：子代的一个或多个基因会有一定的概率发生突变，发生突变的基因会随机变为其他的动作，比如从 1 变为 6。</li>
+<li>迭代：重复以上的过程，直到达到 1000 代。</li>
 </ol>
+<p>当然上面的 200、1000 这些数字都是人为设定的，你也可以设定其他的，只要能得到比较好的解就行。</p>
+<p>是不是很有意思，因为我们根本不用动脑去设计策略，而是全部交给了计算机。当然这里面还有适应度函数的设计、杂交的设计、参数的选定等令人伤脑筋的事情，但遗传算法的过程说起来就是这样。</p>
+<p>实际上这个参数还是很麻烦。。我调了很长时间，最后满分 500 分的情况下，1000 次进化的结果也不太理想，等总结出规律了再次补充。</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/02.PNG" alt=""></p>
 
       
     </div>
@@ -363,9 +374,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/每周总结/" rel="tag">#每周总结</a>
-          
-            <a href="/tags/javascript/" rel="tag">#javascript</a>
+            <a href="/tags/算法/" rel="tag">#算法</a>
           
         </div>
       
@@ -374,17 +383,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/12/data-capture/" rel="next" title="数据抓取の经验">
-                <i class="fa fa-chevron-left"></i> 数据抓取の经验
+              <a href="/2016/11/18/node-canvas-chinese/" rel="next" title="node-canvas 中的中文乱码问题">
+                <i class="fa fa-chevron-left"></i> node-canvas 中的中文乱码问题
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/27/keng-in-hexo/" rel="prev" title="HEXO 搭博客中的坑">
-                HEXO 搭博客中的坑 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -410,8 +415,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/27/thread-in-javascript/"
-           data-title="Javascript 中的线程与进程" data-url="http://sunhengzhe.com/2016/08/27/thread-in-javascript/">
+      <div class="ds-thread" data-thread-key="2016/12/08/genetic-algorithm/"
+           data-title="遗传算法" data-url="http://sunhengzhe.com/2016/12/08/genetic-algorithm/">
       </div>
     
   </div>
@@ -515,7 +520,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器"><span class="nav-number">1.</span> <span class="nav-text">浏览器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-loop"><span class="nav-number">1.1.</span> <span class="nav-text">Event loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webworker"><span class="nav-number">1.2.</span> <span class="nav-text">webworker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nodejs"><span class="nav-number">2.</span> <span class="nav-text">Nodejs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">2.1.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tagg"><span class="nav-number">2.1.1.</span> <span class="nav-text">tagg</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#libuvd"><span class="nav-number">2.2.</span> <span class="nav-text">libuvd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多进程"><span class="nav-number">2.3.</span> <span class="nav-text">多进程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#child-process"><span class="nav-number">2.3.1.</span> <span class="nav-text">child_process</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cluster"><span class="nav-number">2.3.2.</span> <span class="nav-text">cluster</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#扫地机器人罗比"><span class="nav-number">1.</span> <span class="nav-text">扫地机器人罗比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遗传算法设计"><span class="nav-number">2.</span> <span class="nav-text">遗传算法设计</span></a></li></ol></div>
             
           </div>
         </section>

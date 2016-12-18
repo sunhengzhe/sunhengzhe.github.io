@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://sunhengzhe.com/2016/12/08/genetic-algorithm/</loc>
+    
+    <lastmod>2016-12-18T15:21:12.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://sunhengzhe.com/2016/11/18/node-canvas-chinese/</loc>
     
     <lastmod>2016-11-18T11:19:51.000Z</lastmod>
@@ -86,13 +93,6 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/26/data-structures-2/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://sunhengzhe.com/2016/07/24/data-structures/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
@@ -100,14 +100,14 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
+    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
+    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -149,14 +149,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/08/07/red-black-tree/</loc>
+    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -170,7 +163,21 @@
   </url>
   
   <url>
+    <loc>http://sunhengzhe.com/2016/08/07/red-black-tree/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -184,7 +191,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
+    <loc>http://sunhengzhe.com/2016/07/26/data-structures-2/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     

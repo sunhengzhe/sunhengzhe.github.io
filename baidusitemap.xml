@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://sunhengzhe.com/2016/12/08/genetic-algorithm/</loc>
+    <lastmod>2016-12-18T15:21:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>遗传算法</title>
+        <pubTime>2016-12-08T15:00:00.000Z</pubTime>
+        
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://sunhengzhe.com/2016/11/18/node-canvas-chinese/</loc>
     <lastmod>2016-11-18T11:19:51.000Z</lastmod>
     <data>
@@ -200,25 +217,6 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/26/data-structures-2/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>基本数据结构（二）</title>
-        <pubTime>2016-07-26T15:39:57.000Z</pubTime>
-        
-        <tag>每周总结</tag>
-         
-        <tag>数据结构</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://sunhengzhe.com/2016/07/24/data-structures/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
@@ -238,12 +236,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
+    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第四章：分治策略</title>
-        <pubTime>2016-06-29T14:59:14.000Z</pubTime>
+        <title>《算法导论》第八章：线性时间排序</title>
+        <pubTime>2016-07-09T13:59:26.000Z</pubTime>
         
         <tag>读书笔记</tag>
          
@@ -257,12 +255,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
+    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第八章：线性时间排序</title>
-        <pubTime>2016-07-09T13:59:26.000Z</pubTime>
+        <title>《算法导论》第六章：堆排序</title>
+        <pubTime>2016-07-03T15:54:10.000Z</pubTime>
         
         <tag>读书笔记</tag>
          
@@ -365,12 +363,31 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
+    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第六章：堆排序</title>
-        <pubTime>2016-07-03T15:54:10.000Z</pubTime>
+        <title>《算法导论》第四章：分治策略</title>
+        <pubTime>2016-06-29T14:59:14.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第七章：快速排序</title>
+        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
         
         <tag>读书笔记</tag>
          
@@ -403,25 +420,6 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>《算法导论》第七章：快速排序</title>
-        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
-        
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
@@ -432,6 +430,23 @@
         <tag>每周总结</tag>
          
         <tag>javascript</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>数据抓取の经验</title>
+        <pubTime>2016-08-12T13:32:34.000Z</pubTime>
+        
+        <tag>每周总结</tag>
          
          
            
@@ -460,14 +475,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
+    <loc>http://sunhengzhe.com/2016/07/26/data-structures-2/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>数据抓取の经验</title>
-        <pubTime>2016-08-12T13:32:34.000Z</pubTime>
+        <title>基本数据结构（二）</title>
+        <pubTime>2016-07-26T15:39:57.000Z</pubTime>
         
         <tag>每周总结</tag>
+         
+        <tag>数据结构</tag>
          
          
            
