@@ -96,7 +96,7 @@
 达尔文的进化论给美国的科学家霍兰德留下了深刻的印象，但他从计算机科学的角度思考了这个问题，他想到，是否可以像繁育良种马和良种玉米一样繁育程序。这也就是遗传算法的由来">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/01.PNG">
 <meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/02.PNG">
-<meta property="og:updated_time" content="2016-12-18T15:21:12.000Z">
+<meta property="og:updated_time" content="2016-12-18T15:49:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="遗传算法">
 <meta name="twitter:description" content="遗传算法是一个很有意思的算法。
@@ -324,9 +324,10 @@
         <p>遗传算法是一个很有意思的算法。</p>
 <p>我们都知道达尔文提出了伟大的“生物进化论”，他证明了所有的生物都不是上帝创造的，而是在遗传、变异、生存斗争和自然选择中，由简单到复杂，由低等到高等，不断发展变化的。也就是：物竞天择、适者生存、优胜劣汰。</p>
 <p>达尔文的进化论给美国的科学家霍兰德留下了深刻的印象，但他从计算机科学的角度思考了这个问题，他想到，是否可以像繁育良种马和良种玉米一样繁育程序。这也就是遗传算法的由来。遗传算法借鉴了进化生物学中的一些现象，包括遗传、突变、自然选择以及杂交等。</p>
+<a id="more"></a>
 <h2 id="扫地机器人罗比"><a href="#扫地机器人罗比" class="headerlink" title="扫地机器人罗比"></a>扫地机器人罗比</h2><p>在《复杂》这本书中有个例子，罗比是一个扫地机器人，他生活在一个 10 * 10 格子的世界里，这个世界随机散落着易拉罐，且每个格子最多只有一个易拉罐。罗比的任务是清理这些易拉罐。世界的周围都是墙壁。</p>
 <p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/01.PNG" alt="罗比的世界"></p>
-<p>罗比的视野是有限的，他只能看到四周格子已经自己所在位置的情况，也就是上下左右和当前位置五个格子的情况。</p>
+<p>罗比的视野是有限的，他只能看到四周格子以及自己所在位置的情况，也就是上下左右和当前位置五个格子的情况。</p>
 <p>每次清理工作罗比可以执行 200 个动作，动作可以是：向上走，向下走，向左走，向右走，随机一个方向走、捡罐头、不动。每一个动作执行完以后都会有一个评分：如果捡罐头时格子中有罐头，那么罐头被捡起，加 10 分。如果捡罐头的时候格子中没有罐头，扣 1 分。如果罗比撞到了墙，扣 5 分。</p>
 <p>显然，罗比尽可能多捡到罐头、别在没罐头的时候去捡、别撞墙，分数就越高。那么，我们需要设计一套策略，让罗比根据当前所在位置的状态去执行相应的动作，能够拿到最高的分。</p>
 <p>那么，总共有多少种状态？</p>
@@ -335,7 +336,7 @@
 <p>显然，一共有 <code>3 * 3 * 3 * 3 * 3 = 243</code> 种状态。</p>
 <p>而对于每一种状态，罗比有 7 种动作可以执行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">0: 向上走</div><div class="line">1: 向下走</div><div class="line">2: 向左走</div><div class="line">3: 向右走</div><div class="line">4: 随机选取方向走</div><div class="line">5: 捡罐头</div><div class="line">6: 什么都不干</div></pre></td></tr></table></figure>
-<p>所以，243 个状态，每个状态 7 种动作，那么策略的总数是 <code>$7^243$</code> 个。要想遍历所有的策略去求最优解显然是不现实的，在这里可以使用遗传算法，来 <strong>“进化”</strong> 出一个近似最优解。</p>
+<p>所以，243 个状态，每个状态 7 种动作，那么策略的总数是 $7^243$ 个。要想遍历所有的策略去求最优解显然是不现实的，在这里可以使用遗传算法，来 <strong>“进化”</strong> 出一个近似最优解。</p>
 <h2 id="遗传算法设计"><a href="#遗传算法设计" class="headerlink" title="遗传算法设计"></a>遗传算法设计</h2><p>之前已经提到过了，遗传算法借鉴了自然选择中的思想，在遗传算法中，也有“种群”、“染色体”、“基因”、“杂交”、“变异”等概念。</p>
 <p>试想我们需要得到的策略是什么样子的。罗比需要根据每一种格子的状态去寻求一种动作，在上面已经提到过，格子的状态分别是 <code>00000</code>、<code>00001</code>、<code>00002</code> 以此类推。我们可以发现，这实际上就是所有的 5 位 3 进制数。</p>
 <p>那么，罗比的策略就可以用一个字符串表示，字符串的长度是格子情况的总数，每一位代表对应格子情况所需要作出的策略，比如 <code>152455021256444063355141362453351200451455123151604162324266004040256060052004316401456203443334225141156451050235106256354245063143011340422626044356444400300555631325215155436144345164455440161256251412661563442063025020602255536510141514365</code>。这个策略的第一位是 1，这代表着罗比所处的情况是 <code>00000</code> 时，应该作出动作 1，也就是向下走。类似的，第二位是 5，代表罗比在 <code>00001</code> 时应该捡罐头。</p>
@@ -351,7 +352,19 @@
 </ol>
 <p>当然上面的 200、1000 这些数字都是人为设定的，你也可以设定其他的，只要能得到比较好的解就行。</p>
 <p>是不是很有意思，因为我们根本不用动脑去设计策略，而是全部交给了计算机。当然这里面还有适应度函数的设计、杂交的设计、参数的选定等令人伤脑筋的事情，但遗传算法的过程说起来就是这样。</p>
-<p>实际上这个参数还是很麻烦。。我调了很长时间，最后满分 500 分的情况下，1000 次进化的结果也不太理想，等总结出规律了再次补充。</p>
+<h3 id="适应度"><a href="#适应度" class="headerlink" title="适应度"></a>适应度</h3><p>在步骤 2 里面，我们对种群中所有个体进行了评分，评分的实现也比较简单，生成一个世界，根据策略在世界内进行 200 个动作，并把这个过程重复 1000 次即可，最后能拿到一个平均分。</p>
+<h3 id="选取父母"><a href="#选取父母" class="headerlink" title="选取父母"></a>选取父母</h3><p>举个栗子，假设种群内只有 3 个个体，他们得分分别是 <code>1, 2, 7</code>，我们需要进行两次选择，且得分越高的个体越容易被选中。这里使用 <strong>轮盘赌</strong> 方法来选择个体。</p>
+<p>实际上也就是个求概率的问题，三个个体总分为 <code>1 + 2 + 7 = 10</code>，那么每个个体占比就可以算出来：<code>0.1, 0.2, 0.7</code>。然后让每个个体的概率加上前一个个体的概率，也就是：<code>0.1, 0.3, 1</code>。</p>
+<p>这样随机生成一个 0 到 1 的数，然后从左往右去比较，小于哪个个体就选择哪个个体即可。</p>
+<p>当出现负数怎么办，比如 <code>-5, 3, 9</code>，这里可以给每个元素都加上第一个元素的绝对值再加 1，也就是加 6，转为：<code>1, 9, 15</code>，然后再像上面那样按轮盘赌即可。</p>
+<p>事实上，这里可以有很多种方法可以选择，比如全部调完正数后让每个元素平方，或者对所有元素加上一个总步数 * 撞墙扣分，代表一次打扫中最多可能扣掉的分。这里选择方法的选取对整个遗传算法影响也是很大的，需要设计一个比较合理的选择方式。</p>
+<h3 id="杂交"><a href="#杂交" class="headerlink" title="杂交"></a>杂交</h3><p>选择出父母之后，需要让父母进行杂交，比如选取某一个位置，取父亲的前半段加上母亲的后半段，以及父亲的后半段加母亲的前半段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">203651</div><div class="line">100344</div><div class="line">取后三位交叉</div><div class="line">203344</div><div class="line">100651</div></pre></td></tr></table></figure>
+<p>交叉算子的方式还有其他更复杂的。</p>
+<h3 id="突变"><a href="#突变" class="headerlink" title="突变"></a>突变</h3><p>子代有很小的概率会发生基因突变，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">203344 -&gt; 206344</div></pre></td></tr></table></figure>
+<p>第三个位置的基因发生变化。</p>
+<h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>实际上这个参数还是很麻烦。。我调了很长时间，最后满分 500 分的情况下，1000 次进化的结果也不太理想，等总结出规律了再次补充。</p>
 <p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/02.PNG" alt=""></p>
 
       
@@ -520,7 +533,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#扫地机器人罗比"><span class="nav-number">1.</span> <span class="nav-text">扫地机器人罗比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遗传算法设计"><span class="nav-number">2.</span> <span class="nav-text">遗传算法设计</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#扫地机器人罗比"><span class="nav-number">1.</span> <span class="nav-text">扫地机器人罗比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遗传算法设计"><span class="nav-number">2.</span> <span class="nav-text">遗传算法设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#适应度"><span class="nav-number">2.1.</span> <span class="nav-text">适应度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选取父母"><span class="nav-number">2.2.</span> <span class="nav-text">选取父母</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#杂交"><span class="nav-number">2.3.</span> <span class="nav-text">杂交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#突变"><span class="nav-number">2.4.</span> <span class="nav-text">突变</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#吐槽"><span class="nav-number">3.</span> <span class="nav-text">吐槽</span></a></li></ol></div>
             
           </div>
         </section>
