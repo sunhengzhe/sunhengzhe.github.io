@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://sunhengzhe.com/2017/01/21/statistics-tendency/</loc>
-    <lastmod>2017-01-21T16:31:42.000Z</lastmod>
+    <lastmod>2017-01-21T16:38:10.000Z</lastmod>
     <data>
         <display>
         <title>集中趋势和离散趋势</title>
@@ -268,6 +268,42 @@
 
     
   <url>
+    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第二章：算法基础</title>
+        <pubTime>2016-06-26T18:47:19.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/31/five-in-a-row-game/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>如何实现五子棋 AI</title>
+        <pubTime>2016-07-31T12:57:34.000Z</pubTime>
+        
+        <tag>每周总结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
@@ -323,12 +359,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
+    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第七章：快速排序</title>
-        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
+        <title>《算法导论》第四章：分治策略</title>
+        <pubTime>2016-06-29T14:59:14.000Z</pubTime>
         
         <tag>读书笔记</tag>
          
@@ -359,14 +395,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
+    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>数据抓取の经验</title>
-        <pubTime>2016-08-12T13:32:34.000Z</pubTime>
+        <title>《算法导论》第七章：快速排序</title>
+        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
         
-        <tag>每周总结</tag>
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
          
          
            
@@ -376,16 +414,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
+    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第六章：堆排序</title>
-        <pubTime>2016-07-03T15:54:10.000Z</pubTime>
+        <title>函数柯里化</title>
+        <pubTime>2016-07-04T04:00:28.000Z</pubTime>
         
-        <tag>读书笔记</tag>
+        <tag>每周总结</tag>
          
-        <tag>算法</tag>
+        <tag>javascript</tag>
          
          
            
@@ -414,35 +452,14 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/</loc>
+    <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>使用 svg 让线条动起来</title>
-        <pubTime>2016-06-28T12:43:19.000Z</pubTime>
+        <title>数据抓取の经验</title>
+        <pubTime>2016-08-12T13:32:34.000Z</pubTime>
         
         <tag>每周总结</tag>
-         
-        <tag>svg</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>函数柯里化</title>
-        <pubTime>2016-07-04T04:00:28.000Z</pubTime>
-        
-        <tag>每周总结</tag>
-         
-        <tag>javascript</tag>
          
          
            
@@ -490,52 +507,35 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
+    <loc>http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第四章：分治策略</title>
-        <pubTime>2016-06-29T14:59:14.000Z</pubTime>
-        
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>《算法导论》第二章：算法基础</title>
-        <pubTime>2016-06-26T18:47:19.000Z</pubTime>
-        
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/31/five-in-a-row-game/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>如何实现五子棋 AI</title>
-        <pubTime>2016-07-31T12:57:34.000Z</pubTime>
+        <title>使用 svg 让线条动起来</title>
+        <pubTime>2016-06-28T12:43:19.000Z</pubTime>
         
         <tag>每周总结</tag>
+         
+        <tag>svg</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第六章：堆排序</title>
+        <pubTime>2016-07-03T15:54:10.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
          
          
            

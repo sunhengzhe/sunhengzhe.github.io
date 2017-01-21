@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://sunhengzhe.com/2017/01/21/statistics-tendency/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
 <meta property="og:description" content="给定一组数据，可以使用 平均数、中位数、众数 等来判断这组数据的 集中趋势，使用 方差、标准差 等来判断 离散趋势。">
-<meta property="og:updated_time" content="2017-01-21T16:31:42.000Z">
+<meta property="og:updated_time" content="2017-01-21T16:38:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="集中趋势和离散趋势">
 <meta name="twitter:description" content="给定一组数据，可以使用 平均数、中位数、众数 等来判断这组数据的 集中趋势，使用 方差、标准差 等来判断 离散趋势。">
@@ -353,7 +353,7 @@
 <p>$$<br>s^2 = \frac{\sum_{i=1}^n(x_i - \overline{X})^2}{n}<br>$$</p>
 <p>那么：</p>
 <p>$$<br>\begin{align}<br>s^2 &amp; = \frac1n\sum_{i=1}^n(x_i - \overline{X})^2 \\<br>&amp; = \frac1n\sum_{i=1}^n[(x_i - \mu) + (\mu - \overline{X})]^2 \\<br>&amp; = \frac1n\sum_{i=1}^n(x_i - \mu)^2 + \frac2n\sum_{i=1}^n(x_i - \mu)(\mu - \overline{X}) + \frac1n\sum_{i=1}^n(\mu - \overline{X})^2 \\<br>&amp; = \frac1n\sum_{i=1}^n(x_i - \mu)^2 + 2(\overline{X} - \mu)(\mu - \overline{X}) + (\mu - \overline{X})^2 \\<br>&amp; = \frac1n\sum_{i=1}^n(x_i - \mu)^2 - (\mu - \overline{X})^2<br>\end{align}<br>$$</p>
-<p>可以看到，当 $\overline{X}$ 不等于 $\mu$ 时，这样得到的方差是小于实际的方差的，所以为了减少误差，必须要把样本方差放大一点，也就是在分母上除以比 n 小的数。</p>
+<p>可以看到，当 $\overline{X}$ 不等于 $\mu$ 时，这样得到的方差是小于实际的方差的，所以为了减少误差，必须要把样本方差放大一点，也就是在分母上除以比 n 小的数。这样得到的方差称为 <strong>样本方差的无偏估计</strong> 或 <strong>无偏样本方差</strong></p>
 <h4 id="为什么除以的是-n-1"><a href="#为什么除以的是-n-1" class="headerlink" title="为什么除以的是 n - 1"></a>为什么除以的是 n - 1</h4><p>至于为什么除以的是 n - 1，而不是 n - 2、n - 3 之类的，这个涉及到具体的数学证明，在此先不做探讨。有一种理解是 n - 1 为自由度，也就是当均值确定时，只要前 n - 1 个数确定了，那么最后一个数也就确定了，也就是说只有 n - 1 个数是自由的，这里的自由度是 n - 1。</p>
 <p><strong>所以，如果已知总体均值 $\mu$，使用 $\mu$ 代替 $\overline{X}$，就无须将 n 换成 n - 1 了。</strong></p>
 <h3 id="标准差"><a href="#标准差" class="headerlink" title="标准差"></a>标准差</h3><p>标准差为方差的平方根。</p>
