@@ -1,0 +1,825 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="算法," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="遗传算法是一个很有意思的算法。
+我们都知道达尔文提出了伟大的“生物进化论”，他证明了所有的生物都不是上帝创造的，而是在遗传、变异、生存斗争和自然选择中，由简单到复杂，由低等到高等，不断发展变化的。也就是：物竞天择、适者生存、优胜劣汰。
+达尔文的进化论给美国的科学家霍兰德留下了深刻的印象，但他从计算机科学的角度思考了这个问题，他想到，是否可以像繁育良种马和良种玉米一样繁育程序。这也就是遗传算法的由来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="遗传算法">
+<meta property="og:url" content="http://sunhengzhe.com/2016/12/08/genetic-algorithm/index.html">
+<meta property="og:site_name" content="奥利奥的大房子">
+<meta property="og:description" content="遗传算法是一个很有意思的算法。
+我们都知道达尔文提出了伟大的“生物进化论”，他证明了所有的生物都不是上帝创造的，而是在遗传、变异、生存斗争和自然选择中，由简单到复杂，由低等到高等，不断发展变化的。也就是：物竞天择、适者生存、优胜劣汰。
+达尔文的进化论给美国的科学家霍兰德留下了深刻的印象，但他从计算机科学的角度思考了这个问题，他想到，是否可以像繁育良种马和良种玉米一样繁育程序。这也就是遗传算法的由来">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/01.PNG">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/02.png">
+<meta property="og:updated_time" content="2016-12-19T02:47:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="遗传算法">
+<meta name="twitter:description" content="遗传算法是一个很有意思的算法。
+我们都知道达尔文提出了伟大的“生物进化论”，他证明了所有的生物都不是上帝创造的，而是在遗传、变异、生存斗争和自然选择中，由简单到复杂，由低等到高等，不断发展变化的。也就是：物竞天择、适者生存、优胜劣汰。
+达尔文的进化论给美国的科学家霍兰德留下了深刻的印象，但他从计算机科学的角度思考了这个问题，他想到，是否可以像繁育良种马和良种玉米一样繁育程序。这也就是遗传算法的由来">
+<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/01.PNG">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sunhengzhe.com/2016/12/08/genetic-algorithm/"/>
+
+  <title> 遗传算法 | 奥利奥的大房子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a7768ce6e11e71e36e002cbbf272480b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">奥利奥的大房子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                遗传算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-08T23:00:00+08:00" content="2016-12-08">
+              2016-12-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/08/genetic-algorithm/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/08/genetic-algorithm/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/08/genetic-algorithm/" class="leancloud_visitors" data-flag-title="遗传算法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>遗传算法是一个很有意思的算法。</p>
+<p>我们都知道达尔文提出了伟大的“生物进化论”，他证明了所有的生物都不是上帝创造的，而是在遗传、变异、生存斗争和自然选择中，由简单到复杂，由低等到高等，不断发展变化的。也就是：物竞天择、适者生存、优胜劣汰。</p>
+<p>达尔文的进化论给美国的科学家霍兰德留下了深刻的印象，但他从计算机科学的角度思考了这个问题，他想到，是否可以像繁育良种马和良种玉米一样繁育程序。这也就是遗传算法的由来。遗传算法借鉴了进化生物学中的一些现象，包括遗传、突变、自然选择以及杂交等。</p>
+<a id="more"></a>
+<h2 id="扫地机器人罗比"><a href="#扫地机器人罗比" class="headerlink" title="扫地机器人罗比"></a>扫地机器人罗比</h2><p>在《复杂》这本书中有个例子，罗比是一个扫地机器人，他生活在一个 10 * 10 格子的世界里，这个世界随机散落着易拉罐，且每个格子最多只有一个易拉罐。罗比的任务是清理这些易拉罐。世界的周围都是墙壁。</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/01.PNG" alt="罗比的世界"></p>
+<p>罗比的视野是有限的，他只能看到四周格子以及自己所在位置的情况，也就是上下左右和当前位置五个格子的情况。</p>
+<p>每次清理工作罗比可以执行 200 个动作，动作可以是：向上走，向下走，向左走，向右走，随机一个方向走、捡罐头、不动。每一个动作执行完以后都会有一个评分：如果捡罐头时格子中有罐头，那么罐头被捡起，加 10 分。如果捡罐头的时候格子中没有罐头，扣 1 分。如果罗比撞到了墙，扣 5 分。</p>
+<p>显然，罗比尽可能多捡到罐头、别在没罐头的时候去捡、别撞墙，分数就越高。那么，我们需要设计一套策略，让罗比根据当前所在位置的状态去执行相应的动作，能够拿到最高的分。</p>
+<p>那么，总共有多少种状态？</p>
+<p>每次罗比看到的格子为：上下左右中，一共 5 个格子，而每个格子有三种可能性：没罐头、有罐头、墙壁。我们把没罐头记为 0，有罐头记为 1，是墙壁记为 2。那么状态可以列为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">上下左右中</div><div class="line">0 0 0 0 0</div><div class="line">0 0 0 0 1</div><div class="line">0 0 0 0 2</div><div class="line">0 0 0 1 0</div><div class="line">0 0 0 1 1</div><div class="line">...</div><div class="line">2 2 2 2 2</div></pre></td></tr></table></figure>
+<p>显然，一共有 <code>3 * 3 * 3 * 3 * 3 = 243</code> 种状态。</p>
+<p>而对于每一种状态，罗比有 7 种动作可以执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">0: 向上走</div><div class="line">1: 向下走</div><div class="line">2: 向左走</div><div class="line">3: 向右走</div><div class="line">4: 随机选取方向走</div><div class="line">5: 捡罐头</div><div class="line">6: 什么都不干</div></pre></td></tr></table></figure>
+<p>所以，243 个状态，每个状态 7 种动作，那么策略的总数是 <code>$7^243$</code> 个。要想遍历所有的策略去求最优解显然是不现实的，在这里可以使用遗传算法，来 <strong>“进化”</strong> 出一个近似最优解。</p>
+<h2 id="遗传算法设计"><a href="#遗传算法设计" class="headerlink" title="遗传算法设计"></a>遗传算法设计</h2><p>之前已经提到过了，遗传算法借鉴了自然选择中的思想，在遗传算法中，也有“种群”、“染色体”、“基因”、“杂交”、“变异”等概念。</p>
+<p>试想我们需要得到的策略是什么样子的。罗比需要根据每一种格子的状态去寻求一种动作，在上面已经提到过，格子的状态分别是 <code>00000</code>、<code>00001</code>、<code>00002</code> 以此类推。我们可以发现，这实际上就是所有的 5 位 3 进制数。</p>
+<p>那么，罗比的策略就可以用一个字符串表示，字符串的长度是格子情况的总数，每一位代表对应格子情况所需要作出的策略，比如 <code>152455021256444063355141362453351200451455123151604162324266004040256060052004316401456203443334225141156451050235106256354245063143011340422626044356444400300555631325215155436144345164455440161256251412661563442063025020602255536510141514365</code>。这个策略的第一位是 1，这代表着罗比所处的情况是 <code>00000</code> 时，应该作出动作 1，也就是向下走。类似的，第二位是 5，代表罗比在 <code>00001</code> 时应该捡罐头。</p>
+<p>我们需要通过遗传算法找到最优的策略，这每一个策略实际上就代表着个体，我们通过一个字符串来代表它，这个字符串可以称为染色体（基因组），染色体是基因的集合，种群是染色体的集合。</p>
+<p>遗传算法首先需要随机生成一个种群，然后通过“自然选择”来筛选他们，越优秀的个体越容易留下来，并不断繁衍出优秀的子代，这样经过一代又一代的选择，最后留下的个体就是近似最优的。</p>
+<p>对应到罗比问题中来，遗传算法过程如下：</p>
+<ol>
+<li>初始化种群：随机生成 200 个个体</li>
+<li>计算适应度：对 200 个个体进行评分，评分的规则是让罗比打扫 1000 次世界，每次打扫世界都是随机生成的，且每次打扫罗比移动 200 步，最后算出这 1000 次打扫的平均分。</li>
+<li>杂交：根据所有个体的得分，随机选取两个个体进行杂交，得分越高的个体越容易被选中。杂交会生成两个子代，将子代放入新种群。重复这个过程，直到新种群的个数达到 200 个。</li>
+<li>突变：子代的一个或多个基因会有一定的概率发生突变，发生突变的基因会随机变为其他的动作，比如从 1 变为 6。</li>
+<li>迭代：重复以上的过程，直到达到 1000 代。</li>
+</ol>
+<p>当然上面的 200、1000 这些数字都是人为设定的，你也可以设定其他的，只要能得到比较好的解就行。</p>
+<p>是不是很有意思，因为我们根本不用动脑去设计策略，而是全部交给了计算机。当然这里面还有适应度函数的设计、杂交的设计、参数的选定等令人伤脑筋的事情，但遗传算法的过程说起来就是这样。</p>
+<h3 id="适应度"><a href="#适应度" class="headerlink" title="适应度"></a>适应度</h3><p>在步骤 2 里面，我们对种群中所有个体进行了评分，评分的实现也比较简单，生成一个世界，根据策略在世界内进行 200 个动作，并把这个过程重复 1000 次即可，最后能拿到一个平均分。</p>
+<h3 id="选取父母"><a href="#选取父母" class="headerlink" title="选取父母"></a>选取父母</h3><p>举个栗子，假设种群内只有 3 个个体，他们得分分别是 <code>1, 2, 7</code>，我们需要进行两次选择，且得分越高的个体越容易被选中。这里使用 <strong>轮盘赌</strong> 方法来选择个体。</p>
+<p>实际上也就是个求概率的问题，三个个体总分为 <code>1 + 2 + 7 = 10</code>，那么每个个体占比就可以算出来：<code>0.1, 0.2, 0.7</code>。然后让每个个体的概率加上前一个个体的概率，也就是：<code>0.1, 0.3, 1</code>。</p>
+<p>这样随机生成一个 0 到 1 的数，然后从左往右去比较，小于哪个个体就选择哪个个体即可。</p>
+<p>当出现负数怎么办，比如 <code>-5, 3, 9</code>，这里可以给每个元素都加上第一个元素的绝对值再加 1，也就是加 6，转为：<code>1, 9, 15</code>，然后再像上面那样按轮盘赌即可。</p>
+<p>事实上，这里可以有很多种方法可以选择，比如全部调完正数后让每个元素平方，或者对所有元素加上一个总步数 * 撞墙扣分，代表一次打扫中最多可能扣掉的分。这里选择方法的选取对整个遗传算法影响也是很大的，需要设计一个比较合理的选择方式。</p>
+<h3 id="杂交"><a href="#杂交" class="headerlink" title="杂交"></a>杂交</h3><p>选择出父母之后，需要让父母进行杂交，比如选取某一个位置，取父亲的前半段加上母亲的后半段，以及父亲的后半段加母亲的前半段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">203651</div><div class="line">100344</div><div class="line">取后三位交叉</div><div class="line">203344</div><div class="line">100651</div></pre></td></tr></table></figure>
+<p>交叉算子的方式还有其他更复杂的。</p>
+<h3 id="突变"><a href="#突变" class="headerlink" title="突变"></a>突变</h3><p>子代有很小的概率会发生基因突变，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">203344 -&gt; 206344</div></pre></td></tr></table></figure>
+<p>第三个位置的基因发生变化。</p>
+<h2 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h2><p>实际上这个参数还是很麻烦。。我调了很长时间，最后进化了 2000 次，最高得分大概维持在 380 附近，这是种群平均分和种群中最高分随子代数的趋势图，可以看到种群确实在一点一点进化，如果参数更合理一点相信一定能达到几乎满分的得分的~</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/genetic-algorithm/02.png" alt=""></p>
+<p>贴一个 380 分左右的策略：<code>450351253450256256354356265152354252154454454351351464051353450055356644335603132054351253256352104350004552116414256156116103346453105056355052053324226604006321154130114255453253352312102112111412414140255154432364654062360530606611264324300</code></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>完整代码在 <a href="https://github.com/sunhengzhe/roby" target="_blank" rel="external">这里</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/18/node-canvas-chinese/" rel="next" title="node-canvas 中的中文乱码问题">
+                <i class="fa fa-chevron-left"></i> node-canvas 中的中文乱码问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/16/2016-summary/" rel="prev" title="2016 工作总结">
+                2016 工作总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/08/genetic-algorithm/"
+           data-title="遗传算法" data-url="http://sunhengzhe.com/2016/12/08/genetic-algorithm/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/aoliao.png"
+               alt="一只奥利奥" />
+          <p class="site-author-name" itemprop="name">一只奥利奥</p>
+          <p class="site-description motion-element" itemprop="description">很高兴遇见你</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunhengzhe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3025220401" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#扫地机器人罗比"><span class="nav-number">1.</span> <span class="nav-text">扫地机器人罗比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遗传算法设计"><span class="nav-number">2.</span> <span class="nav-text">遗传算法设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#适应度"><span class="nav-number">2.1.</span> <span class="nav-text">适应度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选取父母"><span class="nav-number">2.2.</span> <span class="nav-text">选取父母</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#杂交"><span class="nav-number">2.3.</span> <span class="nav-text">杂交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#突变"><span class="nav-number">2.4.</span> <span class="nav-text">突变</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#吐槽"><span class="nav-number">3.</span> <span class="nav-text">吐槽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只奥利奥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunhengzhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("1LyGDYVjwRXPreaCWYEHmSBH-gzGzoHsz", "25EgCU8EbGo0vh3FigVCMpnh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,816 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="统计学," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="给定一组数据，可以使用 平均数、中位数、众数 等来判断这组数据的 集中趋势，使用 方差、标准差 等来判断 离散趋势。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集中趋势和离散趋势">
+<meta property="og:url" content="http://sunhengzhe.com/2017/01/21/statistics-tendency/index.html">
+<meta property="og:site_name" content="奥利奥的大房子">
+<meta property="og:description" content="给定一组数据，可以使用 平均数、中位数、众数 等来判断这组数据的 集中趋势，使用 方差、标准差 等来判断 离散趋势。">
+<meta property="og:updated_time" content="2017-01-21T16:31:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="集中趋势和离散趋势">
+<meta name="twitter:description" content="给定一组数据，可以使用 平均数、中位数、众数 等来判断这组数据的 集中趋势，使用 方差、标准差 等来判断 离散趋势。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sunhengzhe.com/2017/01/21/statistics-tendency/"/>
+
+  <title> 集中趋势和离散趋势 | 奥利奥的大房子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a7768ce6e11e71e36e002cbbf272480b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">奥利奥的大房子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                集中趋势和离散趋势
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-21T22:52:45+08:00" content="2017-01-21">
+              2017-01-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/21/statistics-tendency/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/21/statistics-tendency/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/01/21/statistics-tendency/" class="leancloud_visitors" data-flag-title="集中趋势和离散趋势">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>给定一组数据，可以使用 <em>平均数、中位数、众数</em> 等来判断这组数据的 <strong>集中趋势</strong>，使用 <em>方差、标准差</em> 等来判断 <strong>离散趋势</strong>。</p>
+<a id="more"></a>
+<h2 id="总体和样本"><a href="#总体和样本" class="headerlink" title="总体和样本"></a>总体和样本</h2><p>如果要测量全中国所有男性的平均身高，显然是不可能一个一个去测量的，而是从中随机抽取一定数量的人，来测量这些人的平均身高，用以估计全中国男性的平均身高。</p>
+<p>在这个例子里面，全中国的男性称为总体，抽样出来的男性称为样本。</p>
+<blockquote>
+<p>每当你试图描述一组分数时，统计学都能为你提供解决方案。有时你想描述的总体全都摆在眼前，这时完成该任务的方法称作 <strong>描述性统计</strong>。更常见的情形是，你只能看到样本，但仍想描述整个组。这种概括性方法称作 <strong>推断性统计</strong>。</p>
+</blockquote>
+<h2 id="集中趋势"><a href="#集中趋势" class="headerlink" title="集中趋势"></a>集中趋势</h2><p>一组数据的集中趋势可以通过平均数、中位数或者众数来观察。</p>
+<h3 id="中位数"><a href="#中位数" class="headerlink" title="中位数"></a>中位数</h3><p>中位数指将一组数据排序之后，处在最中间的那个数。如果总数为奇数，则直接取到最中间的数；如果总数是偶数，取最中间的两个数值的平均数作为中位数.</p>
+<blockquote>
+<p>1, 1, 2, 3, 4, 5, 12 的中位数为 3</p>
+</blockquote>
+<h3 id="众数"><a href="#众数" class="headerlink" title="众数"></a>众数</h3><p>众数指在一组数据中出现最多次数的数。如果所有数出现次数相等，则该组数据没有众数；如果出现次数最多的数有多个，则这多个数都是该组数据的众数。</p>
+<blockquote>
+<p>1, 1, 2, 3, 4, 5, 12 的众数为 1</p>
+</blockquote>
+<h3 id="平均数"><a href="#平均数" class="headerlink" title="平均数"></a>平均数</h3><p>这里说的平均数指 <strong>算术平均数</strong>。</p>
+<p>设有总体个数为 $N$，另有样本个数 $n$。</p>
+<p>如果能够得到总体的全部数据，自然就能得到总体平均数，此时，将 <strong>总体均值</strong> 记为 $\mu$。</p>
+<p>$$<br>\overline{X} = \frac{\sum_{i=1}^Nx_i}{N}<br>$$</p>
+<p>如果只能得到样本的数据，可以通过样本计算出 <strong>样本均值</strong>，记为 $\overline{X}$。</p>
+<p>$$<br>\overline{X} = \frac{\sum_{i=1}^nx_i}{n}<br>$$</p>
+<p>其实就是 $N$ 和 $n$ 的区别。</p>
+<blockquote>
+<p>1, 1, 2, 3, 4, 5, 12 的平均数为 $\frac{1 + 1 + 2 + 3 + 4 + 5 + 12}7 = 4$</p>
+</blockquote>
+<h2 id="离散趋势"><a href="#离散趋势" class="headerlink" title="离散趋势"></a>离散趋势</h2><p>一组数据的离散趋势可以通过方差、标准差来观察。</p>
+<h3 id="方差"><a href="#方差" class="headerlink" title="方差"></a>方差</h3><p>设有总体个数为 $N$，另有样本个数 $n$。</p>
+<p>如果能得到总体的全部数据，自然就能得到总体的均值 $\mu$，即可得到总体的方差。此时，将 <strong>总体方差</strong> 记为 $\sigma^2$。</p>
+<p>$$<br>\sigma^2 = \frac{\sum_{i=1}^N(x_i - \mu)^2}{N}<br>$$</p>
+<p>如果只能得到样本数据，将 <strong>样本方差</strong> 记为 $s^2$。此时，样本方差的 <strong>无偏估计</strong> 为：</p>
+<p>$$<br>s^2 = \frac{\sum_{i=1}^n(x_i - \overline{X})^2}{n - 1}<br>$$</p>
+<p>对比总体方差的计算方式，样本方差的计算有两个疑问：</p>
+<ul>
+<li>为什么不是除以 n</li>
+<li>为什么除以的是 n - 1</li>
+</ul>
+<h4 id="为什么不是除以-n"><a href="#为什么不是除以-n" class="headerlink" title="为什么不是除以 n"></a>为什么不是除以 n</h4><p>计算样本方差时，我们只知道样本的数据，所以只能求出样本的均值 $\overline{X}$，而得不到总体均值 $\mu$，假设此时计算公式和总体方差类似，被除数是 n：</p>
+<p>$$<br>s^2 = \frac{\sum_{i=1}^n(x_i - \overline{X})^2}{n}<br>$$</p>
+<p>那么：</p>
+<p>$$<br>\begin{align}<br>s^2 &amp; = \frac1n\sum_{i=1}^n(x_i - \overline{X})^2 \\<br>&amp; = \frac1n\sum_{i=1}^n[(x_i - \mu) + (\mu - \overline{X})]^2 \\<br>&amp; = \frac1n\sum_{i=1}^n(x_i - \mu)^2 + \frac2n\sum_{i=1}^n(x_i - \mu)(\mu - \overline{X}) + \frac1n\sum_{i=1}^n(\mu - \overline{X})^2 \\<br>&amp; = \frac1n\sum_{i=1}^n(x_i - \mu)^2 + 2(\overline{X} - \mu)(\mu - \overline{X}) + (\mu - \overline{X})^2 \\<br>&amp; = \frac1n\sum_{i=1}^n(x_i - \mu)^2 - (\mu - \overline{X})^2<br>\end{align}<br>$$</p>
+<p>可以看到，当 $\overline{X}$ 不等于 $\mu$ 时，这样得到的方差是小于实际的方差的，所以为了减少误差，必须要把样本方差放大一点，也就是在分母上除以比 n 小的数。</p>
+<h4 id="为什么除以的是-n-1"><a href="#为什么除以的是-n-1" class="headerlink" title="为什么除以的是 n - 1"></a>为什么除以的是 n - 1</h4><p>至于为什么除以的是 n - 1，而不是 n - 2、n - 3 之类的，这个涉及到具体的数学证明，在此先不做探讨。有一种理解是 n - 1 为自由度，也就是当均值确定时，只要前 n - 1 个数确定了，那么最后一个数也就确定了，也就是说只有 n - 1 个数是自由的，这里的自由度是 n - 1。</p>
+<p><strong>所以，如果已知总体均值 $\mu$，使用 $\mu$ 代替 $\overline{X}$，就无须将 n 换成 n - 1 了。</strong></p>
+<h3 id="标准差"><a href="#标准差" class="headerlink" title="标准差"></a>标准差</h3><p>标准差为方差的平方根。</p>
+<p>总体标准差记为 $\sigma$</p>
+<p>$$<br>\sigma = \sqrt{\sigma^2} = \sqrt{\frac{\sum_{i=1}^N(x_i - \mu)^2}{N}}<br>$$</p>
+<p>样本标准差记为 $s$</p>
+<p>$$<br>s = \sqrt{s^2} = \sqrt{\frac{\sum_{i=1}^n(x_i - \overline{X})^2}{n - 1}}<br>$$</p>
+<h4 id="为什么要引入标准差"><a href="#为什么要引入标准差" class="headerlink" title="为什么要引入标准差"></a>为什么要引入标准差</h4><p>一方面，相比于方差，标准差的单位更友好：方差的计算里面因为使用了平方，所以单位也是是原数据单位的平方；而平方根的单位和原数据单位保持一致。</p>
+<p>另一方面，在某些场景下，标准差更容易观察数据，比如正态分布等。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/统计学/" rel="tag">#统计学</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/21/hexo-mathjax/" rel="next" title="hexo 中使用 mathjax 遇到的问题">
+                <i class="fa fa-chevron-left"></i> hexo 中使用 mathjax 遇到的问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/21/statistics-tendency/"
+           data-title="集中趋势和离散趋势" data-url="http://sunhengzhe.com/2017/01/21/statistics-tendency/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/aoliao.png"
+               alt="一只奥利奥" />
+          <p class="site-author-name" itemprop="name">一只奥利奥</p>
+          <p class="site-description motion-element" itemprop="description">很高兴遇见你</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunhengzhe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3025220401" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总体和样本"><span class="nav-number">1.</span> <span class="nav-text">总体和样本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集中趋势"><span class="nav-number">2.</span> <span class="nav-text">集中趋势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#中位数"><span class="nav-number">2.1.</span> <span class="nav-text">中位数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#众数"><span class="nav-number">2.2.</span> <span class="nav-text">众数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平均数"><span class="nav-number">2.3.</span> <span class="nav-text">平均数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#离散趋势"><span class="nav-number">3.</span> <span class="nav-text">离散趋势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方差"><span class="nav-number">3.1.</span> <span class="nav-text">方差</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么不是除以-n"><span class="nav-number">3.1.1.</span> <span class="nav-text">为什么不是除以 n</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么除以的是-n-1"><span class="nav-number">3.1.2.</span> <span class="nav-text">为什么除以的是 n - 1</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标准差"><span class="nav-number">3.2.</span> <span class="nav-text">标准差</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要引入标准差"><span class="nav-number">3.2.1.</span> <span class="nav-text">为什么要引入标准差</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只奥利奥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunhengzhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("1LyGDYVjwRXPreaCWYEHmSBH-gzGzoHsz", "25EgCU8EbGo0vh3FigVCMpnh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
