@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="node," />
+  <meta name="keywords" content="统计学," />
 
 
 
@@ -84,22 +84,16 @@
 
 
 
-<meta name="description" content="最近要给 node 项目加上验证码，找到了 node-canvas 这个库，简单地用了一下，发现还是蛮好用的。
-git 地址：node-canvas">
+<meta name="description" content="给定一组数据，可以使用 平均数、中位数、众数 等来判断这组数据的 集中趋势，使用 方差、标准差 等来判断 离散趋势。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用 node-canvas 绘制验证码">
-<meta property="og:url" content="http://sunhengzhe.com/2016/11/17/captcha-by-node-canvas/index.html">
+<meta property="og:title" content="集中趋势和离散趋势">
+<meta property="og:url" content="http://sunhengzhe.com/2017/01/21/statistics-tendency/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="最近要给 node 项目加上验证码，找到了 node-canvas 这个库，简单地用了一下，发现还是蛮好用的。
-git 地址：node-canvas">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/captcha-by-node-canvas/01.png">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/captcha-by-node-canvas/01.png">
-<meta property="og:updated_time" content="2016-11-17T14:03:03.000Z">
+<meta property="og:description" content="给定一组数据，可以使用 平均数、中位数、众数 等来判断这组数据的 集中趋势，使用 方差、标准差 等来判断 离散趋势。">
+<meta property="og:updated_time" content="2017-01-21T16:31:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用 node-canvas 绘制验证码">
-<meta name="twitter:description" content="最近要给 node 项目加上验证码，找到了 node-canvas 这个库，简单地用了一下，发现还是蛮好用的。
-git 地址：node-canvas">
-<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/captcha-by-node-canvas/01.png">
+<meta name="twitter:title" content="集中趋势和离散趋势">
+<meta name="twitter:description" content="给定一组数据，可以使用 平均数、中位数、众数 等来判断这组数据的 集中趋势，使用 方差、标准差 等来判断 离散趋势。">
 
 
 
@@ -120,9 +114,9 @@ git 地址：node-canvas">
 
 
 
-  <link rel="canonical" href="http://sunhengzhe.com/2016/11/17/captcha-by-node-canvas/"/>
+  <link rel="canonical" href="http://sunhengzhe.com/2017/01/21/statistics-tendency/"/>
 
-  <title> 使用 node-canvas 绘制验证码 | 奥利奥的大房子 </title>
+  <title> 集中趋势和离散趋势 | 奥利奥的大房子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +256,7 @@ git 地址：node-canvas">
             
             
               
-                使用 node-canvas 绘制验证码
+                集中趋势和离散趋势
               
             
           </h1>
@@ -274,8 +268,8 @@ git 地址：node-canvas">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-17T21:59:14+08:00" content="2016-11-17">
-              2016-11-17
+            <time itemprop="dateCreated" datetime="2017-01-21T22:52:45+08:00" content="2017-01-21">
+              2017-01-21
             </time>
           </span>
 
@@ -285,8 +279,8 @@ git 地址：node-canvas">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/17/captcha-by-node-canvas/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/17/captcha-by-node-canvas/" itemprop="commentsCount"></span>
+                <a href="/2017/01/21/statistics-tendency/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/21/statistics-tendency/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -296,7 +290,7 @@ git 地址：node-canvas">
 
           
           
-             <span id="/2016/11/17/captcha-by-node-canvas/" class="leancloud_visitors" data-flag-title="使用 node-canvas 绘制验证码">
+             <span id="/2017/01/21/statistics-tendency/" class="leancloud_visitors" data-flag-title="集中趋势和离散趋势">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -318,33 +312,57 @@ git 地址：node-canvas">
       
 
       
-        <p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/captcha-by-node-canvas/01.png" alt=""></p>
-<p>最近要给 node 项目加上验证码，找到了 node-canvas 这个库，简单地用了一下，发现还是蛮好用的。</p>
-<p>git 地址：<a href="https://github.com/Automattic/node-canvas" target="_blank" rel="external">node-canvas</a></p>
+        <p>给定一组数据，可以使用 <em>平均数、中位数、众数</em> 等来判断这组数据的 <strong>集中趋势</strong>，使用 <em>方差、标准差</em> 等来判断 <strong>离散趋势</strong>。</p>
 <a id="more"></a>
-<p>顾名思义，node-canvas 允许你在 node 端使用 canvas。在验证码这个使用场景里，我们可以先生成验证码，然后在 canvas 上绘制，最后将图片返回给前端。</p>
-<h2 id="step-1-安装"><a href="#step-1-安装" class="headerlink" title="step 1 安装"></a>step 1 安装</h2><p>在安装 node-canvas 之前，还需要安装一些依赖。不同的系统需要安装的不同，以 linux 和 mac 为例：</p>
+<h2 id="总体和样本"><a href="#总体和样本" class="headerlink" title="总体和样本"></a>总体和样本</h2><p>如果要测量全中国所有男性的平均身高，显然是不可能一个一个去测量的，而是从中随机抽取一定数量的人，来测量这些人的平均身高，用以估计全中国男性的平均身高。</p>
+<p>在这个例子里面，全中国的男性称为总体，抽样出来的男性称为样本。</p>
+<blockquote>
+<p>每当你试图描述一组分数时，统计学都能为你提供解决方案。有时你想描述的总体全都摆在眼前，这时完成该任务的方法称作 <strong>描述性统计</strong>。更常见的情形是，你只能看到样本，但仍想描述整个组。这种概括性方法称作 <strong>推断性统计</strong>。</p>
+</blockquote>
+<h2 id="集中趋势"><a href="#集中趋势" class="headerlink" title="集中趋势"></a>集中趋势</h2><p>一组数据的集中趋势可以通过平均数、中位数或者众数来观察。</p>
+<h3 id="中位数"><a href="#中位数" class="headerlink" title="中位数"></a>中位数</h3><p>中位数指将一组数据排序之后，处在最中间的那个数。如果总数为奇数，则直接取到最中间的数；如果总数是偶数，取最中间的两个数值的平均数作为中位数.</p>
+<blockquote>
+<p>1, 1, 2, 3, 4, 5, 12 的中位数为 3</p>
+</blockquote>
+<h3 id="众数"><a href="#众数" class="headerlink" title="众数"></a>众数</h3><p>众数指在一组数据中出现最多次数的数。如果所有数出现次数相等，则该组数据没有众数；如果出现次数最多的数有多个，则这多个数都是该组数据的众数。</p>
+<blockquote>
+<p>1, 1, 2, 3, 4, 5, 12 的众数为 1</p>
+</blockquote>
+<h3 id="平均数"><a href="#平均数" class="headerlink" title="平均数"></a>平均数</h3><p>这里说的平均数指 <strong>算术平均数</strong>。</p>
+<p>设有总体个数为 $N$，另有样本个数 $n$。</p>
+<p>如果能够得到总体的全部数据，自然就能得到总体平均数，此时，将 <strong>总体均值</strong> 记为 $\mu$。</p>
+<p>$$<br>\overline{X} = \frac{\sum_{i=1}^Nx_i}{N}<br>$$</p>
+<p>如果只能得到样本的数据，可以通过样本计算出 <strong>样本均值</strong>，记为 $\overline{X}$。</p>
+<p>$$<br>\overline{X} = \frac{\sum_{i=1}^nx_i}{n}<br>$$</p>
+<p>其实就是 $N$ 和 $n$ 的区别。</p>
+<blockquote>
+<p>1, 1, 2, 3, 4, 5, 12 的平均数为 $\frac{1 + 1 + 2 + 3 + 4 + 5 + 12}7 = 4$</p>
+</blockquote>
+<h2 id="离散趋势"><a href="#离散趋势" class="headerlink" title="离散趋势"></a>离散趋势</h2><p>一组数据的离散趋势可以通过方差、标准差来观察。</p>
+<h3 id="方差"><a href="#方差" class="headerlink" title="方差"></a>方差</h3><p>设有总体个数为 $N$，另有样本个数 $n$。</p>
+<p>如果能得到总体的全部数据，自然就能得到总体的均值 $\mu$，即可得到总体的方差。此时，将 <strong>总体方差</strong> 记为 $\sigma^2$。</p>
+<p>$$<br>\sigma^2 = \frac{\sum_{i=1}^N(x_i - \mu)^2}{N}<br>$$</p>
+<p>如果只能得到样本数据，将 <strong>样本方差</strong> 记为 $s^2$。此时，样本方差的 <strong>无偏估计</strong> 为：</p>
+<p>$$<br>s^2 = \frac{\sum_{i=1}^n(x_i - \overline{X})^2}{n - 1}<br>$$</p>
+<p>对比总体方差的计算方式，样本方差的计算有两个疑问：</p>
 <ul>
-<li>linux:  <code>sudo yum install cairo cairo-devel cairomm-devel libjpeg-turbo-devel pango pango-devel pangomm pangomm-devel giflib-devel</code></li>
-<li>mac: <code>brew install pkg-config cairo pango libpng jpeg giflib</code></li>
+<li>为什么不是除以 n</li>
+<li>为什么除以的是 n - 1</li>
 </ul>
-<p>其他参考 <a href="https://github.com/Automattic/node-canvas#installation" target="_blank" rel="external">node-canvas#installation</a></p>
-<p>安装完依赖后，执行 <code>npm install canvas</code> 即可。</p>
-<h2 id="step-2-画图"><a href="#step-2-画图" class="headerlink" title="step 2 画图"></a>step 2 画图</h2><p>通过获取 canvas，可以得到 context 对象，然后就可以像在前端一样绘制图形了</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Canvas = <span class="built_in">require</span>(<span class="string">'canvas'</span>);</div><div class="line"><span class="keyword">const</span> canvas = <span class="keyword">new</span> Canvas(<span class="number">100</span>, <span class="number">30</span>),</div><div class="line">    ctx = canvas.getContext(<span class="string">'2d'</span>);</div></pre></td></tr></table></figure>
-<p>实际上我用到的 api 和前端的 canvas 是一样的，绘制过程就不多解释，可以参考 canvas 的相关教程。</p>
-<p>下面是绘制一个 <code>a + b = ?</code> 的验证码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line">ctx.font = <span class="string">'24px "Microsoft YaHei"'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 绘制文本</span></div><div class="line"><span class="keyword">let</span> drawText = <span class="function">(<span class="params">text, x</span>) =&gt;</span> &#123;</div><div class="line">  ctx.save();</div><div class="line">  <span class="comment">// 旋转角度</span></div><div class="line">  <span class="keyword">const</span> angle = <span class="built_in">Math</span>.random() / <span class="number">10</span>;</div><div class="line">  <span class="comment">// y 坐标</span></div><div class="line">  <span class="keyword">const</span> y = <span class="number">22</span>;</div><div class="line">  ctx.rotate(angle);</div><div class="line">  ctx.fillText(text, x, y);</div><div class="line">  ctx.restore();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 随机画线</span></div><div class="line"><span class="keyword">let</span> drawLine = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> num = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">2</span> + <span class="number">3</span>);</div><div class="line">  <span class="comment">// 随机画几条彩色线条</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</div><div class="line">    <span class="keyword">const</span> color = <span class="string">'#'</span> + (<span class="built_in">Math</span>.random() * <span class="number">0xffffff</span> &lt;&lt; <span class="number">0</span>).toString(<span class="number">16</span>);</div><div class="line">    <span class="keyword">const</span> y1 = <span class="built_in">Math</span>.random() * height;</div><div class="line">    <span class="keyword">const</span> y2 = <span class="built_in">Math</span>.random() * height;</div><div class="line">  <span class="comment">// 画线</span></div><div class="line">    ctx.strokeStyle = color;</div><div class="line">    ctx.beginPath();</div><div class="line">    ctx.lineTo(<span class="number">0</span>, y1);</div><div class="line">    ctx.lineTo(width, y2);</div><div class="line">    ctx.stroke();</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 数字的文本随机从小写汉字、大写汉字、数字里选择</span></div><div class="line"><span class="keyword">const</span> numArr = [</div><div class="line">  <span class="string">'〇一二三四五六七八九'</span>,</div><div class="line">  <span class="string">'0123456789'</span>,</div><div class="line">  <span class="string">'零壹贰叁肆伍陆柒捌玖'</span>  </div><div class="line">];</div><div class="line"><span class="comment">// 第一个数字</span></div><div class="line"><span class="keyword">const</span> fir = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">10</span>);</div><div class="line"><span class="comment">// 第二个数字</span></div><div class="line"><span class="keyword">const</span> sec = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">10</span>);</div><div class="line"><span class="comment">// 随机选取运算</span></div><div class="line"><span class="keyword">const</span> operArr = [<span class="string">'加'</span>, <span class="string">'减'</span>, <span class="string">'乘'</span>];</div><div class="line"><span class="keyword">const</span> oper = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * operArr.length);</div><div class="line"></div><div class="line">drawLine();</div><div class="line">drawText(numArr[<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * numArr.length)][fir], <span class="number">10</span>);</div><div class="line">drawText(operArr[oper], <span class="number">40</span>);</div><div class="line">drawText(numArr[<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * numArr.length)][sec], <span class="number">70</span>);</div><div class="line">drawText(<span class="string">'='</span>, <span class="number">100</span>);</div><div class="line">drawText(<span class="string">'?'</span>, <span class="number">130</span>);</div><div class="line"></div><div class="line"><span class="comment">// 验证码值的计算</span></div><div class="line"><span class="keyword">let</span> captcha;</div><div class="line"><span class="keyword">switch</span>(oper) &#123;</div><div class="line">  <span class="keyword">case</span> <span class="number">0</span>: </div><div class="line">    captcha = fir + sec;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">    captcha = fir - sec;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">    captcha = fir * sec;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 存入 session</span></div><div class="line">req.session.captcha = captcha;</div></pre></td></tr></table></figure>
-<p>效果如下：</p>
-<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/captcha-by-node-canvas/01.png" alt=""></p>
-<h2 id="step-3-返回图片"><a href="#step-3-返回图片" class="headerlink" title="step 3 返回图片"></a>step 3 返回图片</h2><p>调用 <code>canvas.toDataURL()</code>，可以返回图片的 base64 格式数据。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">res.send(&#123;</div><div class="line">  <span class="attr">status</span>: <span class="number">200</span>,</div><div class="line">  <span class="attr">data</span>: canvas.toDataURL()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>前端将该数据加到 img 的 src 属性中即可。</p>
-<h2 id="中文乱码"><a href="#中文乱码" class="headerlink" title="中文乱码"></a>中文乱码</h2><p>在将项目部署到 linux 后，发现输出显示的图片中的中文都变成了方框。</p>
-<p> 我参考了 <a href="https://my.oschina.net/u/129529/blog/266843" target="_blank" rel="external">redhat 6 下 node-canvas中文方框解决办法</a> 这篇文章，但是没有全部运行，而是安装了 <code>yum groupinstall &quot;Chinese Support&quot;</code>，<code>yum groupinstall Fonts</code> 这两个。</p>
-<p>另外参考 <a href="https://cnodejs.org/topic/53f98ad8bbdaa79d518c0836" target="_blank" rel="external">用node-canvas绘制中文的时候乱码怎么解决？</a> 问题里的 5 楼，使用了微软雅黑。</p>
-<p>还有 <a href="https://github.com/Automattic/node-canvas/issues/461" target="_blank" rel="external">issue#461</a>，在字体两侧加上引号。</p>
-<p>我按这三个做了，然后 <strong>重启项目</strong> 就好了~</p>
+<h4 id="为什么不是除以-n"><a href="#为什么不是除以-n" class="headerlink" title="为什么不是除以 n"></a>为什么不是除以 n</h4><p>计算样本方差时，我们只知道样本的数据，所以只能求出样本的均值 $\overline{X}$，而得不到总体均值 $\mu$，假设此时计算公式和总体方差类似，被除数是 n：</p>
+<p>$$<br>s^2 = \frac{\sum_{i=1}^n(x_i - \overline{X})^2}{n}<br>$$</p>
+<p>那么：</p>
+<p>$$<br>\begin{align}<br>s^2 &amp; = \frac1n\sum_{i=1}^n(x_i - \overline{X})^2 \\<br>&amp; = \frac1n\sum_{i=1}^n[(x_i - \mu) + (\mu - \overline{X})]^2 \\<br>&amp; = \frac1n\sum_{i=1}^n(x_i - \mu)^2 + \frac2n\sum_{i=1}^n(x_i - \mu)(\mu - \overline{X}) + \frac1n\sum_{i=1}^n(\mu - \overline{X})^2 \\<br>&amp; = \frac1n\sum_{i=1}^n(x_i - \mu)^2 + 2(\overline{X} - \mu)(\mu - \overline{X}) + (\mu - \overline{X})^2 \\<br>&amp; = \frac1n\sum_{i=1}^n(x_i - \mu)^2 - (\mu - \overline{X})^2<br>\end{align}<br>$$</p>
+<p>可以看到，当 $\overline{X}$ 不等于 $\mu$ 时，这样得到的方差是小于实际的方差的，所以为了减少误差，必须要把样本方差放大一点，也就是在分母上除以比 n 小的数。</p>
+<h4 id="为什么除以的是-n-1"><a href="#为什么除以的是-n-1" class="headerlink" title="为什么除以的是 n - 1"></a>为什么除以的是 n - 1</h4><p>至于为什么除以的是 n - 1，而不是 n - 2、n - 3 之类的，这个涉及到具体的数学证明，在此先不做探讨。有一种理解是 n - 1 为自由度，也就是当均值确定时，只要前 n - 1 个数确定了，那么最后一个数也就确定了，也就是说只有 n - 1 个数是自由的，这里的自由度是 n - 1。</p>
+<p><strong>所以，如果已知总体均值 $\mu$，使用 $\mu$ 代替 $\overline{X}$，就无须将 n 换成 n - 1 了。</strong></p>
+<h3 id="标准差"><a href="#标准差" class="headerlink" title="标准差"></a>标准差</h3><p>标准差为方差的平方根。</p>
+<p>总体标准差记为 $\sigma$</p>
+<p>$$<br>\sigma = \sqrt{\sigma^2} = \sqrt{\frac{\sum_{i=1}^N(x_i - \mu)^2}{N}}<br>$$</p>
+<p>样本标准差记为 $s$</p>
+<p>$$<br>s = \sqrt{s^2} = \sqrt{\frac{\sum_{i=1}^n(x_i - \overline{X})^2}{n - 1}}<br>$$</p>
+<h4 id="为什么要引入标准差"><a href="#为什么要引入标准差" class="headerlink" title="为什么要引入标准差"></a>为什么要引入标准差</h4><p>一方面，相比于方差，标准差的单位更友好：方差的计算里面因为使用了平方，所以单位也是是原数据单位的平方；而平方根的单位和原数据单位保持一致。</p>
+<p>另一方面，在某些场景下，标准差更容易观察数据，比如正态分布等。</p>
 
       
     </div>
@@ -366,7 +384,7 @@ git 地址：node-canvas">
       
         <div class="post-tags">
           
-            <a href="/tags/node/" rel="tag">#node</a>
+            <a href="/tags/统计学/" rel="tag">#统计学</a>
           
         </div>
       
@@ -375,17 +393,13 @@ git 地址：node-canvas">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/13/clock-operation/" rel="next" title="时钟运算">
-                <i class="fa fa-chevron-left"></i> 时钟运算
+              <a href="/2017/01/21/hexo-mathjax/" rel="next" title="hexo 中使用 mathjax 遇到的问题">
+                <i class="fa fa-chevron-left"></i> hexo 中使用 mathjax 遇到的问题
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/18/node-canvas-chinese/" rel="prev" title="node-canvas 中的中文乱码问题">
-                node-canvas 中的中文乱码问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -411,8 +425,8 @@ git 地址：node-canvas">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/17/captcha-by-node-canvas/"
-           data-title="使用 node-canvas 绘制验证码" data-url="http://sunhengzhe.com/2016/11/17/captcha-by-node-canvas/">
+      <div class="ds-thread" data-thread-key="2017/01/21/statistics-tendency/"
+           data-title="集中趋势和离散趋势" data-url="http://sunhengzhe.com/2017/01/21/statistics-tendency/">
       </div>
     
   </div>
@@ -516,7 +530,7 @@ git 地址：node-canvas">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#step-1-安装"><span class="nav-number">1.</span> <span class="nav-text">step 1 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-2-画图"><span class="nav-number">2.</span> <span class="nav-text">step 2 画图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-3-返回图片"><span class="nav-number">3.</span> <span class="nav-text">step 3 返回图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中文乱码"><span class="nav-number">4.</span> <span class="nav-text">中文乱码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总体和样本"><span class="nav-number">1.</span> <span class="nav-text">总体和样本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集中趋势"><span class="nav-number">2.</span> <span class="nav-text">集中趋势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#中位数"><span class="nav-number">2.1.</span> <span class="nav-text">中位数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#众数"><span class="nav-number">2.2.</span> <span class="nav-text">众数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平均数"><span class="nav-number">2.3.</span> <span class="nav-text">平均数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#离散趋势"><span class="nav-number">3.</span> <span class="nav-text">离散趋势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方差"><span class="nav-number">3.1.</span> <span class="nav-text">方差</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么不是除以-n"><span class="nav-number">3.1.1.</span> <span class="nav-text">为什么不是除以 n</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么除以的是-n-1"><span class="nav-number">3.1.2.</span> <span class="nav-text">为什么除以的是 n - 1</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标准差"><span class="nav-number">3.2.</span> <span class="nav-text">标准差</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要引入标准差"><span class="nav-number">3.2.1.</span> <span class="nav-text">为什么要引入标准差</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
