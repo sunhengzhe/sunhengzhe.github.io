@@ -2,16 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://sunhengzhe.com/2017/01/21/statistics-tendency/</loc>
+    <loc>http://sunhengzhe.com/2017/01/23/central-limit-theorem/</loc>
     
-    <lastmod>2017-01-23T02:48:12.000Z</lastmod>
+    <lastmod>2017-01-23T16:29:18.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2017/01/22/binomial-and-poisson-and-gaussion-distribution/</loc>
+    <loc>http://sunhengzhe.com/2016/11/10/clock-operation/</loc>
     
-    <lastmod>2017-01-23T02:43:18.000Z</lastmod>
+    <lastmod>2017-01-23T13:52:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/11/13/diffie-hellman-key-exchange/</loc>
+    
+    <lastmod>2017-01-23T13:52:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2017/01/22/binomial-and-poisson-and-normal-distribution/</loc>
+    
+    <lastmod>2017-01-23T13:51:05.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2017/01/21/statistics-tendency/</loc>
+    
+    <lastmod>2017-01-23T02:48:12.000Z</lastmod>
     
   </url>
   
@@ -47,20 +68,6 @@
     <loc>http://sunhengzhe.com/2016/11/17/captcha-by-node-canvas/</loc>
     
     <lastmod>2016-11-17T14:03:03.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/11/13/clock-operation/</loc>
-    
-    <lastmod>2016-11-13T12:11:12.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/11/10/diffie-hellman-key-exchange/</loc>
-    
-    <lastmod>2016-11-13T11:18:49.000Z</lastmod>
     
   </url>
   
@@ -121,28 +128,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://sunhengzhe.com/2016/07/31/five-in-a-row-game/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -156,7 +142,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/19/calculate-24-game/</loc>
+    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -170,7 +156,28 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
+    <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/19/calculate-24-game/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -184,7 +191,28 @@
   </url>
   
   <url>
+    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/24/data-structures/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -199,27 +227,6 @@
   
   <url>
     <loc>http://sunhengzhe.com/2016/07/26/data-structures-2/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/24/data-structures/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     

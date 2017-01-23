@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2017/01/21/statistics-tendency/</loc>
-    <lastmod>2017-01-23T02:48:12.000Z</lastmod>
+    <loc>http://sunhengzhe.com/2017/01/23/central-limit-theorem/</loc>
+    <lastmod>2017-01-23T16:29:18.000Z</lastmod>
     <data>
         <display>
-        <title>集中趋势和离散趋势</title>
-        <pubTime>2017-01-21T14:52:45.000Z</pubTime>
+        <title>中心极限定理</title>
+        <pubTime>2017-01-23T14:28:45.000Z</pubTime>
         
         <tag>统计学</tag>
          
@@ -21,12 +21,63 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2017/01/22/binomial-and-poisson-and-gaussion-distribution/</loc>
-    <lastmod>2017-01-23T02:43:18.000Z</lastmod>
+    <loc>http://sunhengzhe.com/2016/11/10/clock-operation/</loc>
+    <lastmod>2017-01-23T13:52:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>时钟运算</title>
+        <pubTime>2016-11-10T15:00:00.000Z</pubTime>
+        
+        <tag>密码技术</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/11/13/diffie-hellman-key-exchange/</loc>
+    <lastmod>2017-01-23T13:52:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>Diffie-Hellman 密钥交换</title>
+        <pubTime>2016-11-13T11:00:00.000Z</pubTime>
+        
+        <tag>密码技术</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2017/01/22/binomial-and-poisson-and-normal-distribution/</loc>
+    <lastmod>2017-01-23T13:51:05.000Z</lastmod>
     <data>
         <display>
         <title>二项分布、泊松分布、正态分布</title>
         <pubTime>2017-01-22T14:28:45.000Z</pubTime>
+        
+        <tag>统计学</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2017/01/21/statistics-tendency/</loc>
+    <lastmod>2017-01-23T02:48:12.000Z</lastmod>
+    <data>
+        <display>
+        <title>集中趋势和离散趋势</title>
+        <pubTime>2017-01-21T14:52:45.000Z</pubTime>
         
         <tag>统计学</tag>
          
@@ -114,40 +165,6 @@
         <pubTime>2016-11-17T13:59:14.000Z</pubTime>
         
         <tag>node</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/11/13/clock-operation/</loc>
-    <lastmod>2016-11-13T12:11:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>时钟运算</title>
-        <pubTime>2016-11-13T11:00:00.000Z</pubTime>
-        
-        <tag>密码技术</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/11/10/diffie-hellman-key-exchange/</loc>
-    <lastmod>2016-11-13T11:18:49.000Z</lastmod>
-    <data>
-        <display>
-        <title>Diffie-Hellman 密钥交换</title>
-        <pubTime>2016-11-10T15:00:00.000Z</pubTime>
-        
-        <tag>密码技术</tag>
          
          
            
@@ -285,25 +302,6 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>《算法导论》第二章：算法基础</title>
-        <pubTime>2016-06-26T18:47:19.000Z</pubTime>
-        
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://sunhengzhe.com/2016/07/31/five-in-a-row-game/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
@@ -321,12 +319,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
+    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第八章：线性时间排序</title>
-        <pubTime>2016-07-09T13:59:26.000Z</pubTime>
+        <title>《算法导论》第七章：快速排序</title>
+        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
         
         <tag>读书笔记</tag>
          
@@ -340,16 +338,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
+    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>函数柯里化</title>
-        <pubTime>2016-07-04T04:00:28.000Z</pubTime>
+        <title>《算法导论》第六章：堆排序</title>
+        <pubTime>2016-07-03T15:54:10.000Z</pubTime>
         
-        <tag>每周总结</tag>
+        <tag>读书笔记</tag>
          
-        <tag>javascript</tag>
+        <tag>算法</tag>
          
          
            
@@ -359,12 +357,48 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
+    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第七章：快速排序</title>
-        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
+        <title>自然语言处理（一）</title>
+        <pubTime>2016-07-10T15:28:24.000Z</pubTime>
+        
+        <tag>自然语言处理 读书笔记</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>二叉搜索树</title>
+        <pubTime>2016-08-07T03:36:57.000Z</pubTime>
+        
+        <tag>每周总结</tag>
+         
+        <tag>数据结构</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第二章：算法基础</title>
+        <pubTime>2016-06-26T18:47:19.000Z</pubTime>
         
         <tag>读书笔记</tag>
          
@@ -395,33 +429,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
+    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>自然语言处理（一）</title>
-        <pubTime>2016-07-10T15:28:24.000Z</pubTime>
+        <title>函数柯里化</title>
+        <pubTime>2016-07-04T04:00:28.000Z</pubTime>
         
-        <tag>自然语言处理 读书笔记</tag>
+        <tag>每周总结</tag>
          
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>《算法导论》第六章：堆排序</title>
-        <pubTime>2016-07-03T15:54:10.000Z</pubTime>
-        
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
+        <tag>javascript</tag>
          
          
            
@@ -450,6 +467,44 @@
 
     
   <url>
+    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第八章：线性时间排序</title>
+        <pubTime>2016-07-09T13:59:26.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用 svg 让线条动起来</title>
+        <pubTime>2016-06-28T12:43:19.000Z</pubTime>
+        
+        <tag>每周总结</tag>
+         
+        <tag>svg</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
@@ -458,6 +513,25 @@
         <pubTime>2016-08-12T13:32:34.000Z</pubTime>
         
         <tag>每周总结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/24/data-structures/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>基本数据结构（一）</title>
+        <pubTime>2016-07-24T05:39:57.000Z</pubTime>
+        
+        <tag>每周总结</tag>
+         
+        <tag>数据结构</tag>
          
          
            
@@ -492,63 +566,6 @@
         <display>
         <title>基本数据结构（二）</title>
         <pubTime>2016-07-26T15:39:57.000Z</pubTime>
-        
-        <tag>每周总结</tag>
-         
-        <tag>数据结构</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/24/data-structures/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>基本数据结构（一）</title>
-        <pubTime>2016-07-24T05:39:57.000Z</pubTime>
-        
-        <tag>每周总结</tag>
-         
-        <tag>数据结构</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>使用 svg 让线条动起来</title>
-        <pubTime>2016-06-28T12:43:19.000Z</pubTime>
-        
-        <tag>每周总结</tag>
-         
-        <tag>svg</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>二叉搜索树</title>
-        <pubTime>2016-08-07T03:36:57.000Z</pubTime>
         
         <tag>每周总结</tag>
          

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="node," />
+  <meta name="keywords" content="统计学," />
 
 
 
@@ -84,21 +84,16 @@
 
 
 
-<meta name="description" content="因为有小伙伴说使用 node-canvas 中文乱码，使用上一篇的方法也没能解决，于是我又上网找了一下，发现了这篇文章：Nodejs图片编辑和中文乱码
-虽然原作者是使用的 gm，但他提到了一种解决方案：">
+<meta name="description" content="二项分布、泊松分布和正态分布 是统计学中十分重要的三个分布，也和我们的生活息息相关。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="node-canvas 中的中文乱码问题">
-<meta property="og:url" content="http://sunhengzhe.com/2016/11/18/node-canvas-chinese/index.html">
+<meta property="og:title" content="二项分布、泊松分布、正态分布">
+<meta property="og:url" content="http://sunhengzhe.com/2017/01/22/binomial-and-poisson-and-normal-distribution/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="因为有小伙伴说使用 node-canvas 中文乱码，使用上一篇的方法也没能解决，于是我又上网找了一下，发现了这篇文章：Nodejs图片编辑和中文乱码
-虽然原作者是使用的 gm，但他提到了一种解决方案：">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/node-canvas-chinese/01.png">
-<meta property="og:updated_time" content="2016-11-18T11:19:51.000Z">
+<meta property="og:description" content="二项分布、泊松分布和正态分布 是统计学中十分重要的三个分布，也和我们的生活息息相关。">
+<meta property="og:updated_time" content="2017-01-23T13:51:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="node-canvas 中的中文乱码问题">
-<meta name="twitter:description" content="因为有小伙伴说使用 node-canvas 中文乱码，使用上一篇的方法也没能解决，于是我又上网找了一下，发现了这篇文章：Nodejs图片编辑和中文乱码
-虽然原作者是使用的 gm，但他提到了一种解决方案：">
-<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/node-canvas-chinese/01.png">
+<meta name="twitter:title" content="二项分布、泊松分布、正态分布">
+<meta name="twitter:description" content="二项分布、泊松分布和正态分布 是统计学中十分重要的三个分布，也和我们的生活息息相关。">
 
 
 
@@ -119,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://sunhengzhe.com/2016/11/18/node-canvas-chinese/"/>
+  <link rel="canonical" href="http://sunhengzhe.com/2017/01/22/binomial-and-poisson-and-normal-distribution/"/>
 
-  <title> node-canvas 中的中文乱码问题 | 奥利奥的大房子 </title>
+  <title> 二项分布、泊松分布、正态分布 | 奥利奥的大房子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -261,7 +256,7 @@
             
             
               
-                node-canvas 中的中文乱码问题
+                二项分布、泊松分布、正态分布
               
             
           </h1>
@@ -273,8 +268,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-18T19:20:14+08:00" content="2016-11-18">
-              2016-11-18
+            <time itemprop="dateCreated" datetime="2017-01-22T22:28:45+08:00" content="2017-01-22">
+              2017-01-22
             </time>
           </span>
 
@@ -284,8 +279,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/18/node-canvas-chinese/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/18/node-canvas-chinese/" itemprop="commentsCount"></span>
+                <a href="/2017/01/22/binomial-and-poisson-and-normal-distribution/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/22/binomial-and-poisson-and-normal-distribution/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -295,7 +290,7 @@
 
           
           
-             <span id="/2016/11/18/node-canvas-chinese/" class="leancloud_visitors" data-flag-title="node-canvas 中的中文乱码问题">
+             <span id="/2017/01/22/binomial-and-poisson-and-normal-distribution/" class="leancloud_visitors" data-flag-title="二项分布、泊松分布、正态分布">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -317,27 +312,43 @@
       
 
       
-        <p>因为有小伙伴说使用 node-canvas 中文乱码，使用上一篇的方法也没能解决，于是我又上网找了一下，发现了这篇文章：<a href="http://www.jianshu.com/p/a651258c9135" target="_blank" rel="external">Nodejs图片编辑和中文乱码</a></p>
-<p>虽然原作者是使用的 gm，但他提到了一种解决方案：</p>
+        <p><strong>二项分布、泊松分布和正态分布</strong> 是统计学中十分重要的三个分布，也和我们的生活息息相关。</p>
 <a id="more"></a>
-<blockquote>
-<p>我们来分析下解决乱码的两个条件：</p>
-<ol>
-<li>文档utf-8编码：这里utf-8编码是指要求文件的存储编码方式是utf-8，而不是对字符进行utf-8编码（如js中的encodeURI）。通过对IDE或者其他方式确定文件的编码方式，如有问题可自行百度。</li>
-<li>指定中文字体库：可以通过 <code>.font(&#39;/Library/Fonts/微软雅黑.ttf&#39;) //mac系统下</code> 或 <code>.font(&#39;/usr/share/fonts/微软雅黑.ttf&#39;)  //linux系统下</code>指定。 font函数的参数是字体在系统中的存储路径。</li>
-</ol>
-<p>文／狐尼克朱迪（简书作者）<br>原文链接：<a href="http://www.jianshu.com/p/a651258c9135" target="_blank" rel="external">http://www.jianshu.com/p/a651258c9135</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。</p>
+<h2 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h2><blockquote>
+<p>二项分布是 n 个独立的是/非试验中成功的次数的离散概率分布，其中每次试验的成功概率为 p</p>
 </blockquote>
-<p>也就是自己下载字体包，然后自行引用。扔一个下载地址：<a href="http://ztxz.org/" target="_blank" rel="external">字体下载</a></p>
-<p>于是我马上去 node-canvas 找了一下，非常开心地发现 node-canvas 也提供了这样的方法：<a href="https://github.com/Automattic/node-canvas/tree/master/.github#canvasregisterfont-for-bundled-fonts" target="_blank" rel="external">Canvas.registerFont for bundled fonts</a>，使用方法也是大同小异，设置字体路径，然后定义字体即可：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// You need to call it before the Canvas is created</span></div><div class="line">Canvas.registerFont(<span class="string">'comicsans.ttf'</span>, &#123;<span class="attr">family</span>: <span class="string">'Comic Sans'</span>&#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> canvas = <span class="keyword">new</span> Canvas(<span class="number">500</span>, <span class="number">500</span>),</div><div class="line">  ctx = canvas.getContext(<span class="string">'2d'</span>);</div><div class="line"></div><div class="line">ctx.font = <span class="string">'12px "Comic Sans"'</span>;</div><div class="line">ctx.fillText(<span class="number">250</span>, <span class="number">10</span>, <span class="string">'Everyone hates this font :('</span>);</div></pre></td></tr></table></figure>
-<p>结果一刷新网页发现竟然报了 <code>Canvas.registerFont is not a function</code>。一脸懵逼，明明 README 里面是这么写的啊！</p>
-<p>又去查了一下，找到了这个 issue：<a href="https://github.com/Automattic/node-canvas/issues/838" target="_blank" rel="external">issue#838</a>，大兄弟的问题和我一模一样。</p>
-<p>按照他们说的，这个方法在 npm 上还没有，但是 github 这个分支是有的：<a href="https://github.com/chearon/node-canvas#12971f64a66b" target="_blank" rel="external">https://github.com/chearon/node-canvas#12971f64a66b</a></p>
-<p>于是我把这个分支 clone 下来，然后把 <code>require(&#39;canvas&#39;)</code> 改成了 <code>require(&#39;../node-canvas&#39;)</code></p>
-<p>运行！Perfect！</p>
-<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/node-canvas-chinese/01.png" alt=""></p>
-<p>泪流满面</p>
+<p>二项分布比较简单也比较常见，在此不作详细说明。</p>
+<p>如给定一枚均匀的硬币，掷到正面的概率 p 和掷到反面的概率 1 - p 都是 0.5。设 X 为掷 n 次硬币中出现正面硬币的个数，那么<br>$$<br>P(X = k) = \binom{n}{k}p^k(1-p)^{n-k}<br>$$</p>
+<p>其中，对于$k = 0, 1, 2, … n$，$\binom{n}{k} = \frac{n!}{(n-k)!k!}$</p>
+<h3 id="期望"><a href="#期望" class="headerlink" title="期望"></a>期望</h3><p>期望是指试验中每次可能结果的概率乘以其结果的总和，对于二项分布而言，期望 $E(X) = \sum_{k=0}^nk\binom{n}{k}p^k(1-p)^{n-k}$</p>
+<p>而当 k = 0 时，$0 \times \binom{n}{0}p^0(1-p)^n = 0$，所以可以把第一项省略，于是</p>
+<p>$$<br>\begin{align}<br>E(X) &amp; = \sum_{k=1}^nk\binom{n}{k}p^k(1-p)^{n-k} \\<br>&amp; = \sum_{k=1}^nk\frac{n!}{k!(n-k)!}p^k(1-p)^{n-k} \\<br>&amp; = \sum_{k=1}^n\frac{n!}{(k-1)!(n-k)!}pp^{k-1}(1-p)^{n-k} \\<br>&amp; = np\sum_{k=1}^n\frac{(n-1)!}{(k-1)!(n-k)!}p^{k-1}(1-p)^{n-k} \\<br>\end{align}<br>$$</p>
+<p>令 a = k - 1，b = n - 1，则 n - k = b - a。从 k = 1 到 n 则可以替换为 a = 0 到  n - 1，即 a = 0 到 b</p>
+<p>$$<br>\begin{align}<br>&amp; = np\sum_{a=0}^b\frac{b!}{a!(b-a)!}p^a(1-p)^{b-a} \\<br>&amp; = np \times 1 \\<br>&amp; = np<br>\end{align}<br>$$</p>
+<p>即 $E(X) = np$</p>
+<h2 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h2><blockquote>
+<p>在二项分布中，如果试验次数 n 很大，二项分布的概率 p 很小，且乘积 $\lambda = np$ 比较适中，则事件出现的次数的概率可以用泊松分布来逼近。事实上，二项分布可以看作泊松分布在离散时间上的对应物。</p>
+</blockquote>
+<p>假设你是一名交通工程师，你测出了每小时通过大桥的车辆为 $\lambda$ 辆，现在想知道每小时通过大桥的车是 k 辆的概率。</p>
+<p>根据测量，实际上可以得出每分钟通过的车辆数，也就是 $\frac{\lambda}{60}$，事实上这可以看做 <strong>每分钟有车通过的概率</strong></p>
+<p>要想求出每小时通过大桥车辆数为 k 的概率 $P(X=k)$，利用上面讨论的二项分布，即有</p>
+<p>$$<br>P(X=k) = \binom{60}{k}(\frac{\lambda}{60})^k(1 - \frac{\lambda}{60})^{60-k}<br>$$</p>
+<p>这也有个问题，倘若每分钟有多辆车通过呢？一旦 k 超过 60，计算就有问题了，那么可以将 “每分钟” 换成 “每秒”，减少时间间隔。</p>
+<p>$$<br>P(X=k) = \binom{3600}{k}(\frac{\lambda}{3600})^k(1 - \frac{\lambda}{3600})^{3600-k}<br>$$</p>
+<p>当时间间隔越小，小到无限小的时候，可以引出泊松分布的形式：</p>
+<p>$$<br>P(X=k) = \lim_{n \to \infty}\binom{n}{k}(\frac{\lambda}{n})^k(1 - \frac{\lambda}{n})^{n-k}<br>$$</p>
+<p>时间间隔无限小，也就是 n 趋近于正无穷。</p>
+<p>$$<br>\begin{align}<br>P(X=k) &amp; = \lim_{n \to \infty}\binom{n}{k}(\frac{\lambda}{n})^k(1 - \frac{\lambda}{n})^{n-k} \\<br>&amp; = \lim_{n \to \infty}\frac{n!}{k!(n-k)!}\frac{\lambda^k}{n^k}(1 - \frac{\lambda}{n})^{n}(1 - \frac{\lambda}{n})^{-k} \\<br>&amp; = \lim_{n \to \infty}\frac{n(n-1)(n-2)\cdots(n-k+1)}{n^k}\frac{\lambda^k}{k!}(1 - \frac{\lambda}{n})^{n}(1 - \frac{\lambda}{n})^{-k}<br>\end{align}<br>$$</p>
+<p>而 $\lim_{n \to \infty}\frac{n(n-1)(n-2)\cdots(n-k+1)}{n^k} = 1，<br>\lim_{n \to \infty}(1 - \frac{\lambda}{n})^n = e^{-\lambda}，<br>\lim_{n \to \infty}(1 - \frac{\lambda}{n})^{-k} = 1$</p>
+<p>所以，<br>$$<br>\begin{align}<br>P(X=k) &amp; = 1 \times \frac{\lambda^k}{k!} e^{-\lambda} \times 1 \\<br>&amp; = \frac{\lambda^k}{k!} e^{-\lambda}<br>\end{align}<br>$$</p>
+<h2 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h2><p>正态分布又名高斯分布，其概率密度函数为</p>
+<p>$$<br>P(X) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}<br>$$</p>
+<p>其中 $\mu$ 为期望值，$\sigma$ 为标准差，之前也提到过。</p>
+<p>另外，$\frac{x-\mu}{\sigma}$ 称为标准分数（z-score），代表 <strong>距离平均数有多少个标准差</strong>。</p>
+<h3 id="经验法则"><a href="#经验法则" class="headerlink" title="经验法则"></a>经验法则</h3><p>经验法则又名 68-95-99.7 法则，表明了几个特殊区间的概率值。</p>
+<p>$(\mu - \sigma, \mu + \sigma)$ 发生的概率为 68%<br>$(\mu - 2\sigma, \mu + 2\sigma)$ 发生的概率为 95%<br>$(\mu - 3\sigma, \mu + 3\sigma)$ 发生的概率为 99.7%</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>需要注意的是二项分布和泊松分布都是离散分布，正态分布为连续分布。这三者存在紧密的联系，从图像上来看三者也是非常接近。</p>
+<p>如果二项分布的实验次数 n 很大而每次试验的成功概率 p 很小时，泊松分布可作为二项分布的极限近似。当实验次数 n 再变大，几乎可以看成连续时，二项分布和泊松分布都可以用正态分布来代替。</p>
 
       
     </div>
@@ -359,7 +370,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/node/" rel="tag">#node</a>
+            <a href="/tags/统计学/" rel="tag">#统计学</a>
           
         </div>
       
@@ -368,16 +379,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/17/captcha-by-node-canvas/" rel="next" title="使用 node-canvas 绘制验证码">
-                <i class="fa fa-chevron-left"></i> 使用 node-canvas 绘制验证码
+              <a href="/2017/01/21/statistics-tendency/" rel="next" title="集中趋势和离散趋势">
+                <i class="fa fa-chevron-left"></i> 集中趋势和离散趋势
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/08/genetic-algorithm/" rel="prev" title="遗传算法">
-                遗传算法 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/23/central-limit-theorem/" rel="prev" title="中心极限定理">
+                中心极限定理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -404,8 +415,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/18/node-canvas-chinese/"
-           data-title="node-canvas 中的中文乱码问题" data-url="http://sunhengzhe.com/2016/11/18/node-canvas-chinese/">
+      <div class="ds-thread" data-thread-key="2017/01/22/binomial-and-poisson-and-normal-distribution/"
+           data-title="二项分布、泊松分布、正态分布" data-url="http://sunhengzhe.com/2017/01/22/binomial-and-poisson-and-normal-distribution/">
       </div>
     
   </div>
@@ -509,7 +520,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二项分布"><span class="nav-number">1.</span> <span class="nav-text">二项分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#期望"><span class="nav-number">1.1.</span> <span class="nav-text">期望</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泊松分布"><span class="nav-number">2.</span> <span class="nav-text">泊松分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正态分布"><span class="nav-number">3.</span> <span class="nav-text">正态分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#经验法则"><span class="nav-number">3.1.</span> <span class="nav-text">经验法则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
           </div>
         </section>
