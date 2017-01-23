@@ -234,7 +234,7 @@ auto_excerpt:
 # MathJax Support
 mathjax:
   enable: true
-  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  cdn: //cdn.bootcss.com/mathjax/2.7.0/MathJax.js
 
 
 # Swiftype Search API Key
