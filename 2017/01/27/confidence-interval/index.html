@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="孙恒哲,奥利奥的大房子" />
+  <meta name="keywords" content="统计学," />
 
 
 
@@ -84,15 +84,22 @@
 
 
 
-<meta name="description" content="很高兴遇见你">
-<meta property="og:type" content="website">
-<meta property="og:title" content="奥利奥的大房子">
-<meta property="og:url" content="http://sunhengzhe.com/archives/2016/12/index.html">
+<meta name="description" content="先看一个很常见的场景。
+某地区将要进行选举活动，有 A、B 两个候选人，现随机抽查 250 个人，其中 142 个人支持 A，其他人支持 B。
+这是一个很简单的伯努利分布，假设选 A 的概率是 $p$，选 B 的概率是 $1 - p$，期望为 $\mu$，方差为 $\sigma$。如果能统计整个地区的所有人，那么这些值都能得到，但是统计整个地区显然是不切实际的，不过题目中给出了随机抽查的 250">
+<meta property="og:type" content="article">
+<meta property="og:title" content="置信区间">
+<meta property="og:url" content="http://sunhengzhe.com/2017/01/27/confidence-interval/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="很高兴遇见你">
+<meta property="og:description" content="先看一个很常见的场景。
+某地区将要进行选举活动，有 A、B 两个候选人，现随机抽查 250 个人，其中 142 个人支持 A，其他人支持 B。
+这是一个很简单的伯努利分布，假设选 A 的概率是 $p$，选 B 的概率是 $1 - p$，期望为 $\mu$，方差为 $\sigma$。如果能统计整个地区的所有人，那么这些值都能得到，但是统计整个地区显然是不切实际的，不过题目中给出了随机抽查的 250">
+<meta property="og:updated_time" content="2017-02-08T10:48:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="奥利奥的大房子">
-<meta name="twitter:description" content="很高兴遇见你">
+<meta name="twitter:title" content="置信区间">
+<meta name="twitter:description" content="先看一个很常见的场景。
+某地区将要进行选举活动，有 A、B 两个候选人，现随机抽查 250 个人，其中 142 个人支持 A，其他人支持 B。
+这是一个很简单的伯努利分布，假设选 A 的概率是 $p$，选 B 的概率是 $1 - p$，期望为 $\mu$，方差为 $\sigma$。如果能统计整个地区的所有人，那么这些值都能得到，但是统计整个地区显然是不切实际的，不过题目中给出了随机抽查的 250">
 
 
 
@@ -113,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://sunhengzhe.com/archives/2016/12/"/>
+  <link rel="canonical" href="http://sunhengzhe.com/2017/01/27/confidence-interval/"/>
 
-  <title> 归档 | 奥利奥的大房子 </title>
+  <title> 置信区间 | 奥利奥的大房子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,7 +153,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,65 +241,153 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-      
-      OK! 目前共计 33 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                置信区间
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-27T12:36:45+08:00" content="2017-01-27">
+              2017-01-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/27/confidence-interval/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/27/confidence-interval/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/01/27/confidence-interval/" class="leancloud_visitors" data-flag-title="置信区间">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <p>先看一个很常见的场景。</p>
+<p>某地区将要进行选举活动，有 A、B 两个候选人，现随机抽查 250 个人，其中 142 个人支持 A，其他人支持 B。</p>
+<p>这是一个很简单的伯努利分布，假设选 A 的概率是 $p$，选 B 的概率是 $1 - p$，期望为 $\mu$，方差为 $\sigma$。如果能统计整个地区的所有人，那么这些值都能得到，但是统计整个地区显然是不切实际的，不过题目中给出了随机抽查的 250 个人，这 250 个人也就是样本，我们可以计算样本的几个统计值。</p>
+<p>设选 A 为 1，选 B 为 0；</p>
+<p>那么期望 $\overline{X}$、方差 $s^2$ 可以得到：</p>
+<p>$\overline{X} = \frac{0 \times 142 + 1 \times (250 - 142)}{250} = 0.432$<br>$s^2 = \frac{142 \times (0 - \overline{X})^2 + (250 - 142) \times (1 - \overline{X}^2)}{250 - 1} = 0.246$<br>$s = \sqrt{s^2} = 0.496$</p>
+<p>那么，我们可以说选 A 的概率就是 0.432 吗？当然是不行的，因为 0.432 只是样本的期望值，和总体的期望值 $\mu$ 是有差别的，我们需要估计总体期望值的大概范围。</p>
+<p>而根据中心极限定理，总体期望等于样本均值的均值，而样本均值的分布是正态分布，且</p>
+<p>$<br>\mu_{\overline{X}} = \mu<br>$<br>$<br>\sigma_{\overline{X}} = \frac{\sigma}{\sqrt{n}}<br>$</p>
+<p>然而我们也没有总体的标准差 $\sigma$，但我们可以通过样本的标准差来估计总体的标准差，即</p>
+<p>$$<br>\sigma \approx s = 0.496<br>$$</p>
+<p>所以</p>
+<p>$$<br>\sigma_{\overline{X}} = \frac{\sigma}{\sqrt{n}} \approx \frac{s}{\sqrt{n}} = \frac{0.496}{\sqrt{250}} = 0.031<br>$$</p>
+<p>也就是说，样本均值的分布是符合 $\sigma = 0.031$ 的正态分布，当然有一定的误差，因为总体的标准差是估计的。</p>
+<p>而根据正态分布的经验法则，在 $(\mu − 3\sigma, \mu + 3\sigma), (\mu − 3\sigma, \mu + 3\sigma)$ 发生的概率为 99.7%，也就是说，<strong>我们有 99.7% 的理由相信，我们的样本均值是落在 $\mu$ 的三个标准差以内的。</strong> 换句话说，$\mu$ 有 99.7% 的可能性处在样本均值的三个标准差以内。</p>
+<p>即 有 99.7% 的可能性，选 A 的概率在 0.496 - 3 * 0.031 到 0.496 + 3 * 0.031 之间，即 0.403 到 0.589。</p>
+<p>置信区间即 $0.496 \pm 0.093$。</p>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/统计学/" rel="tag">#统计学</a>
+          
         </div>
       
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/23/central-limit-theorem/" rel="next" title="中心极限定理">
+                <i class="fa fa-chevron-left"></i> 中心极限定理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/12/08/genetic-algorithm/" itemprop="url">
-              
-                <span itemprop="name">遗传算法</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-12-08T23:00:00+08:00"
-              content="2016-12-08" >
-          12-08
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -300,6 +395,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/27/confidence-interval/"
+           data-title="置信区间" data-url="http://sunhengzhe.com/2017/01/27/confidence-interval/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -319,8 +422,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/aoliao.png"
@@ -383,6 +495,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -486,11 +609,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
