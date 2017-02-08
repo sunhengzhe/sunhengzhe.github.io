@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://sunhengzhe.com/2017/01/27/confidence-interval/</loc>
-    <lastmod>2017-02-08T10:48:25.000Z</lastmod>
+    <lastmod>2017-02-08T10:50:07.000Z</lastmod>
     <data>
         <display>
         <title>置信区间</title>
@@ -319,16 +319,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/24/data-structures/</loc>
+    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>基本数据结构（一）</title>
-        <pubTime>2016-07-24T05:39:57.000Z</pubTime>
+        <title>《算法导论》第八章：线性时间排序</title>
+        <pubTime>2016-07-09T13:59:26.000Z</pubTime>
         
-        <tag>每周总结</tag>
+        <tag>读书笔记</tag>
          
-        <tag>数据结构</tag>
+        <tag>算法</tag>
          
          
            
@@ -391,86 +391,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>《算法导论》第二章：算法基础</title>
-        <pubTime>2016-06-26T18:47:19.000Z</pubTime>
-        
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>《算法导论》第七章：快速排序</title>
-        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
-        
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>自然语言处理（一）</title>
-        <pubTime>2016-07-10T15:28:24.000Z</pubTime>
-        
-        <tag>自然语言处理 读书笔记</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
         <title>二叉搜索树</title>
         <pubTime>2016-08-07T03:36:57.000Z</pubTime>
-        
-        <tag>每周总结</tag>
-         
-        <tag>数据结构</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/08/07/red-black-tree/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>红黑树</title>
-        <pubTime>2016-08-07T15:10:57.000Z</pubTime>
         
         <tag>每周总结</tag>
          
@@ -503,6 +429,42 @@
 
     
   <url>
+    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>自然语言处理（一）</title>
+        <pubTime>2016-07-10T15:28:24.000Z</pubTime>
+        
+        <tag>自然语言处理 读书笔记</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第七章：快速排序</title>
+        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
@@ -511,6 +473,44 @@
         <pubTime>2016-08-12T13:32:34.000Z</pubTime>
         
         <tag>每周总结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/08/07/red-black-tree/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>红黑树</title>
+        <pubTime>2016-08-07T15:10:57.000Z</pubTime>
+        
+        <tag>每周总结</tag>
+         
+        <tag>数据结构</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第四章：分治策略</title>
+        <pubTime>2016-06-29T14:59:14.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
          
          
            
@@ -539,16 +539,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
+    <loc>http://sunhengzhe.com/2016/07/24/data-structures/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第八章：线性时间排序</title>
-        <pubTime>2016-07-09T13:59:26.000Z</pubTime>
+        <title>基本数据结构（一）</title>
+        <pubTime>2016-07-24T05:39:57.000Z</pubTime>
         
-        <tag>读书笔记</tag>
+        <tag>每周总结</tag>
          
-        <tag>算法</tag>
+        <tag>数据结构</tag>
          
          
            
@@ -577,12 +577,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
+    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第四章：分治策略</title>
-        <pubTime>2016-06-29T14:59:14.000Z</pubTime>
+        <title>《算法导论》第二章：算法基础</title>
+        <pubTime>2016-06-26T18:47:19.000Z</pubTime>
         
         <tag>读书笔记</tag>
          

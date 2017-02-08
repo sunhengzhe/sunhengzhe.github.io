@@ -84,22 +84,16 @@
 
 
 
-<meta name="description" content="先看一个很常见的场景。
-某地区将要进行选举活动，有 A、B 两个候选人，现随机抽查 250 个人，其中 142 个人支持 A，其他人支持 B。
-这是一个很简单的伯努利分布，假设选 A 的概率是 $p$，选 B 的概率是 $1 - p$，期望为 $\mu$，方差为 $\sigma$。如果能统计整个地区的所有人，那么这些值都能得到，但是统计整个地区显然是不切实际的，不过题目中给出了随机抽查的 250">
+<meta name="description" content="置信区间是指由样本统计量所构造的总体参数的估计区间。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="置信区间">
 <meta property="og:url" content="http://sunhengzhe.com/2017/01/27/confidence-interval/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="先看一个很常见的场景。
-某地区将要进行选举活动，有 A、B 两个候选人，现随机抽查 250 个人，其中 142 个人支持 A，其他人支持 B。
-这是一个很简单的伯努利分布，假设选 A 的概率是 $p$，选 B 的概率是 $1 - p$，期望为 $\mu$，方差为 $\sigma$。如果能统计整个地区的所有人，那么这些值都能得到，但是统计整个地区显然是不切实际的，不过题目中给出了随机抽查的 250">
-<meta property="og:updated_time" content="2017-02-08T10:48:25.000Z">
+<meta property="og:description" content="置信区间是指由样本统计量所构造的总体参数的估计区间。">
+<meta property="og:updated_time" content="2017-02-08T10:50:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="置信区间">
-<meta name="twitter:description" content="先看一个很常见的场景。
-某地区将要进行选举活动，有 A、B 两个候选人，现随机抽查 250 个人，其中 142 个人支持 A，其他人支持 B。
-这是一个很简单的伯努利分布，假设选 A 的概率是 $p$，选 B 的概率是 $1 - p$，期望为 $\mu$，方差为 $\sigma$。如果能统计整个地区的所有人，那么这些值都能得到，但是统计整个地区显然是不切实际的，不过题目中给出了随机抽查的 250">
+<meta name="twitter:description" content="置信区间是指由样本统计量所构造的总体参数的估计区间。">
 
 
 
@@ -318,7 +312,11 @@
       
 
       
-        <p>先看一个很常见的场景。</p>
+        <blockquote>
+<p>置信区间是指由样本统计量所构造的总体参数的估计区间。</p>
+</blockquote>
+<a id="more"></a>
+<p>先看一个很常见的场景。</p>
 <p>某地区将要进行选举活动，有 A、B 两个候选人，现随机抽查 250 个人，其中 142 个人支持 A，其他人支持 B。</p>
 <p>这是一个很简单的伯努利分布，假设选 A 的概率是 $p$，选 B 的概率是 $1 - p$，期望为 $\mu$，方差为 $\sigma$。如果能统计整个地区的所有人，那么这些值都能得到，但是统计整个地区显然是不切实际的，不过题目中给出了随机抽查的 250 个人，这 250 个人也就是样本，我们可以计算样本的几个统计值。</p>
 <p>设选 A 为 1，选 B 为 0；</p>
