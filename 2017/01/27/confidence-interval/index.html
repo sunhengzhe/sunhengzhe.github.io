@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://sunhengzhe.com/2017/01/27/confidence-interval/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
 <meta property="og:description" content="置信区间是指由样本统计量所构造的总体参数的估计区间。">
-<meta property="og:updated_time" content="2017-02-08T10:50:07.000Z">
+<meta property="og:updated_time" content="2017-02-09T07:56:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="置信区间">
 <meta name="twitter:description" content="置信区间是指由样本统计量所构造的总体参数的估计区间。">
@@ -331,8 +331,9 @@
 <p>$$<br>\sigma_{\overline{X}} = \frac{\sigma}{\sqrt{n}} \approx \frac{s}{\sqrt{n}} = \frac{0.496}{\sqrt{250}} = 0.031<br>$$</p>
 <p>也就是说，样本均值的分布是符合 $\sigma = 0.031$ 的正态分布，当然有一定的误差，因为总体的标准差是估计的。</p>
 <p>而根据正态分布的经验法则，在 $(\mu − 3\sigma, \mu + 3\sigma), (\mu − 3\sigma, \mu + 3\sigma)$ 发生的概率为 99.7%，也就是说，<strong>我们有 99.7% 的理由相信，我们的样本均值是落在 $\mu$ 的三个标准差以内的。</strong> 换句话说，$\mu$ 有 99.7% 的可能性处在样本均值的三个标准差以内。</p>
-<p>即 有 99.7% 的可能性，选 A 的概率在 0.496 - 3 * 0.031 到 0.496 + 3 * 0.031 之间，即 0.403 到 0.589。</p>
+<p>那么也就是说： 有 99.7% 的可能性，选 A 的概率在 0.496 - 3 * 0.031 到 0.496 + 3 * 0.031 之间，即 0.403 到 0.589。</p>
 <p>置信区间即 $0.496 \pm 0.093$。</p>
+<p>另外需要注意的是，在本例中，样本空间大小为 250，如果样本数量很小，不超过 30 个时，就不能将样本均值分布看作标准的正态分布，而被称为 t 分布，t 分布的标准差要比正态分布的更大一些，针对 t 分布的概率表格，可以去查对应的 t 表格。</p>
 
       
     </div>
