@@ -6,6 +6,8 @@ tags: [统计学]
 
 ![](http://7xo08n.com1.z0.glb.clouddn.com/blog/linear-regression/1.png)
 
+<!-- more -->
+
 上图坐标轴中随机散落了一些点，现在想求出一条直线，使得这些点到这条直线的距离是最小的，如下图。
 
 ![](http://7xo08n.com1.z0.glb.clouddn.com/blog/linear-regression/2.png)
