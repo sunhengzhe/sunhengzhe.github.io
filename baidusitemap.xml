@@ -4,8 +4,25 @@
 
     
   <url>
+    <loc>http://sunhengzhe.com/2017/02/14/project-development-process/</loc>
+    <lastmod>2017-02-14T09:49:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>项目开发流程</title>
+        <pubTime>2017-02-14T09:36:45.000Z</pubTime>
+        
+        <tag>总结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://sunhengzhe.com/2017/02/13/hypothesis-testing/</loc>
-    <lastmod>2017-02-13T15:58:26.000Z</lastmod>
+    <lastmod>2017-02-13T15:59:01.000Z</lastmod>
     <data>
         <display>
         <title>假设检验和 p 值</title>
@@ -336,30 +353,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/31/five-in-a-row-game/</loc>
+    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>如何实现五子棋 AI</title>
-        <pubTime>2016-07-31T12:57:34.000Z</pubTime>
-        
-        <tag>每周总结</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>《算法导论》第八章：线性时间排序</title>
-        <pubTime>2016-07-09T13:59:26.000Z</pubTime>
+        <title>《算法导论》第六章：堆排序</title>
+        <pubTime>2016-07-03T15:54:10.000Z</pubTime>
         
         <tag>读书笔记</tag>
          
@@ -408,6 +407,7 @@
     </url>
 
     
+    
   <url>
     <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
@@ -419,40 +419,6 @@
         <tag>每周总结</tag>
          
         <tag>javascript</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>自然语言处理（一）</title>
-        <pubTime>2016-07-10T15:28:24.000Z</pubTime>
-        
-        <tag>自然语言处理 读书笔记</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>数据抓取の经验</title>
-        <pubTime>2016-08-12T13:32:34.000Z</pubTime>
-        
-        <tag>每周总结</tag>
          
          
            
@@ -481,16 +447,69 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/08/07/red-black-tree/</loc>
+    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>红黑树</title>
-        <pubTime>2016-08-07T15:10:57.000Z</pubTime>
+        <title>自然语言处理（一）</title>
+        <pubTime>2016-07-10T15:28:24.000Z</pubTime>
+        
+        <tag>自然语言处理 读书笔记</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>二叉搜索树</title>
+        <pubTime>2016-08-07T03:36:57.000Z</pubTime>
         
         <tag>每周总结</tag>
          
         <tag>数据结构</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>数据抓取の经验</title>
+        <pubTime>2016-08-12T13:32:34.000Z</pubTime>
+        
+        <tag>每周总结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第八章：线性时间排序</title>
+        <pubTime>2016-07-09T13:59:26.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
          
          
            
@@ -519,25 +538,6 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/24/data-structures/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>基本数据结构（一）</title>
-        <pubTime>2016-07-24T05:39:57.000Z</pubTime>
-        
-        <tag>每周总结</tag>
-         
-        <tag>数据结构</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
@@ -548,6 +548,25 @@
         <tag>读书笔记</tag>
          
         <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/08/07/red-black-tree/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>红黑树</title>
+        <pubTime>2016-08-07T15:10:57.000Z</pubTime>
+        
+        <tag>每周总结</tag>
+         
+        <tag>数据结构</tag>
          
          
            
@@ -576,12 +595,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
+    <loc>http://sunhengzhe.com/2016/07/24/data-structures/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>二叉搜索树</title>
-        <pubTime>2016-08-07T03:36:57.000Z</pubTime>
+        <title>基本数据结构（一）</title>
+        <pubTime>2016-07-24T05:39:57.000Z</pubTime>
         
         <tag>每周总结</tag>
          
@@ -596,16 +615,14 @@
     
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
+    <loc>http://sunhengzhe.com/2016/07/31/five-in-a-row-game/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第六章：堆排序</title>
-        <pubTime>2016-07-03T15:54:10.000Z</pubTime>
+        <title>如何实现五子棋 AI</title>
+        <pubTime>2016-07-31T12:57:34.000Z</pubTime>
         
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
+        <tag>每周总结</tag>
          
          
            
