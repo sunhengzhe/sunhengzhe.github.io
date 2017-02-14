@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://sunhengzhe.com/2017/02/14/linear-regression/</loc>
+    
+    <lastmod>2017-02-14T16:12:31.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2017/02/14/project-development-process/</loc>
+    
+    <lastmod>2017-02-14T09:49:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://sunhengzhe.com/2017/02/13/hypothesis-testing/</loc>
     
-    <lastmod>2017-02-13T15:58:26.000Z</lastmod>
+    <lastmod>2017-02-13T15:59:01.000Z</lastmod>
     
   </url>
   
@@ -149,21 +163,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/tags/index.html</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/19/calculate-24-game/</loc>
+    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -171,13 +171,6 @@
   
   <url>
     <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -198,42 +191,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/26/data-structures-2/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/08/07/red-black-tree/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://sunhengzhe.com/2016/07/24/data-structures/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -247,7 +205,14 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/categories/index.html</loc>
+    <loc>http://sunhengzhe.com/2016/07/26/data-structures-2/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -255,6 +220,55 @@
   
   <url>
     <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/08/07/red-black-tree/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/19/calculate-24-game/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/categories/index.html</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/tags/index.html</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     

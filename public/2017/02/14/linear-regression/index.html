@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="读书笔记,算法," />
+  <meta name="keywords" content="统计学," />
 
 
 
@@ -84,19 +84,29 @@
 
 
 
-<meta name="description" content="快速排序和归并排序一样，使用了分治思想。回顾一下归并排序，归并排序是将数组递归拆分，然后两两合并成已排序的数组，一直到合并成为新数组。
-快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。">
+<meta name="description" content="上图坐标轴中随机散落了一些点，现在想求出一条直线，使得这些点到这条直线的距离是最小的，如下图。
+
+设这条直线的方程为 $y = mx + b$，即要找出 m, b，让上面蓝色的箭头之和最小。那么，所有点到直线的距离之和为：
+$$\begin{align}SE &amp;amp;= (y_1 - (mx_1 + b))^2 + (y_2 - (mx_2 + b))^2 + … + (y_n - (mx_n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《算法导论》第七章：快速排序">
-<meta property="og:url" content="http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/index.html">
+<meta property="og:title" content="线性回归">
+<meta property="og:url" content="http://sunhengzhe.com/2017/02/14/linear-regression/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="快速排序和归并排序一样，使用了分治思想。回顾一下归并排序，归并排序是将数组递归拆分，然后两两合并成已排序的数组，一直到合并成为新数组。
-快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。">
-<meta property="og:updated_time" content="2016-08-27T00:03:16.000Z">
+<meta property="og:description" content="上图坐标轴中随机散落了一些点，现在想求出一条直线，使得这些点到这条直线的距离是最小的，如下图。
+
+设这条直线的方程为 $y = mx + b$，即要找出 m, b，让上面蓝色的箭头之和最小。那么，所有点到直线的距离之和为：
+$$\begin{align}SE &amp;amp;= (y_1 - (mx_1 + b))^2 + (y_2 - (mx_2 + b))^2 + … + (y_n - (mx_n">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/linear-regression/1.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/linear-regression/2.png">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/linear-regression/3.png">
+<meta property="og:updated_time" content="2017-02-14T16:12:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《算法导论》第七章：快速排序">
-<meta name="twitter:description" content="快速排序和归并排序一样，使用了分治思想。回顾一下归并排序，归并排序是将数组递归拆分，然后两两合并成已排序的数组，一直到合并成为新数组。
-快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。">
+<meta name="twitter:title" content="线性回归">
+<meta name="twitter:description" content="上图坐标轴中随机散落了一些点，现在想求出一条直线，使得这些点到这条直线的距离是最小的，如下图。
+
+设这条直线的方程为 $y = mx + b$，即要找出 m, b，让上面蓝色的箭头之和最小。那么，所有点到直线的距离之和为：
+$$\begin{align}SE &amp;amp;= (y_1 - (mx_1 + b))^2 + (y_2 - (mx_2 + b))^2 + … + (y_n - (mx_n">
+<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/linear-regression/1.png">
 
 
 
@@ -117,9 +127,9 @@
 
 
 
-  <link rel="canonical" href="http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/"/>
+  <link rel="canonical" href="http://sunhengzhe.com/2017/02/14/linear-regression/"/>
 
-  <title> 《算法导论》第七章：快速排序 | 奥利奥的大房子 </title>
+  <title> 线性回归 | 奥利奥的大房子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -259,7 +269,7 @@
             
             
               
-                《算法导论》第七章：快速排序
+                线性回归
               
             
           </h1>
@@ -271,8 +281,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-07T22:48:08+08:00" content="2016-07-07">
-              2016-07-07
+            <time itemprop="dateCreated" datetime="2017-02-14T21:40:45+08:00" content="2017-02-14">
+              2017-02-14
             </time>
           </span>
 
@@ -282,8 +292,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/07/Introduction-to-Algorithms-7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/07/Introduction-to-Algorithms-7/" itemprop="commentsCount"></span>
+                <a href="/2017/02/14/linear-regression/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/14/linear-regression/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -293,7 +303,7 @@
 
           
           
-             <span id="/2016/07/07/Introduction-to-Algorithms-7/" class="leancloud_visitors" data-flag-title="《算法导论》第七章：快速排序">
+             <span id="/2017/02/14/linear-regression/" class="leancloud_visitors" data-flag-title="线性回归">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -315,28 +325,27 @@
       
 
       
-        <p>快速排序和归并排序一样，使用了分治思想。回顾一下归并排序，归并排序是将数组递归拆分，然后两两合并成已排序的数组，一直到合并成为新数组。</p>
-<p>快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。</p>
-<a id="more"></a>
-<p>对于数组 <code>A[p .. r]</code> 快速排序的三步分治过程如下：</p>
-<ul>
-<li>分解：数组 <code>A[p .. r]</code> 被划分为两个（可能为空）子数组 <code>A[p .. q - 1]</code> 和 <code>A[q + 1 .. r]</code>，使得 <code>A[p .. q - 1]</code> 中的每一个元素都小于等于 <code>A[q]</code>，而 <code>A[q]</code> 也小于等于 <code>A[q + 1 .. r]</code> 中的每个元素。其中，计算下标 q 也是划分过程的一部分。</li>
-<li>解决：通过递归调用快速排序，对子数组 <code>A[p .. q - 1]</code> 和 <code>A[q + 1 .. r]</code> 进行排序。</li>
-<li>合并：因为子数组都是原址排序的，所以不需要合并操作：数组 <code>A[p .. r]</code> 已经有序。</li>
-</ul>
-<p>核心就在于我们选出了一个主元（即 <code>A[q]</code>），将数组划分为了两个子数组，一边小于等于 <code>A[q]</code>，一边大于等于 <code>A[q]</code>，再分别对两个子数组执行相同操作，一直到不可拆分为止。</p>
-<p>伪代码：<br><em>QUICKSORT(A, p, r)</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">if p &lt; r</div><div class="line">  // 找到分界点 A[q] 的位置</div><div class="line">  q = PARTITION(A, p, r);</div><div class="line">  // 递归调用 A[q] 左边的数组</div><div class="line">  QUICKSORT(A, p, q - 1);</div><div class="line">  // 递归调用 A[q] 右边的数组</div><div class="line">  QUICKSORT(A, q + 1, r);</div></pre></td></tr></table></figure></p>
-<p>所以算法的关键步骤就是 <code>PARTITION</code> 过程，它实现对子数组 <code>A[p .. r]</code> 的原址重排。</p>
-<p><em>PARTITION(A, p, r)</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// 数组的最后一个元素（主元）</div><div class="line">x = A[r]</div><div class="line">// i 是小元素数组的右界</div><div class="line">i = p - 1;</div><div class="line">// 遍历数组</div><div class="line">for j = p to r - 1</div><div class="line">  if A[j] &lt;= x</div><div class="line">    // 如果该元素比 x 小，小元素数组长度加 1</div><div class="line">    i = i + 1</div><div class="line">    // 将该元素挪到小元素数组范围里去</div><div class="line">    exchange A[i] with A[j]</div><div class="line">// 将主元放到大小数组中间</div><div class="line">exchange A[i + 1] with A[j]</div><div class="line">// 主元的位置</div><div class="line">return i + 1</div></pre></td></tr></table></figure></p>
-<p>快速排序算法的过程涉及到 4 个变量：<code>p</code>, <code>r</code>, <code>i</code>, <code>j</code>。将 <code>A[p .. r]</code> 数组划分为了四个部分。</p>
-<ol>
-<li><code>p</code> 到 <code>i</code> 之间为第一部分，其值都不大于主元</li>
-<li><code>i + 1</code> 到 <code>j - 1</code> 之间为第二部分，其值都不小于主元</li>
-<li><code>j</code> 到 <code>r - 1</code> 之间是第三部分，其元素等待被分配</li>
-<li><code>r</code> 处为主元（数组的最后一个元素）</li>
-</ol>
-<p>当循环开始时，<code>j</code> 从左往右对数组进行扫描，当发现有比主元小的元素时，将 <code>i</code> 往右移，并该元素放到 <code>i</code> 处，这样循环结束后，整个数组中，<code>p</code> 到 <code>i</code> 为不大于主元的元素，<code>i + 1</code> 到 <code>r - 1</code> 为不小于主元的元素，<code>r</code> 处为主元，最后我们将 <code>i + 1</code> 处的元素和主元交换位置，这样主元就位于了两部分之间。最后，我们对两个子数组进行同样的操作。</p>
-<p>javascript 实现<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr, p, r</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(p &lt; r) &#123;</div><div class="line">    <span class="keyword">let</span> q = partition(arr, p, r);</div><div class="line">    quickSort(arr, p, q - <span class="number">1</span>);</div><div class="line">    quickSort(arr, q + <span class="number">1</span>, r);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">arr, p, r</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> x = arr[r];</div><div class="line">  <span class="keyword">let</span> i = p - <span class="number">1</span>;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> j = p; j &lt; r; j++) &#123;</div><div class="line">    <span class="keyword">if</span>(arr[j] &lt;= x) &#123;</div><div class="line">      i++;</div><div class="line">      [arr[i], arr[j]] = [arr[j], arr[i]];</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  [arr[i + <span class="number">1</span>], arr[r]] = [arr[r], arr[i + <span class="number">1</span>]];</div><div class="line">  <span class="keyword">return</span> i + <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> arr = [<span class="number">13</span>, <span class="number">19</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">12</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">21</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">11</span>];</div><div class="line">quickSort(arr, <span class="number">0</span>, arr.length - <span class="number">1</span>);</div><div class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// [2, 4, 5, 6, 7, 8, 9, 11, 12, 13, 19, 21]</span></div></pre></td></tr></table></figure></p>
+        <p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/linear-regression/1.png" alt=""></p>
+<p>上图坐标轴中随机散落了一些点，现在想求出一条直线，使得这些点到这条直线的距离是最小的，如下图。</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/linear-regression/2.png" alt=""></p>
+<p>设这条直线的方程为 $y = mx + b$，即要找出 m, b，让上面蓝色的箭头之和最小。那么，所有点到直线的距离之和为：</p>
+<p>$$<br>\begin{align}<br>SE &amp;= (y_1 - (mx_1 + b))^2 + (y_2 - (mx_2 + b))^2 + … + (y_n - (mx_n + b))^2 \\<br>&amp;= (y_1^2 - 2y_1(mx_1 + b) + (mx_1 + b)^2) + (y_2^2 - 2y_2(mx_2 + b) + (mx_2 + b)^2) \\<br>&amp;+ … + (y_n^2 - 2y_n(mx_n + b) + (mx_n + b)^2) \\<br>&amp;= (y_1^2 - 2mx_1y_1 - 2by_1 + m^2x_1^2 + 2mbx_1 + b^2) + (y_2^2 - 2mx_2y_2 - 2by_2 + m^2x_2^2 + 2mbx_2 + b^2) \\<br>&amp;+ … + (y_n^2 - 2mx_ny_n - 2by_n + m^2x_n^2 + 2mbx_n + b^2) \\<br>&amp;= (y_1^2 + y_2^2 + … + y_n^2) - 2m(x_1y_1 + x_2y_2 + … + x_ny_n^2) - 2b(y_1 + y_2 + … + y_n) \\<br>&amp;+ m^2(x_1^2 + x_2^2 + … + x_n^2) + 2mb(x_1 + x_2 + … + x_n) + nb^2 \\<br>\end{align}<br>$$</p>
+<p>设 $x_1$、$x_2$、…、$x_n$ 的平均数为 $\overline{x}$，同样，可以计算出 $\overline{y}$，$\overline{xy}$，$\overline{x^2}$，$\overline{y^2}$，将平均数带入，即</p>
+<p>$$<br>\begin{align}<br>SE &amp;= (y_1^2 + y_2^2 + … + y_n^2) - 2m(x_1y_1 + x_2y_2 + … + x_ny_n) - 2b(y_1 + y_2 + … + y_n) \\<br>&amp;+ m^2(x_1^2 + x_2^2 + … + x_n^2) + 2mb(x_1 + x_2 + … + x_n) + nb^2 \\<br>&amp;= (n\overline{y^2}) - 2m(n\overline{xy}) - 2b(n\overline{y}) + m^2(n\overline{x^2}) + 2mb(n\overline{x}) + nb^2 \\<br>\end{align}<br>$$</p>
+<p>因为各项平均数是可以求出来的，所以这是一个关于 m、b 的方程式，实际上，这是一个碗状的图像，要求出让 SE 最小的 m、n，即求出这个图像的最低点，此时，对 m 和 b 分别求偏导得到的结果为 0，即</p>
+<p>$$<br>\begin{align}<br>\frac{\partial{SE}}{\partial{m}} = -2n\overline{xy} + 2mn\overline{x^2} + 2bn\overline{x} &amp;= 0 \\<br>\frac{\partial{SE}}{\partial{b}} = -2n\overline{y} + 2mn\overline{x} + 2nb &amp;= 0 \\<br>\end{align}<br>$$</p>
+<p>化简得</p>
+<p>$$<br>\begin{align}<br>\overline{x^2}m + \overline{x}b - \overline{xy} &amp;= 0 \\<br>\overline{x}m - \overline{y} + b &amp;= 0 \\<br>\end{align}<br>$$</p>
+<p>可以得到，该直线必定经过 $(\overline{x}, \overline{y})$ 和 $(\frac{\overline{x^2}}{\overline{x}}, \frac{\overline{xy}}{\overline{y}})$</p>
+<p>当然，这条直线的方程也就能得到了：</p>
+<p>$$<br>\begin{align}<br>m &amp;= \frac{\overline{y} - \frac{\overline{xy}}{\overline{x}}}{\overline{x} - \frac{\overline{x^2}}{\overline{x}}} \\<br>&amp;= \frac{\overline{x} * \overline{y} - \overline{xy}}{(\overline{x})^2 - \overline{x^2}} \\<br>b &amp;= \overline{y} - m\overline{x}<br>\end{align}<br>$$</p>
+<p>举个栗子。</p>
+<p>还是上面那个例子，这些点的坐标如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[10.0, 8.04],</div><div class="line">[8.0, 6.95],</div><div class="line">[13.0, 7.58],</div><div class="line">[9.0, 8.81],</div><div class="line">[11.0, 8.33],</div><div class="line">[14.0, 9.96],</div><div class="line">[6.0, 7.24],</div><div class="line">[4.0, 4.26],</div><div class="line">[12.0, 10.84],</div><div class="line">[7.0, 4.82],</div><div class="line">[5.0, 5.68]</div></pre></td></tr></table></figure>
+<p>具体计算过程就不列了。。列个计算代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = [</div><div class="line">    [<span class="number">10.0</span>, <span class="number">8.04</span>],</div><div class="line">    [<span class="number">8.0</span>, <span class="number">6.95</span>],</div><div class="line">    [<span class="number">13.0</span>, <span class="number">7.58</span>],</div><div class="line">    [<span class="number">9.0</span>, <span class="number">8.81</span>],</div><div class="line">    [<span class="number">11.0</span>, <span class="number">8.33</span>],</div><div class="line">    [<span class="number">14.0</span>, <span class="number">9.96</span>],</div><div class="line">    [<span class="number">6.0</span>, <span class="number">7.24</span>],</div><div class="line">    [<span class="number">4.0</span>, <span class="number">4.26</span>],</div><div class="line">    [<span class="number">12.0</span>, <span class="number">10.84</span>],</div><div class="line">    [<span class="number">7.0</span>, <span class="number">4.82</span>],</div><div class="line">    [<span class="number">5.0</span>, <span class="number">5.68</span>]</div><div class="line">];</div><div class="line"></div><div class="line"><span class="keyword">let</span> sumX = <span class="number">0</span>, sumY = <span class="number">0</span>, sumX2 = <span class="number">0</span>, sumY2 = <span class="number">0</span>, sumXY = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</div><div class="line">    <span class="keyword">const</span> x = data[i][<span class="number">0</span>], y = data[i][<span class="number">1</span>];</div><div class="line"></div><div class="line">    sumX += x;</div><div class="line">    sumY += y;</div><div class="line">    sumX2 += x * x;</div><div class="line">    sumXY += x * y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> averX = sumX / data.length;</div><div class="line"><span class="keyword">const</span> averY = sumY / data.length;</div><div class="line"><span class="keyword">const</span> averX2 = sumX2 / data.length;</div><div class="line"><span class="keyword">const</span> averXY = sumXY / data.length;</div><div class="line"></div><div class="line"><span class="keyword">const</span> m = (averY - averXY / averX) / (averX - averX2 / averX);</div><div class="line"><span class="keyword">const</span> b = averY - m * averX;</div><div class="line"></div><div class="line"><span class="comment">// 0.5, 3</span></div><div class="line"><span class="built_in">console</span>.log(m, b);</div></pre></td></tr></table></figure>
+<p>对应直线即</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/linear-regression/3.png" alt=""></p>
 
       
     </div>
@@ -358,9 +367,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/读书笔记/" rel="tag">#读书笔记</a>
-          
-            <a href="/tags/算法/" rel="tag">#算法</a>
+            <a href="/tags/统计学/" rel="tag">#统计学</a>
           
         </div>
       
@@ -369,17 +376,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/04/currying/" rel="next" title="函数柯里化">
-                <i class="fa fa-chevron-left"></i> 函数柯里化
+              <a href="/2017/02/14/project-development-process/" rel="next" title="项目开发流程">
+                <i class="fa fa-chevron-left"></i> 项目开发流程
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/09/Introduction-to-Algorithms-8/" rel="prev" title="《算法导论》第八章：线性时间排序">
-                《算法导论》第八章：线性时间排序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -405,8 +408,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/07/Introduction-to-Algorithms-7/"
-           data-title="《算法导论》第七章：快速排序" data-url="http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/">
+      <div class="ds-thread" data-thread-key="2017/02/14/linear-regression/"
+           data-title="线性回归" data-url="http://sunhengzhe.com/2017/02/14/linear-regression/">
       </div>
     
   </div>
