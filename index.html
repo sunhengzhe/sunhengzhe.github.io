@@ -258,6 +258,136 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/14/linear-regression/" itemprop="url">
+                  线性回归
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-14T21:40:45+08:00" content="2017-02-14">
+              2017-02-14
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/14/linear-regression/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/14/linear-regression/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/14/linear-regression/" class="leancloud_visitors" data-flag-title="线性回归">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/linear-regression/1.png" alt=""></p>
+<p>上图坐标轴中随机散落了一些点，现在想求出一条直线，使得这些点到这条直线的距离是最小的，如下图。</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/linear-regression/2.png" alt=""></p>
+<p>设这条直线的方程为 $y = mx + b$，即要找出 m, b，让上面蓝色的箭头之和最小。那么，所有点到直线的距离之和为：</p>
+<p>$$<br>\begin{align}<br>SE &amp;= (y_1 - (mx_1 + b))^2 + (y_2 - (mx_2 + b))^2 + … + (y_n - (mx_n + b))^2 \\<br>&amp;= (y_1^2 - 2y_1(mx_1 + b) + (mx_1 + b)^2) + (y_2^2 - 2y_2(mx_2 + b) + (mx_2 + b)^2) \\<br>&amp;+ … + (y_n^2 - 2y_n(mx_n + b) + (mx_n + b)^2) \\<br>&amp;= (y_1^2 - 2mx_1y_1 - 2by_1 + m^2x_1^2 + 2mbx_1 + b^2) + (y_2^2 - 2mx_2y_2 - 2by_2 + m^2x_2^2 + 2mbx_2 + b^2) \\<br>&amp;+ … + (y_n^2 - 2mx_ny_n - 2by_n + m^2x_n^2 + 2mbx_n + b^2) \\<br>&amp;= (y_1^2 + y_2^2 + … + y_n^2) - 2m(x_1y_1 + x_2y_2 + … + x_ny_n^2) - 2b(y_1 + y_2 + … + y_n) \\<br>&amp;+ m^2(x_1^2 + x_2^2 + … + x_n^2) + 2mb(x_1 + x_2 + … + x_n) + nb^2 \\<br>\end{align}<br>$$</p>
+<p>设 $x_1$、$x_2$、…、$x_n$ 的平均数为 $\overline{x}$，同样，可以计算出 $\overline{y}$，$\overline{xy}$，$\overline{x^2}$，$\overline{y^2}$，将平均数带入，即</p>
+<p>$$<br>\begin{align}<br>SE &amp;= (y_1^2 + y_2^2 + … + y_n^2) - 2m(x_1y_1 + x_2y_2 + … + x_ny_n) - 2b(y_1 + y_2 + … + y_n) \\<br>&amp;+ m^2(x_1^2 + x_2^2 + … + x_n^2) + 2mb(x_1 + x_2 + … + x_n) + nb^2 \\<br>&amp;= (n\overline{y^2}) - 2m(n\overline{xy}) - 2b(n\overline{y}) + m^2(n\overline{x^2}) + 2mb(n\overline{x}) + nb^2 \\<br>\end{align}<br>$$</p>
+<p>因为各项平均数是可以求出来的，所以这是一个关于 m、b 的方程式，实际上，这是一个碗状的图像，要求出让 SE 最小的 m、n，即求出这个图像的最低点，此时，对 m 和 b 分别求偏导得到的结果为 0，即</p>
+<p>$$<br>\begin{align}<br>\frac{\partial{SE}}{\partial{m}} = -2n\overline{xy} + 2mn\overline{x^2} + 2bn\overline{x} &amp;= 0 \\<br>\frac{\partial{SE}}{\partial{b}} = -2n\overline{y} + 2mn\overline{x} + 2nb &amp;= 0 \\<br>\end{align}<br>$$</p>
+<p>化简得</p>
+<p>$$<br>\begin{align}<br>\overline{x^2}m + \overline{x}b - \overline{xy} &amp;= 0 \\<br>\overline{x}m - \overline{y} + b &amp;= 0 \\<br>\end{align}<br>$$</p>
+<p>可以得到，该直线必定经过 $(\overline{x}, \overline{y})$ 和 $(\frac{\overline{x^2}}{\overline{x}}, \frac{\overline{xy}}{\overline{y}})$</p>
+<p>当然，这条直线的方程也就能得到了：</p>
+<p>$$<br>\begin{align}<br>m &amp;= \frac{\overline{y} - \frac{\overline{xy}}{\overline{x}}}{\overline{x} - \frac{\overline{x^2}}{\overline{x}}} \\<br>&amp;= \frac{\overline{x} * \overline{y} - \overline{xy}}{(\overline{x})^2 - \overline{x^2}} \\<br>b &amp;= \overline{y} - m\overline{x}<br>\end{align}<br>$$</p>
+<p>举个栗子。</p>
+<p>还是上面那个例子，这些点的坐标如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[10.0, 8.04],</div><div class="line">[8.0, 6.95],</div><div class="line">[13.0, 7.58],</div><div class="line">[9.0, 8.81],</div><div class="line">[11.0, 8.33],</div><div class="line">[14.0, 9.96],</div><div class="line">[6.0, 7.24],</div><div class="line">[4.0, 4.26],</div><div class="line">[12.0, 10.84],</div><div class="line">[7.0, 4.82],</div><div class="line">[5.0, 5.68]</div></pre></td></tr></table></figure>
+<p>具体计算过程就不列了。。列个计算代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = [</div><div class="line">    [<span class="number">10.0</span>, <span class="number">8.04</span>],</div><div class="line">    [<span class="number">8.0</span>, <span class="number">6.95</span>],</div><div class="line">    [<span class="number">13.0</span>, <span class="number">7.58</span>],</div><div class="line">    [<span class="number">9.0</span>, <span class="number">8.81</span>],</div><div class="line">    [<span class="number">11.0</span>, <span class="number">8.33</span>],</div><div class="line">    [<span class="number">14.0</span>, <span class="number">9.96</span>],</div><div class="line">    [<span class="number">6.0</span>, <span class="number">7.24</span>],</div><div class="line">    [<span class="number">4.0</span>, <span class="number">4.26</span>],</div><div class="line">    [<span class="number">12.0</span>, <span class="number">10.84</span>],</div><div class="line">    [<span class="number">7.0</span>, <span class="number">4.82</span>],</div><div class="line">    [<span class="number">5.0</span>, <span class="number">5.68</span>]</div><div class="line">];</div><div class="line"></div><div class="line"><span class="keyword">let</span> sumX = <span class="number">0</span>, sumY = <span class="number">0</span>, sumX2 = <span class="number">0</span>, sumY2 = <span class="number">0</span>, sumXY = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</div><div class="line">    <span class="keyword">const</span> x = data[i][<span class="number">0</span>], y = data[i][<span class="number">1</span>];</div><div class="line"></div><div class="line">    sumX += x;</div><div class="line">    sumY += y;</div><div class="line">    sumX2 += x * x;</div><div class="line">    sumXY += x * y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> averX = sumX / data.length;</div><div class="line"><span class="keyword">const</span> averY = sumY / data.length;</div><div class="line"><span class="keyword">const</span> averX2 = sumX2 / data.length;</div><div class="line"><span class="keyword">const</span> averXY = sumXY / data.length;</div><div class="line"></div><div class="line"><span class="keyword">const</span> m = (averY - averXY / averX) / (averX - averX2 / averX);</div><div class="line"><span class="keyword">const</span> b = averY - m * averX;</div><div class="line"></div><div class="line"><span class="comment">// 0.5, 3</span></div><div class="line"><span class="built_in">console</span>.log(m, b);</div></pre></td></tr></table></figure>
+<p>对应直线即</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/linear-regression/3.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/14/project-development-process/" itemprop="url">
                   项目开发流程
                 </a>
@@ -1255,119 +1385,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/18/node-canvas-chinese/" itemprop="url">
-                  node-canvas 中的中文乱码问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-18T19:20:14+08:00" content="2016-11-18">
-              2016-11-18
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/18/node-canvas-chinese/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/18/node-canvas-chinese/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/11/18/node-canvas-chinese/" class="leancloud_visitors" data-flag-title="node-canvas 中的中文乱码问题">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>因为有小伙伴说使用 node-canvas 中文乱码，使用上一篇的方法也没能解决，于是我又上网找了一下，发现了这篇文章：<a href="http://www.jianshu.com/p/a651258c9135">Nodejs图片编辑和中文乱码</a></p>
-<p>虽然原作者是使用的 gm，但他提到了一种解决方案：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/18/node-canvas-chinese/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1413,7 +1430,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
