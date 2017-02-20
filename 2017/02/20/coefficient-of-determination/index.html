@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="每周总结," />
+  <meta name="keywords" content="统计学," />
 
 
 
@@ -84,25 +84,22 @@
 
 
 
-<meta name="description" content="业务需求这里讨论的是给了用户名和密码，需要获取登陆之后页面内的某些数据。那么问题来了，Q1. 用户名和密码都有了，直接登录不就完了吗！A: 用机器去抓，省时又省力，关键是很酷。Q2. 用户名和密码都有了，难道不是 so easy 吗！A: 一般情况下都挺简单，但也有部分网站相当难抓，比如 腾讯爸爸。Q3. 用户名和密码都有了，登陆一次，以后携带 cookie 不就可以了吗！A: cookie 很容">
+<meta name="description" content="前一篇求出了散点的平均误差表达式，并求出了平均误差最小的直线方程，其实还有一种对直线拟合程度更有意义的估计：考虑 y 的波动程度有多少百分比能被 x 的波动程度所描述。
+衡量 y 的波动程度可以用各点离 y 的均值的距离平方之和来表示，即
+$$SE_{\overline{y}} = (y_1 - \overline{y})^2 + (y_2 - \overline{y})^2 + … + (y_n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据抓取の经验">
-<meta property="og:url" content="http://sunhengzhe.com/2016/08/12/data-capture/index.html">
+<meta property="og:title" content="决定系数 $R^2$">
+<meta property="og:url" content="http://sunhengzhe.com/2017/02/20/coefficient-of-determination/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="业务需求这里讨论的是给了用户名和密码，需要获取登陆之后页面内的某些数据。那么问题来了，Q1. 用户名和密码都有了，直接登录不就完了吗！A: 用机器去抓，省时又省力，关键是很酷。Q2. 用户名和密码都有了，难道不是 so easy 吗！A: 一般情况下都挺简单，但也有部分网站相当难抓，比如 腾讯爸爸。Q3. 用户名和密码都有了，登陆一次，以后携带 cookie 不就可以了吗！A: cookie 很容">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/01.png">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/02.png">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/03.png">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/04.png">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/05.png">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/06.png">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/07.png">
-<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/08.png">
-<meta property="og:updated_time" content="2016-08-27T00:03:16.000Z">
+<meta property="og:description" content="前一篇求出了散点的平均误差表达式，并求出了平均误差最小的直线方程，其实还有一种对直线拟合程度更有意义的估计：考虑 y 的波动程度有多少百分比能被 x 的波动程度所描述。
+衡量 y 的波动程度可以用各点离 y 的均值的距离平方之和来表示，即
+$$SE_{\overline{y}} = (y_1 - \overline{y})^2 + (y_2 - \overline{y})^2 + … + (y_n">
+<meta property="og:updated_time" content="2017-02-20T14:39:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据抓取の经验">
-<meta name="twitter:description" content="业务需求这里讨论的是给了用户名和密码，需要获取登陆之后页面内的某些数据。那么问题来了，Q1. 用户名和密码都有了，直接登录不就完了吗！A: 用机器去抓，省时又省力，关键是很酷。Q2. 用户名和密码都有了，难道不是 so easy 吗！A: 一般情况下都挺简单，但也有部分网站相当难抓，比如 腾讯爸爸。Q3. 用户名和密码都有了，登陆一次，以后携带 cookie 不就可以了吗！A: cookie 很容">
-<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/01.png">
+<meta name="twitter:title" content="决定系数 $R^2$">
+<meta name="twitter:description" content="前一篇求出了散点的平均误差表达式，并求出了平均误差最小的直线方程，其实还有一种对直线拟合程度更有意义的估计：考虑 y 的波动程度有多少百分比能被 x 的波动程度所描述。
+衡量 y 的波动程度可以用各点离 y 的均值的距离平方之和来表示，即
+$$SE_{\overline{y}} = (y_1 - \overline{y})^2 + (y_2 - \overline{y})^2 + … + (y_n">
 
 
 
@@ -123,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://sunhengzhe.com/2016/08/12/data-capture/"/>
+  <link rel="canonical" href="http://sunhengzhe.com/2017/02/20/coefficient-of-determination/"/>
 
-  <title> 数据抓取の经验 | 奥利奥的大房子 </title>
+  <title> 决定系数 $R^2$ | 奥利奥的大房子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -265,7 +262,7 @@
             
             
               
-                数据抓取の经验
+                决定系数 $R^2$
               
             
           </h1>
@@ -277,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-12T21:32:34+08:00" content="2016-08-12">
-              2016-08-12
+            <time itemprop="dateCreated" datetime="2017-02-20T18:22:11+08:00" content="2017-02-20">
+              2017-02-20
             </time>
           </span>
 
@@ -288,8 +285,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/12/data-capture/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/12/data-capture/" itemprop="commentsCount"></span>
+                <a href="/2017/02/20/coefficient-of-determination/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/20/coefficient-of-determination/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -299,7 +296,7 @@
 
           
           
-             <span id="/2016/08/12/data-capture/" class="leancloud_visitors" data-flag-title="数据抓取の经验">
+             <span id="/2017/02/20/coefficient-of-determination/" class="leancloud_visitors" data-flag-title="决定系数 $R^2$">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -321,34 +318,13 @@
       
 
       
-        <h2 id="业务需求"><a href="#业务需求" class="headerlink" title="业务需求"></a>业务需求</h2><p>这里讨论的是给了用户名和密码，需要获取登陆之后页面内的某些数据。<br>那么问题来了，<br><strong>Q1. 用户名和密码都有了，直接登录不就完了吗！</strong><br>A: 用机器去抓，省时又省力，关键是很酷。<br><strong>Q2. 用户名和密码都有了，难道不是 so easy 吗！</strong><br>A: 一般情况下都挺简单，但也有部分网站相当难抓，比如 <a href="http://tui.qq.com/" target="_blank" rel="external">腾讯爸爸</a>。<br><strong>Q3. 用户名和密码都有了，登陆一次，以后携带 cookie 不就可以了吗！</strong><br>A: cookie 很容易过期，让程序自己去拿 cookie，这样每次都是最新的 cookie，不是更酷吗？</p>
-<p>理想情况下，<strong>构建请求参数 —&gt; 请求登陆接口 —&gt; 返回 SESSIONID —&gt; 携带 SESSIONID 请求目标接口</strong>，就能拿到数据了，但是很可惜，一般的网站都不是理想情况，要成功干好这件事，需要非常非常地耐心和非常非常地仔细。<br><a id="more"></a></p>
-<h2 id="第〇步-清空浏览器-Cookie"><a href="#第〇步-清空浏览器-Cookie" class="headerlink" title="第〇步 清空浏览器 Cookie"></a>第〇步 清空浏览器 Cookie</h2><p>这是最重要的一步，一定要清，不然哭一整天。另外在抓取过程中，只要重来，就清一次。因为如果不清 Cookie，浏览器会将上次保留的 Cookie 发送出去，干扰我们找真实的请求。<br>下图是Chrome 清空 cookie 的地方：</p>
-<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/01.png" alt=""></p>
-<p>什么？你不是用 chrome？那你别往下看了</p>
-<h2 id="第一步-从需要抓取的接口找起"><a href="#第一步-从需要抓取的接口找起" class="headerlink" title="第一步 从需要抓取的接口找起"></a>第一步 从需要抓取的接口找起</h2><p>要抓取的数据肯定是来源于一个接口的，只是响应体内容可能有差异，比如是 JSON 格式返回的，或者是藏在 HTML 返回的，都有可能。首先要找到这个目标接口，然后重点关注它的请求头。</p>
-<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/02.png" alt=""></p>
-<p>Cookie 是服务器判断用户有没有登陆的凭证，对应于服务器上的 Session，所以一般情况下，只要能拿到这个字段就大功告成了。请求的 cookie 都在请求体的 cookie 中，对应的响应的 cookie 都在响应体的 set-cookie 中。<br>不同的后台语言对应不同的 Session 名字，常见的有： JSESSIONID (Java EE),、PHPSESSID (PHP)、 ASPSESSIONID (Microsoft ASP).。如上图可以大致推断这个网站是使用 JavaEE 开发的。</p>
-<h2 id="第二步-从后往前推"><a href="#第二步-从后往前推" class="headerlink" title="第二步 从后往前推"></a>第二步 从后往前推</h2><p>找到抓取数据所在的接口以后，一步一步往上找，点击请求，打开右侧的 Cookies 选项卡，可以看到这次请求的 Cookies 交互情况。<strong>如果 Response Cookies 出现了目标请求中的 JSESSIONID</strong>，没错！离成功近了一步，你需要拿小本子把这个请求记下来了。<br>而这个请求在请求时很可能也需要一些 Cookies，所以以此类推，继续往上找。</p>
-<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/03.png" alt=""></p>
-<h2 id="第三步-找到登陆请求"><a href="#第三步-找到登陆请求" class="headerlink" title="第三步 找到登陆请求"></a>第三步 找到登陆请求</h2><p>要登录的网站必定是有个登录的请求的，登录请求一般有这么几种参数：<br>1) 用户名、明文密码<br>2) 用户名、加密密码<br>3) 用户名、加密密码、加密其他参数<br>（当然一般登陆还需要验证码，使用一些能够破解验证码的服务即可）</p>
-<p>碰到第一种，恭喜，今天可以提前下班了。登录的参数已经都有了，剩下的，一是请求登录接口可能需要 cookies，这个 cookies 如果包含 sessionid，sessionid 一定可以从登录之前的接口拿到，那么往前找就对了。二是请求登录接口之后一定会<strong>直接或间接</strong>返回<strong>能够代表用户凭证的东西</strong>，拿着这个东西，继续寻找能够<strong>拿到目标接口需要的 sessionid</strong> 即可。</p>
-<p>碰到第二种，还行，仔细的话还是能正常加班的。加密的过程一定是在 javascript 中完成的，打开源码，好好啃一下，这里有两个经验，一是可以先找一下这个按钮有没有 click 事件，如果有，八成在这个事件里写好了加密过程，如果没有，说明是表单提交。</p>
-<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/04.png" alt=""></p>
-<p>另外实在没有办法，就在源码里搜一下 cookie 等相关的字段，更容易命中一点。</p>
-<p>碰到第三种，去洗把脸准备准备加班了。其实不管是加密密码，还是加密其他参数，都是在 js 里面完成的，难度可能其实差不多，但是这体现了后台的重视程度。。。所以可能会更复杂一点，像腾讯里面使用了统一的登陆方式，所以也使用了统一的加密方法，加密的地方还蛮多的，看源码找了半天才找出来，这里就不展开了，有兴趣可以交流一下。</p>
-<h2 id="一点人生经验"><a href="#一点人生经验" class="headerlink" title="一点人生经验"></a>一点人生经验</h2><p>抓取的方法其实在上面三步里说的差不多了，说白了就是仿照请求的过程，在不同的请求中寻找前后台交互的流程，下面是中间的一些经验：</p>
-<h3 id="1-cookie-的作用域"><a href="#1-cookie-的作用域" class="headerlink" title="1) cookie 的作用域"></a>1) cookie 的作用域</h3><p>每个 cookie 都有自己的域，这可能在刚抓取的时候很容易被忽视，网页在登陆前后的跳转中，很可能会经历不同的域名，比如从 site.com/aaa 跳到 site.com/bbb，这两次返回的 cookie 域可能就会不同，重要的是这两个响应可能都返回 SESSIONID，但是两个是<strong>不同</strong>的，一定要分清接下来的请求携带的是哪一个。举个栗子：</p>
-<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/05.png" alt=""></p>
-<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/06.png" alt=""></p>
-<p>同样是 JSESSIONID，不能搞混哦。</p>
-<h3 id="2-302-跳转"><a href="#2-302-跳转" class="headerlink" title="2) 302 跳转"></a>2) 302 跳转</h3><p>你可能会碰到 302 重定向，可怕的是有的信息就藏在 302 请求中：</p>
-<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/07.png" alt=""></p>
-<p>这里就有个坑了，之前没有注意，我请求这个 url 的时候，想拿这个 cookie，写好代码之后，发现确实拿到 cookie 了，但是后面请求目标接口总是不成功，最后把响应头拿出来一看，发现！</p>
-<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/data-capture/08.png" alt=""></p>
-<p>尼玛！cookie 的作用域不同啊！（上面是 /ad/，而我的是 /hccas/）<br>然后把响应状态打出来一看！<br>200！<br>擦擦擦擦，一下午就被这个干掉了，其实这是因为 request.js（我使用的是nodejs）对 302 请求作了自动重定向造成了，也就是碰到 302 就跟着跳了，但我们并不想它跳，这时需要设置一个参数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">followRedirect: false</div></pre></td></tr></table></figure>
-<p>然后就成功拿到了！</p>
+        <p>前一篇求出了散点的平均误差表达式，并求出了平均误差最小的直线方程，其实还有一种对直线拟合程度更有意义的估计：考虑 y 的波动程度有多少百分比能被 x 的波动程度所描述。</p>
+<p>衡量 y 的波动程度可以用各点离 y 的均值的距离平方之和来表示，即</p>
+<p>$$<br>SE_{\overline{y}} = (y_1 - \overline{y})^2 + (y_2 - \overline{y})^2 + … + (y_n - \overline{y})^2<br>$$</p>
+<p>要考虑其中能被回归线描述的部分，可以先看没有被回归线描述的部分，这个部分即回归线的平方误差，即上一篇所求 $SE_{line}$</p>
+<p>那么 y 的波动程度能被 x 的波动程度所描述的百分比即</p>
+<p>$$<br>1 - \frac{SE_{line}}{SE_{\overline{y}}}<br>$$</p>
+<p>这个值也就是决定系数 $R^2$，$R^2$ 越大，则说明直线的拟合程度越好。</p>
 
       
     </div>
@@ -370,7 +346,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/每周总结/" rel="tag">#每周总结</a>
+            <a href="/tags/统计学/" rel="tag">#统计学</a>
           
         </div>
       
@@ -379,17 +355,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/07/red-black-tree/" rel="next" title="红黑树">
-                <i class="fa fa-chevron-left"></i> 红黑树
+              <a href="/2017/02/14/linear-regression/" rel="next" title="线性回归">
+                <i class="fa fa-chevron-left"></i> 线性回归
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/27/thread-in-javascript/" rel="prev" title="Javascript 中的线程与进程">
-                Javascript 中的线程与进程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -415,8 +387,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/12/data-capture/"
-           data-title="数据抓取の经验" data-url="http://sunhengzhe.com/2016/08/12/data-capture/">
+      <div class="ds-thread" data-thread-key="2017/02/20/coefficient-of-determination/"
+           data-title="决定系数 $R^2$" data-url="http://sunhengzhe.com/2017/02/20/coefficient-of-determination/">
       </div>
     
   </div>
@@ -520,7 +492,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#业务需求"><span class="nav-number">1.</span> <span class="nav-text">业务需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第〇步-清空浏览器-Cookie"><span class="nav-number">2.</span> <span class="nav-text">第〇步 清空浏览器 Cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步-从需要抓取的接口找起"><span class="nav-number">3.</span> <span class="nav-text">第一步 从需要抓取的接口找起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步-从后往前推"><span class="nav-number">4.</span> <span class="nav-text">第二步 从后往前推</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步-找到登陆请求"><span class="nav-number">5.</span> <span class="nav-text">第三步 找到登陆请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一点人生经验"><span class="nav-number">6.</span> <span class="nav-text">一点人生经验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-cookie-的作用域"><span class="nav-number">6.1.</span> <span class="nav-text">1) cookie 的作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-302-跳转"><span class="nav-number">6.2.</span> <span class="nav-text">2) 302 跳转</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
