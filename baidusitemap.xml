@@ -4,8 +4,42 @@
 
     
   <url>
+    <loc>http://sunhengzhe.com/2017/02/25/implicit-differentiation/</loc>
+    <lastmod>2017-02-25T14:19:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>隐函数微分法</title>
+        <pubTime>2017-02-25T11:40:50.000Z</pubTime>
+        
+        <tag>单变量微积分</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2017/02/25/common-derivation-formula/</loc>
+    <lastmod>2017-02-25T14:13:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>求导四则运算和常见求导公式的推导</title>
+        <pubTime>2017-02-25T10:10:50.000Z</pubTime>
+        
+        <tag>单变量微积分</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://sunhengzhe.com/2017/02/20/coefficient-of-determination/</loc>
-    <lastmod>2017-02-20T15:14:52.000Z</lastmod>
+    <lastmod>2017-02-20T15:15:57.000Z</lastmod>
     <data>
         <display>
         <title>决定系数 $R^2$</title>
@@ -387,25 +421,6 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>《算法导论》第七章：快速排序</title>
-        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
-        
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
@@ -425,16 +440,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
+    <loc>http://sunhengzhe.com/2016/07/26/data-structures-2/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第二章：算法基础</title>
-        <pubTime>2016-06-26T18:47:19.000Z</pubTime>
+        <title>基本数据结构（二）</title>
+        <pubTime>2016-07-26T15:39:57.000Z</pubTime>
         
-        <tag>读书笔记</tag>
+        <tag>每周总结</tag>
          
-        <tag>算法</tag>
+        <tag>数据结构</tag>
          
          
            
@@ -444,16 +459,14 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
+    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>二叉搜索树</title>
-        <pubTime>2016-08-07T03:36:57.000Z</pubTime>
+        <title>自然语言处理（一）</title>
+        <pubTime>2016-07-10T15:28:24.000Z</pubTime>
         
-        <tag>每周总结</tag>
-         
-        <tag>数据结构</tag>
+        <tag>自然语言处理 读书笔记</tag>
          
          
            
@@ -482,23 +495,6 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>自然语言处理（一）</title>
-        <pubTime>2016-07-10T15:28:24.000Z</pubTime>
-        
-        <tag>自然语言处理 读书笔记</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://sunhengzhe.com/2016/08/12/data-capture/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
@@ -516,12 +512,105 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/07/26/data-structures-2/</loc>
+    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>基本数据结构（二）</title>
-        <pubTime>2016-07-26T15:39:57.000Z</pubTime>
+        <title>《算法导论》第二章：算法基础</title>
+        <pubTime>2016-06-26T18:47:19.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第六章：堆排序</title>
+        <pubTime>2016-07-03T15:54:10.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第七章：快速排序</title>
+        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/19/calculate-24-game/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>24点</title>
+        <pubTime>2016-07-19T09:15:34.000Z</pubTime>
+        
+        <tag>每周总结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/08/07/red-black-tree/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>红黑树</title>
+        <pubTime>2016-08-07T15:10:57.000Z</pubTime>
+        
+        <tag>每周总结</tag>
+         
+        <tag>数据结构</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>二叉搜索树</title>
+        <pubTime>2016-08-07T03:36:57.000Z</pubTime>
         
         <tag>每周总结</tag>
          
@@ -554,35 +643,16 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2016/08/07/red-black-tree/</loc>
+    <loc>http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>红黑树</title>
-        <pubTime>2016-08-07T15:10:57.000Z</pubTime>
+        <title>使用 svg 让线条动起来</title>
+        <pubTime>2016-06-28T12:43:19.000Z</pubTime>
         
         <tag>每周总结</tag>
          
-        <tag>数据结构</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>《算法导论》第六章：堆排序</title>
-        <pubTime>2016-07-03T15:54:10.000Z</pubTime>
-        
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
+        <tag>svg</tag>
          
          
            
@@ -617,42 +687,6 @@
         <display>
         <title>如何实现五子棋 AI</title>
         <pubTime>2016-07-31T12:57:34.000Z</pubTime>
-        
-        <tag>每周总结</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/06/28/use-svg-to-draw-line/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>使用 svg 让线条动起来</title>
-        <pubTime>2016-06-28T12:43:19.000Z</pubTime>
-        
-        <tag>每周总结</tag>
-         
-        <tag>svg</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/19/calculate-24-game/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>24点</title>
-        <pubTime>2016-07-19T09:15:34.000Z</pubTime>
         
         <tag>每周总结</tag>
          

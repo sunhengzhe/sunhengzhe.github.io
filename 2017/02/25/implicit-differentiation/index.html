@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="孙恒哲,奥利奥的大房子" />
+  <meta name="keywords" content="单变量微积分," />
 
 
 
@@ -84,15 +84,18 @@
 
 
 
-<meta name="description" content="很高兴遇见你">
-<meta property="og:type" content="website">
-<meta property="og:title" content="奥利奥的大房子">
-<meta property="og:url" content="http://sunhengzhe.com/tags/密码技术/index.html">
+<meta name="description" content="用隐函数微分法可以求导任意反函数，只要知道原函数的导数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="隐函数微分法">
+<meta property="og:url" content="http://sunhengzhe.com/2017/02/25/implicit-differentiation/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="很高兴遇见你">
+<meta property="og:description" content="用隐函数微分法可以求导任意反函数，只要知道原函数的导数。">
+<meta property="og:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/implicit-differentiation/01.png">
+<meta property="og:updated_time" content="2017-02-25T14:19:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="奥利奥的大房子">
-<meta name="twitter:description" content="很高兴遇见你">
+<meta name="twitter:title" content="隐函数微分法">
+<meta name="twitter:description" content="用隐函数微分法可以求导任意反函数，只要知道原函数的导数。">
+<meta name="twitter:image" content="http://7xo08n.com1.z0.glb.clouddn.com/blog/implicit-differentiation/01.png">
 
 
 
@@ -113,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://sunhengzhe.com/tags/密码技术/"/>
+  <link rel="canonical" href="http://sunhengzhe.com/2017/02/25/implicit-differentiation/"/>
 
-  <title> 标签: 密码技术 | 奥利奥的大房子 </title>
+  <title> 隐函数微分法 | 奥利奥的大房子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,7 +149,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,102 +237,159 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        密码技术
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/11/13/diffie-hellman-key-exchange/" itemprop="url">
-              
-                <span itemprop="name">Diffie-Hellman 密钥交换</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-13T19:00:00+08:00"
-              content="2016-11-13" >
-          11-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/11/10/clock-operation/" itemprop="url">
-              
-                <span itemprop="name">时钟运算</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-10T23:00:00+08:00"
-              content="2016-11-10" >
-          11-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/11/03/asymmetric-cryptography/" itemprop="url">
-              
-                <span itemprop="name">公钥密码</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-03T01:00:00+08:00"
-              content="2016-11-03" >
-          11-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                隐函数微分法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-25T19:40:50+08:00" content="2017-02-25">
+              2017-02-25
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/25/implicit-differentiation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/25/implicit-differentiation/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/25/implicit-differentiation/" class="leancloud_visitors" data-flag-title="隐函数微分法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>用隐函数微分法可以求导任意反函数，只要知道原函数的导数。</p>
+<a id="more"></a>
+<h2 id="隐函数微分法"><a href="#隐函数微分法" class="headerlink" title="隐函数微分法"></a>隐函数微分法</h2><p>在 <code>求导四则运算和常见求导公式的推导</code> 一节里讨论了 $(x^n)’$ 在 n 为整数时的情况，现在试求 $y = x^{m/n}$(m、n 均为整数)的导数。</p>
+<p>因为我们只知道当 n 为整数时 $x^n$ 的导数，所以给两边同时取 n 次方，得</p>
+<p>$$<br>y^n = x^m<br>$$</p>
+<p>实际上这就是把显函数转为了隐函数，两边同时微分，得</p>
+<p>$$<br>\begin{align}<br>\cfrac{d}{dx}y^n &amp;= \cfrac{d}{dx}x^m \\<br>ny^{n - 1}y’ &amp;= mx^{m - 1} \\<br>y’ &amp;= \cfrac{m}{n} \cdot \cfrac{x^{m - 1}}{y^{n - 1}} \\<br>&amp;= \cfrac{m}{n} \cdot \cfrac {x^{m - 1}}{(x^{\frac{m}{n}})^{n - 1}} \\<br>&amp;= \frac{m}{n} x^{m - 1 - \frac{m}{n}(n - 1)} \\<br>&amp;= \frac{m}{n} x^{\frac{m}{n} - 1}<br>\end{align}<br>$$</p>
+<p>即 $(x^{\frac{m}{n}})’ = \frac{m}{n} x^{\frac{m}{n} - 1}$，由此说明当 n 为分数时，$(x^n)’ = nx^{n - 1}$ 同样适用。</p>
+<h2 id="反函数"><a href="#反函数" class="headerlink" title="反函数"></a>反函数</h2><p>设有 $y = \sqrt{x}, x &gt; 0$</p>
+<p>那么可得 $x = y^2$</p>
+<p>设 $y = f(x) = \sqrt{x}$，$x = g(y) = y^2$</p>
+<p>即 g(f(x)) = x</p>
+<p>称 f 和 g 互为反函数，记 $g = f^{-1}$，$f = g^{-1}$</p>
+<h2 id="使用隐函数微分法求导反函数"><a href="#使用隐函数微分法求导反函数" class="headerlink" title="使用隐函数微分法求导反函数"></a>使用隐函数微分法求导反函数</h2><h3 id="1-arctan-x"><a href="#1-arctan-x" class="headerlink" title="1) $\arctan x$"></a>1) $\arctan x$</h3><p>试求 $y = \tan^{-1} x$ 的导数</p>
+<p>因为 $\arctan$ 和 $\tan$ 互为反函数，两边取 $\tan$ 得</p>
+<p>$$<br>\begin{align}<br>y &amp;= \tan^{-1} x \\<br>\tan y &amp;= x \\<br>\cfrac{d}{dx} \tan y &amp;= \cfrac{d}{dx} x \\<br>\cfrac{1}{\cos^2 y} \cdot y’ &amp;= 1 \\<br>y’ &amp;= \cos^2 y<br>\end{align}<br>$$</p>
+<p>根据 $\tan y = x$，我们可以构建如下直角三角形</p>
+<p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/implicit-differentiation/01.png" alt=""></p>
+<p>那么，$\cos y = \cfrac{1}{\sqrt{1 + x^2}}$，$\cos^2 y = \cfrac{1}{1 + x^2}$</p>
+<p>所以，$(\arctan x)’ = \cfrac{1}{1 + x^2}$</p>
+<h3 id="2-arcsin-x"><a href="#2-arcsin-x" class="headerlink" title="2) $\arcsin x$"></a>2) $\arcsin x$</h3><p>$$<br>\begin{align}<br>y &amp;= \sin^{-1} x \\<br>\sin y &amp;= x \\<br>\cfrac{d}{dx} \sin y &amp;= \cfrac{d}{dx} x \\<br>\cos y \cdot y’ &amp;= 1 \\<br>y’ &amp;= \cfrac{1}{\cos y} \\<br>&amp;= \cfrac{1}{\sqrt{1 - \sin^2 y}} \\<br>\end{align}<br>$$</p>
+<p>而 $\sin y = x$，所以 $y’ = \cfrac{1}{\sqrt{1 - x^2}}$</p>
+<p>即 $(\arcsin x)’ = \cfrac{1}{\sqrt{1 - x^2}}$</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/单变量微积分/" rel="tag">#单变量微积分</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/25/common-derivation-formula/" rel="next" title="求导四则运算和常见求导公式的推导">
+                <i class="fa fa-chevron-left"></i> 求导四则运算和常见求导公式的推导
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -337,6 +397,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/25/implicit-differentiation/"
+           data-title="隐函数微分法" data-url="http://sunhengzhe.com/2017/02/25/implicit-differentiation/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -356,8 +424,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/aoliao.png"
@@ -420,6 +497,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#隐函数微分法"><span class="nav-number">1.</span> <span class="nav-text">隐函数微分法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反函数"><span class="nav-number">2.</span> <span class="nav-text">反函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用隐函数微分法求导反函数"><span class="nav-number">3.</span> <span class="nav-text">使用隐函数微分法求导反函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-arctan-x"><span class="nav-number">3.1.</span> <span class="nav-text">1) $\arctan x$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-arcsin-x"><span class="nav-number">3.2.</span> <span class="nav-text">2) $\arcsin x$</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -523,6 +611,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
