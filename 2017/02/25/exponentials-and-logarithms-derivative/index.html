@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="读书笔记,算法," />
+  <meta name="keywords" content="单变量微积分," />
 
 
 
@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="快速排序和归并排序一样，使用了分治思想。回顾一下归并排序，归并排序是将数组递归拆分，然后两两合并成已排序的数组，一直到合并成为新数组。
-快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。">
+<meta name="description" content="使用对数微分法求解指数与对数函数导数。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《算法导论》第七章：快速排序">
-<meta property="og:url" content="http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/index.html">
+<meta property="og:title" content="指数与对数函数导数">
+<meta property="og:url" content="http://sunhengzhe.com/2017/02/25/exponentials-and-logarithms-derivative/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="快速排序和归并排序一样，使用了分治思想。回顾一下归并排序，归并排序是将数组递归拆分，然后两两合并成已排序的数组，一直到合并成为新数组。
-快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。">
-<meta property="og:updated_time" content="2016-08-27T00:03:16.000Z">
+<meta property="og:description" content="使用对数微分法求解指数与对数函数导数。">
+<meta property="og:updated_time" content="2017-02-25T16:01:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《算法导论》第七章：快速排序">
-<meta name="twitter:description" content="快速排序和归并排序一样，使用了分治思想。回顾一下归并排序，归并排序是将数组递归拆分，然后两两合并成已排序的数组，一直到合并成为新数组。
-快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。">
+<meta name="twitter:title" content="指数与对数函数导数">
+<meta name="twitter:description" content="使用对数微分法求解指数与对数函数导数。">
 
 
 
@@ -117,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/"/>
+  <link rel="canonical" href="http://sunhengzhe.com/2017/02/25/exponentials-and-logarithms-derivative/"/>
 
-  <title> 《算法导论》第七章：快速排序 | 奥利奥的大房子 </title>
+  <title> 指数与对数函数导数 | 奥利奥的大房子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -259,7 +256,7 @@
             
             
               
-                《算法导论》第七章：快速排序
+                指数与对数函数导数
               
             
           </h1>
@@ -271,8 +268,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-07T22:48:08+08:00" content="2016-07-07">
-              2016-07-07
+            <time itemprop="dateCreated" datetime="2017-02-25T23:03:50+08:00" content="2017-02-25">
+              2017-02-25
             </time>
           </span>
 
@@ -282,8 +279,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/07/Introduction-to-Algorithms-7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/07/Introduction-to-Algorithms-7/" itemprop="commentsCount"></span>
+                <a href="/2017/02/25/exponentials-and-logarithms-derivative/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/25/exponentials-and-logarithms-derivative/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -293,7 +290,7 @@
 
           
           
-             <span id="/2016/07/07/Introduction-to-Algorithms-7/" class="leancloud_visitors" data-flag-title="《算法导论》第七章：快速排序">
+             <span id="/2017/02/25/exponentials-and-logarithms-derivative/" class="leancloud_visitors" data-flag-title="指数与对数函数导数">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -315,28 +312,40 @@
       
 
       
-        <p>快速排序和归并排序一样，使用了分治思想。回顾一下归并排序，归并排序是将数组递归拆分，然后两两合并成已排序的数组，一直到合并成为新数组。</p>
-<p>快速排序的思想有点相似，但快速排序能够进行原址排序，而不用占用大量的额外空间。</p>
+        <p>使用对数微分法求解指数与对数函数导数。</p>
 <a id="more"></a>
-<p>对于数组 <code>A[p .. r]</code> 快速排序的三步分治过程如下：</p>
-<ul>
-<li>分解：数组 <code>A[p .. r]</code> 被划分为两个（可能为空）子数组 <code>A[p .. q - 1]</code> 和 <code>A[q + 1 .. r]</code>，使得 <code>A[p .. q - 1]</code> 中的每一个元素都小于等于 <code>A[q]</code>，而 <code>A[q]</code> 也小于等于 <code>A[q + 1 .. r]</code> 中的每个元素。其中，计算下标 q 也是划分过程的一部分。</li>
-<li>解决：通过递归调用快速排序，对子数组 <code>A[p .. q - 1]</code> 和 <code>A[q + 1 .. r]</code> 进行排序。</li>
-<li>合并：因为子数组都是原址排序的，所以不需要合并操作：数组 <code>A[p .. r]</code> 已经有序。</li>
-</ul>
-<p>核心就在于我们选出了一个主元（即 <code>A[q]</code>），将数组划分为了两个子数组，一边小于等于 <code>A[q]</code>，一边大于等于 <code>A[q]</code>，再分别对两个子数组执行相同操作，一直到不可拆分为止。</p>
-<p>伪代码：<br><em>QUICKSORT(A, p, r)</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">if p &lt; r</div><div class="line">  // 找到分界点 A[q] 的位置</div><div class="line">  q = PARTITION(A, p, r);</div><div class="line">  // 递归调用 A[q] 左边的数组</div><div class="line">  QUICKSORT(A, p, q - 1);</div><div class="line">  // 递归调用 A[q] 右边的数组</div><div class="line">  QUICKSORT(A, q + 1, r);</div></pre></td></tr></table></figure></p>
-<p>所以算法的关键步骤就是 <code>PARTITION</code> 过程，它实现对子数组 <code>A[p .. r]</code> 的原址重排。</p>
-<p><em>PARTITION(A, p, r)</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// 数组的最后一个元素（主元）</div><div class="line">x = A[r]</div><div class="line">// i 是小元素数组的右界</div><div class="line">i = p - 1;</div><div class="line">// 遍历数组</div><div class="line">for j = p to r - 1</div><div class="line">  if A[j] &lt;= x</div><div class="line">    // 如果该元素比 x 小，小元素数组长度加 1</div><div class="line">    i = i + 1</div><div class="line">    // 将该元素挪到小元素数组范围里去</div><div class="line">    exchange A[i] with A[j]</div><div class="line">// 将主元放到大小数组中间</div><div class="line">exchange A[i + 1] with A[j]</div><div class="line">// 主元的位置</div><div class="line">return i + 1</div></pre></td></tr></table></figure></p>
-<p>快速排序算法的过程涉及到 4 个变量：<code>p</code>, <code>r</code>, <code>i</code>, <code>j</code>。将 <code>A[p .. r]</code> 数组划分为了四个部分。</p>
-<ol>
-<li><code>p</code> 到 <code>i</code> 之间为第一部分，其值都不大于主元</li>
-<li><code>i + 1</code> 到 <code>j - 1</code> 之间为第二部分，其值都不小于主元</li>
-<li><code>j</code> 到 <code>r - 1</code> 之间是第三部分，其元素等待被分配</li>
-<li><code>r</code> 处为主元（数组的最后一个元素）</li>
-</ol>
-<p>当循环开始时，<code>j</code> 从左往右对数组进行扫描，当发现有比主元小的元素时，将 <code>i</code> 往右移，并该元素放到 <code>i</code> 处，这样循环结束后，整个数组中，<code>p</code> 到 <code>i</code> 为不大于主元的元素，<code>i + 1</code> 到 <code>r - 1</code> 为不小于主元的元素，<code>r</code> 处为主元，最后我们将 <code>i + 1</code> 处的元素和主元交换位置，这样主元就位于了两部分之间。最后，我们对两个子数组进行同样的操作。</p>
-<p>javascript 实现<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr, p, r</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(p &lt; r) &#123;</div><div class="line">    <span class="keyword">let</span> q = partition(arr, p, r);</div><div class="line">    quickSort(arr, p, q - <span class="number">1</span>);</div><div class="line">    quickSort(arr, q + <span class="number">1</span>, r);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">arr, p, r</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> x = arr[r];</div><div class="line">  <span class="keyword">let</span> i = p - <span class="number">1</span>;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> j = p; j &lt; r; j++) &#123;</div><div class="line">    <span class="keyword">if</span>(arr[j] &lt;= x) &#123;</div><div class="line">      i++;</div><div class="line">      [arr[i], arr[j]] = [arr[j], arr[i]];</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  [arr[i + <span class="number">1</span>], arr[r]] = [arr[r], arr[i + <span class="number">1</span>]];</div><div class="line">  <span class="keyword">return</span> i + <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> arr = [<span class="number">13</span>, <span class="number">19</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">12</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">21</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">11</span>];</div><div class="line">quickSort(arr, <span class="number">0</span>, arr.length - <span class="number">1</span>);</div><div class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// [2, 4, 5, 6, 7, 8, 9, 11, 12, 13, 19, 21]</span></div></pre></td></tr></table></figure></p>
+<h2 id="a-x"><a href="#a-x" class="headerlink" title="$a^x$"></a>$a^x$</h2><p>试求 $a^x$ 的导数。</p>
+<p>$$<br>\begin{align}<br>\cfrac{d}{dx} a^x &amp;= \lim_{\Delta x \to 0} \cfrac{a^{x + \Delta x} - a^x}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} a^x \cfrac{a^{\Delta x} - 1}{\Delta x}<br>\end{align}<br>$$</p>
+<p>即 $\cfrac{d}{dx} = a^x \lim_{\Delta x \to 0} \cfrac{a^{\Delta x} - 1}{\Delta x}$</p>
+<p>而 $\lim_{\Delta x \to 0} \cfrac{a^{\Delta x} - 1}{\Delta x}$ 实际上就是 $a^x$ 在 x = 0 处的导数，只要我们知道了在这个点处的导数，我们就能得到整个函数的导数，这和求 $\sin$、$\cos$ 的导数时如出一辙，但是很不幸的，我们并不知道这个点出的导数。</p>
+<h3 id="引入神秘的-e"><a href="#引入神秘的-e" class="headerlink" title="引入神秘的 e"></a>引入神秘的 e</h3><p>设 $\lim_{\Delta x \to 0} \cfrac{a^{\Delta x} - 1}{\Delta x}$ 为关于 a 的函数 $M(a)$，不妨设存在一个数 e，使得 $M(e) = 1$</p>
+<p>那么，$\cfrac{d}{d} e^x = e^x \cdot M(e) = e^x$，且 $\left. \cfrac{d}{d} e^x \right|_{x = 0} = 1$</p>
+<p>注意，虽然我们到现在还不知道 e 是什么数，但我们可以先利用 e 得到一些公式，随后再求解 e。</p>
+<h2 id="自然对数"><a href="#自然对数" class="headerlink" title="自然对数"></a>自然对数</h2><p>以 e 为底数的对数叫做自然对数，记为 $\ln$，且</p>
+<p>$$<br>\begin{align}<br>\ln (a + b) &amp;= \ln a + \ln b \\<br>\ln a^n &amp;= n\ln a<br>\end{align}<br>$$</p>
+<h3 id="ln-x-的导数"><a href="#ln-x-的导数" class="headerlink" title="$\ln x$ 的导数"></a>$\ln x$ 的导数</h3><p>$$<br>\begin{align}<br>w &amp;= \ln x \\<br>e^w &amp;= x \\<br>e^w \cdot w’ &amp;= 1 \\<br>w’ &amp;= \frac{1}{e^w} \\<br>&amp;= \frac{1}{x}<br>\end{align}<br>$$</p>
+<p>即 $(\ln x)’ = \cfrac{1}{x}$</p>
+<h2 id="求解-a-x-的导数"><a href="#求解-a-x-的导数" class="headerlink" title="求解 $a^x$ 的导数"></a>求解 $a^x$ 的导数</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>将 $a^x$ 转换为以 e 为底的对数。</p>
+<p>因为 $a = e^{ln a}$，代入得</p>
+<p>$$<br>\begin{align}<br>\cfrac{d}{dx}a^x &amp;= \cfrac{d}{dx}(e^{\ln a})^x \\<br>&amp;= \cfrac{d}{dx} e^{x\ln a} \\<br>&amp;= \ln a \cdot e^{x\ln a} \\<br>&amp;= \ln a \cdot a^x<br>\end{align}<br>$$</p>
+<blockquote>
+<p>而 $\cfrac{d}{dx} a^x = a^x \cdot M(a)$，所以，$M(a) = ln a$</p>
+</blockquote>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>即 <strong>对数微分法</strong>。对某些函数而言，求其对数的导数比求该函数本身的导数更简单。</p>
+<p>设有函数 u，现要求其导数 $\cfrac{d}{dx} u$，那么</p>
+<p>$$<br>\begin{align}<br>\cfrac{d}{dx} \ln u &amp;= \cfrac{d}{du} \ln u \cdot \cfrac{d}{dx} u \\<br>&amp;= \cfrac{u’}{u}<br>\end{align}<br>$$</p>
+<p>对 $a^x$ 而言，设 $u = a^x$，由对数的性质，$\ln u = \ln a^x = x\ln a$，那么 $(\ln u)’ = \ln a$</p>
+<p>而 $\cfrac{d}{dx} \ln u = \cfrac{u’}{u}$，所以即</p>
+<p>$$<br>\begin{align}<br>\cfrac{u’}{u} &amp;= \ln a \\<br>u’ &amp;= u \ln a \\<br>&amp;= a^x \ln a<br>\end{align}<br>$$</p>
+<h2 id="使用对数微分法求解例题"><a href="#使用对数微分法求解例题" class="headerlink" title="使用对数微分法求解例题"></a>使用对数微分法求解例题</h2><h3 id="1-例子-1"><a href="#1-例子-1" class="headerlink" title="1) 例子 1"></a>1) 例子 1</h3><p>求 $x^x$ 的导数</p>
+<p>$$<br>\begin{align}<br>v &amp;= x^x \\<br>\ln v &amp;= x \ln x \\<br>\cfrac{v’}{v} &amp;= \ln x + x \cdot \cfrac{1}{x} \\<br>&amp;= \ln x + 1 \\<br>v’ &amp;= v \cdot (\ln x + 1) \\<br>&amp;= x^x(\ln x + 1)<br>\end{align}<br>$$</p>
+<h3 id="2-例子-2"><a href="#2-例子-2" class="headerlink" title="2) 例子 2"></a>2) 例子 2</h3><p>求 $\lim_{n \to \infty} (1 + \frac{1}{n})^n$</p>
+<p>对函数取对数，得 $\ln (1 + \frac{1}{n})^n = n \ln(1 + \frac{1}{n})$</p>
+<p>设 $\Delta x = \frac{1}{n}$，因为 $n \to \infty$，所以 $\Delta x \to 0$</p>
+<p>$$<br>\begin{align}<br>\lim_{n \to \infty} n \ln(1 + \frac{1}{n}) &amp;= \lim_{\Delta x \to 0} \frac{1}{\Delta x} \ln (1 + \Delta x) \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{\ln(1 + \Delta x) - \ln 1}{\Delta x} \\<br>\end{align}<br>$$</p>
+<p>即 $\ln x$ 在 x = 1 处的导数，而 $\left. (\ln x)’ \right|_{x = 1} = \left. \frac{1}{x} \right|_{x = 1} = 1$，即 $\lim_{\Delta x \to 0} \ln (1 + \frac{1}{n})^n = 1$，而</p>
+<p>$$<br>\begin{align}<br>\lim_{n \to \infty} (1 + \frac{1}{n})^n &amp;= \lim_{n \to \infty} e^{\ln (1 + \frac{1}{n})^n} \\<br>&amp;= e^{\lim_{n \to \infty} \ln (1 + \frac{1}{n})^n} \\<br>&amp;= e<br>\end{align}<br>$$</p>
+<p>这也就是说，神秘的 $e = \lim_{n \to \infty}(1 + \frac{1}{n})^n$</p>
 
       
     </div>
@@ -358,9 +367,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/读书笔记/" rel="tag">#读书笔记</a>
-          
-            <a href="/tags/算法/" rel="tag">#算法</a>
+            <a href="/tags/单变量微积分/" rel="tag">#单变量微积分</a>
           
         </div>
       
@@ -369,17 +376,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/04/currying/" rel="next" title="函数柯里化">
-                <i class="fa fa-chevron-left"></i> 函数柯里化
+              <a href="/2017/02/25/implicit-differentiation/" rel="next" title="隐函数微分法">
+                <i class="fa fa-chevron-left"></i> 隐函数微分法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/09/Introduction-to-Algorithms-8/" rel="prev" title="《算法导论》第八章：线性时间排序">
-                《算法导论》第八章：线性时间排序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -405,8 +408,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/07/Introduction-to-Algorithms-7/"
-           data-title="《算法导论》第七章：快速排序" data-url="http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/">
+      <div class="ds-thread" data-thread-key="2017/02/25/exponentials-and-logarithms-derivative/"
+           data-title="指数与对数函数导数" data-url="http://sunhengzhe.com/2017/02/25/exponentials-and-logarithms-derivative/">
       </div>
     
   </div>
@@ -510,7 +513,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-x"><span class="nav-number">1.</span> <span class="nav-text">$a^x$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入神秘的-e"><span class="nav-number">1.1.</span> <span class="nav-text">引入神秘的 e</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自然对数"><span class="nav-number">2.</span> <span class="nav-text">自然对数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ln-x-的导数"><span class="nav-number">2.1.</span> <span class="nav-text">$\ln x$ 的导数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解-a-x-的导数"><span class="nav-number">3.</span> <span class="nav-text">求解 $a^x$ 的导数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一"><span class="nav-number">3.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二"><span class="nav-number">3.2.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用对数微分法求解例题"><span class="nav-number">4.</span> <span class="nav-text">使用对数微分法求解例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-例子-1"><span class="nav-number">4.1.</span> <span class="nav-text">1) 例子 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-例子-2"><span class="nav-number">4.2.</span> <span class="nav-text">2) 例子 2</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
