@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://sunhengzhe.com/2017/02/25/common-derivation-formula/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
 <meta property="og:description" content="求导四则运算和常见求导公式的推导过程。">
-<meta property="og:updated_time" content="2017-02-25T14:13:00.000Z">
+<meta property="og:updated_time" content="2017-02-25T14:23:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="求导四则运算和常见求导公式的推导">
 <meta name="twitter:description" content="求导四则运算和常见求导公式的推导过程。">
@@ -319,13 +319,13 @@
 <h3 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h3><p>$$<br>\begin{align}<br>\Delta \cfrac{u}{v} &amp;= \lim_{\Delta x \to 0} \left( \cfrac{u + \Delta u}{v + \Delta v} - \cfrac{u}{v} \right) \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{(u + \Delta u) \cdot v - u \cdot (v + \Delta v)}{(v + \Delta v) \cdot v} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{uv + \Delta u \cdot v - uv - u \cdot \Delta v}{(v + \Delta v)v} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{\Delta u \cdot v - u \cdot \Delta v}{(v + \Delta v) \cdot v}<br>\end{align}<br>$$</p>
 <p>所以</p>
 <p>$$<br>\begin{align}<br>(\cfrac{u}{v})’ &amp;= \lim_{\Delta x \to 0} \cfrac{\Delta \cfrac{u}{v}}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{\cfrac{\Delta u}{\Delta x} \cdot v - u \cfrac{\Delta v}{\Delta x}}{(v + \Delta v) \cdot v} \\<br>&amp;= \cfrac{u’v - uv’}{v^2}<br>\end{align}<br>$$</p>
-<h2 id="常见求导公式"><a href="#常见求导公式" class="headerlink" title="常见求导公式"></a>常见求导公式</h2><h3 id="1-sin-x"><a href="#1-sin-x" class="headerlink" title="1) $\sin x$"></a>1) $\sin x$</h3><p>$$<br>\begin{align}<br>\cfrac{d}{dx}\sin x &amp;= \lim_{\Delta x \to 0} \cfrac{\sin (x + \Delta x) - \sin x}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{\sin x\cos \Delta x + \cos x\sin \Delta x - \sin x}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \left( \sin x \left( \cfrac{\cos \Delta x - 1}{\Delta x} \right) + \cos x\cfrac{\sin \Delta x}{\Delta x} \right) \\<br>\end{align}<br>$$</p>
+<h2 id="常见求导公式"><a href="#常见求导公式" class="headerlink" title="常见求导公式"></a>常见求导公式</h2><h3 id="1-sin-x"><a href="#1-sin-x" class="headerlink" title="1) $\sin x$"></a>1) $\sin x$</h3><p>$$<br>\begin{align}<br>\cfrac{d}{dx}\sin x &amp;= \lim_{\Delta x \to 0} \cfrac{\sin (x + \Delta x) - \sin x}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{\sin x\cos \Delta x + \cos x\sin \Delta x - \sin x}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \left( \sin x \cfrac{\cos \Delta x - 1}{\Delta x} + \cos x\cfrac{\sin \Delta x}{\Delta x} \right) \\<br>\end{align}<br>$$</p>
 <p>而 $\cfrac{\cos \Delta x - 1}{\Delta x}$ 实际上就是 $\cos x$ 在 x = 0 处的导数，即：</p>
 <p>$$<br>\begin{align}<br>\lim_{\Delta x \to 0} \cfrac{\cos \Delta x - 1}{\Delta x} &amp;= \lim_{\Delta x \to 0} \cfrac{\cos (0 + \Delta x) - \cos 0}{\Delta x} \\<br>&amp;= \left. \cfrac{d}{dx}\cos x \right |_{x = 0} \\<br>&amp;= 0<br>\end{align}<br>$$</p>
 <p>$\cfrac{\sin \Delta x}{\Delta x}$ 实际上就是 $\sin x$ 在 x = 0 处的导数，即：</p>
 <p>$$<br>\begin{align}<br>\lim_{\Delta x \to 0} \cfrac{\sin \Delta x}{\Delta x} &amp;= \lim_{\Delta x \to 0} \cfrac{\sin (0 + \Delta x) - \sin 0}{\Delta x} \\<br>&amp;= \left. \cfrac{d}{dx}\sin x \right |_{x = 0} \\<br>&amp;= 1<br>\end{align}<br>$$</p>
 <p>所以</p>
-<p>$$<br>\begin{align}<br>\cfrac{d}{dx}\sin x &amp;= \lim_{\Delta x \to 0} \left( \sin x \left( \cfrac{\cos \Delta x - 1}{\Delta x} \right) + \cos x\cfrac{\sin \Delta x}{\Delta x} \right) \\<br>&amp;= \sin x \cdot 0 + \cos x \cdot 1 \\<br>&amp;= \cos x<br>\end{align}<br>$$</p>
+<p>$$<br>\begin{align}<br>\cfrac{d}{dx}\sin x &amp;= \lim_{\Delta x \to 0} \left( \sin x \cfrac{\cos \Delta x - 1}{\Delta x} + \cos x\cfrac{\sin \Delta x}{\Delta x} \right) \\<br>&amp;= \sin x \cdot 0 + \cos x \cdot 1 \\<br>&amp;= \cos x<br>\end{align}<br>$$</p>
 <h3 id="2-cos-x"><a href="#2-cos-x" class="headerlink" title="2) $\cos x$"></a>2) $\cos x$</h3><p>$$<br>\begin{align}<br>\cfrac{d}{dx}\cos x &amp;= \lim_{\Delta x \to 0} \cfrac{\cos (x + \Delta x) - \cos x}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{\cos x \cos \Delta x - \sin x \sin \Delta x - \cos x}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \left( \cos x \cfrac{\cos \Delta x - 1}{\Delta x} - \sin x \cfrac{\sin \Delta x}{\Delta x} \right) \\<br>&amp;= \cos x \cdot 0 - \sin x \cdot 1 \\<br>&amp;= -\sin x<br>\end{align}<br>$$</p>
 <p>所以，对于 $\cos x$ 和 $\sin x$ 而言，<strong>只要知道了一个点 (x = 0) 处的导数，我们就知道了整个函数的导数。</strong></p>
 <h3 id="3-tan-x"><a href="#3-tan-x" class="headerlink" title="3) $\tan x$"></a>3) $\tan x$</h3><p>$$<br>\begin{align}<br>\cfrac{d}{dx} \tan x &amp;= \cfrac{d}{dx} \cfrac{\sin x}{\cos x} \\<br>&amp;= \cfrac{d}{dx} \cfrac{\sin’ x\cos x + \sin x\cos’ x}{\cos^2 x} \\<br>&amp;= \cfrac{\cos^2 x + \sin^2 x}{\cos^2 x} \\<br>&amp;= \cfrac{1}{\cos^2 x}<br>\end{align}<br>$$</p>
