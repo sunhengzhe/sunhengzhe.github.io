@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://sunhengzhe.com/2017/02/25/exponentials-and-logarithms-derivative/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
 <meta property="og:description" content="使用对数微分法求解指数与对数函数导数。">
-<meta property="og:updated_time" content="2017-02-25T16:01:51.000Z">
+<meta property="og:updated_time" content="2017-02-26T02:57:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="指数与对数函数导数">
 <meta name="twitter:description" content="使用对数微分法求解指数与对数函数导数。">
@@ -325,21 +325,24 @@
 <p>$$<br>\begin{align}<br>\ln (a + b) &amp;= \ln a + \ln b \\<br>\ln a^n &amp;= n\ln a<br>\end{align}<br>$$</p>
 <h3 id="ln-x-的导数"><a href="#ln-x-的导数" class="headerlink" title="$\ln x$ 的导数"></a>$\ln x$ 的导数</h3><p>$$<br>\begin{align}<br>w &amp;= \ln x \\<br>e^w &amp;= x \\<br>e^w \cdot w’ &amp;= 1 \\<br>w’ &amp;= \frac{1}{e^w} \\<br>&amp;= \frac{1}{x}<br>\end{align}<br>$$</p>
 <p>即 $(\ln x)’ = \cfrac{1}{x}$</p>
-<h2 id="求解-a-x-的导数"><a href="#求解-a-x-的导数" class="headerlink" title="求解 $a^x$ 的导数"></a>求解 $a^x$ 的导数</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>将 $a^x$ 转换为以 e 为底的对数。</p>
+<h2 id="求解-a-x-的导数"><a href="#求解-a-x-的导数" class="headerlink" title="求解 $a^x$ 的导数"></a>求解 $a^x$ 的导数</h2><h3 id="e底法"><a href="#e底法" class="headerlink" title="e底法"></a>e底法</h3><p>将 $a^x$ 转换为以 e 为底的指数。</p>
 <p>因为 $a = e^{ln a}$，代入得</p>
 <p>$$<br>\begin{align}<br>\cfrac{d}{dx}a^x &amp;= \cfrac{d}{dx}(e^{\ln a})^x \\<br>&amp;= \cfrac{d}{dx} e^{x\ln a} \\<br>&amp;= \ln a \cdot e^{x\ln a} \\<br>&amp;= \ln a \cdot a^x<br>\end{align}<br>$$</p>
 <blockquote>
 <p>而 $\cfrac{d}{dx} a^x = a^x \cdot M(a)$，所以，$M(a) = ln a$</p>
 </blockquote>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>即 <strong>对数微分法</strong>。对某些函数而言，求其对数的导数比求该函数本身的导数更简单。</p>
+<h3 id="对数微分法"><a href="#对数微分法" class="headerlink" title="对数微分法"></a>对数微分法</h3><p>对某些函数而言，求其对数的导数比求该函数本身的导数更简单。</p>
 <p>设有函数 u，现要求其导数 $\cfrac{d}{dx} u$，那么</p>
 <p>$$<br>\begin{align}<br>\cfrac{d}{dx} \ln u &amp;= \cfrac{d}{du} \ln u \cdot \cfrac{d}{dx} u \\<br>&amp;= \cfrac{u’}{u}<br>\end{align}<br>$$</p>
 <p>对 $a^x$ 而言，设 $u = a^x$，由对数的性质，$\ln u = \ln a^x = x\ln a$，那么 $(\ln u)’ = \ln a$</p>
 <p>而 $\cfrac{d}{dx} \ln u = \cfrac{u’}{u}$，所以即</p>
 <p>$$<br>\begin{align}<br>\cfrac{u’}{u} &amp;= \ln a \\<br>u’ &amp;= u \ln a \\<br>&amp;= a^x \ln a<br>\end{align}<br>$$</p>
-<h2 id="使用对数微分法求解例题"><a href="#使用对数微分法求解例题" class="headerlink" title="使用对数微分法求解例题"></a>使用对数微分法求解例题</h2><h3 id="1-例子-1"><a href="#1-例子-1" class="headerlink" title="1) 例子 1"></a>1) 例子 1</h3><p>求 $x^x$ 的导数</p>
+<h2 id="几个栗子"><a href="#几个栗子" class="headerlink" title="几个栗子"></a>几个栗子</h2><h3 id="1-x-a"><a href="#1-x-a" class="headerlink" title="1) $x^a$"></a>1) $x^a$</h3><p>之前已经讨论过求导 $x^a$，a 为有理数情况，实际上求导公式对无理数同样适用</p>
+<h4 id="e-底法"><a href="#e-底法" class="headerlink" title="e 底法"></a>e 底法</h4><p>$$<br>\begin{align}<br>x^a &amp;= (e^{\ln x})^a \\<br>&amp;= e^{a \ln x} \\<br>(e^{a \ln x})’ &amp;= e^{a \ln x} \cdot \frac{a}{x} \\<br>&amp;= x^a \cdot \frac{a}{x} \\<br>&amp;= ax^{a - 1}<br>\end{align}<br>$$</p>
+<h4 id="对数微分法-1"><a href="#对数微分法-1" class="headerlink" title="对数微分法"></a>对数微分法</h4><p>$$<br>\begin{align}<br>u &amp;= x^a \\<br>\ln u &amp;= a \ln x \\<br>(\ln u)’ &amp;= \frac{a}{x} \\<br>\frac{u’}{u} &amp;= \frac{a}{x} \\<br>u’ &amp;= u \frac{a}{x} \\<br>&amp;= x^a \frac{a}{x} \\<br>&amp;= ax^{a - 1}<br>\end{align}<br>$$</p>
+<h3 id="2-x-x"><a href="#2-x-x" class="headerlink" title="2) $x^x$"></a>2) $x^x$</h3><p>求 $x^x$ 的导数</p>
 <p>$$<br>\begin{align}<br>v &amp;= x^x \\<br>\ln v &amp;= x \ln x \\<br>\cfrac{v’}{v} &amp;= \ln x + x \cdot \cfrac{1}{x} \\<br>&amp;= \ln x + 1 \\<br>v’ &amp;= v \cdot (\ln x + 1) \\<br>&amp;= x^x(\ln x + 1)<br>\end{align}<br>$$</p>
-<h3 id="2-例子-2"><a href="#2-例子-2" class="headerlink" title="2) 例子 2"></a>2) 例子 2</h3><p>求 $\lim_{n \to \infty} (1 + \frac{1}{n})^n$</p>
+<h3 id="3-例-3"><a href="#3-例-3" class="headerlink" title="3) 例 3"></a>3) 例 3</h3><p>求 $\lim_{n \to \infty} (1 + \frac{1}{n})^n$</p>
 <p>对函数取对数，得 $\ln (1 + \frac{1}{n})^n = n \ln(1 + \frac{1}{n})$</p>
 <p>设 $\Delta x = \frac{1}{n}$，因为 $n \to \infty$，所以 $\Delta x \to 0$</p>
 <p>$$<br>\begin{align}<br>\lim_{n \to \infty} n \ln(1 + \frac{1}{n}) &amp;= \lim_{\Delta x \to 0} \frac{1}{\Delta x} \ln (1 + \Delta x) \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{\ln(1 + \Delta x) - \ln 1}{\Delta x} \\<br>\end{align}<br>$$</p>
@@ -513,7 +516,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-x"><span class="nav-number">1.</span> <span class="nav-text">$a^x$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入神秘的-e"><span class="nav-number">1.1.</span> <span class="nav-text">引入神秘的 e</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自然对数"><span class="nav-number">2.</span> <span class="nav-text">自然对数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ln-x-的导数"><span class="nav-number">2.1.</span> <span class="nav-text">$\ln x$ 的导数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解-a-x-的导数"><span class="nav-number">3.</span> <span class="nav-text">求解 $a^x$ 的导数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一"><span class="nav-number">3.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二"><span class="nav-number">3.2.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用对数微分法求解例题"><span class="nav-number">4.</span> <span class="nav-text">使用对数微分法求解例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-例子-1"><span class="nav-number">4.1.</span> <span class="nav-text">1) 例子 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-例子-2"><span class="nav-number">4.2.</span> <span class="nav-text">2) 例子 2</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-x"><span class="nav-number">1.</span> <span class="nav-text">$a^x$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入神秘的-e"><span class="nav-number">1.1.</span> <span class="nav-text">引入神秘的 e</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自然对数"><span class="nav-number">2.</span> <span class="nav-text">自然对数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ln-x-的导数"><span class="nav-number">2.1.</span> <span class="nav-text">$\ln x$ 的导数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解-a-x-的导数"><span class="nav-number">3.</span> <span class="nav-text">求解 $a^x$ 的导数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#e底法"><span class="nav-number">3.1.</span> <span class="nav-text">e底法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对数微分法"><span class="nav-number">3.2.</span> <span class="nav-text">对数微分法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几个栗子"><span class="nav-number">4.</span> <span class="nav-text">几个栗子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-x-a"><span class="nav-number">4.1.</span> <span class="nav-text">1) $x^a$</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#e-底法"><span class="nav-number">4.1.1.</span> <span class="nav-text">e 底法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对数微分法-1"><span class="nav-number">4.1.2.</span> <span class="nav-text">对数微分法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-x-x"><span class="nav-number">4.2.</span> <span class="nav-text">2) $x^x$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-例-3"><span class="nav-number">4.3.</span> <span class="nav-text">3) 例 3</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
