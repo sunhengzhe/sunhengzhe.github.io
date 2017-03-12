@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://sunhengzhe.com/2017/03/12/newton-iteration-method/</loc>
+    
+    <lastmod>2017-03-12T03:39:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2017/03/12/linear-and-quadratic-approximation/</loc>
+    
+    <lastmod>2017-03-12T03:05:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://sunhengzhe.com/2017/02/25/exponentials-and-logarithms-derivative/</loc>
     
     <lastmod>2017-02-26T04:12:00.000Z</lastmod>
@@ -184,28 +198,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/26/data-structures-2/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/24/data-structures/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
+    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -219,14 +212,35 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
+    <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
+    <loc>http://sunhengzhe.com/2016/07/24/data-structures/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/09/Introduction-to-Algorithms-8/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/31/five-in-a-row-game/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -240,7 +254,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/tags/index.html</loc>
+    <loc>http://sunhengzhe.com/2016/07/26/data-structures-2/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -261,7 +275,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/31/five-in-a-row-game/</loc>
+    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -282,7 +296,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/08/07/binary-search-tree/</loc>
+    <loc>http://sunhengzhe.com/2016/07/04/currying/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -296,7 +310,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
+    <loc>http://sunhengzhe.com/tags/index.html</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
