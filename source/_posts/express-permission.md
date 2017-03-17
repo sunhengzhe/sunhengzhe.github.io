@@ -1,7 +1,7 @@
 ---
 title: Express 权限控制
 date: 2016-10-25 10:28:57
-tags: [每周总结, express]
+tags: [nodejs, express]
 ---
 
 Express 是一个路由和中间件 Web 框架，其自身只具有最低程度的功能：Express 应用程序基本上是一系列中间件函数调用。

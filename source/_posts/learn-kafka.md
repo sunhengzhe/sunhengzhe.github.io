@@ -1,7 +1,7 @@
 ---
 title: Kafka 基础
 date: 2016-09-30 14:33:57
-tags: [每周总结, kafka]
+tags: [总结, kafka]
 ---
 
 ## Kafka 基础概念

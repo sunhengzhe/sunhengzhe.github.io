@@ -1,0 +1,796 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="单变量微积分," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="求导四则运算和常见求导公式的推导过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="求导四则运算和常见求导公式的推导">
+<meta property="og:url" content="http://sunhengzhe.com/2017/02/25/common-derivation-formula/index.html">
+<meta property="og:site_name" content="奥利奥的大房子">
+<meta property="og:description" content="求导四则运算和常见求导公式的推导过程。">
+<meta property="og:updated_time" content="2017-02-26T03:26:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="求导四则运算和常见求导公式的推导">
+<meta name="twitter:description" content="求导四则运算和常见求导公式的推导过程。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sunhengzhe.com/2017/02/25/common-derivation-formula/"/>
+
+  <title> 求导四则运算和常见求导公式的推导 | 奥利奥的大房子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a7768ce6e11e71e36e002cbbf272480b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">奥利奥的大房子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                求导四则运算和常见求导公式的推导
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-25T18:10:50+08:00" content="2017-02-25">
+              2017-02-25
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/25/common-derivation-formula/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/25/common-derivation-formula/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/25/common-derivation-formula/" class="leancloud_visitors" data-flag-title="求导四则运算和常见求导公式的推导">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>求导四则运算和常见求导公式的推导过程。</p>
+<a id="more"></a>
+<h2 id="求导四则运算"><a href="#求导四则运算" class="headerlink" title="求导四则运算"></a>求导四则运算</h2><h3 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h3><p>设有函数 u、v</p>
+<p>$$<br>\begin{align}<br>(uv)’ &amp;= \lim_{\Delta x \to 0} \cfrac{\Delta (uv)}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{u(x + \Delta x) \cdot v(x + \Delta x) - u(x) \cdot v(x)}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{u(x + \Delta x) \cdot v(x + \Delta x) - u(x) \cdot v(x + \Delta x) + u(x) \cdot v(x + \Delta x) - u(x) \cdot v(x)}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{v(x + \Delta x) \cdot [u(x + \Delta x) - u(x)] + u(x) \cdot [v(x + \Delta x) - v(x)]}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{v(x + \Delta x) \cdot \Delta u + u(x) \cdot \Delta v}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{v(x) \cdot \Delta u + u(x) \cdot \Delta v}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \left( v\cfrac{\Delta u}{\Delta x} + u\cfrac{\Delta v}{\Delta x} \right) \\<br>&amp;= u’v + uv’ \\<br>\end{align}<br>$$</p>
+<h3 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h3><h4 id="使用导数的定义"><a href="#使用导数的定义" class="headerlink" title="使用导数的定义"></a>使用导数的定义</h4><p>$$<br>\begin{align}<br>\Delta \cfrac{u}{v} &amp;= \lim_{\Delta x \to 0} \left( \cfrac{u + \Delta u}{v + \Delta v} - \cfrac{u}{v} \right) \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{(u + \Delta u) \cdot v - u \cdot (v + \Delta v)}{(v + \Delta v) \cdot v} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{uv + \Delta u \cdot v - uv - u \cdot \Delta v}{(v + \Delta v)v} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{\Delta u \cdot v - u \cdot \Delta v}{(v + \Delta v) \cdot v}<br>\end{align}<br>$$</p>
+<p>所以</p>
+<p>$$<br>\begin{align}<br>(\cfrac{u}{v})’ &amp;= \lim_{\Delta x \to 0} \cfrac{\Delta \cfrac{u}{v}}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{\cfrac{\Delta u}{\Delta x} \cdot v - u \cfrac{\Delta v}{\Delta x}}{(v + \Delta v) \cdot v} \\<br>&amp;= \cfrac{u’v - uv’}{v^2}<br>\end{align}<br>$$</p>
+<h4 id="使用链式法则"><a href="#使用链式法则" class="headerlink" title="使用链式法则"></a>使用链式法则</h4><p>由 $(x^a)’ = ax^{a - 1}$ 得</p>
+<p>$$<br>(\frac{1}{v})’ = (v^{-1})’ = -1 \cdot v^{-2}<br>$$</p>
+<p>由此</p>
+<p>$$<br>\begin{align}<br>(\frac{u}{v})’ &amp;= (uv^{-1})’ \\<br>&amp;= u’v^{-1} + u(v^{-1})’ \\<br>&amp;= u’v^{-1} + u(-1 \cdot v^{-2}) \\<br>&amp;= \cfrac{u’v - uv’}{v^2}<br>\end{align}<br>$$</p>
+<h2 id="常见求导公式"><a href="#常见求导公式" class="headerlink" title="常见求导公式"></a>常见求导公式</h2><h3 id="1-sin-x"><a href="#1-sin-x" class="headerlink" title="1) $\sin x$"></a>1) $\sin x$</h3><p>$$<br>\begin{align}<br>\cfrac{d}{dx}\sin x &amp;= \lim_{\Delta x \to 0} \cfrac{\sin (x + \Delta x) - \sin x}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{\sin x\cos \Delta x + \cos x\sin \Delta x - \sin x}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \left( \sin x \cfrac{\cos \Delta x - 1}{\Delta x} + \cos x\cfrac{\sin \Delta x}{\Delta x} \right) \\<br>\end{align}<br>$$</p>
+<p>而 $\cfrac{\cos \Delta x - 1}{\Delta x}$ 实际上就是 $\cos x$ 在 x = 0 处的导数，即：</p>
+<p>$$<br>\begin{align}<br>\lim_{\Delta x \to 0} \cfrac{\cos \Delta x - 1}{\Delta x} &amp;= \lim_{\Delta x \to 0} \cfrac{\cos (0 + \Delta x) - \cos 0}{\Delta x} \\<br>&amp;= \left. \cfrac{d}{dx}\cos x \right |_{x = 0} \\<br>&amp;= 0<br>\end{align}<br>$$</p>
+<p>$\cfrac{\sin \Delta x}{\Delta x}$ 实际上就是 $\sin x$ 在 x = 0 处的导数，即：</p>
+<p>$$<br>\begin{align}<br>\lim_{\Delta x \to 0} \cfrac{\sin \Delta x}{\Delta x} &amp;= \lim_{\Delta x \to 0} \cfrac{\sin (0 + \Delta x) - \sin 0}{\Delta x} \\<br>&amp;= \left. \cfrac{d}{dx}\sin x \right |_{x = 0} \\<br>&amp;= 1<br>\end{align}<br>$$</p>
+<p>所以</p>
+<p>$$<br>\begin{align}<br>\cfrac{d}{dx}\sin x &amp;= \lim_{\Delta x \to 0} \left( \sin x \cfrac{\cos \Delta x - 1}{\Delta x} + \cos x\cfrac{\sin \Delta x}{\Delta x} \right) \\<br>&amp;= \sin x \cdot 0 + \cos x \cdot 1 \\<br>&amp;= \cos x<br>\end{align}<br>$$</p>
+<h3 id="2-cos-x"><a href="#2-cos-x" class="headerlink" title="2) $\cos x$"></a>2) $\cos x$</h3><p>$$<br>\begin{align}<br>\cfrac{d}{dx}\cos x &amp;= \lim_{\Delta x \to 0} \cfrac{\cos (x + \Delta x) - \cos x}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{\cos x \cos \Delta x - \sin x \sin \Delta x - \cos x}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \left( \cos x \cfrac{\cos \Delta x - 1}{\Delta x} - \sin x \cfrac{\sin \Delta x}{\Delta x} \right) \\<br>&amp;= \cos x \cdot 0 - \sin x \cdot 1 \\<br>&amp;= -\sin x<br>\end{align}<br>$$</p>
+<p>所以，对于 $\cos x$ 和 $\sin x$ 而言，<strong>只要知道了一个点 (x = 0) 处的导数，我们就知道了整个函数的导数。</strong></p>
+<h3 id="3-tan-x"><a href="#3-tan-x" class="headerlink" title="3) $\tan x$"></a>3) $\tan x$</h3><p>$$<br>\begin{align}<br>\cfrac{d}{dx} \tan x &amp;= \cfrac{d}{dx} \cfrac{\sin x}{\cos x} \\<br>&amp;= \cfrac{d}{dx} \cfrac{\sin’ x\cos x + \sin x\cos’ x}{\cos^2 x} \\<br>&amp;= \cfrac{\cos^2 x + \sin^2 x}{\cos^2 x} \\<br>&amp;= \cfrac{1}{\cos^2 x}<br>\end{align}<br>$$</p>
+<h3 id="4-sec-x"><a href="#4-sec-x" class="headerlink" title="4) $\sec x$"></a>4) $\sec x$</h3><p>$$<br>\begin{align}<br>\cfrac{d}{dx} \sec x &amp;= \cfrac{d}{dx} (\cos x)^{-1} \\<br>&amp;= -1 \cdot (\cos x)^{-2} (-\sin x) \\<br>&amp;= \cfrac{\sin x}{\cos^2 x} \\<br>&amp;= \cfrac{1}{\cos x} \cfrac{\sin x}{\cos x} \\<br>&amp;= \sec x \tan x<br>\end{align}<br>$$</p>
+<h3 id="5-x-n"><a href="#5-x-n" class="headerlink" title="5) $x^n$"></a>5) $x^n$</h3><h4 id="当-n-为正整数时"><a href="#当-n-为正整数时" class="headerlink" title="当 n 为正整数时"></a>当 n 为正整数时</h4><p>$$<br>\begin{align}<br>(x^n)’ &amp;= \lim_{\Delta x \to 0} \cfrac{(x + \Delta x)^n - x^n}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{x^n  + nx^{n - 1}\Delta x + O((\Delta x)^2) - x^n}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{nx^{n - 1}\Delta x + O((\Delta x)^2)}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} \left( nx^{n - 1} + O(\Delta x) \right) \\<br>&amp;= nx^{n - 1}<br>\end{align}<br>$$</p>
+<h4 id="当-n-为负整数时"><a href="#当-n-为负整数时" class="headerlink" title="当 n 为负整数时"></a>当 n 为负整数时</h4><p>先考虑当 n 为正整数时，试求 $\cfrac{1}{x^n}$ 的导数</p>
+<p>$$<br>\begin{align}<br>(\cfrac{1}{x^n})’ &amp;= \cfrac{-nx^{n - 1}}{x^{2n}} \\<br>&amp;= -nx^{n - 1 - 2n} \\<br>&amp;= -nx^{-n - 1}<br>\end{align}<br>$$</p>
+<p>即 $(x^{-n})’ = -nx^{-n - 1}$，由此说明当 n 为负整数时，$(x^n)’ = nx^{n - 1}$ 同样适用。</p>
+<h4 id="其他情况"><a href="#其他情况" class="headerlink" title="其他情况"></a>其他情况</h4><p>下一节讨论</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/单变量微积分/" rel="tag">#单变量微积分</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/20/coefficient-of-determination/" rel="next" title="决定系数 $R^2$">
+                <i class="fa fa-chevron-left"></i> 决定系数 $R^2$
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/25/implicit-differentiation/" rel="prev" title="隐函数微分法">
+                隐函数微分法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/25/common-derivation-formula/"
+           data-title="求导四则运算和常见求导公式的推导" data-url="http://sunhengzhe.com/2017/02/25/common-derivation-formula/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/aoliao.png"
+               alt="一只奥利奥" />
+          <p class="site-author-name" itemprop="name">一只奥利奥</p>
+          <p class="site-description motion-element" itemprop="description">很高兴遇见你</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunhengzhe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3025220401" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#求导四则运算"><span class="nav-number">1.</span> <span class="nav-text">求导四则运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#乘法"><span class="nav-number">1.1.</span> <span class="nav-text">乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#除法"><span class="nav-number">1.2.</span> <span class="nav-text">除法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用导数的定义"><span class="nav-number">1.2.1.</span> <span class="nav-text">使用导数的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用链式法则"><span class="nav-number">1.2.2.</span> <span class="nav-text">使用链式法则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见求导公式"><span class="nav-number">2.</span> <span class="nav-text">常见求导公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-sin-x"><span class="nav-number">2.1.</span> <span class="nav-text">1) $\sin x$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-cos-x"><span class="nav-number">2.2.</span> <span class="nav-text">2) $\cos x$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-tan-x"><span class="nav-number">2.3.</span> <span class="nav-text">3) $\tan x$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-sec-x"><span class="nav-number">2.4.</span> <span class="nav-text">4) $\sec x$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-x-n"><span class="nav-number">2.5.</span> <span class="nav-text">5) $x^n$</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当-n-为正整数时"><span class="nav-number">2.5.1.</span> <span class="nav-text">当 n 为正整数时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#当-n-为负整数时"><span class="nav-number">2.5.2.</span> <span class="nav-text">当 n 为负整数时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他情况"><span class="nav-number">2.5.3.</span> <span class="nav-text">其他情况</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只奥利奥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunhengzhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("1LyGDYVjwRXPreaCWYEHmSBH-gzGzoHsz", "25EgCU8EbGo0vh3FigVCMpnh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,801 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="总结," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="最近几周一直在做 ROP 的权限模块，包括了前端和后端接口，前端使用了 react，UI 使用 ant design，后端使用 nodejs + mongodb，框架使用 keystone。好久没写 react 了，趁此机会也把 react 好好捡了捡，也发现了一些以前没有注意到的不合理的或者错误的用法。
+因为是中途加入项目，也总结了一些问题，在此都做下记录。
+P.S. ant design 和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROP 项目所得">
+<meta property="og:url" content="http://sunhengzhe.com/2017/03/17/learn-from-rop/index.html">
+<meta property="og:site_name" content="奥利奥的大房子">
+<meta property="og:description" content="最近几周一直在做 ROP 的权限模块，包括了前端和后端接口，前端使用了 react，UI 使用 ant design，后端使用 nodejs + mongodb，框架使用 keystone。好久没写 react 了，趁此机会也把 react 好好捡了捡，也发现了一些以前没有注意到的不合理的或者错误的用法。
+因为是中途加入项目，也总结了一些问题，在此都做下记录。
+P.S. ant design 和">
+<meta property="og:updated_time" content="2017-03-17T14:39:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ROP 项目所得">
+<meta name="twitter:description" content="最近几周一直在做 ROP 的权限模块，包括了前端和后端接口，前端使用了 react，UI 使用 ant design，后端使用 nodejs + mongodb，框架使用 keystone。好久没写 react 了，趁此机会也把 react 好好捡了捡，也发现了一些以前没有注意到的不合理的或者错误的用法。
+因为是中途加入项目，也总结了一些问题，在此都做下记录。
+P.S. ant design 和">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sunhengzhe.com/2017/03/17/learn-from-rop/"/>
+
+  <title> ROP 项目所得 | 奥利奥的大房子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a7768ce6e11e71e36e002cbbf272480b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">奥利奥的大房子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ROP 项目所得
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-17T22:28:59+08:00" content="2017-03-17">
+              2017-03-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/17/learn-from-rop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/17/learn-from-rop/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/03/17/learn-from-rop/" class="leancloud_visitors" data-flag-title="ROP 项目所得">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近几周一直在做 ROP 的权限模块，包括了前端和后端接口，前端使用了 <code>react</code>，UI 使用 <code>ant design</code>，后端使用 <code>nodejs</code> + <code>mongodb</code>，框架使用 <code>keystone</code>。好久没写 <code>react</code> 了，趁此机会也把 <code>react</code> 好好捡了捡，也发现了一些以前没有注意到的不合理的或者错误的用法。</p>
+<p>因为是中途加入项目，也总结了一些问题，在此都做下记录。</p>
+<p>P.S. <code>ant design</code> 和 <code>keystone</code> 真是好用</p>
+<a id="more"></a>
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><h3 id="1-不在-JSX-的属性使用-bind"><a href="#1-不在-JSX-的属性使用-bind" class="headerlink" title="1.不在 JSX 的属性使用 bind()"></a>1.不在 JSX 的属性使用 bind()</h3><p>而是在构造函数中使用 <code>bind()</code></p>
+<p>以前的用法是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">render() &#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;Table</div><div class="line">      onChange=&#123;this.handleTableChange.bind(this)&#125;</div><div class="line">    /&gt;</div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>正确的方式应该是在构造函数中绑定 <code>this</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">constructor</span>(...args) &#123;</div><div class="line">    <span class="keyword">super</span>(...args);</div><div class="line">    <span class="comment">// 绑定 this</span></div><div class="line">    <span class="keyword">this</span>.handleTableChange = <span class="keyword">this</span>.handleTableChange.bind(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">handleTableChange() &#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        &lt;Table</div><div class="line">            onChange=&#123;this.handleTableChange&#125;</div><div class="line">        /&gt;</div><div class="line">    );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者直接使用 <code>es7</code> 风格：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">handleTableChange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="comment">//...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">        &lt;Table</div><div class="line">            onChange=&#123;this.handleTableChange&#125;</div><div class="line">        /&gt;</div><div class="line">    );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-使用-props-传递数据流-不要滥用-ref"><a href="#2-使用-props-传递数据流-不要滥用-ref" class="headerlink" title="2.使用 props 传递数据流 / 不要滥用 ref"></a>2.使用 props 传递数据流 / 不要滥用 ref</h3><p>在使用 <code>react</code> 的过程中，经常会出现父组件要获取子组件内部状态的情况，在我之前使用 <code>react</code> 的过程中，我一直都是用的 <code>ref</code>，今天反思了一下，可能是在发现 <code>ref</code> 可以获取组件的 <code>DOM</code> 和实例之后觉得这个东西非常好用才开始滥用 <code>ref</code> 的。。</p>
+<p>以前的使用方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 父组件</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line"></div><div class="line">    handleClick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">const</span> dog = <span class="keyword">this</span>.refs.child.getDog();</div><div class="line">        <span class="comment">//...</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            &lt;div&gt;</div><div class="line">                &lt;Child ref="child" /&gt;</div><div class="line">                &lt;Button onClick=&#123;this.handleClick&#125; /&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 子组件</div><div class="line">class Child extends React.Component &#123;</div><div class="line"></div><div class="line">    state = &#123;</div><div class="line">        dog: 'aoliao',</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    getDog = () =&gt; &#123;</div><div class="line">        return this.state.dog;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    render() &#123;</div><div class="line">        const &#123; dog &#125; = this.state;</div><div class="line">        return (</div><div class="line">            &lt;div&gt;</div><div class="line">                &#123;dog&#125;</div><div class="line">            &lt;/div&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我不知道有没有人和我一样这样用。。本来我还觉得是很正常的使用方法，其实因为过度使用 <code>ref</code>，使得整个设计都会有问题，因为可以通过 <code>ref</code> 拿子组件内部的数据，所以就让每个子组件自己维护自己的内容，好像独立了起来（听起来还挺有道理），但是长此下去，整个数据流就变得很混乱，也会出现过度封装的情况。</p>
+<p>正确的方式是使用 <code>props</code> 来传递数据，既然 <code>dog</code> 这个属性在父组件要用到，那么就把 <code>dog</code> 放在父组件中，处理逻辑也就都移到父组件里去了，子组件只是通过 <code>prop</code> 拿着父组件的 <code>dog</code> 去干事情，但最终 <code>dog</code> 还是在父组件中，就好像角色倒过来了一样。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 父组件</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line"></div><div class="line">    state = &#123;</div><div class="line">        <span class="attr">dog</span>: <span class="string">'aoliao'</span>,</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    handleClick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">const</span> &#123; dog &#125; = <span class="keyword">this</span>.state;</div><div class="line">        <span class="comment">//...</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">const</span> &#123; dog &#125; = <span class="keyword">this</span>.state;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            &lt;div&gt;</div><div class="line">                &lt;Child dog=&#123;dog&#125; /&gt;</div><div class="line">                &lt;Button onClick=&#123;this.handleClick&#125; /&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 子组件</div><div class="line">class Child extends React.Component &#123;</div><div class="line"></div><div class="line">    state = &#123;</div><div class="line">        dog: this.props.dog,</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // 如果属性会变化，使用 componentWillReceiveProps 监听属性的变化</div><div class="line">    componentWillReceiveProps = (nextProps) =&gt; &#123;</div><div class="line">        // 比较新老属性的不同</div><div class="line">        if (this.props.dog != nextProps.dog) &#123;</div><div class="line">            this.setState(&#123;</div><div class="line">                dog: nextProps.dog,</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    render() &#123;</div><div class="line">        const &#123; dog &#125; = this.state;</div><div class="line">        return (</div><div class="line">            &lt;div&gt;</div><div class="line">                &#123;dog&#125;</div><div class="line">            &lt;/div&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-定义-propTypes-时使用-shape-代替-object"><a href="#3-定义-propTypes-时使用-shape-代替-object" class="headerlink" title="3.定义 propTypes 时使用 shape 代替 object"></a>3.定义 propTypes 时使用 shape 代替 object</h3><p>当组件需要接收属性时，定义 <code>propTypes</code> 检查是一个好的习惯。</p>
+<p>另外根据 <code>eslint</code> 中的 <code>react/forbid-prop-types</code> 校验规则，应该避免使用 <code>object</code> 和 <code>array</code>，而使用更详细的 <code>shape</code> 和 <code>arrayOf()</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bad</span></div><div class="line">UserDetailsPanel.propTypes = &#123;</div><div class="line">    <span class="attr">form</span>: React.PropTypes.object,</div><div class="line">    <span class="attr">checkedKeys</span>: React.PropTypes.array,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// good!</span></div><div class="line">UserDetailsPanel.propTypes = &#123;</div><div class="line">    <span class="attr">form</span>: React.PropTypes.shape(&#123;</div><div class="line">        <span class="attr">getFieldDecorator</span>: React.PropTypes.func,</div><div class="line">        <span class="attr">getFieldsError</span>: React.PropTypes.func,</div><div class="line">        <span class="attr">setFieldsValue</span>: React.PropTypes.func,</div><div class="line">        <span class="attr">validateFields</span>: React.PropTypes.func,</div><div class="line">    &#125;),</div><div class="line">    <span class="attr">checkedKeys</span>: React.PropTypes.arrayOf(React.Proptypes.string),</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="4-ant-design-里异步加载树数据时-Cannot-set-property-‘checked’-of-undefined"><a href="#4-ant-design-里异步加载树数据时-Cannot-set-property-‘checked’-of-undefined" class="headerlink" title="4.ant design 里异步加载树数据时 Cannot set property ‘checked’ of undefined"></a>4.ant design 里异步加载树数据时 Cannot set property ‘checked’ of undefined</h3><p>这个问题找了好一会，起初是发现同时设置 <code>onCheck</code>和 <code>checkedKeys</code> 属性时会报错，后来发现是异步加载数据的问题。</p>
+<p>其实 ant design 文档的最后也有说明，当树的数据是异步加载时，应该使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    loading ? <span class="string">'...'</span> : (</div><div class="line">        &lt;Tree&gt;&#123;this.state.treeData.map(data =&gt; &lt;TreeNode /&gt;)&#125;&lt;/Tree&gt;</div><div class="line">    )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="1-webpackJsonp-is-not-defined-错误"><a href="#1-webpackJsonp-is-not-defined-错误" class="headerlink" title="1.webpackJsonp is not defined 错误"></a>1.webpackJsonp is not defined 错误</h3><p>原因是使用了 <code>CommonChunkPlugin</code> 但没有首先引用公共文件</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// webpack.config.js</div><div class="line">module.exports = &#123;</div><div class="line">    // 在这里使用了 CommonChunkPlugin 插件</div><div class="line">    plugins: [</div><div class="line">        new webpack.optimize.CommonsChunkPlugin(&#123; name: 'commons' &#125;)</div><div class="line">    ]</div><div class="line">&#125;</div><div class="line"></div><div class="line">// index.jade</div><div class="line">extends ../layouts/default</div><div class="line"></div><div class="line">block content</div><div class="line">    .container</div><div class="line">        div#app</div><div class="line">	// 必须要引入 commons.js</div><div class="line">    script(src= baseUrl + 'commons.js')</div></pre></td></tr></table></figure>
+<h3 id="2-regeneratorRuntime-is-not-defined-错误"><a href="#2-regeneratorRuntime-is-not-defined-错误" class="headerlink" title="2.regeneratorRuntime is not defined 错误"></a>2.regeneratorRuntime is not defined 错误</h3><p>这个错误是我想在前端引入 react，并使用 es6 风格编码时发生的。</p>
+<p>原因是没有引入 <code>babel-polyfill</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// webpack.config.js</div><div class="line">module.exports = &#123;</div><div class="line">    entry: &#123;</div><div class="line">        // '文件名': '引用的模块'</div><div class="line">        'babel-polyfill': 'babel-polyfill',</div><div class="line">        // ...</div><div class="line">    &#125;</div><div class="line">    //...</div><div class="line">&#125;</div><div class="line"></div><div class="line">// index.jade</div><div class="line">extends ../layouts/default</div><div class="line"></div><div class="line">block content</div><div class="line">    .container</div><div class="line">        div#app</div><div class="line">	// 根据 config 文件中定义的文件名引入 babel-polyfill.js</div><div class="line">    script(src= baseUrl + 'babel-polyfill.js')</div></pre></td></tr></table></figure>
+<h3 id="3-eslint-开启-es7-风格"><a href="#3-eslint-开启-es7-风格" class="headerlink" title="3.eslint 开启 es7 风格"></a>3.eslint 开启 es7 风格</h3><p><code>babel-eslint</code> 默认支持 es7 风格的检查，在配置文件 <code>.eslintrc.js</code> 中添加一个属性即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="attr">parser</span>: <span class="string">"babel-eslint"</span>,</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/总结/" rel="tag">#总结</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/12/calculus-fundamental-theorem-2/" rel="next" title="微积分第二基本定理">
+                <i class="fa fa-chevron-left"></i> 微积分第二基本定理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/17/learn-from-rop/"
+           data-title="ROP 项目所得" data-url="http://sunhengzhe.com/2017/03/17/learn-from-rop/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/aoliao.png"
+               alt="一只奥利奥" />
+          <p class="site-author-name" itemprop="name">一只奥利奥</p>
+          <p class="site-description motion-element" itemprop="description">很高兴遇见你</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunhengzhe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3025220401" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React"><span class="nav-number">1.</span> <span class="nav-text">React</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-不在-JSX-的属性使用-bind"><span class="nav-number">1.1.</span> <span class="nav-text">1.不在 JSX 的属性使用 bind()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用-props-传递数据流-不要滥用-ref"><span class="nav-number">1.2.</span> <span class="nav-text">2.使用 props 传递数据流 / 不要滥用 ref</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-定义-propTypes-时使用-shape-代替-object"><span class="nav-number">1.3.</span> <span class="nav-text">3.定义 propTypes 时使用 shape 代替 object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-ant-design-里异步加载树数据时-Cannot-set-property-‘checked’-of-undefined"><span class="nav-number">1.4.</span> <span class="nav-text">4.ant design 里异步加载树数据时 Cannot set property ‘checked’ of undefined</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-webpackJsonp-is-not-defined-错误"><span class="nav-number">2.1.</span> <span class="nav-text">1.webpackJsonp is not defined 错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-regeneratorRuntime-is-not-defined-错误"><span class="nav-number">2.2.</span> <span class="nav-text">2.regeneratorRuntime is not defined 错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-eslint-开启-es7-风格"><span class="nav-number">2.3.</span> <span class="nav-text">3.eslint 开启 es7 风格</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只奥利奥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunhengzhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("1LyGDYVjwRXPreaCWYEHmSBH-gzGzoHsz", "25EgCU8EbGo0vh3FigVCMpnh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

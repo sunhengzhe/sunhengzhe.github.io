@@ -1,7 +1,7 @@
 ---
 title: Javascript 中的线程与进程
 date: 2016-08-27 07:43:34
-tags: [每周总结, javascript]
+tags: [总结, javascript]
 ---
 
 写 javascript 写久了，就会对 javascript 的异步写法习以为常，反而不会好奇为什么在 javascript 里可以异步执行一个任务，是因为 javascript 是多线程吗？

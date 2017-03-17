@@ -1,7 +1,7 @@
 ---
 title: 使用 svg 让线条动起来
 date: 2016-06-28 20:43:19
-tags: [每周总结, svg]
+tags: [总结, svg]
 ---
 [百度echarts3官网](http://echarts.baidu.com/index.html) 上有一个非常好看的绘制 logo 的效果，通过 svg 就能实现：
 ![绘制logo](http://7xo08n.com1.z0.glb.clouddn.com/blog%2Fuse-svg-draw-line/02.gif)
