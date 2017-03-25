@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://sunhengzhe.com/2017/04/04/power-series/</loc>
+    
+    <lastmod>2017-03-25T01:36:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://sunhengzhe.com/2017/03/17/learn-from-rop/</loc>
     
-    <lastmod>2017-03-17T15:19:19.000Z</lastmod>
+    <lastmod>2017-03-21T03:07:33.000Z</lastmod>
     
   </url>
   
@@ -275,7 +282,7 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
+    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
@@ -289,13 +296,6 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
-    
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
@@ -303,14 +303,21 @@
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
+    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
+    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
+    
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
     
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     
