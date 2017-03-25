@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://sunhengzhe.com/2017/04/04/power-series/</loc>
-    <lastmod>2017-03-25T01:36:27.000Z</lastmod>
+    <loc>http://sunhengzhe.com/2017/03/25/power-series/</loc>
+    <lastmod>2017-03-25T01:41:41.000Z</lastmod>
     <data>
         <display>
         <title>幂级数</title>
-        <pubTime>2017-04-04T00:44:25.000Z</pubTime>
+        <pubTime>2017-03-25T00:44:25.000Z</pubTime>
         
         <tag>单变量微积分</tag>
          
@@ -680,12 +680,48 @@
     
     
   <url>
-    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
+    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
-        <title>《算法导论》第二章：算法基础</title>
-        <pubTime>2016-06-26T18:47:19.000Z</pubTime>
+        <title>自然语言处理（一）</title>
+        <pubTime>2016-07-10T15:28:24.000Z</pubTime>
+        
+        <tag>自然语言处理 读书笔记</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第四章：分治策略</title>
+        <pubTime>2016-06-29T14:59:14.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第七章：快速排序</title>
+        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
         
         <tag>读书笔记</tag>
          
@@ -718,67 +754,31 @@
 
     
   <url>
+    <loc>http://sunhengzhe.com/2016/06/27/Introduction-to-Algorithms-2/</loc>
+    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>《算法导论》第二章：算法基础</title>
+        <pubTime>2016-06-26T18:47:19.000Z</pubTime>
+        
+        <tag>读书笔记</tag>
+         
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://sunhengzhe.com/2016/07/03/Introduction-to-Algorithms-6/</loc>
     <lastmod>2016-08-27T00:03:16.000Z</lastmod>
     <data>
         <display>
         <title>《算法导论》第六章：堆排序</title>
         <pubTime>2016-07-03T15:54:10.000Z</pubTime>
-        
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/10/natural-language-processing-1/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>自然语言处理（一）</title>
-        <pubTime>2016-07-10T15:28:24.000Z</pubTime>
-        
-        <tag>自然语言处理 读书笔记</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/07/07/Introduction-to-Algorithms-7/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>《算法导论》第七章：快速排序</title>
-        <pubTime>2016-07-07T14:48:08.000Z</pubTime>
-        
-        <tag>读书笔记</tag>
-         
-        <tag>算法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://sunhengzhe.com/2016/06/29/Introduction-to-Algorithms-4/</loc>
-    <lastmod>2016-08-27T00:03:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>《算法导论》第四章：分治策略</title>
-        <pubTime>2016-06-29T14:59:14.000Z</pubTime>
         
         <tag>读书笔记</tag>
          
