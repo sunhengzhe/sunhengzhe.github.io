@@ -1,7 +1,7 @@
 ---
 title: 使用 node-canvas 绘制验证码
 date: 2016-11-17 21:59:14
-tags: [node]
+tags: [nodejs]
 ---
 
 ![](http://7xo08n.com1.z0.glb.clouddn.com/blog/captcha-by-node-canvas/01.png)

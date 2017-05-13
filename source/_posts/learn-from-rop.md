@@ -8,7 +8,7 @@ tags: [总结]
 
 因为是中途加入项目，也总结了一些问题，在此都做下记录。
 
-P.S. `ant design` 和 `keystone` 真是好用
+PS. `ant design` 和 `keystone` 真是好用
 
 <!-- more -->
 
@@ -20,7 +20,7 @@ P.S. `ant design` 和 `keystone` 真是好用
 
 以前的用法是：
 
-```javascript
+```jsx
 render() {
   return (
     <Table
@@ -32,7 +32,7 @@ render() {
 
 正确的方式应该是在构造函数中绑定 `this`:
 
-```javascript
+```jsx
 constructor(...args) {
     super(...args);
     // 绑定 this
@@ -54,7 +54,7 @@ render() {
 
 或者直接使用 `es7` 风格：
 
-```javascript
+```jsx
 handleTableChange = () => {
   //...
 }
@@ -74,7 +74,7 @@ render() {
 
 以前的使用方式：
 
-```javascript
+```jsx
 // 父组件
 class Parent extends React.Component {
 
@@ -119,7 +119,7 @@ class Child extends React.Component {
 
 正确的方式是使用 `props` 来传递数据，既然 `dog` 这个属性在父组件要用到，那么就把 `dog` 放在父组件中，处理逻辑也就都移到父组件里去了，子组件只是通过 `prop` 拿着父组件的 `dog` 去干事情，但最终 `dog` 还是在父组件中，就好像角色倒过来了一样。
 
-```javascript
+```jsx
 // 父组件
 class Parent extends React.Component {
 
@@ -177,7 +177,7 @@ class Child extends React.Component {
 
 另外根据 `eslint` 中的 `react/forbid-prop-types` 校验规则，应该避免使用 `object` 和 `array`，而使用更详细的 `shape` 和 `arrayOf()`
 
-```javascript
+```jsx
 // bad
 UserDetailsPanel.propTypes = {
     form: React.PropTypes.object,
@@ -202,12 +202,21 @@ UserDetailsPanel.propTypes = {
 
 其实 ant design 文档的最后也有说明，当树的数据是异步加载时，应该使用：
 
-```javascript
+```jsx
 {
     loading ? '...' : (
         <Tree>{this.state.treeData.map(data => <TreeNode />)}</Tree>
     )
 }
+```
+
+### 5.无状态的组件使用纯函数(pure function)
+```jsx
+export default () => (
+  <div>
+    这个页面可不是一般人能看见的
+  </div>
+);
 ```
 
 ## 配置
@@ -216,7 +225,7 @@ UserDetailsPanel.propTypes = {
 
 原因是使用了 `CommonChunkPlugin` 但没有首先引用公共文件
 
-```javascript
+```jsx
 // webpack.config.js
 module.exports = {
     // 在这里使用了 CommonChunkPlugin 插件
@@ -241,7 +250,7 @@ block content
 
 原因是没有引入 `babel-polyfill`
 
-```javascript
+```jsx
 // webpack.config.js
 module.exports = {
     entry: {
@@ -266,7 +275,7 @@ block content
 
 `babel-eslint` 默认支持 es7 风格的检查，在配置文件 `.eslintrc.js` 中添加一个属性即可。
 
-```javascript
+```jsx
 module.exports = {
     parser: "babel-eslint",
     // ...

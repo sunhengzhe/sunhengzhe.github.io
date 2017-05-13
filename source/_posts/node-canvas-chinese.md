@@ -1,7 +1,7 @@
 ---
 title: node-canvas 中的中文乱码问题
 date: 2016-11-18 19:20:14
-tags: [node]
+tags: [nodejs]
 ---
 
 因为有小伙伴说使用 node-canvas 中文乱码，使用上一篇的方法也没能解决，于是我又上网找了一下，发现了这篇文章：[Nodejs图片编辑和中文乱码](http://www.jianshu.com/p/a651258c9135)

@@ -1,0 +1,790 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="单变量微积分," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="幂级数的形式为 $a_0 + a_1x + a_2x^2 + \cdots$，记为 $\sum_{n = 0}^{\infty}a_nx^n$。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="幂级数">
+<meta property="og:url" content="http://sunhengzhe.com/2017/04/04/power-series/index.html">
+<meta property="og:site_name" content="奥利奥的大房子">
+<meta property="og:description" content="幂级数的形式为 $a_0 + a_1x + a_2x^2 + \cdots$，记为 $\sum_{n = 0}^{\infty}a_nx^n$。">
+<meta property="og:updated_time" content="2017-03-25T01:36:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="幂级数">
+<meta name="twitter:description" content="幂级数的形式为 $a_0 + a_1x + a_2x^2 + \cdots$，记为 $\sum_{n = 0}^{\infty}a_nx^n$。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sunhengzhe.com/2017/04/04/power-series/"/>
+
+  <title> 幂级数 | 奥利奥的大房子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a7768ce6e11e71e36e002cbbf272480b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">奥利奥的大房子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                幂级数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-04T08:44:25+08:00" content="2017-04-04">
+              2017-04-04
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/04/04/power-series/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/04/power-series/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/04/04/power-series/" class="leancloud_visitors" data-flag-title="幂级数">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>幂级数的形式为 $a_0 + a_1x + a_2x^2 + \cdots$，记为 $\sum_{n = 0}^{\infty}a_nx^n$。</p>
+<a id="more"></a>
+<h2 id="幂级数的收敛性"><a href="#幂级数的收敛性" class="headerlink" title="幂级数的收敛性"></a>幂级数的收敛性</h2><p>设 $S_N = \sum_{n = 0}^{N}a_nx^n$，幂级数之和即 $S = \sum_{n = 0}^{\infty}a_nx^n = \lim_{N to \infty}S_N$，当极限存在时，幂级数收敛，极限不存在，幂级数发散。</p>
+<p>若 $|x| &lt; R$ 时，幂级数收敛，则称 R 为幂级数的 <strong>收敛半径</strong>。</p>
+<h3 id="几何级数"><a href="#几何级数" class="headerlink" title="几何级数"></a>几何级数</h3><p>当 $a_0 = a_2 = a_3 = \cdots = 1$ 时，幂级数 $1 + x + x^2 + x^3 + \cdots$ 可以看做公比为 x 的几何级数。</p>
+<p>$$<br>\begin{align}<br>S &amp;= 1 + x + x^2 + x^3 + \cdots \\<br>S \cdot x &amp;= x + x^2 + x^3 + x^4 + \cdots \\<br>S - S \cdot x &amp;= 1 \\<br>S &amp;= \cfrac{1}{1 - x}<br>\end{align}<br>$$</p>
+<p>前提是 S 是存在的，如果 $x &gt; 1$，S 趋近于无穷大，就得不到上式了，所以几何级数的收敛半径为 1.</p>
+<h2 id="泰勒公式"><a href="#泰勒公式" class="headerlink" title="泰勒公式"></a>泰勒公式</h2><p>通过泰勒公式可以将函数转化为幂级数展开式。</p>
+<p>泰勒公式的一般形式为</p>
+<p>$$<br>f(x) = \sum_{n = 0}^{\infty}\cfrac{f^{(n)}(0)}{n!}x^n<br>$$</p>
+<p>一般地，$a_n = \cfrac{f^{(n)}(0)}{n!}$</p>
+<h3 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h3><h4 id="1-e-x"><a href="#1-e-x" class="headerlink" title="1. $e^x$"></a>1. $e^x$</h4><p>因为 $f(x) = e^x$，则 $f^{(n)}(x) = e^x$，$f^{(n)}(0) = 1$</p>
+<p>所以 $e^x = \sum_{n = 0}^{\infty}\cfrac{1}{n!}x^n = 1 + x + \cfrac{x^2}{2!} + \cfrac{x^3}{3!} + \cdots$，收敛半径 $R = \infty$</p>
+<p>当 $x = 1$ 时，有 $e = 1 + 1 + \cfrac{1}{2!} + \cfrac{1}{3!} + \cdots$</p>
+<h4 id="2-frac-1-1-x"><a href="#2-frac-1-1-x" class="headerlink" title="2. $\frac{1}{1 + x}$"></a>2. $\frac{1}{1 + x}$</h4><p>与几何级数非常类似，可求得</p>
+<p>$1 - x + x^2 - x^3 + \cdots = \cfrac{1}{1 + x}$，收敛半径 $R = 1$</p>
+<h4 id="3-sin-x"><a href="#3-sin-x" class="headerlink" title="3. $\sin x$"></a>3. $\sin x$</h4><p>$f(x) = \sin x$，$f’(x) = \cos x$，$f’’(x) = - \sin x$，依次类推，可求得 $a_0 = 0$，$a_1 = 1$，$a_2 = 0$，$a_3 = -1$，$a_4 = 0$，每四项一循环。</p>
+<p>所以 $\sin x = x - \cfrac{x^3}{3!} + \cfrac{x^5}{5!} - \cfrac{x^7}{7!} + \cdots$，收敛半径 $R = \infty$</p>
+<h2 id="幂级展开式的性质"><a href="#幂级展开式的性质" class="headerlink" title="幂级展开式的性质"></a>幂级展开式的性质</h2><h3 id="乘积"><a href="#乘积" class="headerlink" title="乘积"></a>乘积</h3><p>$x\sin x = x^2 - \cfrac{x^4}{3!} + \cfrac{x^6}{5!} - cfrac{x^8}{7!} + \cdots$，收敛半径等于较小的那个，$R = \infty$</p>
+<h3 id="求导"><a href="#求导" class="headerlink" title="求导"></a>求导</h3><p>因为 $\cos x = \sin’ x$，而 $\sin x$ 的幂级展开式已经在上面求出。</p>
+<p>则 $\cos x = 1 - \cfrac{x^2}{2!} + \cfrac{x^4}{4!} - \cfrac{x^6}{6!} + \cdots$，收敛半径不变，$R = \infty$</p>
+<h3 id="积分"><a href="#积分" class="headerlink" title="积分"></a>积分</h3><p>$$<br>\begin{align}<br>\ln (1 + x) = \int_0^x\cfrac{dt}{1 + t} &amp;= \int_0^x(1 - t + t^2 - t^3 + \cdots)dt \\<br>&amp;= \left[ t - \cfrac{t^2}{2} + \cfrac{t^3}{3} - \cfrac{t^4}{4} + \cdots \right]_0^x \\<br>&amp;= x - \cfrac{x^2}{2} + \cfrac{x^3}{3} - \cfrac{x^4}{4} + \cdots<br>\end{align}<br>$$</p>
+<p>收敛半径 $R = 1$。</p>
+<h3 id="变量替换"><a href="#变量替换" class="headerlink" title="变量替换"></a>变量替换</h3><p>求 $e^{-t^2}$，令 $x = -t^2$</p>
+<p>$$<br>\begin{align}<br>e^{-t^2} &amp;= 1 + (-t^2) + \cfrac{(-t^2)^2}{2!} + \cfrac{(-t^2)^3}{3!} + \cdots \\<br>&amp;= 1 - t^2 + \cfrac{t^4}{2!} - \cfrac{t^6}{3!} + \cdots<br>\end{align}<br>$$</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/单变量微积分/" rel="tag">#单变量微积分</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/17/learn-from-rop/" rel="next" title="ROP 项目所得">
+                <i class="fa fa-chevron-left"></i> ROP 项目所得
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/04/power-series/"
+           data-title="幂级数" data-url="http://sunhengzhe.com/2017/04/04/power-series/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/aoliao.png"
+               alt="一只奥利奥" />
+          <p class="site-author-name" itemprop="name">一只奥利奥</p>
+          <p class="site-description motion-element" itemprop="description">很高兴遇见你</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunhengzhe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3025220401" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#幂级数的收敛性"><span class="nav-number">1.</span> <span class="nav-text">幂级数的收敛性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#几何级数"><span class="nav-number">1.1.</span> <span class="nav-text">几何级数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泰勒公式"><span class="nav-number">2.</span> <span class="nav-text">泰勒公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#栗子"><span class="nav-number">2.1.</span> <span class="nav-text">栗子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-e-x"><span class="nav-number">2.1.1.</span> <span class="nav-text">1. $e^x$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-frac-1-1-x"><span class="nav-number">2.1.2.</span> <span class="nav-text">2. $\frac{1}{1 + x}$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-sin-x"><span class="nav-number">2.1.3.</span> <span class="nav-text">3. $\sin x$</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#幂级展开式的性质"><span class="nav-number">3.</span> <span class="nav-text">幂级展开式的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#乘积"><span class="nav-number">3.1.</span> <span class="nav-text">乘积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求导"><span class="nav-number">3.2.</span> <span class="nav-text">求导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#积分"><span class="nav-number">3.3.</span> <span class="nav-text">积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量替换"><span class="nav-number">3.4.</span> <span class="nav-text">变量替换</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只奥利奥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunhengzhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("1LyGDYVjwRXPreaCWYEHmSBH-gzGzoHsz", "25EgCU8EbGo0vh3FigVCMpnh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
