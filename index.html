@@ -258,6 +258,122 @@
             
               
                 
+                <a class="post-title-link" href="/2017/05/13/reverse-proxy-to-solve-cross-origin/" itemprop="url">
+                  反向代理解决跨域问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-13T20:58:45+08:00" content="2017-05-13">
+              2017-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/13/reverse-proxy-to-solve-cross-origin/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/13/reverse-proxy-to-solve-cross-origin/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/05/13/reverse-proxy-to-solve-cross-origin/" class="leancloud_visitors" data-flag-title="反向代理解决跨域问题">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>跨域问题是前端开发中经常会遇到的问题。</p>
+<p>后端同学开发好了一些接口并部署到了服务器上，这时他提供给我们的地址是 <code>10.172.1.1</code>，而我们在本地开发时，一般都开的是 node 服务，比如 <code>localhost:3000</code>，此时使用 ajax 调用远程服务就会出现跨域问题。</p>
+<p>解决跨域问题有很多种方法，比如 jsonp，但是我在工作中很少会碰到使用 jsonp 解决跨域问题的场景。</p>
+<p>另外一种办法是在服务端设置跨域头 CORS，这是很常见的一种做法，也比较简单，但需要后端同学配合。本文主要探讨的是使用 nginx 配置反向代理来解决跨域问题。</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>首先启动 node 服务，以监听 3000 端口为例。这时访问 <code>localhost:3000</code> 为前端页面。</p>
+<h4 id="配置-nginx"><a href="#配置-nginx" class="headerlink" title="配置 nginx"></a>配置 nginx</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="section">http</span> &#123;</div><div class="line">    <span class="section">server</span> &#123;</div><div class="line">        <span class="attribute">listen</span>    <span class="number">2199</span>;</div><div class="line">        <span class="attribute">location</span> / &#123;</div><div class="line">            <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">            <span class="attribute">proxy_pass</span> http://localhost:3000;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="attribute">location</span><span class="regexp"> ^~</span> /api/ &#123;</div><div class="line">            <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">            <span class="attribute">proxy_pass</span> http://10.172.1.1;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后访问 <code>http://localhost:2199</code>，当后面为 <code>/api/..</code> 时，nginx 会转发给 <code>10.172.1.1</code>，而其他的非 api 接口，则转发给 node 服务。这样相当于从 <code>http://localhost:2199</code> 请求到 <code>http://localhost:2199/api/</code>，则解决了跨域问题。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/25/power-series/" itemprop="url">
                   幂级数
                 </a>
@@ -1250,118 +1366,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/14/linear-regression/" itemprop="url">
-                  线性回归
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-14T21:40:45+08:00" content="2017-02-14">
-              2017-02-14
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/02/14/linear-regression/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/14/linear-regression/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/02/14/linear-regression/" class="leancloud_visitors" data-flag-title="线性回归">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="http://7xo08n.com1.z0.glb.clouddn.com/blog/linear-regression/1.png" alt=""></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/14/linear-regression/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1407,7 +1411,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">46</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1417,7 +1421,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

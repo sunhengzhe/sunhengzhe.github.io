@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="单变量微积分," />
+  <meta name="keywords" content="nginx," />
 
 
 
@@ -84,16 +84,25 @@
 
 
 
-<meta name="description" content="使用 e 底法和对数微分法求解指数与对数函数导数。">
+<meta name="description" content="跨域问题是前端开发中经常会遇到的问题。
+后端同学开发好了一些接口并部署到了服务器上，这时他提供给我们的地址是 10.172.1.1，而我们在本地开发时，一般都开的是 node 服务，比如 localhost:3000，此时使用 ajax 调用远程服务就会出现跨域问题。
+解决跨域问题有很多种方法，比如 jsonp，但是我在工作中很少会碰到使用 jsonp 解决跨域问题的场景。
+另外一种办法是在服务端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指数与对数函数导数">
-<meta property="og:url" content="http://sunhengzhe.com/2017/02/25/exponentials-and-logarithms-derivative/index.html">
+<meta property="og:title" content="反向代理解决跨域问题">
+<meta property="og:url" content="http://sunhengzhe.com/2017/05/13/reverse-proxy-to-solve-cross-origin/index.html">
 <meta property="og:site_name" content="奥利奥的大房子">
-<meta property="og:description" content="使用 e 底法和对数微分法求解指数与对数函数导数。">
-<meta property="og:updated_time" content="2017-02-26T04:12:00.000Z">
+<meta property="og:description" content="跨域问题是前端开发中经常会遇到的问题。
+后端同学开发好了一些接口并部署到了服务器上，这时他提供给我们的地址是 10.172.1.1，而我们在本地开发时，一般都开的是 node 服务，比如 localhost:3000，此时使用 ajax 调用远程服务就会出现跨域问题。
+解决跨域问题有很多种方法，比如 jsonp，但是我在工作中很少会碰到使用 jsonp 解决跨域问题的场景。
+另外一种办法是在服务端">
+<meta property="og:updated_time" content="2017-05-13T13:20:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="指数与对数函数导数">
-<meta name="twitter:description" content="使用 e 底法和对数微分法求解指数与对数函数导数。">
+<meta name="twitter:title" content="反向代理解决跨域问题">
+<meta name="twitter:description" content="跨域问题是前端开发中经常会遇到的问题。
+后端同学开发好了一些接口并部署到了服务器上，这时他提供给我们的地址是 10.172.1.1，而我们在本地开发时，一般都开的是 node 服务，比如 localhost:3000，此时使用 ajax 调用远程服务就会出现跨域问题。
+解决跨域问题有很多种方法，比如 jsonp，但是我在工作中很少会碰到使用 jsonp 解决跨域问题的场景。
+另外一种办法是在服务端">
 
 
 
@@ -114,9 +123,9 @@
 
 
 
-  <link rel="canonical" href="http://sunhengzhe.com/2017/02/25/exponentials-and-logarithms-derivative/"/>
+  <link rel="canonical" href="http://sunhengzhe.com/2017/05/13/reverse-proxy-to-solve-cross-origin/"/>
 
-  <title> 指数与对数函数导数 | 奥利奥的大房子 </title>
+  <title> 反向代理解决跨域问题 | 奥利奥的大房子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +265,7 @@
             
             
               
-                指数与对数函数导数
+                反向代理解决跨域问题
               
             
           </h1>
@@ -268,8 +277,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-25T23:03:50+08:00" content="2017-02-25">
-              2017-02-25
+            <time itemprop="dateCreated" datetime="2017-05-13T20:58:45+08:00" content="2017-05-13">
+              2017-05-13
             </time>
           </span>
 
@@ -279,8 +288,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/02/25/exponentials-and-logarithms-derivative/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/25/exponentials-and-logarithms-derivative/" itemprop="commentsCount"></span>
+                <a href="/2017/05/13/reverse-proxy-to-solve-cross-origin/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/13/reverse-proxy-to-solve-cross-origin/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -290,7 +299,7 @@
 
           
           
-             <span id="/2017/02/25/exponentials-and-logarithms-derivative/" class="leancloud_visitors" data-flag-title="指数与对数函数导数">
+             <span id="/2017/05/13/reverse-proxy-to-solve-cross-origin/" class="leancloud_visitors" data-flag-title="反向代理解决跨域问题">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -312,43 +321,13 @@
       
 
       
-        <p>使用 e 底法和对数微分法求解指数与对数函数导数。</p>
-<a id="more"></a>
-<h2 id="a-x"><a href="#a-x" class="headerlink" title="$a^x$"></a>$a^x$</h2><p>试求 $a^x$ 的导数。</p>
-<p>$$<br>\begin{align}<br>\cfrac{d}{dx} a^x &amp;= \lim_{\Delta x \to 0} \cfrac{a^{x + \Delta x} - a^x}{\Delta x} \\<br>&amp;= \lim_{\Delta x \to 0} a^x \cfrac{a^{\Delta x} - 1}{\Delta x}<br>\end{align}<br>$$</p>
-<p>即 $\cfrac{d}{dx} = a^x \lim_{\Delta x \to 0} \cfrac{a^{\Delta x} - 1}{\Delta x}$</p>
-<p>而 $\lim_{\Delta x \to 0} \cfrac{a^{\Delta x} - 1}{\Delta x}$ 实际上就是 $a^x$ 在 x = 0 处的导数，只要我们知道了在这个点处的导数，我们就能得到整个函数的导数，这和求 $\sin$、$\cos$ 的导数时如出一辙，但是很不幸的，我们并不知道这个点出的导数。</p>
-<h3 id="引入神秘的-e"><a href="#引入神秘的-e" class="headerlink" title="引入神秘的 e"></a>引入神秘的 e</h3><p>设 $\lim_{\Delta x \to 0} \cfrac{a^{\Delta x} - 1}{\Delta x}$ 为关于 a 的函数 $M(a)$，不妨设存在一个数 e，使得 $M(e) = 1$</p>
-<p>那么，$\cfrac{d}{d} e^x = e^x \cdot M(e) = e^x$，且 $\left. \cfrac{d}{d} e^x \right|_{x = 0} = 1$</p>
-<p>注意，虽然我们到现在还不知道 e 是什么数，但我们可以先利用 e 得到一些公式，随后再求解 e。</p>
-<h2 id="自然对数"><a href="#自然对数" class="headerlink" title="自然对数"></a>自然对数</h2><p>以 e 为底数的对数叫做自然对数，记为 $\ln$，且</p>
-<p>$$<br>\begin{align}<br>\ln (a + b) &amp;= \ln a + \ln b \\<br>\ln a^n &amp;= n\ln a<br>\end{align}<br>$$</p>
-<h3 id="ln-x-的导数"><a href="#ln-x-的导数" class="headerlink" title="$\ln x$ 的导数"></a>$\ln x$ 的导数</h3><p>$$<br>\begin{align}<br>w &amp;= \ln x \\<br>e^w &amp;= x \\<br>e^w \cdot w’ &amp;= 1 \\<br>w’ &amp;= \frac{1}{e^w} \\<br>&amp;= \frac{1}{x}<br>\end{align}<br>$$</p>
-<p>即 $(\ln x)’ = \cfrac{1}{x}$</p>
-<h2 id="求解-a-x-的导数"><a href="#求解-a-x-的导数" class="headerlink" title="求解 $a^x$ 的导数"></a>求解 $a^x$ 的导数</h2><h3 id="e底法"><a href="#e底法" class="headerlink" title="e底法"></a>e底法</h3><p>将 $a^x$ 转换为以 e 为底的指数。</p>
-<p>因为 $a = e^{ln a}$，代入得</p>
-<p>$$<br>\begin{align}<br>\cfrac{d}{dx}a^x &amp;= \cfrac{d}{dx}(e^{\ln a})^x \\<br>&amp;= \cfrac{d}{dx} e^{x\ln a} \\<br>&amp;= \ln a \cdot e^{x\ln a} \\<br>&amp;= \ln a \cdot a^x<br>\end{align}<br>$$</p>
-<blockquote>
-<p>而 $\cfrac{d}{dx} a^x = a^x \cdot M(a)$，所以，$M(a) = ln a$</p>
-</blockquote>
-<h3 id="对数微分法"><a href="#对数微分法" class="headerlink" title="对数微分法"></a>对数微分法</h3><p>对某些函数而言，求其对数的导数比求该函数本身的导数更简单。</p>
-<p>设有函数 u，现要求其导数 $\cfrac{d}{dx} u$，那么</p>
-<p>$$<br>\begin{align}<br>\cfrac{d}{dx} \ln u &amp;= \cfrac{d}{du} \ln u \cdot \cfrac{d}{dx} u \\<br>&amp;= \cfrac{u’}{u}<br>\end{align}<br>$$</p>
-<p>对 $a^x$ 而言，设 $u = a^x$，由对数的性质，$\ln u = \ln a^x = x\ln a$，那么 $(\ln u)’ = \ln a$</p>
-<p>而 $\cfrac{d}{dx} \ln u = \cfrac{u’}{u}$，所以即</p>
-<p>$$<br>\begin{align}<br>\cfrac{u’}{u} &amp;= \ln a \\<br>u’ &amp;= u \ln a \\<br>&amp;= a^x \ln a<br>\end{align}<br>$$</p>
-<h2 id="几个栗子"><a href="#几个栗子" class="headerlink" title="几个栗子"></a>几个栗子</h2><h3 id="1-x-a"><a href="#1-x-a" class="headerlink" title="1) $x^a$"></a>1) $x^a$</h3><p>之前已经讨论过求导 $x^a$，a 为有理数情况，实际上求导公式对无理数同样适用</p>
-<h4 id="e-底法"><a href="#e-底法" class="headerlink" title="e 底法"></a>e 底法</h4><p>$$<br>\begin{align}<br>x^a &amp;= (e^{\ln x})^a \\<br>&amp;= e^{a \ln x} \\<br>(e^{a \ln x})’ &amp;= e^{a \ln x} \cdot \frac{a}{x} \\<br>&amp;= x^a \cdot \frac{a}{x} \\<br>&amp;= ax^{a - 1}<br>\end{align}<br>$$</p>
-<h4 id="对数微分法-1"><a href="#对数微分法-1" class="headerlink" title="对数微分法"></a>对数微分法</h4><p>$$<br>\begin{align}<br>u &amp;= x^a \\<br>\ln u &amp;= a \ln x \\<br>(\ln u)’ &amp;= \frac{a}{x} \\<br>\frac{u’}{u} &amp;= \frac{a}{x} \\<br>u’ &amp;= u \frac{a}{x} \\<br>&amp;= x^a \frac{a}{x} \\<br>&amp;= ax^{a - 1}<br>\end{align}<br>$$</p>
-<h3 id="2-x-x"><a href="#2-x-x" class="headerlink" title="2) $x^x$"></a>2) $x^x$</h3><p>求 $x^x$ 的导数</p>
-<p>$$<br>\begin{align}<br>v &amp;= x^x \\<br>\ln v &amp;= x \ln x \\<br>\cfrac{v’}{v} &amp;= \ln x + x \cdot \cfrac{1}{x} \\<br>&amp;= \ln x + 1 \\<br>v’ &amp;= v \cdot (\ln x + 1) \\<br>&amp;= x^x(\ln x + 1)<br>\end{align}<br>$$</p>
-<h3 id="3-例-3"><a href="#3-例-3" class="headerlink" title="3) 例 3"></a>3) 例 3</h3><p>求 $\lim_{n \to \infty} (1 + \frac{1}{n})^n$</p>
-<p>对函数取对数，得 $\ln (1 + \frac{1}{n})^n = n \ln(1 + \frac{1}{n})$</p>
-<p>设 $\Delta x = \frac{1}{n}$，因为 $n \to \infty$，所以 $\Delta x \to 0$</p>
-<p>$$<br>\begin{align}<br>\lim_{n \to \infty} n \ln(1 + \frac{1}{n}) &amp;= \lim_{\Delta x \to 0} \frac{1}{\Delta x} \ln (1 + \Delta x) \\<br>&amp;= \lim_{\Delta x \to 0} \cfrac{\ln(1 + \Delta x) - \ln 1}{\Delta x} \\<br>\end{align}<br>$$</p>
-<p>即 $\ln x$ 在 x = 1 处的导数，而 $\left. (\ln x)’ \right|_{x = 1} = \left. \frac{1}{x} \right|_{x = 1} = 1$，即 $\lim_{\Delta x \to 0} \ln (1 + \frac{1}{n})^n = 1$，而</p>
-<p>$$<br>\begin{align}<br>\lim_{n \to \infty} (1 + \frac{1}{n})^n &amp;= \lim_{n \to \infty} e^{\ln (1 + \frac{1}{n})^n} \\<br>&amp;= e^{\lim_{n \to \infty} \ln (1 + \frac{1}{n})^n} \\<br>&amp;= e<br>\end{align}<br>$$</p>
-<p>这也就是说，神秘的 $e = \lim_{n \to \infty}(1 + \frac{1}{n})^n$</p>
+        <p>跨域问题是前端开发中经常会遇到的问题。</p>
+<p>后端同学开发好了一些接口并部署到了服务器上，这时他提供给我们的地址是 <code>10.172.1.1</code>，而我们在本地开发时，一般都开的是 node 服务，比如 <code>localhost:3000</code>，此时使用 ajax 调用远程服务就会出现跨域问题。</p>
+<p>解决跨域问题有很多种方法，比如 jsonp，但是我在工作中很少会碰到使用 jsonp 解决跨域问题的场景。</p>
+<p>另外一种办法是在服务端设置跨域头 CORS，这是很常见的一种做法，也比较简单，但需要后端同学配合。本文主要探讨的是使用 nginx 配置反向代理来解决跨域问题。</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>首先启动 node 服务，以监听 3000 端口为例。这时访问 <code>localhost:3000</code> 为前端页面。</p>
+<h4 id="配置-nginx"><a href="#配置-nginx" class="headerlink" title="配置 nginx"></a>配置 nginx</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="section">http</span> &#123;</div><div class="line">    <span class="section">server</span> &#123;</div><div class="line">        <span class="attribute">listen</span>    <span class="number">2199</span>;</div><div class="line">        <span class="attribute">location</span> / &#123;</div><div class="line">            <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">            <span class="attribute">proxy_pass</span> http://localhost:3000;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="attribute">location</span><span class="regexp"> ^~</span> /api/ &#123;</div><div class="line">            <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">            <span class="attribute">proxy_pass</span> http://10.172.1.1;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后访问 <code>http://localhost:2199</code>，当后面为 <code>/api/..</code> 时，nginx 会转发给 <code>10.172.1.1</code>，而其他的非 api 接口，则转发给 node 服务。这样相当于从 <code>http://localhost:2199</code> 请求到 <code>http://localhost:2199/api/</code>，则解决了跨域问题。</p>
 
       
     </div>
@@ -370,7 +349,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/单变量微积分/" rel="tag">#单变量微积分</a>
+            <a href="/tags/nginx/" rel="tag">#nginx</a>
           
         </div>
       
@@ -379,17 +358,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/25/implicit-differentiation/" rel="next" title="隐函数微分法">
-                <i class="fa fa-chevron-left"></i> 隐函数微分法
+              <a href="/2017/03/25/power-series/" rel="next" title="幂级数">
+                <i class="fa fa-chevron-left"></i> 幂级数
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/12/linear-and-quadratic-approximation/" rel="prev" title="线性近似和二阶近似">
-                线性近似和二阶近似 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -415,8 +390,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/25/exponentials-and-logarithms-derivative/"
-           data-title="指数与对数函数导数" data-url="http://sunhengzhe.com/2017/02/25/exponentials-and-logarithms-derivative/">
+      <div class="ds-thread" data-thread-key="2017/05/13/reverse-proxy-to-solve-cross-origin/"
+           data-title="反向代理解决跨域问题" data-url="http://sunhengzhe.com/2017/05/13/reverse-proxy-to-solve-cross-origin/">
       </div>
     
   </div>
@@ -520,7 +495,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-x"><span class="nav-number">1.</span> <span class="nav-text">$a^x$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入神秘的-e"><span class="nav-number">1.1.</span> <span class="nav-text">引入神秘的 e</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自然对数"><span class="nav-number">2.</span> <span class="nav-text">自然对数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ln-x-的导数"><span class="nav-number">2.1.</span> <span class="nav-text">$\ln x$ 的导数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解-a-x-的导数"><span class="nav-number">3.</span> <span class="nav-text">求解 $a^x$ 的导数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#e底法"><span class="nav-number">3.1.</span> <span class="nav-text">e底法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对数微分法"><span class="nav-number">3.2.</span> <span class="nav-text">对数微分法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几个栗子"><span class="nav-number">4.</span> <span class="nav-text">几个栗子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-x-a"><span class="nav-number">4.1.</span> <span class="nav-text">1) $x^a$</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#e-底法"><span class="nav-number">4.1.1.</span> <span class="nav-text">e 底法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对数微分法-1"><span class="nav-number">4.1.2.</span> <span class="nav-text">对数微分法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-x-x"><span class="nav-number">4.2.</span> <span class="nav-text">2) $x^x$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-例-3"><span class="nav-number">4.3.</span> <span class="nav-text">3) 例 3</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">1.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置-nginx"><span class="nav-number">1.1.</span> <span class="nav-text">配置 nginx</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
