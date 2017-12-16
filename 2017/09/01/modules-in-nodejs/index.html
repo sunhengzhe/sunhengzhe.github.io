@@ -1,0 +1,936 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="nodejs," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="module 在 nodejs 里是一个非常核心的内容，本文通过结合 nodejs 的源码简单介绍 nodejs 中模块的加载方式和缓存机制。如果有理解错误的地方，请及时提醒纠正。
+
+ppt 地址：http://47.93.21.106/sharing/modules-in-nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodejs 中的模块机制">
+<meta property="og:url" content="http://sunhengzhe.com/2017/09/01/modules-in-nodejs/index.html">
+<meta property="og:site_name" content="奥利奥的大房子">
+<meta property="og:description" content="module 在 nodejs 里是一个非常核心的内容，本文通过结合 nodejs 的源码简单介绍 nodejs 中模块的加载方式和缓存机制。如果有理解错误的地方，请及时提醒纠正。
+
+ppt 地址：http://47.93.21.106/sharing/modules-in-nodejs">
+<meta property="og:image" content="http://47.93.21.106/sharing/assets/file_invoking.png">
+<meta property="og:updated_time" content="2017-12-16T02:51:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nodejs 中的模块机制">
+<meta name="twitter:description" content="module 在 nodejs 里是一个非常核心的内容，本文通过结合 nodejs 的源码简单介绍 nodejs 中模块的加载方式和缓存机制。如果有理解错误的地方，请及时提醒纠正。
+
+ppt 地址：http://47.93.21.106/sharing/modules-in-nodejs">
+<meta name="twitter:image" content="http://47.93.21.106/sharing/assets/file_invoking.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sunhengzhe.com/2017/09/01/modules-in-nodejs/"/>
+
+  <title> nodejs 中的模块机制 | 奥利奥的大房子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a7768ce6e11e71e36e002cbbf272480b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">奥利奥的大房子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                nodejs 中的模块机制
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-01T13:40:00+08:00" content="2017-09-01">
+              2017-09-01
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/09/01/modules-in-nodejs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/01/modules-in-nodejs/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/09/01/modules-in-nodejs/" class="leancloud_visitors" data-flag-title="nodejs 中的模块机制">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>module 在 nodejs 里是一个非常核心的内容，本文通过结合 nodejs 的源码简单介绍 nodejs 中模块的加载方式和缓存机制。如果有理解错误的地方，请及时提醒纠正。</p>
+<blockquote>
+<p>ppt 地址：<a href="http://47.93.21.106/sharing/modules-in-nodejs" target="_blank" rel="external">http://47.93.21.106/sharing/modules-in-nodejs</a></p>
+</blockquote>
+<a id="more"></a>
+<h2 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h2><p>提到 nodejs 中的模块，就不能不提到 CommonJS。大部分人应该都知道 nodejs 的模块规范是基于 CommonJS 的，但其实 CommonJS 不仅仅定义了关于模块的规范，完整的规范在这里：<a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a>。内容不多，感兴趣的同学可以浏览一下。当然重点是在 <a href="http://wiki.commonjs.org/wiki/Modules/1.1.1" target="_blank" rel="external">模块</a> 这一章，如果仔细读一下 CommonJS 中关于模块的规定，可以发现和 node 中的模块使用是非常吻合的。</p>
+<h3 id="Contract"><a href="#Contract" class="headerlink" title="Contract"></a>Contract</h3><p>CommonJS 中关于模块的规定主要有三点：</p>
+<ul>
+<li><p>Require</p>
+<p>模块引入的方式和行为，涉及到常用的 <code>require()</code>。</p>
+</li>
+<li><p>Module Context</p>
+<p>模块的上下文环境，涉及到 <code>module</code> 和 <code>exports</code>。</p>
+</li>
+<li><p>Module Identifiers</p>
+<p>模块的标识，主要用于模块的引入</p>
+</li>
+</ul>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>在 node.js 里使用模块的方式很简单，一般我们都是这么用的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// format.js</span></div><div class="line"><span class="keyword">const</span> moment = <span class="built_in">require</span>(<span class="string">'moment'</span>);</div><div class="line"><span class="comment">/* 格式化时间戳 */</span></div><div class="line">exports.formatDate = <span class="function"><span class="keyword">function</span> (<span class="params">timestamp</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> moment(timestamp).format(<span class="string">'YYYY-MM-DD HH:mm:ss'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面是一个 format.js 文件，内容比较简单，引入了 moment 模块，并导出了一个格式化时间的方法供其他模块使用。</p>
+<p>但是大家有没有考虑过，这里的 <code>require</code> 和 <code>exports</code> 是在哪里定义的，为什么我们可以直接拿来使用呢？</p>
+<p>实际上，nodejs 加载文件的时候，会在文件头尾分别添加一段代码：</p>
+<ul>
+<li><p>头部添加</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">exports, require, module, filename, dirname</span>) </span>&#123;</div></pre></td></tr></table></figure>
+</li>
+<li><p>尾部添加</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>最后处理成了一个函数，然后才进行模块的加载：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">exports, require, module, __filename, __dirname</span>) </span>&#123;</div><div class="line">    <span class="comment">// format.js</span></div><div class="line">    <span class="keyword">const</span> moment = <span class="built_in">require</span>(<span class="string">'moment'</span>);</div><div class="line">    <span class="comment">/* 格式化时间戳 */</span></div><div class="line">    exports.formatDate = <span class="function"><span class="keyword">function</span> (<span class="params">timestamp</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> moment(timestamp).format(<span class="string">'YYYY-MM-DD HH:mm:ss'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>所以 <code>exports</code>, <code>require</code>, <code>module</code> 其实都是在调用这个函数的时候传进来的了。</p>
+<p>这里还有两个比较细微的点，也是在很多面试题里面会出现的</p>
+<ul>
+<li>通过 <code>var</code>、<code>let</code>、<code>const</code> 定义的变量变成了局部变量；没有通过关键字声明的变量会泄露到全局</li>
+<li><code>exports</code> 是一个形参，改变 <code>exports</code> 的引用不会起作用</li>
+</ul>
+<p>第一点是作用域的问题，第二点可以问到 js 的参数传递是值传递还是引用传递。</p>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>当然，如果只是这样讲，好像只是我的一面之词，怎么证明 nodejs 确实是这样包装的呢，这里可以用两个例子来证明：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">➜  <span class="built_in">echo</span> <span class="string">'dvaduke'</span> &gt; bad.js</div><div class="line">➜  node bad.js</div><div class="line">/Users/sunhengzhe/Documents/learn/node/modules/demos/bad.js:1</div><div class="line">(<span class="keyword">function</span> (exports, require, module, __filename, __dirname) &#123; dvaduke</div><div class="line">                                                              ^</div><div class="line"></div><div class="line">ReferenceError: dvaduke is not defined</div><div class="line">    at Object.&lt;anonymous&gt; (/Users/sunhengzhe/Documents/learn/node/modules/demos/bad.js:1:63)</div><div class="line">    at Module._compile (module.js:569:30)</div><div class="line">    at Object.Module._extensions..js (module.js:580:10)</div><div class="line">    at Module.load (module.js:503:32)</div><div class="line">    at tryModuleLoad (module.js:466:12)</div><div class="line">    at Function.Module._load (module.js:458:3)</div><div class="line">    at Function.Module.runMain (module.js:605:10)</div><div class="line">    at startup (bootstrap_node.js:158:16)</div><div class="line">    at bootstrap_node.js:575:3</div></pre></td></tr></table></figure>
+<p>我在 bad.js 里面随便输入了一个单词，然后运行这个文件，可以看到运行结果会抛出异常。在异常信息里面我们会惊讶地发现 node 把那行函数头给打印出来了，而在 bad.js 里面是只有那个单词的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">➜  <span class="built_in">echo</span> <span class="string">'console.log(arguments)'</span> &gt; arguments.js</div><div class="line">➜  node arguments.js</div><div class="line">&#123; <span class="string">'0'</span>: &#123;&#125;,</div><div class="line">  <span class="string">'1'</span>:</div><div class="line">   &#123; [Function: require]</div><div class="line">     resolve: [Function: resolve],</div><div class="line">     main:</div><div class="line">      Module &#123;</div><div class="line">        id: <span class="string">'.'</span>,</div><div class="line">        exports: &#123;&#125;,</div><div class="line">        parent: null,</div><div class="line">        filename: <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demos/arguments.js'</span>,</div><div class="line">        loaded: <span class="literal">false</span>,</div><div class="line">        children: [],</div><div class="line">        paths: [Array] &#125;,</div><div class="line">     extensions: &#123; <span class="string">'.js'</span>: [Function], <span class="string">'.json'</span>: [Function], <span class="string">'.node'</span>: [Function] &#125;,</div><div class="line">     cache: &#123; <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demos/arguments.js'</span>: [Object] &#125; &#125;,</div><div class="line">  <span class="string">'2'</span>:</div><div class="line">   Module &#123;</div><div class="line">     id: <span class="string">'.'</span>,</div><div class="line">     exports: &#123;&#125;,</div><div class="line">     parent: null,</div><div class="line">     filename: <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demos/arguments.js'</span>,</div><div class="line">     loaded: <span class="literal">false</span>,</div><div class="line">     children: [],</div><div class="line">     paths:</div><div class="line">      [ <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demos/node_modules'</span>,</div><div class="line">        <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/node_modules'</span>,</div><div class="line">        <span class="string">'/Users/sunhengzhe/Documents/learn/node/node_modules'</span>,</div><div class="line">        <span class="string">'/Users/sunhengzhe/Documents/learn/node_modules'</span>,</div><div class="line">        <span class="string">'/Users/sunhengzhe/Documents/node_modules'</span>,</div><div class="line">        <span class="string">'/Users/sunhengzhe/node_modules'</span>,</div><div class="line">        <span class="string">'/Users/node_modules'</span>,</div><div class="line">        <span class="string">'/node_modules'</span> ] &#125;,</div><div class="line">  <span class="string">'3'</span>: <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demos/arguments.js'</span>,</div><div class="line">  <span class="string">'4'</span>: <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demos'</span> &#125;</div></pre></td></tr></table></figure>
+<p>在 arguments.js 这个文件里打印出 argumens 这个参数，我们知道 arguments 是函数的参数，那么打印结果可以很好的说明 node 往函数里传入了什么参数：第一个是 <code>exports</code>，现在当然是空，第二个是 <code>require</code>，是一个函数，第三个是 <code>module</code> 对象，还有两个分别是 <code>__filename</code> 和 <code>__dirname</code></p>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p>发现这个地方之后我相信大家都会对 nodejs 的源码感兴趣，而 nodejs 本身是开源的，我们可以在 github 上找到 nodejs 的源码：<a href="https://github.com/nodejs/node" target="_blank" rel="external">node</a></p>
+<p>实际上包装模块的代码就在 <code>/lib/module.js</code> 里面：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Module.prototype._compile = <span class="function"><span class="keyword">function</span>(<span class="params">content, filename</span>) </span>&#123;</div><div class="line"></div><div class="line">  content = internalModule.stripShebang(content);</div><div class="line"></div><div class="line">  <span class="comment">// create wrapper function</span></div><div class="line">  <span class="keyword">var</span> wrapper = Module.wrap(content);</div><div class="line"></div><div class="line">  <span class="keyword">var</span> compiledWrapper = vm.runInThisContext(wrapper, &#123;</div><div class="line">    <span class="attr">filename</span>: filename,</div><div class="line">    <span class="attr">lineOffset</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">displayErrors</span>: <span class="literal">true</span></div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>_compile</code> 函数是编译 nodejs 文件会执行的方法，函数中的 <code>content</code> 就是我们文件中的内容，可以看到调用了一个 Module.wrap 方法，那么 Module.wrap 做了什么呢？这里需要找到另一个文件，包含内置模块定义的 <code>/lib/internal/bootstrap_node.js</code>，里面有对 wrap 的操作：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">NativeModule.wrap = <span class="function"><span class="keyword">function</span>(<span class="params">script</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> NativeModule.wrapper[<span class="number">0</span>] + script + NativeModule.wrapper[<span class="number">1</span>];</div><div class="line">&#125;;</div><div class="line"></div><div class="line">NativeModule.wrapper = [</div><div class="line">  <span class="string">'(function (exports, require, module, __filename, __dirname) &#123; '</span>,</div><div class="line">  <span class="string">'\n&#125;);'</span></div><div class="line">];</div></pre></td></tr></table></figure>
+<p>确实是前面说到的，添加函数头尾的内容。</p>
+<h3 id="彩蛋？"><a href="#彩蛋？" class="headerlink" title="彩蛋？"></a>彩蛋？</h3><p>其实知道这个处理之后，我们可以开一些奇怪的脑洞，比如写一段好像会报错的文件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// inject.js</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'amazing'</span>);</div></pre></td></tr></table></figure>
+<p>这个文件看起来没头没尾，但是经过 nodejs 的包装后，是可以运行的，会打印出 <code>amazing</code>，看起来很有意思。</p>
+<h2 id="Core"><a href="#Core" class="headerlink" title="Core"></a>Core</h2><p>上面只是带大家看了一下 module.js 里的一小段代码，实际上如果要搞明白 nodejs 模块运作的机制，有三个文件是比较核心的：</p>
+<ul>
+<li><code>/lib/module.js</code> 加载非内置模块</li>
+<li><code>/lib/internal/module.js</code> 提供一些相关方法</li>
+<li><code>/lib/internal/bootstrap_node</code> 定义了加载内置模块的 NativeModule，同时这也是 node 的入口文件</li>
+</ul>
+<p>我们知道 node 的底层是 C 语言编写的，node 运行是，会调用 node.cc 这个文件，然后会调用 bootstrap_node 文件，在 bootstrap_node 中，会有一个 NativeModule 来加载 node 的内置模块，包括 module.js，然后通过 module.js 加载非内置模块，比如用户自定义的模块。（所以说模块是多么基础）</p>
+<p>调用关系如下：</p>
+<p><img src="http://47.93.21.106/sharing/assets/file_invoking.png" alt=""></p>
+<h2 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h2><p>下面重点介绍一下 module。在 nodejs 里面，通常一个文件就代表了一个模块，而 module 这个对象就代表了当前这个模块。我们可以尝试打印一下 module：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"console.log(module)"</span> &gt; <span class="built_in">print</span>-module.js</div><div class="line">node <span class="built_in">print</span>-module.js</div></pre></td></tr></table></figure>
+<p>打印结果如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Module &#123;</div><div class="line">  <span class="attr">id</span>: <span class="string">'.'</span>,</div><div class="line">  <span class="attr">exports</span>: &#123;&#125;,</div><div class="line">  <span class="attr">parent</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">filename</span>: <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demo-1.js'</span>,</div><div class="line">  <span class="attr">loaded</span>: <span class="literal">false</span>,</div><div class="line">  <span class="attr">children</span>: [],</div><div class="line">  <span class="attr">paths</span>:</div><div class="line">   [ <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/node_modules'</span>,</div><div class="line">     <span class="string">'/Users/sunhengzhe/Documents/learn/node/node_modules'</span>,</div><div class="line">     <span class="string">'/Users/sunhengzhe/Documents/learn/node_modules'</span>,</div><div class="line">     <span class="string">'/Users/sunhengzhe/Documents/node_modules'</span>,</div><div class="line">     <span class="string">'/Users/sunhengzhe/node_modules'</span>,</div><div class="line">     <span class="string">'/Users/node_modules'</span>,</div><div class="line">     <span class="string">'/node_modules'</span> ] &#125;</div></pre></td></tr></table></figure>
+<p>可以看到 module 这个对象有很多属性，exports 我们先不说了，它就是这个模块需要导出的内容。filename 也不说了，文件的路径名。paths 很明显，是当前文件一直到根路径的所有 node_modules 路径，查找第三方模块时会用到它。我们下面介绍一下 id、parent、children 和 loaded。</p>
+<h3 id="module-id"><a href="#module-id" class="headerlink" title="module.id"></a>module.id</h3><p>在 nodejs 里面，模块的 id 分两种情况，一种是当这个模块是入口文件时，此时模块的 id 为 <code>.</code>，另一种当模块不是入口文件时，此时模块的 id 为模块的文件路径。</p>
+<p>举个例子，当文件是入口文件时：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">➜  <span class="built_in">echo</span> <span class="string">'console.log(module.id)'</span> &gt; demo-1-single-file.js</div><div class="line">➜  node demo-1-single-file.js</div><div class="line">.</div></pre></td></tr></table></figure>
+<p>此时 id 为 <code>.</code></p>
+<p>当文件不是入口文件时：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">➜  cat demo-2-require-other-file.js</div><div class="line">const other = require(<span class="string">'./demo-1-single-file'</span>);</div><div class="line">console.log(<span class="string">'self id:'</span>, module.id);</div><div class="line">➜  node demo-2-require-other-file.js</div><div class="line">/Users/sunhengzhe/Documents/learn/node/modules/demos/demo-1-module-id/demo-1-single-file.js</div><div class="line">self id: .</div></pre></td></tr></table></figure>
+<p>运行 demo-2-require-other-file.js，首先打印出 demo-1-single-file 的内容，可以发现此时 demo-1-single-file 的 id 是它的文件名：因为它现在不是入口文件了。而作为入口文件的 demo-2-require-other-file.js 的 id 变成了 <code>.</code></p>
+<h3 id="module-parent-amp-module-children"><a href="#module-parent-amp-module-children" class="headerlink" title="module.parent &amp; module.children"></a>module.parent &amp; module.children</h3><p>这两个含义很明确，是模块的调用方和被调用方。</p>
+<p>如果我们直接打印一个入口文件的 module，结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">➜  <span class="built_in">echo</span> <span class="string">'console.log(module)'</span> &gt; demo-1-single-file.js</div><div class="line">➜  node demo-1-single-file.js</div><div class="line">Module &#123;</div><div class="line">  id: <span class="string">'.'</span>,</div><div class="line">  exports: &#123;&#125;,</div><div class="line">  parent: null,</div><div class="line">  filename: <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demos/demo-2-parent/demo-1-single-file.js'</span>,</div><div class="line">  loaded: <span class="literal">false</span>,</div><div class="line">  children: [],</div><div class="line">  paths:</div><div class="line">   [...] &#125;</div></pre></td></tr></table></figure>
+<p>篇幅限制，就不显示 paths 了。可以看到 parent 为 null：因为没有人调用它；children 为空：因为它没有调用别的模块。那么我们再新建一个文件引用一下这个模块：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">➜  cat demo-2-require-other-file.js</div><div class="line">require(<span class="string">'./demo-1-single-file'</span>);</div><div class="line">console.log(module);</div><div class="line">➜  node demo-2-require-other-file.js</div><div class="line">Module &#123;</div><div class="line">  id: <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demos/demo-2-parent/demo-1-single-file.js'</span>,</div><div class="line">  exports: &#123;&#125;,</div><div class="line">  parent:</div><div class="line">   Module &#123;</div><div class="line">     id: <span class="string">'.'</span>,</div><div class="line">     exports: &#123;&#125;,</div><div class="line">     parent: null,</div><div class="line">     filename: <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demos/demo-2-parent/demo-2-require-other-file.js'</span>,</div><div class="line">     loaded: <span class="literal">false</span>,</div><div class="line">     children: [ [Circular] ],</div><div class="line">     paths:</div><div class="line">      [...] &#125;,</div><div class="line">  filename: <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demos/demo-2-parent/demo-1-single-file.js'</span>,</div><div class="line">  loaded: <span class="literal">false</span>,</div><div class="line">  children: [],</div><div class="line">  paths:</div><div class="line">   [...] &#125;</div><div class="line">------------------------</div><div class="line">Module &#123;</div><div class="line">  id: <span class="string">'.'</span>,</div><div class="line">  exports: &#123;&#125;,</div><div class="line">  parent: null,</div><div class="line">  filename: <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demos/demo-2-parent/demo-2-require-other-file.js'</span>,</div><div class="line">  loaded: <span class="literal">false</span>,</div><div class="line">  children:</div><div class="line">   [ Module &#123;</div><div class="line">       id: <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demos/demo-2-parent/demo-1-single-file.js'</span>,</div><div class="line">       exports: &#123;&#125;,</div><div class="line">       parent: [Circular],</div><div class="line">       filename: <span class="string">'/Users/sunhengzhe/Documents/learn/node/modules/demos/demo-2-parent/demo-1-single-file.js'</span>,</div><div class="line">       loaded: <span class="literal">true</span>,</div><div class="line">       children: [],</div><div class="line">       paths: [Array] &#125; ],</div><div class="line">  paths:</div><div class="line">   [...] &#125;</div></pre></td></tr></table></figure>
+<p>上面输出了两个 module，为了方便阅读，我用分割线分隔了一下。第一个 module 是 demo-1-single-file 打印出来的，它的 parent 现在有值了，因为 demo-2-require-other-file.js 引用它了。它的 children 依旧是空，毕竟它没有引用别人。</p>
+<p>而 demo-2-require-other-file.js 的 parent 为 null，children 有值了，可以看到就是 demo-1-single-file。</p>
+<p>注意里面还出现了 [Circular]，因为 demo-1-single-file 的 parent 的 children 就是它自己，为了防止循环输出，nodejs 在这里省略掉了，应该很好理解。</p>
+<h3 id="module-loaded"><a href="#module-loaded" class="headerlink" title="module.loaded"></a>module.loaded</h3><p>loaded 从字面意思上也好理解，代表这个模块是否已经加载完了。但我们会发现在上面的所有输出中，loaded 都是 false。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">➜  cat demo-1-print-sync.js</div><div class="line">console.log(module.loaded);</div><div class="line">➜  node demo-1-print-sync.js</div><div class="line"><span class="literal">false</span></div></pre></td></tr></table></figure>
+<p>我们可以在 node 的下一个 tick 里面去输出，就能得到正确的 loaded 的值了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">➜  cat demo-2-print-next-tick.js</div><div class="line"><span class="built_in">set</span>Immediate(<span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">	console.log(module.loaded);</div><div class="line">&#125;);</div><div class="line">➜  node demo-2-print-next-tick.js</div><div class="line"><span class="literal">true</span></div></pre></td></tr></table></figure>
+<h2 id="模块的加载"><a href="#模块的加载" class="headerlink" title="模块的加载"></a>模块的加载</h2><p>模块到底是如何加载的？在 <code>/lib/module.js</code> 里，可以找到模块加载的函数 <code>_load</code>，这里 node 的注释很好地描述了加载的次序：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Check the cache for the requested file.</span></div><div class="line"><span class="comment">// 1. If a module already exists in the cache: return its exports object.</span></div><div class="line"><span class="comment">// 2. If the module is native: call `NativeModule.require()` with the</span></div><div class="line"><span class="comment">//    filename and return the result.</span></div><div class="line"><span class="comment">// 3. Otherwise, create a new module for the file and save it to the cache.</span></div><div class="line"><span class="comment">//    Then have it load  the file contents before returning its exports</span></div><div class="line"><span class="comment">//    object.</span></div><div class="line">Module._load = <span class="function"><span class="keyword">function</span>(<span class="params">request, parent, isMain</span>) </span>&#123;</div><div class="line"><span class="comment">//...</span></div></pre></td></tr></table></figure>
+<p>翻译一下，大概就是这个流程：</p>
+<ol>
+<li><p>有缓存（二次加载）</p>
+<p>直接读取缓存内容</p>
+</li>
+<li><p>无缓存（首次加载或清空缓存之后）</p>
+<ol>
+<li>路径分析</li>
+<li>文件定位</li>
+<li>编译执行</li>
+</ol>
+</li>
+</ol>
+<h3 id="无缓存"><a href="#无缓存" class="headerlink" title="无缓存"></a>无缓存</h3><p>首先看一下无缓存的情况。nodejs 首先需要对文件进行定位，找到文件才能进行加载，其实所有的细节都隐藏在了 <code>require</code> 方法里面，我们调用 require，nodejs 返回模块对象，那么 require 是怎么找到我们需要的模块的呢？</p>
+<p>简单来讲，大致是：</p>
+<ul>
+<li>尝试加载核心模块</li>
+<li>尝试以文件形式加载<ul>
+<li>X</li>
+<li>X.js</li>
+<li>X.json</li>
+<li>X.node</li>
+</ul>
+</li>
+<li>尝试作为目录查找，寻找 package.json 文件，尝试加载 main 字段指定的文件</li>
+<li>尝试作为目录查找，寻找 index.js、index.json、index.node</li>
+<li>尝试作为第三方模块进行加载</li>
+<li>抛出异常</li>
+</ul>
+<p>这里涉及的代码细节比较复杂，建议先直接阅读 nodejs 的官方文档，文档对定位的顺序描述的非常详细：<a href="https://nodejs.org/dist/latest-v8.x/docs/api/modules.html#modules_all_together" target="_blank" rel="external">https://nodejs.org/dist/latest-v8.x/docs/api/modules.html#modules_all_together</a></p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>如果有缓存的话，会直接返回缓存内容。比如这里有个文件，内容就是打印一行星号：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">➜  cat print.js</div><div class="line">console.log(<span class="string">'********'</span>);</div></pre></td></tr></table></figure>
+<p>如果我们在另一个文件里引入这个文件两次，那么会输出两行星号吗？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">➜  demo-5-cache cat demo-1-just-print-multiply.js</div><div class="line">require(<span class="string">'./print'</span>);</div><div class="line">require(<span class="string">'./print'</span>);</div><div class="line">➜  demo-5-cache node demo-1-just-print-multiply.js</div><div class="line">********</div></pre></td></tr></table></figure>
+<p>答案是不会的，因为第一次 require 后，nodejs 会把文件缓存起来，第二次 require 直接取得缓存的内容，参考 <code>/lib/module.js</code> 中的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Module._load = <span class="function"><span class="keyword">function</span>(<span class="params">request, parent, isMain</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> cachedModule = Module._cache[filename];</div><div class="line">  <span class="keyword">if</span> (cachedModule) &#123;</div><div class="line">      <span class="comment">// 更新 parent 的 children</span></div><div class="line">      updateChildren(parent, cachedModule, <span class="literal">true</span>);</div><div class="line">      <span class="keyword">return</span> cachedModule.exports;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">//...</span></div><div class="line"></div><div class="line">  Module._cache[filename] = <span class="built_in">module</span>;</div><div class="line"></div><div class="line">  tryModuleLoad(<span class="built_in">module</span>, filename);</div><div class="line"></div><div class="line">  <span class="comment">//...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="清空缓存"><a href="#清空缓存" class="headerlink" title="清空缓存"></a>清空缓存</h4><p>那么，如果我们要清空缓存，势必需要清除 <code>Module._cache</code> 中的内容。然而在文件里，我们只能拿到 module 对象，拿不到 Module 类：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">➜  cat demo-2-get-Module.js</div><div class="line">console.log(Module)</div><div class="line">➜  node demo-2-get-Module.js</div><div class="line">/Users/sunhengzhe/Documents/learn/node/modules/demos/demo-5-cache/demo-2-get-Module.js:1</div><div class="line">(<span class="keyword">function</span> (exports, require, module, __filename, __dirname) &#123; console.log(Module)</div><div class="line">                                                                          ^</div><div class="line"></div><div class="line">ReferenceError: Module is not defined</div><div class="line">    at Object.&lt;anonymous&gt; (/Users/sunhengzhe/Documents/learn/node/modules/demos/demo-5-cache/demo-2-get-Module.js:1:75)</div><div class="line">    at Module._compile (module.js:569:30)</div><div class="line">    at Object.Module._extensions..js (module.js:580:10)</div><div class="line">    at Module.load (module.js:503:32)</div><div class="line">    at tryModuleLoad (module.js:466:12)</div><div class="line">    at Function.Module._load (module.js:458:3)</div><div class="line">    at Function.Module.runMain (module.js:605:10)</div><div class="line">    at startup (bootstrap_node.js:158:16)</div><div class="line">    at bootstrap_node.js:575:3</div></pre></td></tr></table></figure>
+<p>但是是否没有办法去清空缓存了呢？当然是有的。这里我们先看 require 是怎么来的。</p>
+<p>之前提到，require 是通过函数参数的方式传入模块的，那么我们可以看一下，传入的 require 的到底是什么？回到 <code>_compile</code> 方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">Module.prototype._compile = <span class="function"><span class="keyword">function</span>(<span class="params">content, filename</span>) </span>&#123;</div><div class="line">  content = internalModule.stripShebang(content);</div><div class="line"></div><div class="line">  <span class="comment">// create wrapper function</span></div><div class="line">  <span class="keyword">var</span> wrapper = Module.wrap(content);</div><div class="line"></div><div class="line">  <span class="keyword">var</span> compiledWrapper = vm.runInThisContext(wrapper, &#123;</div><div class="line">    <span class="attr">filename</span>: filename,</div><div class="line">    <span class="attr">lineOffset</span>: <span class="number">0</span>,</div><div class="line">    <span class="attr">displayErrors</span>: <span class="literal">true</span></div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  <span class="comment">// ...</span></div><div class="line"></div><div class="line">  <span class="keyword">var</span> <span class="built_in">require</span> = internalModule.makeRequireFunction(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">  result = compiledWrapper.call(<span class="keyword">this</span>.exports, <span class="keyword">this</span>.exports, <span class="built_in">require</span>, <span class="keyword">this</span>,</div><div class="line">                                  filename, dirname);</div><div class="line">  <span class="comment">// ...</span></div><div class="line"></div><div class="line">  <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>简化后的代码如上，函数内容经过包装之后生成了一个新的函数 <code>compiledWrapper</code>，然后把一些参数传了进去。我们可以看到 require 是从一个 <code>makeRequireFunction</code> 的函数中生成的。</p>
+<p>而 <code>makeRequireFunction</code> 函数是在 <code>/lib/internal/module.js</code> 中定义的，看下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeRequireFunction</span>(<span class="params">mod</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> Module = mod.constructor;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">require</span>(<span class="params">path</span>) </span>&#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      exports.requireDepth += <span class="number">1</span>;</div><div class="line">      <span class="keyword">return</span> mod.require(path);</div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">      exports.requireDepth -= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">request</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> Module._resolveFilename(request, mod);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="built_in">require</span>.resolve = resolve;</div><div class="line"></div><div class="line">  <span class="built_in">require</span>.main = process.mainModule;</div><div class="line"></div><div class="line">  <span class="comment">// Enable support to add extra extension types.</span></div><div class="line">  <span class="built_in">require</span>.extensions = Module._extensions;</div><div class="line"></div><div class="line">  <span class="built_in">require</span>.cache = Module._cache;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="built_in">require</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果我们直接打印 require，其实就和这里面定义的 require 是一样的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">➜  cat demo-1-require.js</div><div class="line">console.log(require.toString());</div><div class="line">➜  node demo-1-require.js</div><div class="line"><span class="keyword">function</span> require(path) &#123;</div><div class="line">    try &#123;</div><div class="line">      exports.requireDepth += 1;</div><div class="line">      <span class="built_in">return</span> mod.require(path);</div><div class="line">    &#125; finally &#123;</div><div class="line">      exports.requireDepth -= 1;</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>其实这个 require 也没有做什么事情，又调用了 mod 的 require，而 mod 是通过 <code>makeRequireFunction</code> 传进来的，传入的是 this，所以归根到底，require 是 module 原型上的方法，也就是 module.prototype.require，参考 <code>/lib/module.js</code> 中的代码。</p>
+<p>当然这里我们先不用追究 require 的实现方式，而是注意到 <code>makeRequireFunction</code> 中对 require 的定义，我们可以发现一行关于 _cache 的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeRequireFunction</span>(<span class="params">mod</span>) </span>&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">require</span>(<span class="params">path</span>) </span>&#123;&#125;</div><div class="line"></div><div class="line">  <span class="built_in">require</span>.cache = Module._cache;</div><div class="line"></div><div class="line">  <span class="comment">//..</span></div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="built_in">require</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所以 nodejs 很贴心地，把 <code>Module._cache</code> 返回给我们了，其实只要清空 require.cache 即可。而根据上面的代码，<code>Module._cache</code> 是通过 filename 来作为缓存的 key 的，所以我们只需要清空模块对应的文件名。</p>
+<p>针对上面提到的例子，清空 <code>print.js</code> 的缓存：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">require(<span class="string">'./print'</span>);</div><div class="line">// delete cache</div><div class="line">delete require.cache[require.resolve(<span class="string">'./print'</span>)];</div><div class="line">require(<span class="string">'./print'</span>);</div></pre></td></tr></table></figure>
+<p>然后再打印一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">➜  node demo-1-just-print-multiply.js</div><div class="line">********</div><div class="line">********</div></pre></td></tr></table></figure>
+<p>就是两行星号了。</p>
+<p>这里用到了 require 的一个 resolve 方法，它和直接调用 require 方法比较像，都能找到模块的绝对路径名，但直接 require 还会加载模块，而 <code>require.resolve()</code> 只会找到文件名并返回。所以这里利用文件名将 cache 里对应的内容删除了。</p>
+<h2 id="调试-nodejs-的源码"><a href="#调试-nodejs-的源码" class="headerlink" title="调试 nodejs 的源码"></a>调试 nodejs 的源码</h2><p>本文介绍了一些 nodejs 中的源码内容，在学习 nodejs 的过程中，如果想查看 nodejs 的源码（我觉得这是一个必备的过程），那么就需要去调试源码，打几个 log 看一下是不是和你预期的一致，这里说一下怎么调试 nodejs 的源码。</p>
+<ol>
+<li>下载 node 源码 <code>git@github.com:nodejs/node.git</code></li>
+<li>进入源码目录执行 <code>./configure</code> &amp; <code>make -j</code></li>
+<li>上一步之后会在 <code>${源码目录}/out/Release/node</code> 里生成一个执行文件，将这个文件作为你的 node 执行文件。</li>
+<li>每次修改源码后重新执行 <code>make</code> 命令。</li>
+</ol>
+<p>比如修改代码之后，运行 <code>make</code>，然后这样运行文件即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">➜ /Users/sunhengzhe/Documents/project/<span class="built_in">source</span>-code/node/out/Release/node demo-1-single-file.js</div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li>朴灵《深入浅出 Node.js》</li>
+<li><a href="https://nodejs.org/dist/latest-v8.x/docs/api/modules.html" target="_blank" rel="external">Node.js Documentation</a></li>
+<li><a href="https://medium.freecodecamp.org/requiring-modules-in-node-js-everything-you-need-to-know-e7fbd119be8" target="_blank" rel="external">requiring-modules-in-node-js-everything-you-need-to-know</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nodejs/" rel="tag">#nodejs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/13/reverse-proxy-to-solve-cross-origin/" rel="next" title="反向代理解决跨域问题">
+                <i class="fa fa-chevron-left"></i> 反向代理解决跨域问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/23/count-logs-by-shell/" rel="prev" title="使用 shell 命令统计日志">
+                使用 shell 命令统计日志 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/09/01/modules-in-nodejs/"
+           data-title="nodejs 中的模块机制" data-url="http://sunhengzhe.com/2017/09/01/modules-in-nodejs/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/aoliao.png"
+               alt="一只奥利奥" />
+          <p class="site-author-name" itemprop="name">一只奥利奥</p>
+          <p class="site-description motion-element" itemprop="description">很高兴遇见你</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunhengzhe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3025220401" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CommonJS"><span class="nav-number">1.</span> <span class="nav-text">CommonJS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Contract"><span class="nav-number">1.1.</span> <span class="nav-text">Contract</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Usage"><span class="nav-number">2.</span> <span class="nav-text">Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#证明"><span class="nav-number">2.1.</span> <span class="nav-text">证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码"><span class="nav-number">2.2.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#彩蛋？"><span class="nav-number">2.3.</span> <span class="nav-text">彩蛋？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Core"><span class="nav-number">3.</span> <span class="nav-text">Core</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Module"><span class="nav-number">4.</span> <span class="nav-text">Module</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#module-id"><span class="nav-number">4.1.</span> <span class="nav-text">module.id</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#module-parent-amp-module-children"><span class="nav-number">4.2.</span> <span class="nav-text">module.parent & module.children</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#module-loaded"><span class="nav-number">4.3.</span> <span class="nav-text">module.loaded</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块的加载"><span class="nav-number">5.</span> <span class="nav-text">模块的加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无缓存"><span class="nav-number">5.1.</span> <span class="nav-text">无缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">5.2.</span> <span class="nav-text">缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#清空缓存"><span class="nav-number">5.2.1.</span> <span class="nav-text">清空缓存</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试-nodejs-的源码"><span class="nav-number">6.</span> <span class="nav-text">调试 nodejs 的源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只奥利奥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunhengzhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("1LyGDYVjwRXPreaCWYEHmSBH-gzGzoHsz", "25EgCU8EbGo0vh3FigVCMpnh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

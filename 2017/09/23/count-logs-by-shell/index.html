@@ -1,0 +1,808 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="shell," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="通过使用 shell 命令可以很方便地对日志进行统计和分析，当服务有异常的时候，需要去排查日志，那么掌握一种统计日志的技巧就是必不可少的了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 shell 命令统计日志">
+<meta property="og:url" content="http://sunhengzhe.com/2017/09/23/count-logs-by-shell/index.html">
+<meta property="og:site_name" content="奥利奥的大房子">
+<meta property="og:description" content="通过使用 shell 命令可以很方便地对日志进行统计和分析，当服务有异常的时候，需要去排查日志，那么掌握一种统计日志的技巧就是必不可少的了。">
+<meta property="og:updated_time" content="2017-12-16T02:49:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 shell 命令统计日志">
+<meta name="twitter:description" content="通过使用 shell 命令可以很方便地对日志进行统计和分析，当服务有异常的时候，需要去排查日志，那么掌握一种统计日志的技巧就是必不可少的了。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sunhengzhe.com/2017/09/23/count-logs-by-shell/"/>
+
+  <title> 使用 shell 命令统计日志 | 奥利奥的大房子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a7768ce6e11e71e36e002cbbf272480b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">奥利奥的大房子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用 shell 命令统计日志
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-23T16:14:34+08:00" content="2017-09-23">
+              2017-09-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/09/23/count-logs-by-shell/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/23/count-logs-by-shell/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/09/23/count-logs-by-shell/" class="leancloud_visitors" data-flag-title="使用 shell 命令统计日志">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>通过使用 shell 命令可以很方便地对日志进行统计和分析，当服务有异常的时候，需要去排查日志，那么掌握一种统计日志的技巧就是必不可少的了。</p>
+<a id="more"></a>
+<p>假设有一个包含下面内容的日志文件 <code>access.log</code>。我们以统计这个文件的日志为例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">date=2017-09-23 13:32:50 | ip=40.80.31.153 | method=GET | url=/api/foo/bar?params=something | status=200 | time=9.703 | bytes=129 | referrer=&quot;-&quot; | user-agent=&quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.63 Safari/535.7&quot; | cookie=&quot;-&quot;</div><div class="line">date=2017-09-23 00:00:00 | ip=100.109.222.3 | method=HEAD | url=/api/foo/healthcheck | status=200 | time=0.337 | bytes=10 | referrer=&quot;-&quot; | user-agent=&quot;-&quot; | cookie=&quot;-&quot;</div><div class="line">date=2017-09-23 13:32:50 | ip=40.80.31.153 | method=GET | url=/api/foo/bar?params=anything | status=200 | time=8.829 | bytes=466 | referrer=&quot;-&quot; | user-agent=&quot;GuzzleHttp/6.2.0 curl/7.19.7 PHP/7.0.15&quot; | cookie=&quot;-&quot;</div><div class="line">date=2017-09-23 13:32:50 | ip=40.80.31.153 | method=GET | url=/api/foo/bar?params=everything | status=200 | time=9.962 | bytes=129 | referrer=&quot;-&quot; | user-agent=&quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.63 Safari/535.7&quot; | cookie=&quot;-&quot;</div><div class="line">date=2017-09-23 13:32:50 | ip=40.80.31.153 | method=GET | url=/api/foo/bar?params=nothing | status=200 | time=11.822 | bytes=121 | referrer=&quot;-&quot; | user-agent=&quot;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.63 Safari/535.7&quot; | cookie=&quot;-&quot;</div></pre></td></tr></table></figure>
+<p>不同的服务对应的日志可能不一样，本文使用示例日志的格式是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">date | ip | method | url | status | time | bytes | referrer | user-agent | cookie</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意 mac 系统和 linux 系统中的命令行为可能不同，以下命令请在 linux 系统中使用</p>
+</blockquote>
+<h2 id="排除特殊日志"><a href="#排除特殊日志" class="headerlink" title="排除特殊日志"></a>排除特殊日志</h2><p>统计日志时，我们可能不关心 HEAD 请求，或者只关心 GET 请求，这里首先需要筛选日志，可以使用 <code>grep</code> 命令。<code>-v</code> 的含义是排除匹配的文本行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">grep GET access.log # 只统计 GET 请求</div><div class="line">grep -v HEAD access.log # 不统计 HEAD 请求</div><div class="line">grep -v &apos;HEAD\|POST&apos; access.log # 不统计 HEAD 和 POST 请求</div></pre></td></tr></table></figure>
+<h2 id="查看接口耗时情况"><a href="#查看接口耗时情况" class="headerlink" title="查看接口耗时情况"></a>查看接口耗时情况</h2><p>我们可以将每行的 <code>time</code> 匹配出来，然后做一个排序。使用 awk 的 <code>match</code> 方法可以匹配正则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk &apos;&#123; match($0, /time=([0-9]+\.[0-9]+)/, result); print result[1]&#125;&apos; access.log</div></pre></td></tr></table></figure>
+<p>awk 命令使用方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk &apos;&#123;pattern + action&#125;&apos; &#123;filenames&#125;</div></pre></td></tr></table></figure></p>
+<p>我们实际上只用到了 action：<code>match($0, /time=([0-9]+\.[0-9]+)/, result); print result[1]</code> 这一段。</p>
+<p><code>match</code> 方法接收三个参数：需要匹配的文本、正则表达式、结果数组。<code>$0</code> 代表 awk 命令处理的每一行，结果数组是可选的，因为我们要拿到匹配结果所以这里传入了一个 result 数组，用来存储匹配后的结果。</p>
+<p>注意这里的正则我没有使用 <code>\d</code> 来表示数字，因为 awk 指令默认使用 “EREs”，不支持 <code>\d</code> 的表示，具体请看 <a href="http://www.cnblogs.com/chengmo/archive/2010/10/10/1847287.html" target="_blank" rel="external">linux shell 正则表达式(BREs,EREs,PREs)差异比较</a>。</p>
+<p>result 数组实际上和 javascript 里的结果数组很像了，所以我们打印出第二个元素，即匹配到的内容。执行完这行命令后结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">9.703</div><div class="line">0.337</div><div class="line">8.829</div><div class="line">9.962</div><div class="line">11.822</div></pre></td></tr></table></figure>
+<p>当然实际上一天的日志可能是成千上万条，我们需要对日志进行排序，且只展示前 3 条。这里使用到 <code>sort</code> 命令。</p>
+<p><code>sort</code> 命令默认从小到大排序，且当作字符串排序。所以默认情况下使用 sort 命令之后 <code>&quot;11&quot;</code> 会排在 <code>&quot;8&quot;</code> 前面。那么需要使用 <code>-n</code> 指定按数字排序，<code>-r</code> 来按从大到小排序，然后我们查看前 3 条：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk &apos;&#123; match($0, /time=([0-9]+\.[0-9]+)/, result); print result[1]&#125;&apos; access.log | sort -rn | head -3</div></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">11.822</div><div class="line">9.962</div><div class="line">9.703</div></pre></td></tr></table></figure>
+<h2 id="查看耗时最高的接口"><a href="#查看耗时最高的接口" class="headerlink" title="查看耗时最高的接口"></a>查看耗时最高的接口</h2><p>当然我们一般不会只查看接口耗时情况，还需要把具体日志也打印出来，上面的命令就不能满足要求了。</p>
+<p>awk 的打印默认是按空格分隔的，意思是 <code>2017-09-23 GET</code> 这一行如果使用 <code>awk &#39;{print $1}&#39;</code> 会打印出 <code>&quot;2017-09-23&quot;</code>，类似地，<code>$2</code> 会打印出 <code>GET</code>。</p>
+<p>根据日志特征，我们可以使用 <code>|</code> 来作为分隔符，这样就能打印出各个我们感兴趣的值了。因为我们想找出耗时最高的接口，那么我们把 time、date 和 url 单独找出来。</p>
+<p>awk 的 <code>-F</code> 参数用来自定义分隔符。然后我们可以数一下三个部分按 <code>|</code> 分隔后分别是第几个：time 是第 6 个、date 是第 1 个、url 是第 4 个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk -F &apos;|&apos; &apos;&#123;print $6 $1 $4&#125;&apos; access.log</div></pre></td></tr></table></figure>
+<p>这样打出来结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">time=9.703 date=2017-09-23 13:32:50  url=/api/foo/bar?params=something</div><div class="line">time=0.337 date=2017-09-23 00:00:00  url=/api/foo/healthcheck</div><div class="line">time=8.829 date=2017-09-23 13:32:50  url=/api/foo/bar?params=anything</div><div class="line">time=9.962 date=2017-09-23 13:32:50  url=/api/foo/bar?params=everything</div><div class="line">time=11.822 date=2017-09-23 13:32:50  url=/api/foo/bar?params=nothing</div></pre></td></tr></table></figure>
+<p>因为我们想按 time 来排序，而 sort 可以按列来排序，而列是按空格分隔的，我们目前第一列是 <code>time=xxx</code>，是不能排序的，所以这里要想办法把 <code>time=</code> 给去掉，因为我们很鸡贼地把耗时放在了第一列，那么其实再通过 <code>time=</code> 进行分隔一下就行了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk -F &apos;|&apos; &apos;&#123;print $6 $1 $4&#125;&apos; access.log | awk -F &apos;time=&apos; &apos;&#123;print $2&#125;&apos;</div></pre></td></tr></table></figure>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">9.703 date=2017-09-23 13:32:50  url=/api/foo/bar?params=something</div><div class="line">0.337 date=2017-09-23 00:00:00  url=/api/foo/healthcheck</div><div class="line">8.829 date=2017-09-23 13:32:50  url=/api/foo/bar?params=anything</div><div class="line">9.962 date=2017-09-23 13:32:50  url=/api/foo/bar?params=everything</div><div class="line">11.822 date=2017-09-23 13:32:50  url=/api/foo/bar?params=nothing</div></pre></td></tr></table></figure></p>
+<p>使用 <code>sort</code> 的 <code>-k</code> 参数可以指定要排序的列，这里是第 1 列；再结合上面的排序，就能把耗时最高的日志打印出来了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk -F &apos;|&apos; &apos;&#123;print $6 $1 $4&#125;&apos; access.log | awk -F &apos;time=&apos; &apos;&#123;print $2&#125;&apos; | sort -k1nr | head -3</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">11.822 date=2017-09-23 13:32:50  url=/api/foo/bar?params=nothing</div><div class="line">9.962 date=2017-09-23 13:32:50  url=/api/foo/bar?params=everything</div><div class="line">9.703 date=2017-09-23 13:32:50  url=/api/foo/bar?params=something</div></pre></td></tr></table></figure></p>
+<h2 id="统计请求次数最多的接口"><a href="#统计请求次数最多的接口" class="headerlink" title="统计请求次数最多的接口"></a>统计请求次数最多的接口</h2><p>如果需要统计哪些接口每天请求量是最多的，只需要新引入 <code>uniq</code> 命令。</p>
+<p>我们已经可以通过 <code>grep -v HEAD access.log | awk -F &#39;|&#39; &#39;{print $4}&#39;</code> 来筛选出所有的 url，<code>uniq</code> 命令可以删除 <strong>相邻</strong> 的相同的行，而 <code>-c</code> 可以输出每行出现的次数。</p>
+<p>所以我们先把 url 排序以让相同的 url 放在一起，然后使用 <code>uniq -c</code> 来统计出现的次数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep -v HEAD access.log | awk -F &apos;|&apos; &apos;&#123;print $4&#125;&apos; | sort  | uniq -c</div></pre></td></tr></table></figure>
+<p>因为示例日志数量太少，我们假设日志里有多条，那么结果应该类似下面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1  url=/api/foo/bar?params=anything</div><div class="line">19  url=/api/foo/bar?params=everything</div><div class="line">4  url=/api/foo/bar?params=nothing</div><div class="line">5  url=/api/foo/bar?params=something</div></pre></td></tr></table></figure></p>
+<p>接下来再 sort 即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep -v HEAD access.log | awk -F &apos;|&apos; &apos;&#123;print $4&#125;&apos; | sort  | uniq -c | sort -k1nr | head -10</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shell/" rel="tag">#shell</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/01/modules-in-nodejs/" rel="next" title="nodejs 中的模块机制">
+                <i class="fa fa-chevron-left"></i> nodejs 中的模块机制
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/09/23/count-logs-by-shell/"
+           data-title="使用 shell 命令统计日志" data-url="http://sunhengzhe.com/2017/09/23/count-logs-by-shell/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/aoliao.png"
+               alt="一只奥利奥" />
+          <p class="site-author-name" itemprop="name">一只奥利奥</p>
+          <p class="site-description motion-element" itemprop="description">很高兴遇见你</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunhengzhe" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3025220401" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#排除特殊日志"><span class="nav-number">1.</span> <span class="nav-text">排除特殊日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看接口耗时情况"><span class="nav-number">2.</span> <span class="nav-text">查看接口耗时情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看耗时最高的接口"><span class="nav-number">3.</span> <span class="nav-text">查看耗时最高的接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#统计请求次数最多的接口"><span class="nav-number">4.</span> <span class="nav-text">统计请求次数最多的接口</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">一只奥利奥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunhengzhe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("1LyGDYVjwRXPreaCWYEHmSBH-gzGzoHsz", "25EgCU8EbGo0vh3FigVCMpnh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
